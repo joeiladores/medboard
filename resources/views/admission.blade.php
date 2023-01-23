@@ -12,16 +12,11 @@
     <div class="container-sm border m-5 p-5" style="height:600px;">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                </li>
-                <li class="page-item" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><a
-                        class="page-link" href="">1</a></li>
-                <li class="page-item" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><a
-                        class="page-link" href="">2</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
+                <li class="page-item" class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev"><a class="page-link" href="">Previous</a></li>
+                <li class="page-item" class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next"><a class="page-link" href="">Next</a></li>
+
             </ul>
         </nav>
         <div id="carouselExample" class="carousel slide">
@@ -35,9 +30,6 @@
                                 <th scope="col">Attending Doctor ID</th>
                                 <th scope="col">Doctor Order ID</th>
                                 <th scope="col">Date Time Admitted</th>
-                                <th scope="col">Complain</th>
-                                <th scope="col">Id</th>
-                                <th scope="col">Patient ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,14 +58,12 @@
                         <thead>
                             <tr>
                             <tr>
+                                <th scope="col">Complain</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Patient ID</th>
                                 <th scope="col">Impression Diagnosis</th>
                                 <th scope="col">Age</th>
                                 <th scope="col">Weight</th>
-                                <th scope="col">Activities</th>
-                                <th scope="col">Diet</th>
-                                <th scope="col">Tubes</th>
-                                <th scope="col">Special Information</th>
-                                <th scope="col">Date Time Discharge</th>
                             </tr>
                             </tr>
                         </thead>
@@ -99,19 +89,41 @@
                     </table>
                 </div>
                 <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-item active">
+                        <table class="table3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Activities</th>
+                                    <th scope="col">Diet</th>
+                                    <th scope="col">Tubes</th>
+                                    <th scope="col">Special Information</th>
+                                    <th scope="col">Date Time Discharge</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                <span class="visually-block">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="false"></span>
-                <span class="visually-block">Next</span>
-            </button>
         </div>
-
         <form>
             <div class="mb-3" id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             <div class="mb-3">
