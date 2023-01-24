@@ -27,8 +27,7 @@
 box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
 border-radius: 0px 44px 32px 0px;">
                 <div class="d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky"
-                    style="background: linear-gradient(180deg, rgba(66, 100, 208, 0.26) 1.56%, #4264D0 36.46%);
-border-radius: 0px 44px 32px 0px;">
+                    style="">
                     <a href="index.html" class="navbar-brand ml-4">
                         <img id="logo" style="width:100px; height:100px;" src="https://cdn.discordapp.com/attachments/1065528823027867648/1067448961801134140/logo.png" alt="Medboard Logo">
                     </a>
@@ -65,28 +64,27 @@ border-radius: 0px 44px 32px 0px;">
                             </a>
                         </li>
                         <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                                data-bs-placement="right" data-bs-original-title="Forms">
+                                <i class="fa-solid fa-clipboard fa-2x" style="color:white" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                                 data-bs-placement="right" data-bs-original-title="Calendar">
                                 <i class="fa-regular fa-calendar-days fa-2x" style="color:white" aria-hidden="true"></i>
                             </a>
                         </li>
+                        
+
                         <li>
                         <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
-                                data-bs-placement="right" data-bs-original-title="Settings">
-                                <i class="fa-solid fa-gear fa-2x" style="color:white" aria-hidden="true"></i>
+                                data-bs-placement="right" data-bs-original-title="Logout">
+                                <i class="fa-solid fa-right-from-bracket fa-2x" style="color:white; padding-top:250%;" aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>
-                    <div class="dropdown">
-                        <a href="#" style="color:black"
-                            class="d-flex align-items-center justify-content-center p-3 text-decoration-none dropdown-toggle"
-                            id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-circle-user fa-2x" style="color:white"></i>
-                        </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-sm p-3 min-vh-100">
