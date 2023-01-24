@@ -68,7 +68,7 @@ border-radius: 0px 44px 32px 0px;">
                                 data-bs-placement="right" data-bs-original-title="Forms">
                                 <i class="fa-solid fa-clipboard fa-2x" style="color:white" aria-hidden="true"></i>
                             </a>
-                        </li>
+</li>
                         <li>
                             <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                                 data-bs-placement="right" data-bs-original-title="Calendar">
