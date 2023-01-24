@@ -17,6 +17,10 @@ Route::get('/admission', function () {
     return view('admission');
 });
 
+Route::get('/admissionForm', function () {
+    return view('admissionForm');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
