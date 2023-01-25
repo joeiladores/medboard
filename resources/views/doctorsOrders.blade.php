@@ -1,38 +1,53 @@
 @extends('layouts.orders')
 
 @section('content')
-<div class="container p-5 m-5">
-        <h1 class="fw-bold">Patient List</h1>
-        <p>This tables displays all our patients.</p>
-        @if (session('success'))
-            <div class="alert alert-success my-3" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
-        <table class="table mt-3">
-            <tr>
-                <th>Patient ID</th>
-                <th>Name</th>
-                <th>Room</th>
-                <th>Doctor's Orders</th>
-            </tr>
-            @if(count($patients)>0)
-                @foreach($patients as $patient)
+
+<div class="row">
+    <div class="col-4">
+      <form class="form-inline">
+      <label for="sort-by">Search:</label>
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+    <div class="col-3">
+      <div class="form-inline">
+      <label for="sort-by" class="mr-sm-2">Sort by:</label>
+        <select class="form-control" id="sort-by">
+          <option>Name</option>
+          <option>ID</option>
+          <option>Date</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card rounded shadow mt-4">
+  <div class="card-body">
+
+ 
+           </form>
+           <table class="table mt-3">
+            <thead>
                 <tr>
-                    <td>{{ $patient->id }}</td>
-                    <td>{{ $patient->name }}</td>
-                    <td>{{ $patient->room }}</td>
-                    <td>{{ $patient->order }}</td>
-                    <td>
-                        <a class="btn btn-sm btn-light" href="{{ route('edit', $patient->id) }}">Edit</a>
-                    </td>
+                    <th>Patient ID</th>
+                    <th>Patient</th>
+                    <th>Room ID</th>
+                    <th>Date</th>
+                    <th>Nurse</th>
+                    <th>Orders</th>
                 </tr>
-                @endforeach
-            @else
-            <tr>
-                <td colspan="6" class="text-center p-5 m-5">
-                There are currently no patients.
-                </td>
-            </tr>
-            @endif
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Juan Luna</td>
+                    <td>A01</td>
+                    <td>01/26/23</td>
+                    <td>Nurse Cruz</td>
+                    <td><a  href="#" class="btn btn-sm">📝</a></td>
+                </tr>
+            </tbody>
+           </table>
+           </div>
+</div>
 @endsection

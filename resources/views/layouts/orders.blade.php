@@ -89,27 +89,10 @@ border-radius: 0px 44px 32px 0px;">
             </div>
             <div class="col-sm p-3 min-vh-100">
                 <!-- content -->
-                <h2>Patients List</h2>
+                <h2></h2>
                 <hr />
                 <div class="container-fluid">
-  <div class="row mb-4">
-    <div class="col-4">
-      <form class="form-inline my-2 my-lg-0">
-      <label for="sort-by" class="mr-sm-2">Search:</label>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      </form>
-    </div>
-    <div class="col-3">
-      <div class="form-inline my-2 my-lg-0">
-      <label for="sort-by" class="mr-sm-2">Sort by:</label>
-        <select class="form-control" id="sort-by">
-          <option>Name</option>
-          <option>ID</option>
-          <option>Date</option>
-        </select>
-      </div>
-    </div>
-  </div>
+ 
 </div>
                 <!--CARD START -->
       <main class="py-4">
