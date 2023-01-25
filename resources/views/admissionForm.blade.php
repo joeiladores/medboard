@@ -7,11 +7,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.0.7/css/sb-admin-2.min.css" rel="stylesheet">
 
     <title>admission form</title>
+    <style>
+    #logo {
+        height: 100px;
+        width: 100px;
+    }
+
+    .brand {
+        padding: 10px 50px 50px 50px;
+        display: flex;
+        flex-wrap: wrap;
+        background: linear-gradient(to top, #89A5FF, #ECEFFA);
+        height: 160px;
+
+    }
+
+    h4 {
+        font-weight: 600;
+    }
+
+    h5 {
+        font-weight: bolder;
+        font-size: medium;
+        height: auto;
+        margin-left: 35px;
+
+
+    }
+
+    .nav-item {
+        background-color: #4264d0;
+        display: flex;
+        height: none;
+        padding: 0px;
+        border-bottom: skyblue solid 0.1mm;
+
+
+
+
+    }
+
+    .navbar-nav {
+        background: linear-gradient(to top, #033FFF, #1596FF);
+        color: white;
+    }
+
+    .sidebar-divider {
+        background-color: white;
+
+    }
+
+    .btn-nav {
+        color: black;
+    }
+
+    .round-me {
+        background-color: #E0EEF8;
+        border-top: skyblue solid 1mm;
+        border-radius: 50px;
+        box-shadow: 2px 5px 5px 5px rgba(0, 0, 0, 0.5);
+
+    }
+
+    /**--------------main col area */
+    .col {
+        border: solid black;
+    }
+
+    .pagination {
+        margin-left: 50px;
+    }
+    </style>
 </head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -22,43 +95,56 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">MedBoard Logo</div>
-            </a>
-
-
-
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-
 
 
 
             <!-- Nav Item - Dashboard -->
+            <li class="brand">
+                <img id="logo" src="{{ asset('storage/image/logo.svg') }}" alt="Med Board LOGO">
+                <h4>Med Board</h4>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>
+                        <h5>User Management</h5>
+                    </span></a>
             </li>
-
-
-
-
-
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <span>
+                        <h5>Room Management</h5>
+                    </span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <span>
+                        <h5>Department Management</h5>
+                    </span></a>
+            </li>
+            <li class="nav-item mb-1">
+                <a class="nav-link" href="index.html">
+                    <span>
+                        <h5>Patient Management</h5>
+                    </span></a>
+            </li>
+            <li class="nav-item round-me m-2">
+                <a class="nav-link" href="index.html">
+                    <span>
+                        <h5 class="btn-nav">Add Patient</h5>
+                    </span></a>
+            </li>
+            <li class="nav-item round-me m-3">
+                <a class="nav-link" href="index.html">
+                    <span>
+                        <h5 class="btn-nav">Admit Patient</h5>
+                    </span></a>
+            </li>
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
 
 
 
-            
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -74,6 +160,7 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
 
 
 
@@ -132,7 +219,7 @@
 
 
 
-                            
+
                             <!-- Dropdown - -->
                             <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
@@ -156,8 +243,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">test1100101010101</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -186,82 +272,160 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
-
-
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <div class="container text-center">
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <h1 class="h3 mb-1 text-gray-800">Charts</h1>
+                                One of three columns
+                            </div>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                    <th scope="col">test</th>
+                                    <th scope="col">sample</th>
+                                    <th scope="col">test</th>
+                                    <th scope="col">sample</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
 
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Charts</h1>
-
-
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <div class="col-xl-8 col-lg-7">
+                        <!-- 2nd  Content  -->
+                        <div class="row mt-5">
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <h1 class="h3 mb-2 text-gray-800">Charts</h1>
+                                    2nd column
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                    <!-- /.container-fluid -->
+
+
+
+
                 </div>
-                <!-- /.container-fluid -->
-
-
+                <!-- End of Main Content -->
+                <section>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </section>
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span> MedBoard @ 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
+        </div>
+        <!-- End of Page Wrapper -->
 
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span> MedBoard @ 2020</span>
+        <!-- Logout Modal copy from bootsrap change needed / use laravel ui logout and dashboard settings-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal copy from bootsrap change needed / use laravel ui logout and dashboard settings-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
         </div>
-    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+        </script>
 </body>
 
 </html>
