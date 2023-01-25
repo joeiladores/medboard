@@ -44,6 +44,7 @@
           <button type="button" class="navbar-toggler border-0 order-1" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse order-last" id="nav">
             <ul class="navbar-nav flex-column w-100 justify-content-center">
               <li class="nav-item mt-3">
@@ -73,21 +74,49 @@
 
       <main class="col px-0 flex-grow-1">
         <div class="container py-3">
-        <h5 class="ms-2 mt-3 mb-4 text-primary fs-2">Admission Form</h5>
+          <h5 class="ms-2 mt-3 mb-4 text-primary fs-2">Patient Form</h5>
           <!-- Patients Form -->
-          <div class="col-mdrounded border border-dark p-3 rounded">
-            <form class="row g-2">             
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Last Name</label>
-                <input type="email" class="form-control" id="inputEmail4">
+          <div class="col-mdrounded border border-dark p-4 rounded shadow">
+            <form class="row g-2" method="" action="">
+              @csrf
+              <div class="col-md-4">
+                <input type="text" class="form-control border-dark" id="lastname" placeholder="Last Name">
               </div>
-              <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">First Name</label>
-                <input type="password" class="form-control" id="inputPassword4">
+              <div class="col-md-4">
+                <input type="text" class="form-control border-dark" id="firstname" placeholder="First Name">
               </div>
-              <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+              <div class="col-md-4">
+                <input type="text" class="form-control border-dark" id="midname" placeholder="Middle Name">
+              </div>
+              <div class="col-md-2">
+                <select id="maritalstatus" class="form-select border-dark">
+                  <option selected>Marital Status</option>
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Widowed</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <input type="date" class="form-control border-dark" id="birthdate" placeholder="Birth Date">
+              </div>
+              <div class="col-md-2">
+                <select id="gender" class="form-select border-dark">
+                  <option selected>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <select id="gender" class="form-select border-dark">
+                  <option selected>Blood Type</option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>AB</option>
+                  <option>O</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control border-dark" id="address" placeholder="Address">
               </div>
               
             </form>
