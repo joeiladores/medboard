@@ -73,23 +73,31 @@
       </aside>
 
       <main class="col px-0 flex-grow-1">
+        <div class="row">
+          <div class="col-6 ms-4 mt-2">
+            <input type="search" class="form-control rounded-pill border-dark shadow" placeholder="Search">
+          </div>
+        </div>
         <div class="container py-3">
-          <h5 class="ms-2 mt-3 mb-4 text-primary fs-2">Patient Form</h5>
+          <h5 class="ms-2 mb-4 text-primary fs-2">Patient Form</h5>
+          @if( session('success'))
+          <div class="alert alert-primary">{{ session('success') }}</div>
+          @endif
           <!-- Patients Form -->
-          <div class="col-mdrounded border border-dark p-4 rounded shadow">
-            <form class="row g-2" method="" action="">
+          <div class="col-md formBackground rounded border border-dark p-4 rounded shadow">
+            <form class="row g-3" method="POST" action="{{ route('createpatient') }}">
               @csrf
               <div class="col-md-4">
-                <input type="text" class="form-control border-dark" id="lastname" placeholder="Last Name">
+                <input type="text" class="form-control border-dark" id="lastname" placeholder="Last Name" name="lastname" required>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control border-dark" id="firstname" placeholder="First Name">
+                <input type="text" class="form-control border-dark" id="firstname" placeholder="First Name" name="firstname" required>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control border-dark" id="midname" placeholder="Middle Name">
+                <input type="text" class="form-control border-dark" id="midname" placeholder="Middle Name" name="midname" required>
               </div>
               <div class="col-md-2">
-                <select id="maritalstatus" class="form-select border-dark">
+                <select id="marital_status" class="form-select border-dark" name="marital_status" required>
                   <option selected>Marital Status</option>
                   <option>Single</option>
                   <option>Married</option>
@@ -97,17 +105,17 @@
                 </select>
               </div>
               <div class="col-md-2">
-                <input type="date" class="form-control border-dark" id="birthdate" placeholder="Birth Date">
+                <input type="date" class="form-control border-dark" id="birth_date" placeholder="Birth Date" name="birth_date" required>
               </div>
               <div class="col-md-2">
-                <select id="gender" class="form-select border-dark">
+                <select id="gender" class="form-select border-dark" name="gender" required>
                   <option selected>Gender</option>
                   <option>Male</option>
                   <option>Female</option>
                 </select>
               </div>
               <div class="col-md-2">
-                <select id="gender" class="form-select border-dark">
+                <select id="blood_type" class="form-select border-dark" name="blood_type" required>
                   <option selected>Blood Type</option>
                   <option>A</option>
                   <option>B</option>
@@ -116,9 +124,28 @@
                 </select>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control border-dark" id="address" placeholder="Address">
+                <input type="text" class="form-control border-dark" id="address" placeholder="Address" name="address" required>
               </div>
-              
+              <div class="col-md-3">
+                <input type="number" class="form-control border-dark" id="phone" placeholder="Phone Number" name="phone" required>
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control border-dark" id="health_insurance" placeholder="Health Insurance" name="health_insurance" required>
+              </div>
+              <br>
+              <hr>
+              <div class="col-md-4">
+                <input type="text" class="form-control border-dark" id="relative_fullname" placeholder="Relative Full Name" name="relative_fullname" required>
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control border-dark" id="relation" placeholder="Relation to patient" name="relation" required>
+              </div>
+              <div class="col-md-3">
+                <input type="number" class="form-control border-dark" id="relative_phone" placeholder="Relative Phone Number" name="relative_phone" required>
+              </div>
+              <span>
+                <button type="submit" class="btn btn-primary mt-5">Submit</button>
+              </span>
             </form>
           </div>
       </main>

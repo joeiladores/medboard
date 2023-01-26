@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,16 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function(){
-    return view('dashboard');
-});
+// Route::get('/dashboard', function(){
+//     return view('dashboard');
+// });
+
+Route::get('/dashboard', [PatientsController::class, 'displayAll'])->name('dashboard');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient'])->name('patient');
+Route::post('/createpatient', [PatientsController::class, 'create'])->name('createpatient');
+
+// Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient'])->name('patient');

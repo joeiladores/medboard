@@ -7,8 +7,32 @@ use Illuminate\Http\Request;
 
 class PatientsController extends Controller
 {
-    public function patient()
+    public function displayAll()
     {
-        return view('patient')->with('patients', Patients::all());
+        return view('dashboard')->with('patients', Patients::orderByDesc('created_at')->get());
+        // return view('patient')->with('patients', Patients::all());
     }
+
+    public function create(Request $request){
+        $patient = new Patients;
+        $patient->lastname = $request->lastname;
+        $patient->firstname = $request->firstname;
+        $patient->midname = $request->midname;
+        $patient->marital_status = $request->marital_status;
+        $patient->birth_date = $request->birth_date;
+        $patient->gender = $request->gender;
+        $patient->blood_type = $request->blood_type;
+        $patient->address = $request->address;
+        $patient->phone = $request->phone;
+        $patient->health_insurance = $request->health_insurance;
+        $patient->relative_fullname = $request->relative_fullname;
+        $patient->relation = $request->relation;
+        $patient->relative_phone = $request->relative_phone;
+
+        $patient->save();
+        return redirect()->route('dashboard')->with('success', 'New patient created!');
+    }
+
+
+
 }
