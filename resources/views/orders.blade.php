@@ -38,6 +38,7 @@ body, html {
 #Transfusion {background-color: gray;}
 #Treatment {background-color: gray;}
 #Notes {background-color: gray;}
+
 </style>
 
   <div class="card rounded shadow mb-2">
@@ -64,15 +65,54 @@ body, html {
   <<div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="medicationModal">This modal is for Medication</h5>
+        <h5 class="modal-title" id="medicationModal">Add Medication</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color:rgb(66,100,208);">Save changes</button>
+      <div class="card">
+      <form method="POST" action="{{ route('store') }}">
+                @csrf
+                <div class="col-9 p-2">
+                    <label for="medication" class="form-label">Medication</label>
+                    <input type="text" class="form-control" id="medication" name="medication" required>
+                </div>
+                <div class="col-9 p-2">
+                    <label for="dose" class="form-label">Dosage</label>
+                    <input type="text" class="form-control" id="dose" name="dose" required>
+                </div>
+                <div class="col-9 p-2">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" required>
+                </div>
+                <div class="col-9 p-2">
+                    <div class="form-group">
+                      <label for="unit">Unit:</label>
+                      <select id="unit" name="unit" class="form-control custom-select">
+                        <option value="Gram">Gram</option>
+                        <option value="Milligram">Milligram</option>
+                        <option value="Microgram">Microgram</option>
+                        <span class="icon-down"></span>
+                      </select>
+                    </div>
+
+                    <script>
+                      var select = document.getElementById("unit");
+                    var selectedValue = select.options[select.selectedIndex].value;
+                    console.log(selectedValue);
+                    </script>
+                </div>
+                <div class="col-9 p-2">
+                    <label for="frequency" class="form-label">Frequency</label>
+                    <input type="text" class="form-control" id="frequency" name="frequency" required>
+                </div>
+                <div class="col-9 p-2">
+                    <label for="instructions" class="form-label">Instructions</label>
+                    <input type="text" class="form-control" id="instructions" name="instructions" required>
+                </div>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);">Add</button>
+            </form>
+        </div>
       </div>
     </div>
   </div>
@@ -164,23 +204,31 @@ Progress Notes
 <table class="table mt-3">
             <thead>
                 <tr>
-                    <th>Patient ID</th>
-                    <th>Patient</th>
-                    <th>Room ID</th>
-                    <th>Date</th>
-                    <th>Nurse</th>
-                    <th>Orders</th>
+                    <th>Medication</th>
+                    <th>Dosage</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Frequency</th>
+                    <th>Instructions</th>
+                    <th>Date Start</th>
+                    <th>Date Stop</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach($order_medications as $order_medication)
                 <tr>
-                    <td>1</td>
-                    <td>Juan Luna</td>
-                    <td>A01</td>
-                    <td>01/26/23</td>
-                    <td>Nurse Cruz</td>
-                    <td><a  href="#" class="btn btn-sm">📝</a></td>
+                    <td>{{ $order_medication->medication }}</td>
+                    <td>{{ $order_medication->dose }}</td>
+                    <td>{{ $order_medication->quantity }}</td>
+                    <td>{{ $order_medication->unit }}</td>
+                    <td>{{ $order_medication->frequency }}</td>
+                    <td>{{ $order_medication->instructions }}</td>
+                    <td>{{ $order_medication->date_started }}</td>
+                    <td>{{ $order_medication->date_stopped }}</td>
+                    <td><a type="button" class="btn text-light" style="background-color:rgb(66,100,208);">Edit</a>
                 </tr>
+                @endforeach
             </tbody>
            </table>
 </div>

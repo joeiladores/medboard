@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderMedicationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,20 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Doctor's Orders
 Route::get('/doctorsOrders', function () {
     return view('doctorsOrders');
 });
 
-// Orders
-Route::get('/orders', function () {
-    return view('orders');
-});
+
+
+
+Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
+Route::get('/create', [OrderMedicationController::class, 'create'])->name('create');
+Route::post('/store', [OrderMedicationController::class, 'store'])->name('store');
+Route::get('/show/{id}', [OrderMedicationController::class, 'show'])->name('show');
+Route::get('/edit/{id}', [OrderMedicationController::class, 'edit'])->name('edit');
+Route::post('/update', [OrderMedicationController::class, 'update'])->name('update');
+Route::get('/destroy/{id}', [OrderMedicationController::class, 'destroy'])->name('destroy');
