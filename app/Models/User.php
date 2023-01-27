@@ -17,10 +17,25 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
+
     protected $fillable = [
         'name',
         'email',
         'password',
+
+        'usertype',
+        'lastname',
+        'firstname',
+        'middlename',
+        'gender',
+        'address',
+        'phone',
+        'department',
+        'specialization',
+        'imagepath',
+        'status',
     ];
 
     /**
@@ -41,4 +56,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Doctor attends to one or more patients in an admission
+    public function attendsTo(){
+        return $this->hasMany(Admission::class);
+    }
+
+    // Nurse assigned to a nurse station
+    public function assignedTo(){
+        
+    }
+
+    // 
 }
