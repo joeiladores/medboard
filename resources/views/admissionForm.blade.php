@@ -17,7 +17,7 @@
         type="text/css" />
 
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('js/dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('js/Bootstrap_dataTables.min.css') }}">
 
     <title>admission form</title>
     <style>
@@ -832,7 +832,7 @@
     <script type="text/javascript" src="{{ URL::asset('js/jquery.easing.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/sb.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('datatables/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('datatables/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
