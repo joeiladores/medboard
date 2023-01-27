@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient'])->name('patient');
+
+// Admin routes
+Route::get('/user', [UserController::class, 'user'])->name('user');
+// Create new user is under the Auth RegisterController
