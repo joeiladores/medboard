@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders_medication', function (Blueprint $table) {
+        Schema::create('order_medications', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id');
+            $table->integer('doctor_order_id')->nullable();
             $table->string('medication');
             $table->string('dose');
-            $table->integer('quantiy');
-            $table->enum('unit',['gram','milligram','microgram']);
+            $table->integer('quantity');
+            $table->enum('unit',['Gram','Milligram','Microgram']);
             $table->string('frequency');
             $table->string('instructions');
-            $table->dateTime('date_started');
-            $table->dateTime('date_stopped');
+            $table->dateTime('date_started')->nullable();
+            $table->dateTime('date_stopped')->nullable();
             $table->timestamps();
         });
     }

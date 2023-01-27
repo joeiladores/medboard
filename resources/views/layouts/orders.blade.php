@@ -90,7 +90,6 @@ border-radius: 0px 44px 32px 0px;">
             <div class="col-sm p-3 min-vh-100">
                 <!-- content -->
                 <h2></h2>
-                <hr />
                 <div class="container-fluid">
  
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderMedicationController;
+use App\Http\Controllers\OrderTransfusionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders
 Route::get('/create', [OrderMedicationController::class, 'create'])->name('create');
 Route::post('/store', [OrderMedicationController::class, 'store'])->name('store');
 Route::get('/show/{id}', [OrderMedicationController::class, 'show'])->name('show');
-Route::get('/edit/{id}', [OrderMedicationController::class, 'edit'])->name('edit');
+Route::get('/editMedication/{id}', [OrderMedicationController::class, 'edit'])->name('editMedication');
 Route::post('/update', [OrderMedicationController::class, 'update'])->name('update');
 Route::get('/destroy/{id}', [OrderMedicationController::class, 'destroy'])->name('destroy');
+

@@ -30,7 +30,7 @@ body, html {
 .tabcontent {
   color: white;
   display: none;
-  padding: 100px 20px;
+  padding: 50px 20px;
   height: 100%;
 }
 
@@ -38,7 +38,6 @@ body, html {
 #Transfusion {background-color: gray;}
 #Treatment {background-color: gray;}
 #Notes {background-color: gray;}
-
 </style>
 
   <div class="card rounded shadow mb-2">
@@ -81,10 +80,6 @@ body, html {
                     <input type="text" class="form-control" id="dose" name="dose" required>
                 </div>
                 <div class="col-9 p-2">
-                    <label for="quantity" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" required>
-                </div>
-                <div class="col-9 p-2">
                     <div class="form-group">
                       <label for="unit">Unit:</label>
                       <select id="unit" name="unit" class="form-control custom-select">
@@ -100,6 +95,11 @@ body, html {
                     var selectedValue = select.options[select.selectedIndex].value;
                     console.log(selectedValue);
                     </script>
+                </div>
+                
+                <div class="col-9 p-2">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" required>
                 </div>
                 <div class="col-9 p-2">
                     <label for="frequency" class="form-label">Frequency</label>
@@ -201,7 +201,7 @@ Progress Notes
 <button class="tablink" onclick="openPage('Notes', this, 'rgb(66,100,208)')">Progress Notes</button>
 
 <div id="Medication" class="tabcontent">
-<table class="table mt-3">
+<table class="table" id="dataTables">
             <thead>
                 <tr>
                     <th>Medication</th>
@@ -220,13 +220,14 @@ Progress Notes
                 <tr>
                     <td>{{ $order_medication->medication }}</td>
                     <td>{{ $order_medication->dose }}</td>
-                    <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->unit }}</td>
+                    <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
                     <td>{{ $order_medication->date_started }}</td>
                     <td>{{ $order_medication->date_stopped }}</td>
-                    <td><a type="button" class="btn text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                    <td><a href="{{ route('editMedication', $order_medication->id) }}" type="button" class="btn text-light" style="background-color:rgb(66,100,208);">Edit</a>
+
                 </tr>
                 @endforeach
             </tbody>
@@ -248,7 +249,15 @@ Progress Notes
   <p>DISPLAY Notes HERE</p>
 </div>
 
+<link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+
+
+</script>
+
 <script>
+  var dataTable = new DataTable("#dataTables");
+
     function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
