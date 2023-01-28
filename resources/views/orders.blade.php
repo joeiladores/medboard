@@ -35,9 +35,9 @@ body, html {
 }
 
 #Medication {background-color: white;}
-#Transfusion {background-color: gray;}
-#Treatment {background-color: gray;}
-#Notes {background-color: gray;}
+#Transfusion {background-color: white;}
+#Treatment {background-color: white;}
+#Notes {background-color: white;}
 </style>
 
   <div class="card rounded shadow mb-2">
@@ -69,35 +69,33 @@ body, html {
       </div>
       <div class="modal-body">
       <div class="card">
-      <form method="POST" action="{{ route('store') }}">
+      <form method="POST" action="{{ route('storeMedication') }}">
                 @csrf
-                <div class="col-9 p-2">
+                <div class="col-12 p-2">
                     <label for="medication" class="form-label">Medication</label>
                     <input type="text" class="form-control" id="medication" name="medication" required>
                 </div>
-                <div class="col-9 p-2">
+                <div class="col-4 p-2 d-inline-block">
                     <label for="dose" class="form-label">Dosage</label>
                     <input type="text" class="form-control" id="dose" name="dose" required>
                 </div>
-                <div class="col-9 p-2">
-                    <div class="form-group">
-                      <label for="unit">Unit:</label>
-                      <select id="unit" name="unit" class="form-control custom-select">
+                <div class="col-4 pt-2 d-inline-block">
+                <div class="form-group">
+                <label for="unit" class="form-label">Unit:</label>
+                    <select class="form-select" id="unit" name="unit">
+                        <option selected>Choose...</option>
                         <option value="Gram">Gram</option>
                         <option value="Milligram">Milligram</option>
                         <option value="Microgram">Microgram</option>
-                        <span class="icon-down"></span>
-                      </select>
+                    </select>
                     </div>
-
                     <script>
                       var select = document.getElementById("unit");
                     var selectedValue = select.options[select.selectedIndex].value;
                     console.log(selectedValue);
                     </script>
                 </div>
-                
-                <div class="col-9 p-2">
+                <div class="col-3 ps-3 d-inline-block">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" required>
                 </div>
@@ -118,29 +116,55 @@ body, html {
   </div>
 </div>
 
-<!-- IV/Blood Modal Button -->
+<!-- Transfusion Modal Button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
   Transfusion
 </button>
 
-<!-- IV/Blood Modal-->
+<!-- Transfusion Modal-->
 <div class="modal fade" id="transfusionModal" tabindex="-1" aria-labelledby="transfusionLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="transfusionModal">This modal is for transfusion</h5>
+        <h5 class="modal-title" id="transfusionModal">Add Transfusion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color:rgb(66,100,208);">Save changes</button>
+      <div class="card">
+      <form method="POST" action="{{ route('storeTransfusion') }}">
+                @csrf
+                <div class="col-5 p-2 d-inline-block">
+                <div class="form-group">
+                <label for="type" class="form-label">Type:</label>
+                    <select class="form-select" id="type" name="type">
+                        <option selected>Choose...</option>
+                        <option value="IV">IV</option>
+                        <option value="Blood">Blood</option>
+                    </select>
+                    </div>
+                    <script>
+                      var select = document.getElementById("type");
+                    var selectedValue = select.options[select.selectedIndex].value;
+                    console.log(selectedValue);
+                    </script>
+                </div>
+                <div class="col-6 p-2 d-inline-block">
+                    <label for="fluid_name" class="form-label">Fluid:</label>
+                    <input type="text" class="form-control" id="fluid_name" name="fluid_name" required>
+                </div>
+                <div class="col-9 p-2">
+                    <label for="instruction" class="form-label">Instructions:</label>
+                    <input type="text" class="form-control" id="instruction" name="instruction" required>
+                </div>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);">Add</button>
+            </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<!-- END Transfusion Modal-->
 
 <!-- Treatment Modal Button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
@@ -200,8 +224,9 @@ Progress Notes
 <button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
 <button class="tablink" onclick="openPage('Notes', this, 'rgb(66,100,208)')">Progress Notes</button>
 
+
 <div id="Medication" class="tabcontent">
-<table class="table" id="dataTables">
+<table class="table" id="medicationTable">
             <thead>
                 <tr>
                     <th>Medication</th>
@@ -226,8 +251,10 @@ Progress Notes
                     <td>{{ $order_medication->instructions }}</td>
                     <td>{{ $order_medication->date_started }}</td>
                     <td>{{ $order_medication->date_stopped }}</td>
-                    <td><a href="{{ route('editMedication', $order_medication->id) }}" type="button" class="btn text-light" style="background-color:rgb(66,100,208);">Edit</a>
-
+                    <td class="d-flex justify-content-between">
+                      <a href="{{ route('destroyMedication', $order_medication->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -235,8 +262,33 @@ Progress Notes
 </div>
 
 <div id="Transfusion" class="tabcontent">
-  <h3>Transfusion</h3>
-  <p>DISPLAY Transfusion HERE</p>
+<table class="table" id="transfusionTable">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Fluid</th>
+                    <th>Instructions</th>
+                    <th>Date Started</th>
+                    <th>Date Stopped</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($order_transfusions as $order_transfusion)
+                <tr>
+                    <td>{{ $order_transfusion->type }}</td>
+                    <td>{{ $order_transfusion->fluid_name }}</td>
+                    <td>{{ $order_transfusion->instructions }}</td>
+                    <td>{{ $order_transfusion->date_started }}</td>
+                    <td>{{ $order_transfusion->date_stopped }}</td>
+                    <td class="d-flex justify-content-between">
+                      <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+           </table>
 </div>
 
 <div id="Treatment" class="tabcontent">
@@ -256,7 +308,8 @@ Progress Notes
 </script>
 
 <script>
-  var dataTable = new DataTable("#dataTables");
+  var dataTable = new DataTable("#medicationTable");
+  var dataTable = new DataTable("#transfusionTable");
 
     function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */

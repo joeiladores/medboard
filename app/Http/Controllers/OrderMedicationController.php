@@ -11,23 +11,10 @@ class OrderMedicationController extends Controller
 {
     public function index()
     {
-        return view('orders')->with('order_medications', OrderMedication::all());
-    }
-
-    public function create()
-    {
-        return view('create');
+        return view('orders')->with('order_medications', OrderMedication::orderBy('created_at', 'desc')->get());
     }
 
   
-
-    public function show($id)
-    {
-        $orders_medications = OrderMedication::find($id);
-
-        return view('show')->with('order_medications', $orders_medications);
-    }
-
     public function edit($id)
     {
         $orders_medications = OrderMedication::find($id);

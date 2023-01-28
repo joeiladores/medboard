@@ -8,13 +8,15 @@ class OrderTransfusionController extends Controller
 {
     public function index()
     {
-        return view('orders')->with('order_transfusions', OrderTransfusion::orderBy('created_at', 'desc')->paginate(5));
+        return view('orders')->with('order_transfusions', OrderTransfusion::orderBy('created_at', 'desc')->get());
     }
 
 
-    public function create()
+    public function edit($id)
     {
-        return view('create');
+        $orders_transfusions = OrderTransfusion::find($id);
+
+        return view('editTransfusion')->with('orders_transfusion', $orders_transfusions);
     }
 
     public function store(Request $request)
@@ -28,20 +30,6 @@ class OrderTransfusionController extends Controller
         $orders_transfusion->save();
 
         return redirect()->route('orders')->with('success', 'New Transfusion added successfully!');
-    }
-
-    public function show($id)
-    {
-        $orders_transfusion = OrderTransfusion::find($id);
-
-        return view('show')->with('orders_transfusion', $orders_transfusion);
-    }
-
-    public function edit($id)
-    {
-        $orders_transfusion = OrderTransfusion::find($id);
-
-        return view('editTransfusion')->with('orders_transfusion', $orders_transfusion);
     }
 
     public function update(Request $request)

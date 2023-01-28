@@ -25,10 +25,16 @@ Route::get('/doctorsOrders', function () {
 
 
 Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
-Route::get('/create', [OrderMedicationController::class, 'create'])->name('create');
-Route::post('/store', [OrderMedicationController::class, 'store'])->name('store');
-Route::get('/show/{id}', [OrderMedicationController::class, 'show'])->name('show');
+
+Route::post('/storeMedication', [OrderMedicationController::class, 'store'])->name('storeMedication');
 Route::get('/editMedication/{id}', [OrderMedicationController::class, 'edit'])->name('editMedication');
-Route::post('/update', [OrderMedicationController::class, 'update'])->name('update');
-Route::get('/destroy/{id}', [OrderMedicationController::class, 'destroy'])->name('destroy');
+Route::post('/updateMedication', [OrderMedicationController::class, 'update'])->name('updateMedication');
+Route::get('/destroyMedication/{id}', [OrderMedicationController::class, 'destroy'])->name('destroyMedication');
+
+Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
+Route::post('/storeTransfusion', [OrderTransfusionController::class, 'store'])->name('storeTransfusion');
+Route::get('/editTransfusion/{id}', [OrderTransfusionController::class, 'edit'])->name('editTransfusion');
+Route::post('/updateTransfusion', [OrderTransfusionController::class, 'update'])->name('updateTransfusion');
+Route::get('/destroyTransfusion/{id}', [OrderTransfusionController::class, 'destroy'])->name('destroyTransfusion');
+
 

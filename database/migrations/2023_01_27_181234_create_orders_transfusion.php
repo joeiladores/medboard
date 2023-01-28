@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders_transfusion', function (Blueprint $table) {
+        Schema::create('order_transfusions', function (Blueprint $table) {
             $table->id();
             $table->enum('type',['IV','Blood']);
             $table->string('fluid_name');
