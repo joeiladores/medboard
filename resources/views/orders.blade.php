@@ -278,7 +278,7 @@ Progress Notes
                 <tr>
                     <td>{{ $order_transfusion->type }}</td>
                     <td>{{ $order_transfusion->fluid_name }}</td>
-                    <td>{{ $order_transfusion->instructions }}</td>
+                    <td>{{ $order_transfusion->instruction }}</td>
                     <td>{{ $order_transfusion->date_started }}</td>
                     <td>{{ $order_transfusion->date_stopped }}</td>
                     <td class="d-flex justify-content-between">

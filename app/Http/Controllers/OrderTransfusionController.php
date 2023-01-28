@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 use App\Models\OrderTransfusion;
+use App\Models\OrderMedication;
 use Illuminate\Http\Request;
 
 class OrderTransfusionController extends Controller
 {
-    public function index()
-    {
-        return view('orders')->with('order_transfusions', OrderTransfusion::orderBy('created_at', 'desc')->get());
-    }
+    // public function index()
+    // {
+    //     $order_transfusions = OrderTransfusion::orderBy('created_at', 'desc')->get();
+    //         $order_medications = OrderMedication::orderBy('created_at', 'desc')->get();
+
+    //         return view('orders',compact('order_transfusions','order_medications'));
+
+    // }
 
 
     public function edit($id)
     {
         $orders_transfusions = OrderTransfusion::find($id);
 
-        return view('editTransfusion')->with('orders_transfusion', $orders_transfusions);
+        return view('editTransfusion')->with('order_transfusion', $orders_transfusions);
     }
 
     public function store(Request $request)

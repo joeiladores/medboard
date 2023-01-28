@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\OrderTransfusion;
 use App\Models\OrderMedication;
 use Illuminate\Http\Request;
 
@@ -11,7 +11,10 @@ class OrderMedicationController extends Controller
 {
     public function index()
     {
-        return view('orders')->with('order_medications', OrderMedication::orderBy('created_at', 'desc')->get());
+        $order_transfusions = OrderTransfusion::orderBy('created_at', 'desc')->get();
+        $order_medications = OrderMedication::orderBy('created_at', 'desc')->get();
+
+            return view('orders',compact('order_transfusions','order_medications'));
     }
 
   

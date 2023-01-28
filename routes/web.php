@@ -21,17 +21,19 @@ Route::get('/doctorsOrders', function () {
     return view('doctorsOrders');
 });
 
-
+// Route::get('/medication-orders', [OrderMedicationController::class, 'index'])->name('ordersMedication');
+// Route::get('/transfusion-orders', [OrderTransfusionController::class, 'index'])->name('ordersTransfusion');
 
 
 Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
+
 
 Route::post('/storeMedication', [OrderMedicationController::class, 'store'])->name('storeMedication');
 Route::get('/editMedication/{id}', [OrderMedicationController::class, 'edit'])->name('editMedication');
 Route::post('/updateMedication', [OrderMedicationController::class, 'update'])->name('updateMedication');
 Route::get('/destroyMedication/{id}', [OrderMedicationController::class, 'destroy'])->name('destroyMedication');
 
-Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
+
 Route::post('/storeTransfusion', [OrderTransfusionController::class, 'store'])->name('storeTransfusion');
 Route::get('/editTransfusion/{id}', [OrderTransfusionController::class, 'edit'])->name('editTransfusion');
 Route::post('/updateTransfusion', [OrderTransfusionController::class, 'update'])->name('updateTransfusion');
