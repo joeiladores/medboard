@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_transfusions', function (Blueprint $table) {
+        Schema::create('order_treatments', function (Blueprint $table) {
             $table->id();
-            $table->enum('type',['IV','Blood']);
-            $table->string('fluid_name');
+            $table->string('name');
+            $table->string('type');
             $table->string('instruction');
-            $table->datetime('date_started');
-            $table->datetime('date_stopped');
+            $table->date('date_started');
+            $table->date('date_done')->nullable();
+            
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_transfusion');
+        Schema::dropIfExists('orders_treatments');
     }
 };

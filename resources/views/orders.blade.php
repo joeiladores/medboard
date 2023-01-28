@@ -38,6 +38,9 @@ body, html {
 #Transfusion {background-color: white;}
 #Treatment {background-color: white;}
 #Notes {background-color: white;}
+
+
+
 </style>
 
   <div class="card rounded shadow mb-2">
@@ -176,15 +179,36 @@ Treatment
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="treatmentModal">This modal is for Treatment</h5>
+        <h5 class="modal-title" id="treatmentModal">Add Laboratory Treatment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color:rgb(66,100,208);">Save changes</button>
+      <div class="card">
+      <form method="POST" action="{{ route('storeTreatment') }}">
+                @csrf
+                <div class="col-6 p-2 d-inline-block">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="col-6 p-2 d-inline-block">
+                    <label for="type" class="form-label">Treatment Type:</label>
+                    <input type="text" class="form-control" id="type" name="type" required>
+                </div>
+                <div class="col-9 p-2">
+                    <label for="instruction" class="form-label">Instructions:</label>
+                    <input type="text" class="form-control" id="instruction" name="instruction" required>
+                </div>
+
+                <div class="col-9 p-2">
+                        <div class="col-lg-6 col-sm-6">
+                        <label for="date_started">Date Start:</label>
+                        <input class="form-control" type="date" id="date_started" name="date_started"  required/>
+                        </div>
+                </div>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);">Add</button>
+            </form>
+        </div>
       </div>
     </div>
   </div>
@@ -292,15 +316,40 @@ Progress Notes
 </div>
 
 <div id="Treatment" class="tabcontent">
-  <h3>Treatment</h3>
-  <p>DISPLAY Treatment HERE</p>
+<table class="table" id="transfusionTable">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Fluid</th>
+                    <th>Instructions</th>
+                    <th>Date Started</th>
+                    <th>Date Stopped</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($order_transfusions as $order_transfusion)
+                <tr>
+                    <td>{{ $order_transfusion->type }}</td>
+                    <td>{{ $order_transfusion->fluid_name }}</td>
+                    <td>{{ $order_transfusion->instruction }}</td>
+                    <td>{{ $order_transfusion->date_started }}</td>
+                    <td>{{ $order_transfusion->date_stopped }}</td>
+                    <td class="d-flex">
+                      <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+           </table>
 </div>
 
 <div id="Notes" class="tabcontent">
   <h3>Notes</h3>
   <p>DISPLAY Notes HERE</p>
 </div>
-
+<!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
 
@@ -335,5 +384,9 @@ Progress Notes
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
+
+
+
+
 
 @endsection
