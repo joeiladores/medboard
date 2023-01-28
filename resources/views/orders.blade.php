@@ -281,7 +281,7 @@ Progress Notes
                     <td>{{ $order_transfusion->instruction }}</td>
                     <td>{{ $order_transfusion->date_started }}</td>
                     <td>{{ $order_transfusion->date_stopped }}</td>
-                    <td class="d-flex justify-content-between">
+                    <td class="d-flex">
                       <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                       <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
                     </td>
