@@ -228,16 +228,18 @@ Progress Notes
 <div class="modal fade" id="progressNotesModal" tabindex="-1" aria-labelledby="progressNotesLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="progressNotesModal">This modal is for progressNotes</h5>
+      <div class="modal-header" style="background-color:rgb(66,100,208);">
+        <h5 class="modal-title text-light" id="progressNotesModal">Add Progress Note</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      <div class="mb-3">
+      <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3"></textarea>
+    </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color:rgb(66,100,208);">Save changes</button>
+        <button type="button" class="btn btn-primary" style="background-color:rgb(66,100,208);">Add</button>
       </div>
     </div>
   </div>
@@ -280,7 +282,7 @@ Progress Notes
                     <td>{{ $order_medication->instructions }}</td>
                     <td>{{ $order_medication->date_started }}</td>
                     <td>{{ $order_medication->date_stopped }}</td>
-                    <td class="d-flex justify-content-between">
+                    <td class="d-flex">
                       <a href="{{ route('destroyMedication', $order_medication->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                       <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
                     </td>
@@ -321,7 +323,7 @@ Progress Notes
 </div>
 
 <div id="Treatment" class="tabcontent">
-<table class="table" id="transfusionTable">
+<table class="table" id="treatmentTable">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -365,6 +367,8 @@ Progress Notes
 <script>
   var dataTable = new DataTable("#medicationTable");
   var dataTable = new DataTable("#transfusionTable");
+  var dataTable = new DataTable("#treatmentTable");
+  
 
     function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */

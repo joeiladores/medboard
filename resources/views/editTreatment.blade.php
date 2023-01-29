@@ -1,7 +1,7 @@
 @extends('layouts.orders')
 
 @section('content')
-<h3>Edit Medication</h3>
+<h3>Edit Transfusion</h3>
 <a href="{{ route('orders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light">← Go back</a>
 <div class="card p-5 m-4">
       <form method="POST" action="{{ route('updateTreatment') }}">
@@ -24,7 +24,7 @@
                         <input class="form-control" type="date" id="date_started" name="date_started" value="{{ $order_treatment->date_started }}" required/>
                 </div>
 
-                <div class="col-5 p-2 mb-3 d-inline-block">
+                <div class="col-5 p-2 me-5 mb-3 d-inline-block">
                         <label for="date_done">Date Done:</label>
                         <input class="form-control" type="date" id="date_done" name="date_done" value="{{ $order_treatment->date_done }}" required/>
                         <input type="hidden" name="id" value="{{ $order_treatment->id }}">

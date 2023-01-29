@@ -1,53 +1,38 @@
 @extends('layouts.orders')
 
 @section('content')
-
+<div class="card">
 <div class="row">
-    <div class="col-4">
-      <form class="form-inline">
-      <label for="sort-by">Search:</label>
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
-    </div>
-    <div class="col-3">
-      <div class="form-inline">
-      <label for="sort-by" class="mr-sm-2">Sort by:</label>
-        <select class="form-control" id="sort-by">
-          <option>Name</option>
-          <option>ID</option>
-          <option>Date</option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="card rounded shadow mt-4">
-  <div class="card-body">
-
- 
-           </form>
-           <table class="table mt-3">
+    <div class="col-12">
+    <div id="Treatment" class="tabcontent">
+<table class="table" id="treatmentTable">
             <thead>
                 <tr>
-                    <th>Patient ID</th>
-                    <th>Patient</th>
-                    <th>Room ID</th>
-                    <th>Date</th>
-                    <th>Nurse</th>
-                    <th>Orders</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Instructions</th>
+                    <th>Date Started</th>
+                    <th>Date Done</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+           
                 <tr>
-                    <td>1</td>
-                    <td>Juan Luna</td>
-                    <td>A01</td>
-                    <td>01/26/23</td>
-                    <td>Nurse Cruz</td>
-                    <td><a  href="#" class="btn btn-sm">📝</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="d-flex">
+                      <a href="" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Order List</a>
+                    </td>
                 </tr>
             </tbody>
            </table>
-           </div>
 </div>
+    </div>
+  </div>
+  </div>
+
 @endsection
