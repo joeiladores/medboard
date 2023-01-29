@@ -10,9 +10,9 @@ class OrderTreatmentController extends Controller
    
     public function edit($id)
     {
-        $orders_treatment = OrderTreatment::find($id);
+        $orders_treatments = OrderTreatment::find($id);
 
-        return view('editTreatment')->with('order_treatment', $orders_treatment);
+        return view('editTreatment')->with('order_treatment', $orders_treatments);
     }
 
     public function store(Request $request)

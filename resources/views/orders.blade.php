@@ -66,8 +66,8 @@ body, html {
 <div class="modal fade" id="medicationModal" tabindex="-1" aria-labelledby="medicationModalLabel" aria-hidden="true">
   <<div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="medicationModal">Add Medication</h5>
+      <div class="modal-header" style="background-color:rgb(66,100,208);">
+        <h5 class="modal-title text-light" id="medicationModal" >Add Medication</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -102,16 +102,18 @@ body, html {
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" required>
                 </div>
-                <div class="col-9 p-2">
+                <div class="col-12 p-2">
                     <label for="frequency" class="form-label">Frequency</label>
                     <input type="text" class="form-control" id="frequency" name="frequency" required>
                 </div>
-                <div class="col-9 p-2">
+                <div class="col-12 p-2">
                     <label for="instructions" class="form-label">Instructions</label>
                     <input type="text" class="form-control" id="instructions" name="instructions" required>
                 </div>
-                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);">Add</button>
+                <div>
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                </div>
             </form>
         </div>
       </div>
@@ -128,8 +130,8 @@ body, html {
 <div class="modal fade" id="transfusionModal" tabindex="-1" aria-labelledby="transfusionLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="transfusionModal">Add Transfusion</h5>
+      <div class="modal-header" style="background-color:rgb(66,100,208);">
+        <h5 class="modal-title text-light" id="transfusionModal">Add Transfusion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -155,12 +157,14 @@ body, html {
                     <label for="fluid_name" class="form-label">Fluid:</label>
                     <input type="text" class="form-control" id="fluid_name" name="fluid_name" required>
                 </div>
-                <div class="col-9 p-2">
+                <div class="col-12 p-2">
                     <label for="instruction" class="form-label">Instructions:</label>
                     <input type="text" class="form-control" id="instruction" name="instruction" required>
                 </div>
-                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);">Add</button>
+                <div>
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                </div>
             </form>
         </div>
       </div>
@@ -178,8 +182,8 @@ Treatment
 <div class="modal fade" id="treatmentModal" tabindex="-1" aria-labelledby="treatmentLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="treatmentModal">Add Laboratory Treatment</h5>
+      <div class="modal-header" style="background-color:rgb(66,100,208);">
+        <h5 class="modal-title text-light" id="treatmentModal">Add Laboratory Treatment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -190,23 +194,24 @@ Treatment
                     <label for="name" class="form-label">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
-                <div class="col-6 p-2 d-inline-block">
+                <div class="col-5 p-2 d-inline-block">
                     <label for="type" class="form-label">Treatment Type:</label>
                     <input type="text" class="form-control" id="type" name="type" required>
                 </div>
-                <div class="col-9 p-2">
+                <div class="col-12 p-2 d-inline-block">
                     <label for="instruction" class="form-label">Instructions:</label>
                     <input type="text" class="form-control" id="instruction" name="instruction" required>
                 </div>
 
-                <div class="col-9 p-2">
-                        <div class="col-lg-6 col-sm-6">
+                <div class="col-5 p-2 mb-3 d-inline-block">
                         <label for="date_started">Date Start:</label>
                         <input class="form-control" type="date" id="date_started" name="date_started"  required/>
-                        </div>
+                       
                 </div>
-                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);">Add</button>
+                <div>
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                </div>
             </form>
         </div>
       </div>
@@ -319,25 +324,25 @@ Progress Notes
 <table class="table" id="transfusionTable">
             <thead>
                 <tr>
+                    <th>Name</th>
                     <th>Type</th>
-                    <th>Fluid</th>
                     <th>Instructions</th>
                     <th>Date Started</th>
-                    <th>Date Stopped</th>
+                    <th>Date Done</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($order_transfusions as $order_transfusion)
+            @foreach($order_treatments as $order_treatment)
                 <tr>
-                    <td>{{ $order_transfusion->type }}</td>
-                    <td>{{ $order_transfusion->fluid_name }}</td>
-                    <td>{{ $order_transfusion->instruction }}</td>
-                    <td>{{ $order_transfusion->date_started }}</td>
-                    <td>{{ $order_transfusion->date_stopped }}</td>
+                    <td>{{ $order_treatment->name }}</td>
+                    <td>{{ $order_treatment->type }}</td>
+                    <td>{{ $order_treatment->instruction }}</td>
+                    <td>{{ $order_treatment->date_started }}</td>
+                    <td>{{ $order_treatment->date_done }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                      <a href="{{ route('destroyTreatment', $order_treatment->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
                     </td>
                 </tr>
                 @endforeach
@@ -349,6 +354,7 @@ Progress Notes
   <h3>Notes</h3>
   <p>DISPLAY Notes HERE</p>
 </div>
+
 <!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
