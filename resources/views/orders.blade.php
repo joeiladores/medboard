@@ -33,16 +33,11 @@ body, html {
   padding: 50px 20px;
   height: 100%;
 }
-
 #Medication {background-color: white;}
 #Transfusion {background-color: white;}
 #Treatment {background-color: white;}
 #Notes {background-color: white;}
-
-
-
 </style>
-
   <div class="card rounded shadow mb-2">
   <div class="card-body">
   <div class="d-flex justify-content-between">
@@ -233,13 +228,16 @@ Progress Notes
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form method="POST" action="">
+      @csrf
       <div class="mb-3">
-      <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3"></textarea>
+      <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
     </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color:rgb(66,100,208);">Add</button>
+      <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+      <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+</form>
       </div>
     </div>
   </div>
