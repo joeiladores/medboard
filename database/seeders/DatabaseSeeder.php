@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
                 'gender' => $gender,
                 'address' => fake()->address(),
                 'phone' => fake()->randomNumber(5, true),
-                'status' => Arr::random(['Active', 'Inactive']),
+                'status' => 'Active',
 
                 'department' => Arr::random(['Emergency Department', 'Intensive Care Unit (ICU)', 'Obstetrics and Gynecology (OB/GYN)', 'Pediatrics', 'Surgery', 'Cardiology', 'Orthopedics']),
 
@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
                 'gender' => $gender,
                 'address' => fake()->address(),
                 'phone' => fake()->randomNumber(5, true),
-                'status' => Arr::random(['Active', 'Inactive']),
+                'status' => 'Active',
                 'department' => 'Nursing Department',
                 'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
             ]);
@@ -171,7 +171,7 @@ class DatabaseSeeder extends Seeder
                 'gender' => $gender,
                 'address' => fake()->address(),
                 'phone' => fake()->randomNumber(5, true),
-                'status' => Arr::random(['Active', 'Inactive']),
+                'status' => 'Active',
                 'department' => 'Nursing Department',
                 'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
             ]);
