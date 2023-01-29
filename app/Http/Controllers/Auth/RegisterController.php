@@ -81,9 +81,9 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'phone' => $data['phone'],
             'department' => $data['department'],
-            'specialization' => ['specialization'],
-            'imagepath' => ['imagepath'],
-            'status' => ['status'],
+            'specialization' => $data['specialization'],
+            'imagepath' => $data['imagepath'],
+            // 'status' => $data['status'],
             
             'name' => $data['firstname'] . ' ' . $data['lastname'],
             

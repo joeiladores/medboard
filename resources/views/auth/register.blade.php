@@ -31,7 +31,7 @@
 
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Select user type" name="usertype" id="usertype" required>
-                                    <option selected>Select ---</option> 
+                                    <option value=0 selected>Select ---</option> 
                                     <option value="Admin">{{ __('Admin') }}</option>
                                     <option value="Doctor">{{ __('Doctor') }}</option>
                                     <option value="Nurse">{{ __('Nurse') }}</option>
@@ -207,7 +207,7 @@
 
                         <!-- Specialization -->
                         <div class="row mb-3">
-                            <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
+                            <label for="specialization" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
 
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Select gender" name="specialization" id="specialization" required>
@@ -228,9 +228,8 @@
                                     <option value="Geriatic Nurse">{{ __('Geriatic Nurse') }}</option>
                                     <option value="Orthopedic Nurse">{{ __('Orthopedic Nurse') }}</option>
                                     <option value=0>{{ __('Admin -----------') }}</option>
-                                    <option value="IT Department">{{ __('IT Department') }}</option>
-                                    <option value="Admission">{{ __('Admission') }}</option>
-                                   
+                                    <option value="Software Developer">{{ __('Software Developer') }}</option>
+                                    <option value="Admission Officer">{{ __('Admission Officer') }}</option>
                                 </select>
                                 @error('specialization')
                                     <span class="invalid-feedback" role="alert">
@@ -245,7 +244,7 @@
                             <label for="imagepath" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image File') }}</label>
 
                             <div class="col-md-6">
-                                <input id="imagepath" type="file" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" required autocomplete="imagepath" autofocus>
+                                <input id="imagepath" type="file" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
 
                                 @error('imagepath')
                                     <span class="invalid-feedback" role="alert">
