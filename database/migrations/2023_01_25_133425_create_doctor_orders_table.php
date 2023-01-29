@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('admission_id');
             $table->integer('doctor_id');
-            $table->datetime('date_ordered');
+            $table->date('date_ordered');
             $table->enum('type', ['Medication', 'Transfusion', 'Treatment']);
             $table->string('progress_notes');
             $table->integer('nurse_id');
