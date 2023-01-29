@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // SEEDER ADMIN
-        \App\Models\User::factory()->create([
+        \App\Models\User::create([
             'name' => 'Joelyn Ladores',
             'email' => 'joelynladores@gmail.com',
             'password' => Hash::make('password123'),
@@ -34,13 +34,13 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Joelyn',
             'gender' => 'Female',
             'address' => fake()->address(),
-            'phone' => fake()->randomNumber(5, true),
+            'phone' => fake()->phoneNumber,
             'status' => 'Active',
             'department' => Arr::random(['IT Department']),
             'specialization' => Arr::random(['Software Developer']),
         ]);
 
-        \App\Models\User::factory()->create([
+        \App\Models\User::create([
             'name' => 'Rica Guno',
             'email' => 'ricaguno@gmail.com',
             'password' => Hash::make('password123'),
@@ -49,13 +49,13 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Rica',
             'gender' => 'Female',
             'address' => fake()->address(),
-            'phone' => fake()->randomNumber(5, true),
+            'phone' => fake()->phoneNumber,
             'status' => 'Active',
             'department' => Arr::random(['IT Department']),
             'specialization' => Arr::random(['Software Developer']),
         ]);
 
-        \App\Models\User::factory()->create([
+        \App\Models\User::create([
             'name' => 'Norman Mendiola',
             'email' => 'normanmendiola@gmail.com',
             'password' => Hash::make('password123'),
@@ -64,13 +64,13 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Norman',
             'gender' => 'Male',
             'address' => fake()->address(),
-            'phone' => fake()->randomNumber(5, true),
+            'phone' => fake()->phoneNumber,
             'status' => 'Active',
             'department' => Arr::random(['IT Department']),
             'specialization' => Arr::random(['Software Developer']),
         ]);
 
-        \App\Models\User::factory()->create([
+        \App\Models\User::create([
             'name' => 'Jomar Neri',
             'email' => 'jomarneri@gmail.com',
             'password' => Hash::make('password123'),
@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Jomar',
             'gender' => 'Male',
             'address' => fake()->address(),
-            'phone' => fake()->randomNumber(5, true),
+            'phone' => fake()->phoneNumber,
             'status' => 'Active',
             'department' => Arr::random(['IT Department']),
             'specialization' => Arr::random(['Software Developer']),
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
         if ($gender === 'Male') $firstname = fake()->firstNameMale();
         else $firstname = fake()->firstNameFemale();
         $lastname = fake()->lastName();
-        \App\Models\User::factory()->create([
+        \App\Models\User::create([
             'name' => $firstname . ' ' . $lastname,
             'email' => fake()->freeEmail(),
             'password' => Hash::make('password123'),
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
             'middlename' => fake()->lastName(),
             'gender' => 'Female',
             'address' => fake()->address(),
-            'phone' => fake()->randomNumber(5, true),
+            'phone' => fake()->phoneNumber,
             'status' => 'Active',
             'department' => Arr::random(['Admission']),
             'specialization' => Arr::random(['Admission Officer']),
@@ -107,12 +107,12 @@ class DatabaseSeeder extends Seeder
 
 
         // SEEDER FOR DOCTORS
-        for ($x = 1; $x < 5; $x++) {
+        for ($x = 0; $x < 5; $x++) {
             $gender = Arr::random(['Male', 'Female']);
             if ($gender === 'Male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
             $lastname = fake()->lastName();
-            \App\Models\User::factory()->create([
+            \App\Models\User::create([
                 'name' => $firstname . ' ' . $lastname,
                 'email' => fake()->freeEmail(),
                 'password' => Hash::make('password123'),
@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
                 'middlename' => fake()->lastName(),
                 'gender' => $gender,
                 'address' => fake()->address(),
-                'phone' => fake()->randomNumber(5, true),
+                'phone' => fake()->phoneNumber,
                 'status' => 'Active',
 
                 'department' => Arr::random(['Emergency Department', 'Intensive Care Unit (ICU)', 'Obstetrics and Gynecology (OB/GYN)', 'Pediatrics', 'Surgery', 'Cardiology', 'Orthopedics']),
@@ -132,12 +132,12 @@ class DatabaseSeeder extends Seeder
         }
 
         // SEEDERS FOR NURSES
-        for ($x = 1; $x < 5; $x++) {
+        for ($x = 0; $x < 5; $x++) {
             $gender = Arr::random(['Male', 'Female']);
             if ($gender === 'Male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
             $lastname = fake()->lastName();
-            \App\Models\User::factory()->create([
+            \App\Models\User::create([
                 'name' => $firstname . ' ' . $lastname,
                 'email' => fake()->freeEmail(),
                 'password' => Hash::make('password123'),
@@ -147,20 +147,20 @@ class DatabaseSeeder extends Seeder
                 'middlename' => fake()->lastName(),
                 'gender' => $gender,
                 'address' => fake()->address(),
-                'phone' => fake()->randomNumber(5, true),
+                'phone' => fake()->phoneNumber,
                 'status' => 'Active',
                 'department' => 'Nursing Department',
-                'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
+                'specialization' => Arr::random(['Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
             ]);
         }
 
         // SEEDER FOR CHIEF NURSE
-        for ($x = 1; $x < 1; $x++) {
+        for ($x = 0; $x < 1; $x++) {
             $gender = Arr::random(['Male', 'Female']);
             if ($gender === 'Male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
             $lastname = fake()->lastName();
-            \App\Models\User::factory()->create([
+            \App\Models\User::create([
                 'name' => $firstname . ' ' . $lastname,
                 'email' => fake()->freeEmail(),
                 'password' => Hash::make('password123'),
@@ -170,7 +170,7 @@ class DatabaseSeeder extends Seeder
                 'middlename' => fake()->lastName(),
                 'gender' => $gender,
                 'address' => fake()->address(),
-                'phone' => fake()->randomNumber(5, true),
+                'phone' => fake()->phoneNumber,
                 'status' => 'Active',
                 'department' => 'Nursing Department',
                 'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
