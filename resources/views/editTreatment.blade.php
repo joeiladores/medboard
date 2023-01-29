@@ -29,7 +29,7 @@
                         <input class="form-control" type="date" id="date_done" name="date_done" value="{{ $order_treatment->date_done }}" required/>
                         <input type="hidden" name="id" value="{{ $order_treatment->id }}">
                 </div>
-                <button type="submit" class="btn btn-light text-light m-2" style="background-color:rgb(66,100,208);">Edit Transfusion</button>
+                <button type="submit" class="btn btn-light text-light m-2" style="background-color:rgb(66,100,208);">Edit Treatment</button>
             </form>
         </div>
         @endsection

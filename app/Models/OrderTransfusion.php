@@ -10,10 +10,16 @@ class OrderTransfusion extends Model
     use HasFactory;
 
     protected $fillable = [
+        'doctor_order_id',
         'type',
         'fluid_name',
         'instruction',
         'date_started',
         'date_stopped',
     ];
+    public function DoctorOrder()
+    {
+        return $this->belongsTo(DoctorOrder::class);
+    }
+    
 }

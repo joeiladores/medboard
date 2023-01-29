@@ -10,9 +10,16 @@ class OrderTreatment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'doctor_order_id',
         'name',
         'type',
         'instruction',
-        'date_done',
+        'date_started',
+        'date_done'
     ];
+
+    public function DoctorOrder()
+    {
+        return $this->belongsTo(DoctorOrder::class);
+    }
 }
