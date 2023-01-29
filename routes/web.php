@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +16,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
+});
+
+Route::get('/dashboard', function(){
+    return view('dashboard');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Doctor's Orders
+// Doctor's Orders Routes
 Route::get('/doctorsOrders', function () {
     return view('doctorsOrders');
 });
+
+// Patient Routes
+Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient'])->name('patient');
+
+// Admin routes
+Route::get('/user', [UserController::class, 'user'])->name('user');
+// Create new user is under the Auth RegisterController
