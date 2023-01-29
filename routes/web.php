@@ -7,8 +7,10 @@ use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    return redirect()->route('login');
 });
+
+Auth::routes();
 
 Route::get('/dashboard', function(){
     return view('dashboard');

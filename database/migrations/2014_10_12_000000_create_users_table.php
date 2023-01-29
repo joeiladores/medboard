@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->enum('department', ['Emergency Department', 'Intensive Care Unit (ICU)', 'Obstetrics and Gynecology (OB/GYN)', 'Pediatrics', 'Surgery', 'Cardiology', 'Orthopedics', 'Nursing Department', 'IT Department', 'Admission'])->nullable();
-            $table->enum('specialization', ['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse', 'Software Developer', 'Admission Officer'])->nullable();
+            $table->enum('specialization', ['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist', 'Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse', 'Software Developer', 'Admission Officer'])->nullable();
             $table->string('imagepath')->nullable()->nullable();
-            $table->enum('status', ['Active', 'Inactive'])->nullable();           
+            $table->enum('status', ['Active', 'Inactive'])->default('Active')->nullable();           
 
             $table->string('name');
             $table->string('email')->unique();
