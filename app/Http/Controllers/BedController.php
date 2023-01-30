@@ -7,7 +7,7 @@ use App\Models\Bed;
 
 class BedController extends Controller
 {
-    public function bed() {
-        return view('bed')->with('beds', Bed::all());
+    public function beds() {
+        return view('beds')->with('beds', Bed::all());
     }
 }

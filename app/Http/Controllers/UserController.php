@@ -7,8 +7,8 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function user()
+    public function users()
     {
-        return view('user')->with('users', User::all());
+        return view('admin/users')->with('users', User::all());
     }
 }

@@ -82,13 +82,18 @@
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('user') }}" class="nav-link text-white">
+                <a href="{{ route('users') }}" class="nav-link text-white">
                   <i class="fa-solid fa-user-doctor fs-3 text-white"></i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="#" class="nav-link mt-3">
                   <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
+                </a>
+              </li>
+              <li class="nav-item mt-3">
+                <a href="{{ route('beds') }}" class="nav-link text-white">
+                  <i class="">Bed Management</i>
                 </a>
               </li>
               <li class="nav-item mt-3">

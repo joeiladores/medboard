@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('room');
             $table->string('room_type');
             $table->string('station');
-            $table->enum('status', 'Empty', 'Occupied')->default('Empty');
+            $table->enum('status', ['Empty', 'Occupied'])->default('Empty');
             
             $table->timestamps();
         });

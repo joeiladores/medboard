@@ -28,8 +28,8 @@ Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient
 
 // *****************************************************************************
 // Admin routes
-Route::get('/user', [UserController::class, 'user'])->name('user');
-Route::get('/bed', [BedController::class, 'bed'])->name('bed');
+Route::get('/admin/users', [UserController::class, 'users'])->name('users');
+Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
 // Create new user is under the Auth RegisterController
 
 
@@ -69,4 +69,5 @@ Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->na
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
 
 
-
+// *****************************************************************************
+// Routes for Admission
