@@ -9,6 +9,12 @@ use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 
+//Admission Form
+use App\Http\Controllers\AdmissionController;
+
+
+
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -71,3 +77,15 @@ Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'
 
 // *****************************************************************************
 // Routes for Admission
+
+
+Route::get('/admissionForm', function () {
+    return view('admissionForm');
+});
+
+
+Route::resource('admission', ChirpController::class)
+    ->only(['admissionForm', 'store'])
+    ->middleware(['auth', 'verified']);
+
+    // require __DIR__.'/auth.php';

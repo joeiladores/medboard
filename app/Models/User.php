@@ -68,4 +68,9 @@ class User extends Authenticatable
     }
 
     // 
+
+    public function admission()
+    {
+        return $this->hasMany(Chirp::class);
+    }
 }
