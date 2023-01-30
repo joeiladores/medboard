@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +15,25 @@ use App\Http\Controllers\PatientsController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (){
     return redirect()->route('login');
 });
+
+Auth::routes();
+
+// ------- Admin Panel ------- //
+Route::get('/home', [HomeController::class, 'index'])->name('adminHome');
+
+Route::get('/patients', [HomeController::class, 'patients'])->name('patientView');
+
+
+
 
 // Route::get('/dashboard', function(){
 //     return view('dashboard');
 // });
 
 Route::get('/dashboard', [PatientsController::class, 'displayAll'])->name('dashboard');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/createpatient', [PatientsController::class, 'create'])->name('createpatient');
 

@@ -10,3 +10,14 @@ aside{
 .formBackground {
   background: linear-gradient(5deg, rgb(149, 174, 255), #d6e0fd);
 }
+
+.tab-content {
+  border: 1px solid #dee2e6;
+  border-top: transparent;
+  padding: 15px;
+}
+
+.tab-content .tab-pane {
+  background-color: #FFF;
+  height: auto;
+}
