@@ -15,13 +15,29 @@ return new class extends Migration
     {
         Schema::create('order_transfusions', function (Blueprint $table) {
             $table->id();
+            $table->int('doctor_order_id');
             $table->enum('type',['IV','Blood']);
             $table->string('fluid_name');
             $table->string('instruction');
-            $table->datetime('date_started')->nullable();
-            $table->datetime('date_stopped')->nullable();
+            $table->dateTime('date_started')->nullable()->default("TBD");
+            $table->dateTime('date_stopped')->nullable()->default("TBD");
             $table->timestamps();
         });
+
+
+         ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
+        // Schema::create('order_transfusions', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('doctor_order_id');
+        //     $table->enum('type',['IV','Blood']);
+        //     $table->string('fluid_name');
+        //     $table->string('instruction');
+        //     $table->dateTime('date_started')->nullable()->default("TBD");
+        //     $table->dateTime('date_stopped')->nullable()->default("TBD");
+        //     $table->timestamps();
+
+        //     $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
+        // });
     }
 
     /**

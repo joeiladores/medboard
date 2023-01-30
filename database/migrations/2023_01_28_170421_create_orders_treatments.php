@@ -15,14 +15,31 @@ return new class extends Migration
     {
         Schema::create('order_treatments', function (Blueprint $table) {
             $table->id();
+            $table->integer('doctor_order_id');
             $table->string('name');
             $table->string('type');
             $table->string('instruction');
             $table->date('date_started');
-            $table->date('date_done')->nullable();
+            $table->date('date_done')->nullable()->default("TBD");
             
             $table->timestamps();
         });
+
+
+
+         ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
+        // Schema::create('order_treatments', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('doctor_order_id');
+        //     $table->string('name');
+        //     $table->string('type');
+        //     $table->string('instruction');
+        //     $table->date('date_started');
+        //     $table->date('date_done')->nullable()->default("TBD");
+        //     $table->timestamps();
+
+        //     $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
+        // });
     }
 
     /**

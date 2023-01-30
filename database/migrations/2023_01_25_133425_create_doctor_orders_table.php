@@ -17,11 +17,27 @@ return new class extends Migration
             $table->id();
             $table->integer('admission_id');
             $table->integer('doctor_id');
+            $table->integer('nurse_id');
             $table->date('date_ordered');
             $table->enum('type', ['Medication', 'Transfusion', 'Treatment']);
             $table->string('progress_notes');
-            $table->integer('nurse_id');
             $table->timestamps();
+
+
+        ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
+        // Schema::create('doctor_orders', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('admission_id');
+        //     $table->unsignedBigInteger('doctor_id');
+        //     $table->unsignedBigInteger('nurse_id');
+        //     $table->date('date_ordered');
+        //     $table->enum('type', ['Medication', 'Transfusion', 'Treatment']);
+        //     $table->string('progress_notes');
+        //     $table->timestamps();
+
+        //     $table->foreign('admission_id')->references('id')->on('admission');
+        //     $table->foreign('doctor_id')->references('admitting_doctor_id')->on('admission');
+        //     $table->foreign('nurse_id')->references('id')->on('nurse_assignment');
 });
     }
 

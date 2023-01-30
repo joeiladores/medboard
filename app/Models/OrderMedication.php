@@ -19,8 +19,7 @@ class OrderMedication extends Model
         'instructions',
     ];
 
-    public function doctorOrder()
-    {
+    public function doctorOrder() {
         return $this->belongsTo(DoctorOrder::class);
-    }
+      }
 }
