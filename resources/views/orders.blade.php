@@ -352,24 +352,28 @@ Progress Notes
            </table>
 </div>
 
-<div id="ProgressNotes" class="tabcontent">
+<!-- <div id="ProgressNotes" class="tabcontent">
 <table class="table" id="progressNotesTable">
             <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Progress Notes</th>
+                <tr></tr>
+                @foreach($progress_notes as $progress_note)
+                    <th>{{ $progress_note->created_at }}</th>
+                    <th>{{ $progress_note->notes }}</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td></td>
+                    <td></td>
                     <td class="d-flex">
-                     </td>
+                      <a href="{{ route('destroyProgressNotes', $progress_note->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <a href="{{ route('editProgressNotes', $progress_note->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                    </td>
                 </tr>
             </tbody>
            </table>
-</div>
+</div> -->
 
 <!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">

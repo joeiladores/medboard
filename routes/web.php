@@ -48,5 +48,11 @@ Route::get('/editTreatment/{id}', [OrderTreatmentController::class, 'edit'])->na
 Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->name('updateTreatment');
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
 
+// Routes for Progres Notes
+// Route::post('/storeProgressNotes', [ProgressNotesController::class, 'store'])->name('storeProgressNotes');
+// Route::get('/editProgressNotes/{id}', [ProgressNotesController::class, 'edit'])->name('editProgressNotes');
+// Route::post('/updateProgressNotes', [ProgressNotesController::class, 'update'])->name('updateProgressNotes');
+// Route::get('/destroyProgressNotes/{id}', [ProgressNotesController::class, 'destroy'])->name('destroyProgressNotes');
+
 
 
