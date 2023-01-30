@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        //codes for testing
         Schema::create('order_medications', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id');
+            $table->integer('doctor_order_id')->nullable();
             $table->string('medication');
             $table->double('dose');
             $table->integer('quantity');
