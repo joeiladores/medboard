@@ -36,7 +36,7 @@ body, html {
 #Medication {background-color: white;}
 #Transfusion {background-color: white;}
 #Treatment {background-color: white;}
-#Notes {background-color: white;}
+#ProgressNotes {background-color: white;}
 </style>
   <div class="card rounded shadow mb-2">
   <div class="card-body">
@@ -251,7 +251,7 @@ Progress Notes
 <button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
 <button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
 <button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
-<button class="tablink" onclick="openPage('Notes', this, 'rgb(66,100,208)')">Progress Notes</button>
+<button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress Notes</button>
 
 
 <div id="Medication" class="tabcontent">
@@ -278,8 +278,8 @@ Progress Notes
                     <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
-                    <td>{{ $order_medication->date_started }}</td>
-                    <td>{{ $order_medication->date_stopped }}</td>
+                    <td> {{ date_format(new DateTime($order_medication->date_started), "F j, Y") }}</td>
+                    <td> {{ date_format(new DateTime($order_medication->date_stopped), "F j, Y") }}</td>
                     <td class="d-flex">
                       <a href="{{ route('destroyMedication', $order_medication->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                       <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
@@ -308,8 +308,10 @@ Progress Notes
                     <td>{{ $order_transfusion->type }}</td>
                     <td>{{ $order_transfusion->fluid_name }}</td>
                     <td>{{ $order_transfusion->instruction }}</td>
-                    <td>{{ $order_transfusion->date_started }}</td>
-                    <td>{{ $order_transfusion->date_stopped }}</td>
+                    <td>{{ date_format(new DateTime($order_transfusion->date_started), "F j, Y") }}</td>
+                    <td> {{ date_format(new DateTime($order_transfusion->date_stopped), "F j, Y") }}</td>
+
+                   
                     <td class="d-flex">
                       <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                       <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
@@ -338,8 +340,8 @@ Progress Notes
                     <td>{{ $order_treatment->name }}</td>
                     <td>{{ $order_treatment->type }}</td>
                     <td>{{ $order_treatment->instruction }}</td>
-                    <td>{{ $order_treatment->date_started }}</td>
-                    <td>{{ $order_treatment->date_done }}</td>
+                    <td>{{ date_format(new DateTime($order_treatment->date_started), "F j, Y") }}</td>
+                    <td>{{ date_format(new DateTime($order_treatment->date_done), "F j, Y") }}</td>
                     <td class="d-flex">
                       <a href="{{ route('destroyTreatment', $order_treatment->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                       <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
@@ -350,9 +352,23 @@ Progress Notes
            </table>
 </div>
 
-<div id="Notes" class="tabcontent">
-  <h3>Notes</h3>
-  <p>DISPLAY Notes HERE</p>
+<div id="ProgressNotes" class="tabcontent">
+<table class="table" id="progressNotesTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Progress Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="d-flex">
+                     </td>
+                </tr>
+            </tbody>
+           </table>
 </div>
 
 <!-- For DataTables -->
@@ -366,7 +382,7 @@ Progress Notes
   var dataTable = new DataTable("#medicationTable");
   var dataTable = new DataTable("#transfusionTable");
   var dataTable = new DataTable("#treatmentTable");
-  
+  var dataTable = new DataTable("#progressNotesTable");
 
     function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
