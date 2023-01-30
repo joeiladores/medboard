@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('order_medications', function (Blueprint $table) {
             $table->id();
-            $table->int('doctor_order_id');
+            $table->integer('doctor_order_id');
             $table->string('medication');
             $table->double('dose');
             $table->integer('quantity');
             $table->enum('unit',['Gram','Milligram','Microgram']);
             $table->string('frequency');
             $table->string('instructions');
-            $table->dateTime('date_started')->nullable()->default("TBD");
-            $table->dateTime('date_stopped')->nullable()->default("TBD");
+            $table->date('date_started')->nullable();
+            $table->date('date_stopped')->nullable();
             $table->timestamps();
         });
 

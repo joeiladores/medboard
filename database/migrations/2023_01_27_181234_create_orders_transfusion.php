@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('order_transfusions', function (Blueprint $table) {
             $table->id();
-            $table->int('doctor_order_id');
+            $table->integer('doctor_order_id');
             $table->enum('type',['IV','Blood']);
             $table->string('fluid_name');
             $table->string('instruction');
-            $table->dateTime('date_started')->nullable()->default("TBD");
-            $table->dateTime('date_stopped')->nullable()->default("TBD");
+            $table->dateTime('date_started')->nullable();
+            $table->dateTime('date_stopped')->nullable();
             $table->timestamps();
         });
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('instruction');
             $table->date('date_started');
-            $table->date('date_done')->nullable()->default("TBD");
+            $table->date('date_done')->nullable();
             
             $table->timestamps();
         });
