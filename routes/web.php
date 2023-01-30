@@ -1,7 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Route;
+// Admin Controllers
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BedController;
 use App\Http\Controllers\Auth\RegisterController;
+// Doctor Order Controllers
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
@@ -25,7 +28,8 @@ Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient
 
 // *****************************************************************************
 // Admin routes
-Route::get('/user', [UserController::class, 'user'])->name('user');
+Route::get('/admin/users', [UserController::class, 'users'])->name('users');
+Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
 // Create new user is under the Auth RegisterController
 
 
@@ -65,4 +69,5 @@ Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->na
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
 
 
-
+// *****************************************************************************
+// Routes for Admission

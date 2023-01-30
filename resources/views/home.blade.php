@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="d-flex justify-content-center">
-        <h1>Home Content</h1>
+        <h1>Admin Dashboard</h1>
     </div>
 </div>
 
