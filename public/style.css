@@ -1,0 +1,8 @@
+.logo-sidebar{
+  max-width: 4.5rem;
+  height: auto;
+}
+
+aside{
+  background: linear-gradient(25deg, rgb(62, 107, 255), rgb(152, 171, 228));
+}
