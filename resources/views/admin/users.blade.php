@@ -3,14 +3,15 @@
 @section('content')
 
 <!-- Main Content - List of Users -->
-<div class="container-md p-5">
+<div class="container-md p-3">
     <h1 class="fw-bold">Users</h1>
     <div class="d-flex flex-lg-row flex-column justify-content-between">
-      <h5>List of Users</h5>
+      <h5 class="flex-grow-1">List of Users</h5>
 
       @if (Route::has('register'))
         <!-- <p><a href="{{ route('register') }}" class="btn btn-primary btn-small">+ Add New User</a></p> -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New Member</button>
+        <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New User</button>
+        <a href="{{ route('generate-pdf') }}" target="_blank" class="btn btn-warning float-end">⬇ Download PDF</a>
       @endif
     </div>    
 

@@ -29,13 +29,14 @@ Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient
 // *****************************************************************************
 // Admin routes
 Route::get('/admin/users', [UserController::class, 'users'])->name('users');
+Route::get('/admin/generate-pdf', [UserController::class, 'generatePDF'])->name('generate-pdf');
 
 Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
 Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');
 Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
 Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
 Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
-Route::get('/deletebed/{id}', [BedController::class, 'deleteMember'])->name('deletebed');
+Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
 // Create new user is under the Auth RegisterController
 
 

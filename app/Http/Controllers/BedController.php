@@ -15,6 +15,12 @@ class BedController extends Controller
     {
         $bed = new Bed;
 
+        $bedexist = Bed::where('bednum', $request->bednum)->first();
+        if($bedexist != NULL) {
+            return redirect()->route('beds')
+            ->with('error', 'Bed number already exists!');
+        }
+
         $bed->bednum = $request->bednum;
         $bed->room = $request->room;
         $bed->room_type = $request->room_type;
