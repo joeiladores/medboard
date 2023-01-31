@@ -18,6 +18,8 @@
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
         type="text/css" />
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('js/Bootstrap_dataTables.min.css') }}">
 
@@ -303,8 +305,36 @@
                                             <th>Age</th>
                                             <th>Weight</th>
                                             <th>Activities</th>
+                                            <th>Diet</th>
+                                            <th>Tubes</th>
+                                            <th>Special Info</th>
+                                            <th>Date Discharge</th>
+                                            <th>Status</th>
+                                            <th>Created At:</th>
+                                            <th>Updated At:</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach($admissions as $admission)
+                                        <tr>
+                                            <td>{{ $admission->date_time_admitted }}</td>
+                                            <td>{{ $admission->complain }}</td>
+                                            <td>{{ $admission->impression_diagnosis }}</td>
+                                            <td>{{ $admission->age }}</td>
+                                            <td>{{ $admission->weight }}</td>
+                                            <td>{{ $admission->activities }}</td>
+                                            <td>{{ $admission->diet }}</td>
+                                            <td>{{ $admission->tubes }}</td>
+                                            <td>{{ $admission->special_info }}</td>
+                                            <td>{{ $admission->date_time_discharge }}</td>
+                                            <td>{{ $admission->status }}</td>
+                                            <td>{{ $admission->created_at }}</td>
+                                            <td>{{ $admission->updated_at }}</td>
+                                            <td>{{ $admission->Actions}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                     <tfooter>
                                         <tr>
                                             <th>Admitted</th>
@@ -313,26 +343,21 @@
                                             <th>Age</th>
                                             <th>Weight</th>
                                             <th>Activities</th>
+                                            <th>Diet</th>
+                                            <th>Tubes</th>
+                                            <th>Special Info</th>
+                                            <th>Date Discharge</th>
+                                            <th>Status</th>
+                                            <th>Created At:</th>
+                                            <th>Updated At:</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfooter>
-                                    <!-- <tbody>
-                                        @foreach($admissions as $admission)
-                                        <tr>
-                                            <td>{{ $admission->admitted }}</td>
-                                            <td>{{ $admission->complain }}</td>
-                                            <td>{{ $admission->impression_diagnosis }}</td>
-                                            <td>{{ $admission->age }}</td>
-                                            <td>{{ $admission->weight }}</td>
-                                            <td>{{ $admission->activities }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
             </div>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -374,6 +399,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -396,8 +422,8 @@
     <script type="text/javascript">
     $(function() {
         $.ajaxSetup({
-            headers:{
-                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         var table = $(".data-table").DataTable({
@@ -409,7 +435,7 @@
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: 'admitted',
+                    data: 'date_time_admitted',
                     name: 'admitted'
                 },
                 {
@@ -433,8 +459,34 @@
                     name: 'activities'
                 },
                 {
-                    data: 'actions',
-                    name: 'actions'
+                    data: 'diet',
+                    name: 'diet'
+                },
+
+                {
+                    data: 'tubes',
+                    name: 'tubes'
+                },
+                {
+                    data: 'special_info',
+                    name: 'special_info'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'date_time_discharge',
+                    name: 'Date Time Discharge'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created at'
+                },
+
+                {
+                    data: 'updated_at',
+                    name: 'updated at'
                 },
             ]
         })

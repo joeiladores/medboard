@@ -16,6 +16,7 @@ class AdmissionController extends Controller
     public function index(Request $request)
     {
         $admissions = admissionModel::all();
+        
         if($request->ajax()){
             $allDAta = DataTables::of($admissions)
             ->addIndexColumn()
@@ -34,7 +35,9 @@ class AdmissionController extends Controller
             return  $allDAta;
 
         }
+        // return view('admission', compact($admissions));
         return view('admission', compact('admissions'));
+
     }
 
     /**
