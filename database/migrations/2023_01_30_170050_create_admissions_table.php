@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
+            $table->string('date_time_admitted');
+            $table->string('complain');
+            $table->string('impression_diagnosis');
+            $table->integer('age');
+            $table->float('weight');
+            $table->string('activities');
+            $table->string('diet');
+            $table->string('tubes');
+            $table->string('special_info');
+            $table->date('date_time_discharge');
+            $table->string('status');
             $table->timestamps();
         });
     }

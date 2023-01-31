@@ -35,9 +35,21 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $admission = new admission();
+        $admission->date_time_admitted = $request->date_time_admitted;
+        $admission->complain = $request->complain;
+        $admission->impression_diagnosis = $request->impression_diagnosis;
+        $admission->age = $request->age;
+        $admission->weight = $request->weight;
+        $admission->activities = $request->activities;
+        $admission->diet = $request->diet;
+        $admission->tubes = $request->tubes;
+        $admission->special_info = $request->special_info;
+        $admission->date_time_discharge = $request->date_time_discharge;
+        $admission->status = $request->status;
+        $admission->save();
+        return redirect()->route('admission.index')->with('success', 'Admission record has been added');
     }
-
     /**
      * Display the specified resource.
      *
