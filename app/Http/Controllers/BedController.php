@@ -8,7 +8,7 @@ use App\Models\Bed;
 class BedController extends Controller
 {
     public function beds() {
-        return view('beds')->with('beds', Bed::all());
+        return view('admin/beds')->with('beds', Bed::all());
     }
 
     public function storeBed(Request $request)

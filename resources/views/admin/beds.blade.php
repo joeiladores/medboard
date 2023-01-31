@@ -30,6 +30,7 @@
             <td>Room Type</td>
             <td>Station</td>            
             <td>Status</td>
+            <td>Action</td>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +59,7 @@
     </div>
     
     <!-- Create Bed Modal -->
-    <div class="modal modal-lg fade" id="createUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="createBedModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -69,7 +70,41 @@
                 <div class="card py-3 px-4 border-0">
                   <form method="POST" action="{{ route('storebed') }}">
                     @csrf
-                    
+                    <div class="mb-3">
+                      <label for="createbed_bednum" class="form-label">Bed Number</label>
+                      <input type="text" class="form-control" name="bednum" id="createbed_bednum" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="createbed_room" class="form-label">Room</label>
+                      <input type="text" class="form-control" name="room" id="createbed_room" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="createbed_room_type" class="form-label">Room Type</label>
+                      <select class="form-select" aria-label="Select room type" name="room_type" id="createbed_room_type" required>
+                          <option selected class="text-center"> --- Select ---</option>   
+                          <option value="Private">Private</option>
+                          <option value="Semi-Private">Semi-Private</option>
+                          <option value="Ward">Ward</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="createbed_station" class="form-label">Station</label>
+                      <select class="form-select" aria-label="Select station" name="station" id="createbed_station" required>
+                          <option selected class="text-center"> --- Select ---</option>    
+                          <option value="Nurse Station 1">Nurse Station 1</option>
+                          <option value="Nurse Station 2">Nurse Station 2</option>
+                          <option value="Nurse Station 3">Nurse Station 3</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="createbed_status" class="form-label">Status</label>
+                      <select class="form-select" aria-label="Select status" name="status" id="createbed_status" required>
+                          <option selected class="text-center"> --- Select ---</option>    
+                          <option value="Empty">Empty</option>
+                          <option value="Occupied">Occupied</option>
+                      </select>
+                    </div>
+                    <input type="hidden" name="id" id="id"">
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 </div>
