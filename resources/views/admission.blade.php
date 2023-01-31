@@ -296,7 +296,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered data-table" width="100%" cellspacing="0">
+                                <table id="data-tables" class="table table-bordered data-table display" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Admitted</th>
@@ -352,7 +352,9 @@
                                             <th>Updated At:</th>
                                             <th>Action</th>
                                         </tr>
+
                                     </tfooter>
+                                    <!-- <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission">ADD</a> -->
                                 </table>
                             </div>
                         </div>
@@ -488,9 +490,180 @@
                     data: 'updated_at',
                     name: 'updated at'
                 },
-            ]
-        })
 
+                {
+                    data: 'actions',
+                    name: 'actions'
+                },
+            ]
+        });
+
+
+    });
+    </script>
+    <script>
+    var editor; // use a global for the submit and return data rendering in the examples
+
+    $(document).ready(function() {
+        editor = new $.fn.dataTable.Editor({
+            ajax: "../../controllers/staff.php",
+            table: ".data-table",
+            fields: [ {
+                    data: 'date_time_admitted',
+                    name: 'admitted'
+                },
+                {
+                    data: 'complain',
+                    name: 'complain'
+                },
+                {
+                    data: 'impression_diagnosis',
+                    name: 'impression diagnosis'
+                },
+                {
+                    data: 'age',
+                    name: 'age'
+                },
+                {
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    data: 'activities',
+                    name: 'activities'
+                },
+                {
+                    data: 'diet',
+                    name: 'diet'
+                },
+
+                {
+                    data: 'tubes',
+                    name: 'tubes'
+                },
+                {
+                    data: 'special_info',
+                    name: 'special_info'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'date_time_discharge',
+                    name: 'Date Time Discharge'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created at'
+                },
+
+                {
+                    data: 'updated_at',
+                    name: 'updated at'
+                },
+
+                {
+                    data: 'actions',
+                    name: 'actions'
+                },]
+        });
+
+        // Activate an inline edit on click of a table cell
+        $('.data-table').on('click', 'tbody td:not(:first-child)', function(e) {
+            editor.inline(this);
+        });
+
+        $('.data-table').DataTable({
+            dom: "Bfrtip",
+            ajax: "../../controllers/staff.php",
+            order: [
+                [1, 'asc']
+            ],
+            columns: [{
+                    data: null,
+                    defaultContent: '',
+                    className: 'select-checkbox',
+                    orderable: false
+                },
+                {
+                    data: 'date_time_admitted',
+                    name: 'admitted'
+                },
+                {
+                    data: 'complain',
+                    name: 'complain'
+                },
+                {
+                    data: 'impression_diagnosis',
+                    name: 'impression diagnosis'
+                },
+                {
+                    data: 'age',
+                    name: 'age'
+                },
+                {
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    data: 'activities',
+                    name: 'activities'
+                },
+                {
+                    data: 'diet',
+                    name: 'diet'
+                },
+
+                {
+                    data: 'tubes',
+                    name: 'tubes'
+                },
+                {
+                    data: 'special_info',
+                    name: 'special_info'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'date_time_discharge',
+                    name: 'Date Time Discharge'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created at'
+                },
+
+                {
+                    data: 'updated_at',
+                    name: 'updated at'
+                },
+
+                {
+                    data: 'actions',
+                    name: 'actions'
+                },
+            ],
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
+            buttons: [{
+                    extend: "create",
+                    editor: editor
+                },
+                {
+                    extend: "edit",
+                    editor: editor
+                },
+                {
+                    extend: "remove",
+                    editor: editor
+                }
+            ]
+        });
     });
     </script>
 </body>
