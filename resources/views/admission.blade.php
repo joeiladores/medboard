@@ -294,7 +294,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered data-table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Admitted</th>
@@ -394,20 +394,52 @@
     </script>
 
     <script type="text/javascript">
-        var table=$(".data-table").DataTable({
-            serverSide:true,
-            processing:true,
-            ajax:"{{route('admission.index'}}",
-            columns:[
-                {data:'DT_RowIndex',name:'DT_RowIndex'},
-                {data:'admitted',name:'admitted'},
-                {data:'complain',name:'complain'},
-                {data:'impression_diagnosis',name:'impression diagnosis'},
-                {data:'age',name:'age'},
-                {data:'weight',name:'weight'},
-                {data:'activities',name:'activities'},
+    $(function() {
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var table = $(".data-table").DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "{{route('admission.index')}}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'admitted',
+                    name: 'admitted'
+                },
+                {
+                    data: 'complain',
+                    name: 'complain'
+                },
+                {
+                    data: 'impression_diagnosis',
+                    name: 'impression diagnosis'
+                },
+                {
+                    data: 'age',
+                    name: 'age'
+                },
+                {
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    data: 'activities',
+                    name: 'activities'
+                },
+                {
+                    data: 'actions',
+                    name: 'actions'
+                },
             ]
         })
+
+    });
     </script>
 </body>
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\admissionModel;
+use DataTables;
 
 class AdmissionController extends Controller
 {
@@ -11,9 +13,28 @@ class AdmissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admission');
+        $admissions = admissionModel::all();
+        if($request->ajax()){
+            $allDAta = DataTables::of($admissions)
+            ->addIndexColumn()
+            ->addColumn('actions',function($row){
+                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id = "'.$row->id.'" data-original-title="Edit" class="edit btn-primary btn-sm
+                editAdmission">Edit</a> ';
+
+                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id = "'.$row->id.'" data-original-title="Delete" class="delete btn-danger btn-sm
+                deleteAdmission">Delete</a> ';
+
+                return $btn;
+            })
+
+            ->rawColumns(['actions'])
+            ->make(true);
+            return  $allDAta;
+
+        }
+        return view('admission', compact('admissions'));
     }
 
     /**
