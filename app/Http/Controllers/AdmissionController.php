@@ -58,7 +58,7 @@ class AdmissionController extends Controller
      */
     public function show(admission $admission)
     {
-        //
+        return view('admissions.show', compact('admission'));
     }
 
     /**
@@ -69,8 +69,10 @@ class AdmissionController extends Controller
      */
     public function edit(admission $admission)
     {
-        //
+        return view('admissions.edit', compact('admission'));
     }
+    
+    
 
     /**
      * Update the specified resource in storage.

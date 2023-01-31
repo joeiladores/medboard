@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
 
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -254,7 +254,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline color black">Jomar Neri</span>
-                                <img class="img-profile rounded-circle" style="height: 32px; width: 32px;" src="https://thumbs.dreamstime.com/z/unknown-male-avatar-profile-image-businessman-vector-unknown-male-avatar-profile-image-businessman-vector-profile-179373829.jpg">
+                                <img class="img-profile rounded-circle" style="height: 32px; width: 32px;"
+                                    src="https://thumbs.dreamstime.com/z/unknown-male-avatar-profile-image-businessman-vector-unknown-male-avatar-profile-image-businessman-vector-profile-179373829.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -278,9 +279,7 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -298,33 +297,35 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
+                                            <th>Admitted</th>
+                                            <th>Complain</th>
+                                            <th>Impression Diagnosis</th>
                                             <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Example</th>
+                                            <th>Weight</th>
+                                            <th>Activities</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <tfooter>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
+                                            <th>Admitted</th>
+                                            <th>Complain</th>
+                                            <th>Impression Diagnosis</th>
                                             <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Examp</th>
+                                            <th>Weight</th>
+                                            <th>Activities</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfooter>
                                     <tbody>
+                                        @foreach($admissions as $admission)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{ $admission->admitted }}</td>
+                                            <td>{{ $admission->complain }}</td>
+                                            <td>{{ $admission->impression_diagnosis }}</td>
+                                            <td>{{ $admission->age }}</td>
+                                            <td>{{ $admission->weight }}</td>
+                                            <td>{{ $admission->activities }}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -392,4 +393,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
     </script>
 </body>
+
 </html>
