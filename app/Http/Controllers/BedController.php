@@ -32,11 +32,11 @@ class BedController extends Controller
         return redirect()->route('beds')->with('success', 'New bed added successfully!');
     }
 
-    public function editBed($id) {
-        $bed = Bed::find($id);
+    // public function editBed($id) {
+    //     $bed = Bed::find($id);
 
-        return view('editbed')->with('bed', $bed);
-    }
+    //     return view('editbed')->with('bed', $bed);
+    // }
 
     public function updateBed(Request $request) {        
         $bed = Bed::find($request->id);

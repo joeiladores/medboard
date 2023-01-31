@@ -21,13 +21,13 @@
   <link rel="stylesheet" href="/style.css">
   
 
-  <!-- JS -->
+  <!-- JS -->  
 
-  <!-- Datatable CSS -->  
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-  <!-- Datatable Responsive CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
-  
+  <!-- For DataTables -->
+  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+  </script>  
+
 
   <style>
     * {
@@ -408,31 +408,7 @@
   <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  <!-- Datatable JS -->
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-  <!-- Datatable Responsive JS -->
-  <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-
-  <script>
-    const editBedModal = new bootstrap.Modal('#editBedModal', {
-    keyboard: false
-  });
-
-  function showEditBedModal(bed_id) {
-    fetch('{{ url('/admin/showbed/') }}/' + bed_id)
-      .then(response => response.json())
-      .then(data => {
-          document.getElementById('editbed_bednum').value = data.bednum;
-          document.getElementById('editbed_room').value = data.room;
-          document.getElementById('editbed_room_type').value = data.room_type;
-          document.getElementById('editbed_station').value = data.station;
-          document.getElementById('editbed_status').value = data.status;
-          document.getElementById('editbed_id').value = data.id;
-          editBedModal.show();
-      })
-  }
-  </script>
+  
 </body>
 
 </html>

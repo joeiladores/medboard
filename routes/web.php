@@ -33,7 +33,7 @@ Route::get('/admin/generate-pdf', [UserController::class, 'generatePDF'])->name(
 
 Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
 Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');
-Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
+// Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
 Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
 Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
 Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');

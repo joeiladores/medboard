@@ -26,8 +26,8 @@
     @endif
 
     <div class="table-responsive my-3">
-      <table class="table table-hover">
-        <thead class="bg-secondary bg-gradient text-light fw-bold">
+      <table class="table table-hover" id="bedTable">
+        <thead class="fw-bold">
           <tr>
             <td>Beds ID</td>
             <td>Bed Number</td>
@@ -172,5 +172,9 @@
         </div>
       </div>
     </div>   
+
+  <script>
+    const userTable = new DataTable('#bedTable');
+  </script>
 
 @endsection
