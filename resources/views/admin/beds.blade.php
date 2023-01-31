@@ -10,7 +10,7 @@
 
       @if (Route::has('register'))
         <!-- <p><a href="{{ route('register') }}" class="btn btn-primary btn-small">+ Add New User</a></p> -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New Bed</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
       @endif
     </div>    
 
@@ -57,17 +57,17 @@
       </table>
     </div>
     
-    <!-- Create User Modal -->
-    <!-- <div class="modal modal-lg fade" id="createUserModal" tabindex="-1" aria-hidden="true">
+    <!-- Create Bed Modal -->
+    <div class="modal modal-lg fade" id="createUserModal" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New User</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Bed</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="card py-3 px-4 border-0">
-                  <form method="POST" action="{{ route('register') }}">
+                  <form method="POST" action="{{ route('storebed') }}">
                     @csrf
                     
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -76,6 +76,6 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
 
 @endsection
