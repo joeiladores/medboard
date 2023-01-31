@@ -84,8 +84,8 @@ Route::get('/admissionForm', function () {
 });
 
 
-Route::resource('admission', ChirpController::class)
-    ->only(['admissionForm', 'store'])
+Route::resource('admission', AdmissionController::class)
     ->middleware(['auth', 'verified']);
+
 
     // require __DIR__.'/auth.php';

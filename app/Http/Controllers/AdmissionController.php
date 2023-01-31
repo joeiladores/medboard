@@ -26,7 +26,7 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('admissions.create');
+        return view('admission.create');
     }
     
 
@@ -66,7 +66,7 @@ class AdmissionController extends Controller
         $admission->status = $request->status;
         $admission->save();
         
-        return redirect()->route('admissions.index');
+        return redirect()->route('admission.index');
     }
     
     /**
@@ -77,7 +77,7 @@ class AdmissionController extends Controller
      */
     public function show(admission $admission)
     {
-        return view('admissions.show', compact('admission'));
+        return view('admission.show', compact('admission'));
     }
 
     /**
@@ -88,7 +88,7 @@ class AdmissionController extends Controller
      */
     public function edit(admission $admission)
     {
-        return view('admissions.edit', compact('admission'));
+        return view('admission.edit', compact('admission'));
     }
     
     
@@ -103,7 +103,7 @@ class AdmissionController extends Controller
     public function update(Request $request, admission $admission)
     {
     $admission->update($request->all());
-    return redirect()->route('admissions.index')->with('success', 'Admission updated successfully');
+    return redirect()->route('admission.index')->with('success', 'Admission updated successfully');
     }
 
 
@@ -117,7 +117,7 @@ class AdmissionController extends Controller
     {
         $admission->delete();
 
-        return redirect()->route('admissions.index')->with('success', 'Admission record deleted successfully.');
+        return redirect()->route('admission.index')->with('success', 'Admission record deleted successfully.');
         
     }
 

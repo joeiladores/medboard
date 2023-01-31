@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAdmissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('tubes');
             $table->string('special_info');
             $table->date('date_time_discharge');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -39,4 +39,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('admissions');
     }
-};
+}
