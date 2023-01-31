@@ -4,15 +4,13 @@
 
 <!-- Main Content - List of Users -->
 <div class="container-md p-3">
+  <div class="d-flex flex-lg-row flex-column justify-content-between">
     <h1 class="fw-bold">Beds</h1>
-    <div class="d-flex flex-lg-row flex-column justify-content-between">
-      <h5>List of Beds</h5>
-
-      @if (Route::has('register'))
-        <!-- <p><a href="{{ route('register') }}" class="btn btn-primary btn-small">+ Add New User</a></p> -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
-      @endif
-    </div>    
+    @if (Route::has('register'))
+      <!-- <p><a href="{{ route('register') }}" class="btn btn-primary btn-small">+ Add New User</a></p> -->
+      <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
+    @endif
+  </div>    
 
     @if( session('success') )
       <div class="alert alert-success my-3" role="alert">
@@ -101,14 +99,6 @@
                       <option value="Nurse Station 3">Nurse Station 3</option>
                   </select>
                 </div>
-                <div class="mb-3">
-                  <label for="createbed_status" class="form-label">Status</label>
-                  <select class="form-select" aria-label="Select status" name="status" id="createbed_status" required>
-                      <option selected class="text-center"> --- Select ---</option>    
-                      <option value="Empty">Empty</option>
-                      <option value="Occupied">Occupied</option>
-                  </select>
-                </div>
                 <input type="hidden" name="id" id="id"">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -164,7 +154,7 @@
                       <option value="Occupied">Occupied</option>
                   </select>
                 </div>                
-                <input type="hidden" name="id" id="editmember_id"">
+                <input type="hidden" name="id" id="editbed_id"">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>
@@ -172,9 +162,5 @@
         </div>
       </div>
     </div>   
-
-  <script>
-    const userTable = new DataTable('#bedTable');
-  </script>
 
 @endsection

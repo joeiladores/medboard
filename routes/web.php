@@ -29,7 +29,8 @@ Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient
 // *****************************************************************************
 // Admin routes
 Route::get('/admin/users', [UserController::class, 'users'])->name('users');
-Route::get('/admin/generate-pdf', [UserController::class, 'generatePDF'])->name('generate-pdf');
+Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
+Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
 Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
 Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');

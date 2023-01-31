@@ -184,8 +184,7 @@ class DatabaseSeeder extends Seeder
                 'bednum' => $i,
                 'room' => $num++,
                 'room_type' => 'Private',
-                'station' => 'Nurse Station 1',
-                'status' => 'Empty',                
+                'station' => 'Nurse Station 1',              
             ]);
         }
 
@@ -197,8 +196,7 @@ class DatabaseSeeder extends Seeder
                     'bednum' => $bed + $i,
                     'room' => $room,
                     'room_type' => 'Semi Private',
-                    'station' => 'Nurse Station 1',
-                    'status' => 'Empty',                
+                    'station' => 'Nurse Station 1',              
                 ]);
             }
             $bed += 2;
@@ -209,10 +207,18 @@ class DatabaseSeeder extends Seeder
                     'bednum' => $bed,
                     'room' => 'Male Ward',
                     'room_type' => 'Ward',
-                    'station' => 'Nurse Station 2',
-                    'status' => 'Empty',                
+                    'station' => 'Nurse Station 2',             
                 ]);
         }
+
+        \App\Models\Bed::create([
+            'bednum' => 51,
+            'room' => 'Female Ward',
+            'room_type' => 'Ward',
+            'station' => 'Nurse Station 3',             
+        ]);
+
+        
 
     }
 }

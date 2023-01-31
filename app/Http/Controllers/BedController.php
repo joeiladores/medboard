@@ -25,7 +25,6 @@ class BedController extends Controller
         $bed->room = $request->room;
         $bed->room_type = $request->room_type;
         $bed->station = $request->station;
-        $bed->status = $request->status;
         
         $bed->save();
 
@@ -40,12 +39,22 @@ class BedController extends Controller
 
     public function updateBed(Request $request) {        
         $bed = Bed::find($request->id);
+        $originalbednum = $bed->bednum;
         
         $bed->bednum  = $request->bednum;
         $bed->room = $request->room;        
         $bed->room_type = $request->room_type;
         $bed->station = $request->station;
-        $bed->status = $request->status;        
+        $bed->status = $request->status;
+        
+        // IF new email is already existing in the database
+        if($bed->bednum != $originalbednum) {
+            $bedexist = Bed::where('bednum', $bed->bednum)->first();
+            if($bedexist != NULL) {
+                return redirect()->route('beds')
+                ->with('error', 'Bed number already exists!');
+            }
+        }
 
         $bed->save();
         return redirect()->route('beds')->with('success', 'Bed is successfully updated!');
