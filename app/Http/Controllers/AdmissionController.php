@@ -14,7 +14,9 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admission.index', [
+            'admission' => admission::with('user')->latest()->get(),
+        ]);
     }
 
     /**
@@ -24,8 +26,9 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admissions.create');
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +38,21 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        $admission = new admission();
+        $validatedData = $request->validate([
+            'date_time_admitted' => 'required',
+            'complain' => 'required',
+            'impression_diagnosis' => 'required',
+            'age' => 'required',
+            'weight' => 'required',
+            'activities' => 'required',
+            'diet' => 'required',
+            'tubes' => 'required',
+            'special_info' => 'required',
+            'date_time_discharge' => 'required',
+            'status' => 'required'
+        ]);
+        
+        $admission = new Admission;
         $admission->date_time_admitted = $request->date_time_admitted;
         $admission->complain = $request->complain;
         $admission->impression_diagnosis = $request->impression_diagnosis;
@@ -48,8 +65,10 @@ class AdmissionController extends Controller
         $admission->date_time_discharge = $request->date_time_discharge;
         $admission->status = $request->status;
         $admission->save();
-        return redirect()->route('admission.index')->with('success', 'Admission record has been added');
+        
+        return redirect()->route('admissions.index');
     }
+    
     /**
      * Display the specified resource.
      *
@@ -83,8 +102,10 @@ class AdmissionController extends Controller
      */
     public function update(Request $request, admission $admission)
     {
-        //
+    $admission->update($request->all());
+    return redirect()->route('admissions.index')->with('success', 'Admission updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -94,6 +115,12 @@ class AdmissionController extends Controller
      */
     public function destroy(admission $admission)
     {
-        //
+        $admission->delete();
+
+        return redirect()->route('admissions.index')->with('success', 'Admission record deleted successfully.');
+        
     }
+
+
+    
 }
