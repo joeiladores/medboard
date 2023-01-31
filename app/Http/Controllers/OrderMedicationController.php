@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\OrderTransfusion;
 use App\Models\OrderMedication;
 use App\Models\OrderTreatment;
+use App\Models\ProgressNote;
 use Illuminate\Http\Request;
 
 
@@ -15,9 +16,10 @@ class OrderMedicationController extends Controller
         $order_transfusions = OrderTransfusion::orderBy('created_at', 'desc')->get();
         $order_medications = OrderMedication::orderBy('created_at', 'desc')->get();
         $order_treatments = OrderTreatment::orderBy('created_at', 'desc')->get();
-        
+        $progress_notes = ProgressNote::orderBy('created_at', 'desc')->get();
 
-            return view('orders',compact('order_transfusions','order_medications','order_treatments'));
+        
+        return view('orders',compact('order_transfusions','order_medications','order_treatments','progress_notes'));
     }
 
   

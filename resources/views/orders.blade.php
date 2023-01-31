@@ -228,7 +228,7 @@ Progress Notes
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form method="POST" action="">
+      <form method="POST" action="{{ route('storeProgressNote') }}">
       @csrf
       <div class="mb-3">
       <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
@@ -352,28 +352,33 @@ Progress Notes
            </table>
 </div>
 
-<!-- <div id="ProgressNotes" class="tabcontent">
+<div id="ProgressNotes" class="tabcontent">
 <table class="table" id="progressNotesTable">
             <thead>
-                <tr></tr>
-                @foreach($progress_notes as $progress_note)
-                    <th>{{ $progress_note->created_at }}</th>
-                    <th>{{ $progress_note->notes }}</th>
+                <tr>
+                    <th>date Created</th>
+                    <th>Notes</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach($progress_notes  as $progress_note)
                 <tr>
-                    <td></td>
-                    <td></td>
+                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y") }}</td>
+                    <td>{{ $progress_note->notes }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyProgressNotes', $progress_note->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editProgressNotes', $progress_note->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                      <a href="{{ route('destroyProgressNote', $progress_note->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <a href="{{ route('editProgressNote', $progress_note->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
            </table>
-</div> -->
+</div>
+
+
+
+
 
 <!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
@@ -412,9 +417,6 @@ Progress Notes
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
-
-
-
 
 
 @endsection
