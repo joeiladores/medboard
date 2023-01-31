@@ -77,15 +77,4 @@ Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'
 
 // *****************************************************************************
 // Routes for Admission
-
-
-Route::get('/admissionForm', function () {
-    return view('admissionForm');
-});
-
-
-Route::resource('admission', AdmissionController::class)
-    ->middleware(['auth', 'verified']);
-
-
-    // require __DIR__.'/auth.php';
+Route::resource('admission',AdmissionController::class);

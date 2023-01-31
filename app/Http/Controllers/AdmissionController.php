@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admission;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller
@@ -14,9 +13,7 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        return view('admission.index', [
-            'admission' => admission::with('user')->latest()->get(),
-        ]);
+        return view('admission');
     }
 
     /**
@@ -26,9 +23,8 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('admission.create');
+        //
     }
-    
 
     /**
      * Store a newly created resource in storage.
@@ -38,89 +34,51 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'date_time_admitted' => 'required',
-            'complain' => 'required',
-            'impression_diagnosis' => 'required',
-            'age' => 'required',
-            'weight' => 'required',
-            'activities' => 'required',
-            'diet' => 'required',
-            'tubes' => 'required',
-            'special_info' => 'required',
-            'date_time_discharge' => 'required',
-            'status' => 'required'
-        ]);
-        
-        $admission = new Admission;
-        $admission->date_time_admitted = $request->date_time_admitted;
-        $admission->complain = $request->complain;
-        $admission->impression_diagnosis = $request->impression_diagnosis;
-        $admission->age = $request->age;
-        $admission->weight = $request->weight;
-        $admission->activities = $request->activities;
-        $admission->diet = $request->diet;
-        $admission->tubes = $request->tubes;
-        $admission->special_info = $request->special_info;
-        $admission->date_time_discharge = $request->date_time_discharge;
-        $admission->status = $request->status;
-        $admission->save();
-        
-        return redirect()->route('admission.index');
+        //
     }
-    
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(admission $admission)
+    public function show($id)
     {
-        return view('admission.show', compact('admission'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(admission $admission)
+    public function edit($id)
     {
-        return view('admission.edit', compact('admission'));
+        //
     }
-    
-    
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, admission $admission)
+    public function update(Request $request, $id)
     {
-    $admission->update($request->all());
-    return redirect()->route('admission.index')->with('success', 'Admission updated successfully');
+        //
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(admission $admission)
+    public function destroy($id)
     {
-        $admission->delete();
-
-        return redirect()->route('admission.index')->with('success', 'Admission record deleted successfully.');
-        
+        //
     }
-
-
-    
 }
