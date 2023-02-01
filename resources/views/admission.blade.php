@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
-
+    <link rel="stylesheet" href="{{ URL::asset('js/bootstrap_dataTables.min.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" /> -->
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -18,10 +19,10 @@
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
         type="text/css" />
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+   
 
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('js/Bootstrap_dataTables.min.css') }}">
+    
 
     <title>admission form</title>
     <style>
@@ -401,26 +402,27 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.easing.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/sb.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('datatables/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('datatables/mydatatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('datatables/dataTables.bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('datatables/mytables.responsive.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('public/datatables/mytables.responsive.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!------____________________________________________
+    |        return this if error return this if error
+
+    <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.js') }}"></script>
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script> -->
+     <!-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <-- <script type="text/javascript" src="{{ URL::asset('public/datatables/mytables.responsive.min.js') }}"></script> -->
+    
     <script type="text/javascript">
     $(function() {
         $.ajaxSetup({
@@ -432,10 +434,7 @@
             serverSide: true,
             processing: true,
             ajax: "{{route('admission.index')}}",
-            columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
-                },
+            columns: [
                 {
                     data: 'date_time_admitted',
                     name: 'admitted'
@@ -501,171 +500,5 @@
 
     });
     </script>
-    <!-- <script>
-    var editor; // use a global for the submit and return data rendering in the examples -->
-
-    // $(document).ready(function() {
-    //     editor = new $.fn.dataTable.Editor({
-    //         ajax: "../../controllers/staff.php",
-    //         table: ".data-table",
-    //         fields: [ {
-    //                 data: 'date_time_admitted',
-    //                 name: 'admitted'
-    //             },
-    //             {
-    //                 data: 'complain',
-    //                 name: 'complain'
-    //             },
-    //             {
-    //                 data: 'impression_diagnosis',
-    //                 name: 'impression diagnosis'
-    //             },
-    //             {
-    //                 data: 'age',
-    //                 name: 'age'
-    //             },
-    //             {
-    //                 data: 'weight',
-    //                 name: 'weight'
-    //             },
-    //             {
-    //                 data: 'activities',
-    //                 name: 'activities'
-    //             },
-    //             {
-    //                 data: 'diet',
-    //                 name: 'diet'
-    //             },
-
-    //             {
-    //                 data: 'tubes',
-    //                 name: 'tubes'
-    //             },
-    //             {
-    //                 data: 'special_info',
-    //                 name: 'special_info'
-    //             },
-    //             {
-    //                 data: 'status',
-    //                 name: 'status'
-    //             },
-    //             {
-    //                 data: 'date_time_discharge',
-    //                 name: 'Date Time Discharge'
-    //             },
-    //             {
-    //                 data: 'created_at',
-    //                 name: 'created at'
-    //             },
-
-    //             {
-    //                 data: 'updated_at',
-    //                 name: 'updated at'
-    //             },
-
-    //             {
-    //                 data: 'actions',
-    //                 name: 'actions'
-    //             },]
-    //     });
-
-    //     // Activate an inline edit on click of a table cell
-    //     $('.data-table').on('click', 'tbody td:not(:first-child)', function(e) {
-    //         editor.inline(this);
-    //     });
-
-    //     $('.data-table').DataTable({
-    //         dom: "Bfrtip",
-    //         ajax: "../../controllers/staff.php",
-    //         order: [
-    //             [1, 'asc']
-    //         ],
-    //         columns: [{
-    //                 data: null,
-    //                 defaultContent: '',
-    //                 className: 'select-checkbox',
-    //                 orderable: false
-    //             },
-    //             {
-    //                 data: 'date_time_admitted',
-    //                 name: 'admitted'
-    //             },
-    //             {
-    //                 data: 'complain',
-    //                 name: 'complain'
-    //             },
-    //             {
-    //                 data: 'impression_diagnosis',
-    //                 name: 'impression diagnosis'
-    //             },
-    //             {
-    //                 data: 'age',
-    //                 name: 'age'
-    //             },
-    //             {
-    //                 data: 'weight',
-    //                 name: 'weight'
-    //             },
-    //             {
-    //                 data: 'activities',
-    //                 name: 'activities'
-    //             },
-    //             {
-    //                 data: 'diet',
-    //                 name: 'diet'
-    //             },
-
-    //             {
-    //                 data: 'tubes',
-    //                 name: 'tubes'
-    //             },
-    //             {
-    //                 data: 'special_info',
-    //                 name: 'special_info'
-    //             },
-    //             {
-    //                 data: 'status',
-    //                 name: 'status'
-    //             },
-    //             {
-    //                 data: 'date_time_discharge',
-    //                 name: 'Date Time Discharge'
-    //             },
-    //             {
-    //                 data: 'created_at',
-    //                 name: 'created at'
-    //             },
-
-    //             {
-    //                 data: 'updated_at',
-    //                 name: 'updated at'
-    //             },
-
-    //             {
-    //                 data: 'actions',
-    //                 name: 'actions'
-    //             },
-    //         ],
-    //         select: {
-    //             style: 'os',
-    //             selector: 'td:first-child'
-    //         },
-    //         buttons: [{
-    //                 extend: "create",
-    //                 editor: editor
-    //             },
-    //             {
-    //                 extend: "edit",
-    //                 editor: editor
-    //             },
-    //             {
-    //                 extend: "remove",
-    //                 editor: editor
-    //             }
-    //         ]
-    //     });
-    // });
-    // </script>
-</body>
 
 </html>
