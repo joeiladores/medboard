@@ -23,17 +23,6 @@ class UserController extends Controller
 
     protected function storeUser(Request $request)
     {
-        // $validator = Validator::make($request, [
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect()->route('users')
-        //         ->withErrors($validator)
-        //         ->withInput();
-        // }
-
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -77,11 +66,11 @@ class UserController extends Controller
         return redirect()->route('users')->with('success', 'New user added successfully!');
     }
 
-    // public function editUser($id) {
-    //     $user = User::find($id);
+    public function editUser($id) {
+        $user = User::find($id);
 
-    //     return view('admin/edituser')->with('user', $user);
-    // }
+        return view('admin/edituser')->with('user', $user);
+    }
 
     protected function updateUser(Request $request) {        
         $user = User::find($request->id);

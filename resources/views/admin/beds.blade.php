@@ -163,4 +163,8 @@
       </div>
     </div>   
 
+  <script>
+    const bedTable = new DataTable('#bedTable');  
+  </script>
+
 @endsection

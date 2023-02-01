@@ -218,6 +218,25 @@ class DatabaseSeeder extends Seeder
             'station' => 'Nurse Station 3',             
         ]);
 
+        // Seeder for Nurse Assignment to Station
+        // for($i = 11; $i <= 13; $i++) {
+        //     \App\Models\Bed::create([
+        //         'user_id' => $i,
+        //         'datetime_start' => '',
+        //         'datetime_end' => '',
+        //         'station' => 'Nurse Station 1',             
+        //     ]);
+        // }
+
+        // for($i = 14; $i <= 16; $i++) {
+        //     \App\Models\Bed::create([
+        //         'user_id' => $i,
+        //         'datetime_start' => '',
+        //         'datetime_end' => '',
+        //         'station' => 'Nurse Station 2',             
+        //     ]);
+        // }
+
         
 
     }

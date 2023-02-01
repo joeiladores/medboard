@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\NurseAssignmentController;
 // Doctor Order Controllers
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
@@ -30,9 +31,12 @@ Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient
 // Admin routes
 Route::get('/admin/users', [UserController::class, 'users'])->name('users');
 Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
-Route::get('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
-Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
 Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
+Route::get('/admin/edituser/{id}', [UserController::class, 'editUser'])->name('edituser');
+Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
+
+Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
+Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
 
 Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
@@ -42,7 +46,7 @@ Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storeb
 Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
 Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
 Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
-// Create new user is under the Auth RegisterController
+
 
 
 // *****************************************************************************

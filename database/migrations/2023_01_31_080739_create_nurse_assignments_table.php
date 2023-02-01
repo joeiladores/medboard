@@ -17,9 +17,13 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            // $table->date()
-
+            $table->dateTime('datetime_start');
+            $table->dateTime('datetime_end');
+            $table->string('shift');
+            $table->string('station');
+            
             $table->timestamps();
+            
         });
     }
 

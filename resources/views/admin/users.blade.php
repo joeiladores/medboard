@@ -47,9 +47,9 @@
           <td>{{ $user->email }}</td>
           <td>{{ $user->phone }}</td>
           <td>
-            <!-- <a class="btn btn-sm" href="#">🖊️</a>
-            <a class="btn btn-sm" href="#">❌</a> -->
-            <button type="button" class="btn btn-sm" onclick="showEditUserModal({{ $user->id }});">🖊️</button>       
+            <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
+            <!-- <a class="btn btn-sm" href="#">❌</a> -->
+            <!-- <button type="button" class="btn btn-sm" onclick="showEditUserModal({{ $user->id }});">🖊️</button>        -->
               <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
           </td>
         </tr>

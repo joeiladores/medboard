@@ -103,7 +103,7 @@
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="#" class="nav-link text-white">
+                <a href="{{ route('nurseassignments') }}" class="nav-link text-white">
                   <i class="">Nurses Assignment</i>
                 </a>
               </li>
@@ -164,7 +164,6 @@
 
   <script>
     const userTable = new DataTable("#userTable");
-    const bedTable = new DataTable('#bedTable');   
 
     const editBedModal = new bootstrap.Modal('#editBedModal', {
       keyboard: false
