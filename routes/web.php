@@ -29,7 +29,11 @@ Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient
 // *****************************************************************************
 // Admin routes
 Route::get('/admin/users', [UserController::class, 'users'])->name('users');
+Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
+Route::get('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
 Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
+Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
+
 Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
 Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');

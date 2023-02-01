@@ -4,33 +4,69 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 // use PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
-    public function users()
+
+    protected function users()
     {
         return view('admin/users')->with('users', User::all());
     }
 
-    public function storeUser(Request $request)
+    protected function registeruser()
     {
-        $user = new User;
+        return view('admin/registeruser');
+    }
 
-        $userexist = User::where('email', $request->email)->first();
-        if($userexist != NULL) {
-            return redirect()->route('users')
-            ->with('error', 'User number already exists!');
+    protected function storeUser(Request $request)
+    {
+        // $validator = Validator::make($request, [
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect()->route('users')
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'usertype' => ['required', 'not_in:0'],
+            'gender' => ['required', 'not_in:0'],
+            'department' => ['required', 'not_in:0'],
+            'specialization' => ['required', 'not_in:0'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('registeruser')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Adding user is not successfull!');;
         }
 
+        $user = new User;
+
         $user->email = $request->email;
-        $user->name = $request->name;
-        // FILL IN OTHER COLUMNS
-        // ...
-        // ...
-        // ...
-        
+        $user->password = $request->password;
+        $user->usertype = $request->usertype;
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->middlename = $request->middlename;
+        $user->birthdate = $request->birthdate;
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->department = $request->department;
+        $user->specialization = $request->specialization;
+        $user->imagepath = $request->imagepath;
+        $user->name = $request->firstname . ' ' . $request->lastname;
+
         $user->save();
 
         return redirect()->route('users')->with('success', 'New user added successfully!');
@@ -42,7 +78,7 @@ class UserController extends Controller
     //     return view('admin/edituser')->with('user', $user);
     // }
 
-    public function updateUser(Request $request) {        
+    protected function updateUser(Request $request) {        
         $user = User::find($request->id);
         $originalemail = $user->bednum;
         
@@ -66,7 +102,7 @@ class UserController extends Controller
         return redirect()->route('users')->with('success', 'User is successfully updated!');
     }  
 
-    public function deleteUser($id) {
+    protected function deleteUser($id) {
         $user = User::find($id);
         $user->delete();
 
@@ -74,12 +110,12 @@ class UserController extends Controller
     }
 
     // For modal display User Information for Edit
-    public function showUser($id) {
+    protected function showUser($id) {
         $user = User::find($id);
         return response()->json($user);
     }
 
-    public function generatePDF() {
+    protected function generatePDF() {
         // get the data to display in the PDF
         $users = User::all();
         // store it in a data array

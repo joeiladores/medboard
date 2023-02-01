@@ -1,36 +1,28 @@
-@extends('layouts.app')
+@extends('layouts.adminlayout')
 
 @section('content')
-<div class="container">
+<div class="container p-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+
+                    @if( session('error') )
+                      <div class="alert alert-danger my-3" role="alert">
+                        {{ session('error') }}
+                      </div>
+                    @endif
+                    <form method="POST" action="{{ route('storeuser') }}">
                         @csrf
-
-                        <!-- <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> -->
 
                         <!-- User Type -->
                         <div class="row mb-3">
                             <label for="usertype" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Select user type" name="usertype" id="usertype" required>
+                                <select class="form-select" aria-label="Select user type" id="usertype" class="@error('usertype') is-invalid @enderror" name="usertype" value="{{ old('usertype') }}" required autocomplete="usertype" autofocus>
                                     <option value=0 selected>Select ---</option> 
                                     <option value="Admin">{{ __('Admin') }}</option>
                                     <option value="Doctor">{{ __('Doctor') }}</option>
@@ -92,7 +84,7 @@
 
                         <!-- Birthdate -->
                         <div class="row mb-3">
-                            <label for="birthdate" class="col-md-4 col-form-label text-md-end">{{ __('Middle Name') }}</label>
+                            <label for="birthdate" class="col-md-4 col-form-label text-md-end">{{ __('Birthdate') }}</label>
 
                             <div class="col-md-6">
                                 <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required autocomplete="birthdate" autofocus>
@@ -149,7 +141,7 @@
 
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Select gender" name="gender" id="gender" required>
-                                    <option selected>Select ---</option> 
+                                    <option value=0 selected>Select ---</option> 
                                     <option value="Male">{{ __('Male') }}</option>
                                     <option value="Female">{{ __('Female') }}</option>
                                 </select>

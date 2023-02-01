@@ -25,7 +25,7 @@
   
 
   <!-- JS -->  
-  <script defer type="module" src="/js/admin.js"></script>
+  <!-- <script defer type="module" src="/js/admin.js"></script> -->
   <!-- <script src="{{ asset('js/admin.js') }}"></script> -->
 
   <!-- For DataTables -->
@@ -124,7 +124,7 @@
 
       <main class="col p-0 m-0">
         <!-- Header -->
-        <div class="container-fluid m-0 p-0">
+        <div class="container-fluid m-0 p-0 sticky-top">
           <div class="row justify-content-center">
             <div class="col">
               <div class="card">
@@ -163,7 +163,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
   <script>
-    const dataTable = new DataTable('#bedTable');   
+    const userTable = new DataTable("#userTable");
+    const bedTable = new DataTable('#bedTable');   
 
     const editBedModal = new bootstrap.Modal('#editBedModal', {
       keyboard: false

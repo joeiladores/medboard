@@ -9,9 +9,9 @@
     <h5 class="flex-grow-1">List of Users</h5>
 
     @if (Route::has('register'))
-    <!-- <p><a href="{{ route('register') }}" class="btn btn-primary btn-small">+ Add New User</a></p> -->
-    <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New User</button>
-    <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning float-end">⬇ Download PDF</a>
+    <p><a href="{{ route('registeruser') }}" class="btn btn-primary me-3">+ Add New User</a></p>
+    <!-- <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New User</button> -->
+    <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a>
     @endif
   </div>
 
@@ -47,8 +47,10 @@
           <td>{{ $user->email }}</td>
           <td>{{ $user->phone }}</td>
           <td>
-            <a class="btn btn-sm" href="#">🖊️</a>
-            <a class="btn btn-sm" href="#">❌</a>
+            <!-- <a class="btn btn-sm" href="#">🖊️</a>
+            <a class="btn btn-sm" href="#">❌</a> -->
+            <button type="button" class="btn btn-sm" onclick="showEditUserModal({{ $user->id }});">🖊️</button>       
+              <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
           </td>
         </tr>
         @endforeach
@@ -71,7 +73,7 @@
         </div>
         <div class="modal-body">
           <div class="card py-3 px-4 border-0">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('storeuser') }}">
               @csrf
 
               <!-- User Type -->
@@ -317,8 +319,4 @@
     </div>
   </div>
 
-  <script>
-    const dataTable = new DataTable("#userTable");
-  </script>
-
-  @endsection
+@endsection
