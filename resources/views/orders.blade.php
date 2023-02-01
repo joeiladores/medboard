@@ -75,7 +75,7 @@ body, html {
                 </div>
                 <div class="col-4 p-2 d-inline-block">
                     <label for="dose" class="form-label">Dosage</label>
-                    <input type="text" class="form-control" id="dose" name="dose" required>
+                    <input type="number" class="form-control" id="dose" name="dose" required>
                 </div>
                 <div class="col-4 pt-2 d-inline-block">
                 <div class="form-group">
@@ -278,11 +278,41 @@ Progress Notes
                     <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
-                    <td> {{ date_format(new DateTime($order_medication->date_started), "F j, Y") }}</td>
-                    <td> {{ date_format(new DateTime($order_medication->date_stopped), "F j, Y") }}</td>
+                    <td> {{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
+                    <td> {{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyMedication', $order_medication->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                      <button class="btn btn-sm btn-danger text-light me-1" id="{{ $order_medication->id }}" onClick="reply_click(this.id)">Test</button>
                       <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
+                    <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Medication Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyMedication', $order_medication->id) }}";
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Medication Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
+
+
+
+                
+
+
                     </td>
                 </tr>
                 @endforeach
@@ -356,7 +386,7 @@ Progress Notes
 <table class="table" id="progressNotesTable">
             <thead>
                 <tr>
-                    <th>date Created</th>
+                    <th>Date Created</th>
                     <th>Notes</th>
                     <th>Actions</th>
                 </tr>
@@ -382,10 +412,11 @@ Progress Notes
 
 <!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
 
+<!-- For Sweet Alert -->
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-</script>
 
 <script>
   var dataTable = new DataTable("#medicationTable");
