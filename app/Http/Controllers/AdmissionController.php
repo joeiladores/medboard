@@ -21,14 +21,14 @@ class AdmissionController extends Controller
             $allDAta = DataTables::of($admissions)
             ->addIndexColumn()
             ->addColumn('actions',function($row){
-                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id = "'.$row->id.'" data-original-title="Edit" class="edit btn-primary btn-sm
-                editAdmission">Edit</a> ';
+                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id = "'.$row->id.'" data-original-title="Edit" class="edit btn-primary m-1 btn-lg editAdmission" style="margin: 0 10px;">Edit</a> ';
 
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id = "'.$row->id.'" data-original-title="Delete" class="delete btn-danger btn-sm
-                deleteAdmission">Delete</a> ';
+                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id = "'.$row->id.'" data-original-title="Delete" class="delete btn-danger m-1 btn-lg deleteAdmission" style="margin: 0 10px;">Delete</a> ';
 
-                return $btn;
+                return '<div style="display:flex;justify-content:center;">'.$btn.'</div>';
             })
+
+ 
 
             ->rawColumns(['actions'])
             ->make(true);

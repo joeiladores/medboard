@@ -9,14 +9,18 @@
     <meta name="author" content="">
     <title>admission form</title>
 
-    
+
     <link rel="stylesheet" href="{{ URL::asset('js/bootstrap_dataTables.min.css') }}">
-    <link nhref="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link
+        nhref="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.0.7/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
+        type="text/css" />
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
-    
+
     <style>
     #logo {
         height: 100px;
@@ -205,7 +209,7 @@
                             </div>
                         </div>
                     </form>
-                     <!-- End Topbar Search -->
+                    <!-- End Topbar Search -->
 
 
 
@@ -289,6 +293,7 @@
                                 <table class="table table-bordered data-table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Action</th>
                                             <th>Admitted</th>
                                             <th>Complain</th>
                                             <th>Impression Diagnosis</th>
@@ -302,12 +307,12 @@
                                             <th>Status</th>
                                             <th>Created At:</th>
                                             <th>Updated At:</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($admissions as $admission)
                                         <tr>
+                                            <td>{{ $admission->Actions}}</td>
                                             <td>{{ $admission->date_time_admitted }}</td>
                                             <td>{{ $admission->complain }}</td>
                                             <td>{{ $admission->impression_diagnosis }}</td>
@@ -321,12 +326,12 @@
                                             <td>{{ $admission->status }}</td>
                                             <td>{{ $admission->created_at }}</td>
                                             <td>{{ $admission->updated_at }}</td>
-                                            <td>{{ $admission->Actions}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                     <tfooter>
                                         <tr>
+                                            <th>Action</th>
                                             <th>Admitted</th>
                                             <th>Complain</th>
                                             <th>Impression Diagnosis</th>
@@ -340,11 +345,13 @@
                                             <th>Status</th>
                                             <th>Created At:</th>
                                             <th>Updated At:</th>
-                                            <th>Action</th>
                                         </tr>
-
                                     </tfooter>
+                                    <!--btn for ADD--><!--btn for ADD-->
+
                                     <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission">ADD</a>
+
+                                    <!--btn for ADD--><!--btn for ADD-->
                                 </table>
                             </div>
                         </div>
@@ -371,8 +378,17 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal copy from bootsrap change needed / use laravel ui logout and dashboard settings-->
+         <!--________________________________________________
+        |
+        |
+        |
+        |          Logout Modal copy from bootsrap change needed /
+        |         use laravel ui logout and dashboard settings
+        |          
+        |
+        |
+        |____________________________________________________
+    -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -391,8 +407,38 @@
             </div>
         </div>
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+
+    <!--________________________________________________
+        |
+        |
+        |
+        |          This is where Modal Form created
+        |          
+        |
+        |
+        |_______________________________________________
+    -->
+    <div class="modal fade" id="ajaxModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalheading"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="admissionForm" name="admissionForm" class="form-horizontal">
+                        <div class="form-group">
+                            Name: <br>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter.." value="required">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.easing.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/sb.js') }}"></script>
@@ -408,14 +454,15 @@
     |
     |  <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
     |  <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.js') }}"></script>
-    |  <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script> -->  <!-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    |  <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     |  <-- <script type="text/javascript" src="{{ URL::asset('public/datatables/mytables.responsive.min.js') }}"></script> -->
-       <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> -->
-       <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" /> -->
-    
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" /> -->
 
-   
-    
+
+
+
     <script type="text/javascript">
     $(function() {
         $.ajaxSetup({
@@ -427,7 +474,10 @@
             serverSide: true,
             processing: true,
             ajax: "{{route('admission.index')}}",
-            columns: [
+            columns: [{
+                    data: 'actions',
+                    name: 'actions'
+                },
                 {
                     data: 'date_time_admitted',
                     name: 'admitted'
@@ -481,11 +531,6 @@
                 {
                     data: 'updated_at',
                     name: 'updated at'
-                },
-
-                {
-                    data: 'actions',
-                    name: 'actions'
                 },
             ]
         });
