@@ -7,24 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <title>admission form</title>
+
+    
     <link rel="stylesheet" href="{{ URL::asset('js/bootstrap_dataTables.min.css') }}">
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" /> -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link nhref="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.0.7/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
-        type="text/css" />
-
-   
-
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"type="text/css" />
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
     
-
-    <title>admission form</title>
     <style>
     #logo {
         height: 100px;
@@ -213,16 +205,13 @@
                             </div>
                         </div>
                     </form>
-
+                     <!-- End Topbar Search -->
 
 
 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-
-
 
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -414,14 +403,18 @@
     <script type="text/javascript" src="{{ URL::asset('datatables/mytables.responsive.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!------____________________________________________
-    |        return this if error return this if error
+    <!--________________________________________________________________________________________________________________________
+    |        return this if error return this if shows error
+    |
+    |  <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
+    |  <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.js') }}"></script>
+    |  <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script> -->  <!-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    |  <-- <script type="text/javascript" src="{{ URL::asset('public/datatables/mytables.responsive.min.js') }}"></script> -->
+       <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> -->
+       <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" /> -->
+    
 
-    <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/bootstrap.bundle.js') }}"></script>
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script> -->
-     <!-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <-- <script type="text/javascript" src="{{ URL::asset('public/datatables/mytables.responsive.min.js') }}"></script> -->
+   
     
     <script type="text/javascript">
     $(function() {
