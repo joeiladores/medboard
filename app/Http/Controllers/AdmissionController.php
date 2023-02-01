@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\admissionModel;
+use Illuminate\Http\Response;
 use DataTables;
 
 class AdmissionController extends Controller
@@ -58,7 +59,16 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        admissionModel::updateOrCreate(
+            ['id'=>$request->admission_id],
+            [
+                'admitted' => $request->admitted,
+                'complain' => $request->complain,
+                'impression_diagnosis' => $request->impression_diagnosis,
+                // And so on for all the other fields in your form
+            ]
+        );
+
     }
 
     /**
