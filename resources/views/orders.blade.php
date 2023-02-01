@@ -281,9 +281,10 @@ Progress Notes
                     <td> {{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
                     <td> {{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <button class="btn btn-sm btn-danger text-light me-1" id="{{ $order_medication->id }}" onClick="reply_click(this.id)">Test</button>
-                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    <!-- To trigger the sweet alert (per ID) -->
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_medication->id }}" onClick="reply_click(this.id)"></button>
+                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
                         function reply_click(clicked_id) {
                           Swal.fire({
@@ -307,13 +308,6 @@ Progress Notes
                           });
                         }
                       </script>
-
-
-
-                
-
-
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -338,14 +332,36 @@ Progress Notes
                     <td>{{ $order_transfusion->type }}</td>
                     <td>{{ $order_transfusion->fluid_name }}</td>
                     <td>{{ $order_transfusion->instruction }}</td>
-                    <td>{{ date_format(new DateTime($order_transfusion->date_started), "F j, Y") }}</td>
-                    <td> {{ date_format(new DateTime($order_transfusion->date_stopped), "F j, Y") }}</td>
-
-                   
+                    <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_started), "F j, Y") : '' }}</td>
+                    <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    </td>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_transfusion->id }}" onClick="reply_click(this.id)"></button>
+                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Transfusion Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyTransfusion', $order_transfusion->id) }}";
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Transfusion Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
                 </tr>
                 @endforeach
             </tbody>
@@ -370,12 +386,36 @@ Progress Notes
                     <td>{{ $order_treatment->name }}</td>
                     <td>{{ $order_treatment->type }}</td>
                     <td>{{ $order_treatment->instruction }}</td>
-                    <td>{{ date_format(new DateTime($order_treatment->date_started), "F j, Y") }}</td>
-                    <td>{{ date_format(new DateTime($order_treatment->date_done), "F j, Y") }}</td>
+                    <td> {{ $order_treatment->date_started ? date_format(new DateTime($order_treatment->date_started), "F j, Y") : '' }}</td>
+                    <td> {{ $order_treatment->date_done ? date_format(new DateTime($order_treatment->date_done), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyTreatment', $order_treatment->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    </td>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_treatment->id }}" onClick="reply_click(this.id)"></button>
+                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Treatment Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyTreatment', $order_treatment->id) }}";
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Treatment Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
                 </tr>
                 @endforeach
             </tbody>
@@ -397,9 +437,33 @@ Progress Notes
                 <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y") }}</td>
                     <td>{{ $progress_note->notes }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyProgressNote', $progress_note->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editProgressNote', $progress_note->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    </td>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $progress_note->id }}" onClick="reply_click(this.id)"></button>
+                      <a href="{{ route('editProgressNote', $progress_note->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Progress Note Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyProgressNote', $progress_note->id) }}";
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Progress Note Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
                 </tr>
                 @endforeach
             </tbody>
@@ -416,6 +480,9 @@ Progress Notes
 
 <!-- For Sweet Alert -->
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+ <!-- For Font Awesome -->
+ <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
 
 <script>
