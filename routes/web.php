@@ -65,4 +65,5 @@ Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->na
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
 
 
-
+// *****************************************************************************
+// Routes for Admission
