@@ -22,7 +22,7 @@
                             <label for="usertype" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Select user type" id="usertype" class="@error('usertype') is-invalid @enderror" name="usertype" value="{{ old('usertype') }}" required autocomplete="usertype" autofocus>
+                                <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ old('usertype') }}" required autocomplete="usertype" autofocus>
                                     <option value=0 selected>Select ---</option> 
                                     <option value="Admin">{{ __('Admin') }}</option>
                                     <option value="Doctor">{{ __('Doctor') }}</option>
@@ -136,11 +136,12 @@
                             </div>
                         </div>
 
+                        <!-- Gender -->
                         <div class="row mb-3">
                             <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Select gender" name="gender" id="gender" required>
+                                <select id="gender" aria-label="Select gender" class="form-select @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" autofocus>
                                     <option value=0 selected>Select ---</option> 
                                     <option value="Male">{{ __('Male') }}</option>
                                     <option value="Female">{{ __('Female') }}</option>
@@ -188,7 +189,7 @@
                             <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Select gender" name="department" id="department" required>
+                                <select id="department" aria-label="Select department" class="form-select @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
                                     <option value=0 selected>Select ---</option> 
                                     <option value=0>Doctors ----------</option> 
                                     <option value="Emergency Department">{{ __('Emergency Department') }}</option>
@@ -217,7 +218,7 @@
                             <label for="specialization" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Select gender" name="specialization" id="specialization" required>
+                                <select id="specialization" aria-label="Select specialization" class="form-select @error('specialization') is-invalid @enderror"  name="specialization" value="{{ old('specialization') }}" required autocomplete="specialization" autofocus>
                                     <option value=0 selected>Select ---</option> 
                                     <option value=0>Doctors ----------</option> 
                                     <option value="Internal Medicine">{{ __('Internal Medicine') }}</option>

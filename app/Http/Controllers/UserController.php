@@ -41,6 +41,11 @@ class UserController extends Controller
             'gender' => ['required', 'not_in:0'],
             'department' => ['required', 'not_in:0'],
             'specialization' => ['required', 'not_in:0'],
+        ], [
+            'usertype.not_in' => 'User Type is required.',
+            'gender.not_in' => 'Gender is required.',
+            'department.not_in' => 'Department is required.',
+            'specialization.not_in' => 'Specialization is required.',
         ]);
 
         if ($validator->fails()) {
