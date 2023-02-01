@@ -19,6 +19,20 @@
 
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
+  <link href="{{ asset('/style.css') }}" rel="stylesheet">
+
+  
+  
+
+  <!-- JS -->  
+  <!-- <script defer type="module" src="/js/admin.js"></script> -->
+  <!-- <script src="{{ asset('js/admin.js') }}"></script> -->
+
+  <!-- For DataTables -->
+  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+  </script>  
+
 
   <style>
     * {
@@ -27,8 +41,6 @@
       box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
       font-size: small;
-      /* font-family: 'Montserrat', sans-serif; */
-      /* font-family: 'Poppins', sans-serif; */
     }
   </style>
 </head>
@@ -76,13 +88,23 @@
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('user') }}" class="nav-link text-white">
+                <a href="{{ route('users') }}" class="nav-link text-white">
                   <i class="fa-solid fa-user-doctor fs-3 text-white"></i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="#" class="nav-link mt-3">
                   <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
+                </a>
+              </li>
+              <li class="nav-item mt-3">
+                <a href="{{ route('beds') }}" class="nav-link text-white">
+                  <i class="">Bed Management</i>
+                </a>
+              </li>
+              <li class="nav-item mt-3">
+                <a href="{{ route('nurseassignments') }}" class="nav-link text-white">
+                  <i class="">Nurses Assignment</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
@@ -102,7 +124,7 @@
 
       <main class="col p-0 m-0">
         <!-- Header -->
-        <div class="container-fluid m-0 p-0">
+        <div class="container-fluid m-0 p-0 sticky-top">
           <div class="row justify-content-center">
             <div class="col">
               <div class="card">
@@ -112,9 +134,8 @@
                 </div>
                 @endif
                 <div class="card-header">
-                  <div class="d-flex">{{ __('Dashboard') }} &nbsp;<span class="badge text-bg-primary">{{ Auth::user()->usertype }}</span></div>
                   <div class="pt-2 d-inline-flex">
-                    <h5 class="fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }} </h5>
+                    <h5 class="fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }} &nbsp;<span class="badge text-bg-primary">{{ Auth::user()->usertype }}</span></h5>
                   </div>
                   <div class="">
                     <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -139,9 +160,30 @@
   </div>
 
   <!--Bootstrap JS-->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+  <script>
+    const userTable = new DataTable("#userTable");
+
+    const editBedModal = new bootstrap.Modal('#editBedModal', {
+      keyboard: false
+    });
+
+    function showEditBedModal(bed_id) {
+      fetch('{{ url('/admin/showbed/') }}/' + bed_id)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('editbed_bednum').value = data.bednum;
+            document.getElementById('editbed_room').value = data.room;
+            document.getElementById('editbed_room_type').value = data.room_type;
+            document.getElementById('editbed_station').value = data.station;
+            document.getElementById('editbed_status').value = data.status;
+            document.getElementById('editbed_id').value = data.id;
+            editBedModal.show();
+        })
+    } 
+  </script>
+ 
 </body>
 
 </html>
