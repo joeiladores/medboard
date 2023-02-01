@@ -10,6 +10,7 @@
     <title>admission form</title>
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('js/bootstrap_dataTables.min.css') }}">
     <link
         nhref="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -91,6 +92,53 @@
     .pagination {
         margin-left: 50px;
     }
+
+    /***---modal area */
+    .modal-content{
+        width: 700px;
+    }
+    .modal-body {
+        padding: 30px;
+        
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    input[type="text"], input[type="datetime-local"] {
+        padding: 10px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .modal-header {
+        background-color: #f7f7f7;
+        padding: 20px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .modal-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .modal-footer {
+        background-color: #f7f7f7;
+        padding: 20px;
+        border-top: 1px solid #e5e5e5;
+        text-align: right;
+    }
+
     </style>
 </head>
 
@@ -347,11 +395,14 @@
                                             <th>Updated At:</th>
                                         </tr>
                                     </tfooter>
-                                    <!--btn for ADD--><!--btn for ADD-->
+                                    <!--btn for ADD-->
+                                    <!--btn for ADD-->
 
-                                    <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission">ADD</a>
+                                    <!-- <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission">ADD</a> -->
+                                    <a class="btn btn-success open-modal" href="javascript:void(0)">ADD</a>
 
-                                    <!--btn for ADD--><!--btn for ADD-->
+                                    <!--btn for ADD-->
+                                    <!--btn for ADD-->
                                 </table>
                             </div>
                         </div>
@@ -378,7 +429,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-         <!--________________________________________________
+    <!--________________________________________________
         |
         |
         |
@@ -419,23 +470,100 @@
         |
         |_______________________________________________
     -->
-    <div class="modal fade" id="ajaxModal" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="createNewAdmission" tabindex="-1" role="dialog" aria-labelledby="admissionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalheading"></h4>
+                    <h5 class="modal-title" id="admissionModalLabel">Admission Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <form id="admissionForm" name="admissionForm" class="form-horizontal">
+                    <!-- Admission form fields here -->
+                    <form>
                         <div class="form-group">
-                            Name: <br>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter.." value="required">
+                            <label for="admitted">Admitted</label>
+                            <input type="text" class="form-control" id="admitted" name="admitted">
+                        </div>
+                        <div class="form-group">
+                            <label for="complain">Complain</label>
+                            <input type="text" class="form-control" id="complain" name="complain">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="impression_diagnosis">Impression Diagnosis</label>
+                            <input type="text" class="form-control" id="impression_diagnosis"
+                                name="impression_diagnosis">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="text" class="form-control" id="age" name="age">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight</label>
+                            <input type="text" class="form-control" id="weight" name="weight">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activities">Activities</label>
+                            <input type="text" class="form-control" id="activities" name="activities">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="diet">Diet</label>
+                            <input type="text" class="form-control" id="diet" name="diet">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tubes">Tubes</label>
+                            <input type="text" class="form-control" id="tubes" name="tubes">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="special_info">Special Info</label>
+                            <input type="text" class="form-control" id="special_info" name="special_info">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <input type="text" class="form-control" id="status" name="status">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date_time_discharge">Date Time Discharge</label>
+                            <input type="datetime-local" class="form-control" id="date_time_discharge"
+                                name="date_time_discharge">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="created_at">Date Time Discharge</label>
+                            <input type="datetime-local" class="form-control" id="created_at"
+                                name="created_at">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="updated_at">Date Time Discharge</label>
+                            <input type="datetime-local" class="form-control" id="updated_at"
+                                name="updated_at">
                         </div>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveAdmission">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
@@ -535,6 +663,11 @@
             ]
         });
 
+        $(document).ready(function() {
+            $(".open-modal").click(function() {
+                $("#createNewAdmission").modal("show");
+            });
+        });
 
     });
     </script>
