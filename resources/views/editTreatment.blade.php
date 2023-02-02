@@ -1,7 +1,7 @@
 @extends('layouts.orders')
 
 @section('content')
-<h3>Edit Transfusion</h3>
+<h3>Edit Treatment</h3>
 <a href="{{ route('orders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light">← Go back</a>
 <div class="card p-5 m-4">
       <form method="POST" action="{{ route('updateTreatment') }}">
