@@ -32,7 +32,8 @@
               <strong class="fs-4">{{ Auth::user()->name }}</strong>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" data-popper-placement="static">
-              <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <li>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
                 </a>

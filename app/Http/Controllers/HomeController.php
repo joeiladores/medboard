@@ -22,12 +22,5 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('HomeAdmin');      // from login direct to admin dashboard
-    }
 
-    public function patients(){
-        return view('CreatePatient')->with('allPatients', Patients::all());
-    }
 }

@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 
 class PatientsController extends Controller
 {
-    public function displayAll()
+    public function index()
     {
-        return view('dashboard')->with('patients', Patients::orderByDesc('created_at')->get());
-        // return view('patient')->with('patients', Patients::all());
+        return view('HomeAdmin');      // from login direct to admin dashboard
     }
 
-    public function create(Request $request){
+    public function patient(){
+        return view('CreatePatient')->with('allPatients', Patients::orderByDesc('created_at')->get());
+    }
+
+    public function store(Request $request){
         $patient = new Patients;
         $patient->lastname = $request->lastname;
         $patient->firstname = $request->firstname;
@@ -30,7 +33,7 @@ class PatientsController extends Controller
         $patient->relative_phone = $request->relative_phone;
 
         $patient->save();
-        return redirect()->route('dashboard')->with('success', 'New patient created!');
+        return redirect()->route('patientView')->with('success', 'New patient created!');
     }
 
 

@@ -9,6 +9,9 @@ use App\Http\Controllers\NurseAssignmentController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
+// Patient Controllers
+use App\Http\Controllers\PatientsController;
+
 
 Route::get('/', function (){
     return redirect()->route('login');
@@ -16,15 +19,12 @@ Route::get('/', function (){
 
 Auth::routes();
 
-Route::get('/dashboard', function(){
-    return view('dashboard');
-});
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // *****************************************************************************
 // Patient Routes
-Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient'])->name('patient');
+Route::get('/home', [PatientsController::class, 'index'])->name('adminHome');
+Route::get('/patient', [PatientsController::class, 'patient'])->name('patientView');
+Route::post('/storePatient', [PatientsController::class, 'store'])->name('storePatient');
 
 
 // *****************************************************************************
