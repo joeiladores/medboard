@@ -357,31 +357,13 @@
                                             <th>Diet</th>
                                             <th>Tubes</th>
                                             <th>Special Info</th>
-                                            <th>Date Discharge</th>
                                             <th>Status</th>
-                                            <th>Created At:</th>
-                                            <th>Updated At:</th>
+                                            <th>Date Discharge</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($admissions as $admission)
                                         <tr>
-                                            <td>{{ $admission->Actions}}</td>
-                                            <td>{{ $admission->date_time_admitted }}</td>
-                                            <td>{{ $admission->complain }}</td>
-                                            <td>{{ $admission->impression_diagnosis }}</td>
-                                            <td>{{ $admission->age }}</td>
-                                            <td>{{ $admission->weight }}</td>
-                                            <td>{{ $admission->activities }}</td>
-                                            <td>{{ $admission->diet }}</td>
-                                            <td>{{ $admission->tubes }}</td>
-                                            <td>{{ $admission->special_info }}</td>
-                                            <td>{{ $admission->date_time_discharge }}</td>
-                                            <td>{{ $admission->status }}</td>
-                                            <td>{{ $admission->created_at }}</td>
-                                            <td>{{ $admission->updated_at }}</td>
                                         </tr>
-                                        @endforeach
                                     </tbody>
                                     <tfooter>
                                         <tr>
@@ -395,10 +377,8 @@
                                             <th>Diet</th>
                                             <th>Tubes</th>
                                             <th>Special Info</th>
-                                            <th>Date Discharge</th>
                                             <th>Status</th>
-                                            <th>Created At:</th>
-                                            <th>Updated At:</th>
+                                            <th>Date Discharge</th>
                                         </tr>
                                     </tfooter>
                                     <!--btn for ADD-->
@@ -488,7 +468,7 @@
                 <div class="modal-body">
                     <!-- Admission form fields here -->
                     <form id="admissionForm" name="admissionForm" class="form-horizontal">
-                        <input type="hidden" name="admission_id" id="admission_id">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="admission_id">
                         <div class="form-group">
                             <label for="admitted">Admitted</label>
                             <input type="text" class="form-control" id="admitted" name="admitted">
@@ -545,18 +525,6 @@
                             <input type="datetime-local" class="form-control" id="date_time_discharge"
                                 name="date_time_discharge">
                         </div>
-
-
-                        <div class="form-group">
-                            <label for="created_at">Date Time Discharge</label>
-                            <input type="datetime-local" class="form-control" id="created_at" name="created_at">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="updated_at">Date Time Discharge</label>
-                            <input type="datetime-local" class="form-control" id="updated_at" name="updated_at">
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -599,107 +567,94 @@
 
     <script type="text/javascript">
     $(function() {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    var table = $(".data-table").DataTable({
-        serverSide: true,
-        processing: true,
-        ajax: "{{route('admission.index')}}",
-        columns: [{
-                data: 'actions',
-                name: 'actions'
-            },
-            {
-                data: 'date_time_admitted',
-                name: 'admitted'
-            },
-            {
-                data: 'complain',
-                name: 'complain'
-            },
-            {
-                data: 'impression_diagnosis',
-                name: 'impression diagnosis'
-            },
-            {
-                data: 'age',
-                name: 'age'
-            },
-            {
-                data: 'weight',
-                name: 'weight'
-            },
-            {
-                data: 'activities',
-                name: 'activities'
-            },
-            {
-                data: 'diet',
-                name: 'diet'
-            },
-
-            {
-                data: 'tubes',
-                name: 'tubes'
-            },
-            {
-                data: 'special_info',
-                name: 'special_info'
-            },
-            {
-                data: 'status',
-                name: 'status'
-            },
-            {
-                data: 'date_time_discharge',
-                name: 'Date Time Discharge'
-            },
-            {
-                data: 'created_at',
-                name: 'created at'
-            },
-
-            {
-                data: 'updated_at',
-                name: 'updated at'
-            },
-        ]
-    });
-
-    $("#createNewAdmission").click(function() {
-        $("#ajaxModel").modal("show");
-        $('#admissionForm').trigger("reset");
-        $('#admission_id').val('');
-    });
-
-    $("#saveAdmission").click(function(x){
-        x.preventdefault();
-        $(this).html('save');
-
-        $.ajax({
-            data:$("#admissionForm").serialize();
-            url:"{{route('admission.store')}}"
-            type:"POST",
-            dataType:'jason',
-            success:function(data){
-                $("#ajaxModel").modal("hide");
-                $('#admissionForm').trigger("reset");
-                table.draw();
-            },
-            error:function(data){
-                console.log('error:',data);
-                $("#saveAdmission").html('Save');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var table = $(".data-table").DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "{{route('admission.index')}}",
+            columns: [{
+                    data: 'actions',
+                    name: 'actions'
+                },
+                {
+                    data: 'date_time_admitted',
+                    name: 'admitted'
+                },
+                {
+                    data: 'complain',
+                    name: 'complain'
+                },
+                {
+                    data: 'impression_diagnosis',
+                    name: 'impression diagnosis'
+                },
+                {
+                    data: 'age',
+                    name: 'age'
+                },
+                {
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    data: 'activities',
+                    name: 'activities'
+                },
+                {
+                    data: 'diet',
+                    name: 'diet'
+                },
 
+                {
+                    data: 'tubes',
+                    name: 'tubes'
+                },
+                {
+                    data: 'special_info',
+                    name: 'special_info'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'date_time_discharge',
+                    name: 'Date Time Discharge'
+                },
+            ]
+        });
+
+        $("#createNewAdmission").click(function() {
+            $("#ajaxModel").modal("show");
+            $('#admissionForm').trigger("reset");
+            $('#admission_id').val('');
+        });
+
+        $("#saveAdmission").click(function(e) {
+            e.preventDefault();
+            $(this).html('save');
+
+            $.ajax({
+                data: $("#admissionForm").serializeArray(),
+                url: "{{route('admission.store')}}",
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    $("#ajaxModel").modal("hide");
+                    $('#admissionForm').trigger("reset");
+                    table.draw();
+                },
+                error: function(data) {
+                    console.log('error:', data);
+                    $("#saveAdmission").html('Save');
+                }
+            });
+        });;
     });
-
-
-    });
-
     </script>
 
 </html>

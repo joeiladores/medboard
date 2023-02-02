@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('diet');
             $table->string('tubes');
             $table->string('special_info');
-            table->string('status');
+            $table->string('status');
             $table->date('date_time_discharge');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
+
         });
     }
 

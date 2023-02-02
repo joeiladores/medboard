@@ -59,18 +59,48 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        admissionModel::updateOrCreate(
-            ['id'=>$request->admission_id],
-            [
-                'admitted' => $request->admitted,
-                'complain' => $request->complain,
-                'impression_diagnosis' => $request->impression_diagnosis,
-                // And so on for all the other fields in your form
-            ]
-        );
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'admitted' => 'required',
+            'complain' => 'required',
+            'impression_diagnosis' => 'required',
+            'age' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'activities' => 'required',
+            'diet' => 'required',
+            'tubes' => 'required',
+            'special_info' => 'required',
+            'status' => 'required',
+            'date_time_discharge' => 'required|date',
+            'created_at' => 'required|date',
+            'updated_at' => 'required|date',
+        ], [
+            'admitted.required' => 'The admitted field is required',
+            'complain.required' => 'The complain field is required',
+            'impression_diagnosis.required' => 'The impression_diagnosis field is required',
+            'age.required' => 'The age field is required',
+            'age.numeric' => 'The age field must be a number',
+            'weight.required' => 'The weight field is required',
+            'weight.numeric' => 'The weight field must be a number',
+            'activities.required' => 'The activities field is required',
+            'diet.required' => 'The diet field is required',
+            'tubes.required' => 'The tubes field is required',
+            'special_info.required' => 'The special_info field is required',
+            'status.required' => 'The status field is required',
+            'date_time_discharge.required' => 'The date_time_discharge field is required',
+            'date_time_discharge.date' => 'The date_time_discharge field must be a date',
+            'created_at.required' => 'The created_at field is required',
+            'created_at.date' => 'The created_at field must be a date',
+            'updated_at.required' => 'The updated_at field is required',
+            'updated_at.date' => 'The updated_at field must be a date',
+        ]);
 
+    
+        // Store the validated data in the database
+        // ...
+    
+        return response()->json(['success' => 'Admission added successfully.']);
     }
-
     /**
      * Display the specified resource.
      *
