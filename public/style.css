@@ -5,8 +5,52 @@
   --second-bg-color: #c1d5ef;
 }
 
+
+/* Login */
+.nav-login{
+  background-image: linear-gradient(to right, #79a2e0, #d9e7fd, #d8ebff, #d4ebf8, #ddecfa);
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.image-row{
+  width: 900px;
+  height: 500px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
+}
+
+.side-image{
+  background-image: url("images/medical1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 10px 0 0 10px;
+}
+
+
+.right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+
+
+
+
+/* Dashboard */
 .sidebar{
-  background-image: linear-gradient(to right, #77a9f5, #8ab9ff, #96cafc, #d4ebf8, #ddecfa);
+  background-image: linear-gradient(to right, #79a2e0, #accdff, #b4dbff, #d4ebf8, #ddecfa);
 }
 
 .logo-sidebar{
@@ -77,6 +121,27 @@
   border: none;
 }
 
+/* Chart */
+.graphBox{
+  position: relative;
+  width: 100%;
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+  min-height: 200px;
+}
+
+.graphBox .box{
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 20px;
+}
+
+
+/* Media Query */
 @media (min-width: 768px){
   #sidebar-wrapper{
     margin-left: 0;
@@ -92,22 +157,19 @@
   }
 }
 
-.graphBox{
-  position: relative;
-  width: 100%;
-  padding: 1.2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1.5rem;
-  min-height: 200px;
+@media (max-width: 991px){
+  .graphBox{
+    grid-template-columns: 1fr;
+    height: auto;
+  }
 }
 
-.graphBox .box{
-  position: relative;
-  background: #fff;
-  padding: 1.2rem;
-  width: 100%;
-  border-radius: 20px;
+@media only screen and (max-width: 768px){
+  .side-image{
+    border-radius: 10px 10px 0 0;
+    height: 100px;
+    background-size: cover;
+  }
 }
 
 
