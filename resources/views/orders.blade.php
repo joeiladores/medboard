@@ -311,11 +311,11 @@ Progress Notes
       <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
     </div>
     <div>
-                <!-- Add Treatment trigger button -->
+                <!-- Add Progress Note trigger button -->
                 <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateProgressNoteForm()">Add</button>
                 <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
-                <!-- Add Treatment Button -->
+                <!-- Add Progress Note Validation -->
                 <script>
                   function validateProgressNoteForm() {
                     var progress_notes = document.getElementById("progress_notes").value;
