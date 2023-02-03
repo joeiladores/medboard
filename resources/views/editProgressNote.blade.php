@@ -7,7 +7,7 @@
       <form method="POST" action="{{ route('updateProgressNote') }}">
                 @csrf
             <div class="mb-3">
-            <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" value="{{ $progress_note->notes }}" required></textarea>
+            <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required>{{ $progress_note->notes }}</textarea>
             <input type="hidden" name="id" value="{{ $progress_note->id }}">
             </div>
                 <button type="submit" class="btn btn-light text-light m-2" style="background-color:rgb(66,100,208);">Edit Progress Note</button>
