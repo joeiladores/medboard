@@ -5,6 +5,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\NurseAssignmentController;
+
+// Calendar Controller
+use App\Http\Controllers\CalendarController;
+
+// Calendar Controller
+use App\Http\Controllers\FullCalendarController;
+
 // Doctor Order Controllers
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
@@ -47,6 +54,17 @@ Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('upda
 Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
 Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
 
+
+// *****************************************************************************
+// Calendar Routes
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+Route::resource('calendar', CalendarController::class)->only(['index','edit','store']);
+Route::controller(CalendarController::class)->group(function () {
+    Route::get('getevents','getEvents')->name('calendar.getevents');
+    Route::put('update/events','updateEvents')->name('calendar.updateevents');
+    Route::post('resize/events','resizeEvents')->name('calendar.resizeevents');
+    Route::post('drop/events','dropEvents')->name('calendar.dropevents');
+});
 
 
 // *****************************************************************************

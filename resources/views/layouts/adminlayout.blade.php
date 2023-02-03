@@ -6,8 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin</title>
-  <!--Bootstrap CSS-->
+
+  {{-- Boostrap v5 --}}
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  {{-- Full Calendar v5 --}}
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.2/main.min.css' rel='stylesheet'/>
+  <!-- {{-- Full Calendar v6 --}}
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler/index.global.min.js'></script> -->
 
   <!--Fontawesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -108,8 +114,9 @@
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="#" class="nav-link mt-3">
+                <a href="{{ route('calendar.index') }}" class="nav-link mt-3">
                   <i class="fa-solid fa-calendar-days fs-3 text-white ms-1"></i>
+                  <i class="text-white ms-1">Schedule</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
@@ -161,6 +168,17 @@
 
   <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  {{-- Full Calendar v5 --}}
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.2/main.min.js'></script>
+
+  {{-- Moment JS--}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+          integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
     const userTable = new DataTable("#userTable");
