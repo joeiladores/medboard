@@ -20,6 +20,18 @@
     <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.0.7/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
         type="text/css" />
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
 
     <style>
@@ -339,56 +351,33 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-
-
-
-                                <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission">ADD</a>
-
-                                <table class="table table-bordered data-table" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Action</th>
-                                            <th>Admitted</th>
-                                            <th>Complain</th>
-                                            <th>Impression Diagnosis</th>
-                                            <th>Age</th>
-                                            <th>Weight</th>
-                                            <th>Activities</th>
-                                            <th>Diet</th>
-                                            <th>Tubes</th>
-                                            <th>Special Info</th>
-                                            <th>Status</th>
-                                            <th>Date Discharge</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        </tr>
-                                    </tbody>
-                                    <tfooter>
-                                        <tr>
-                                            <th>Action</th>
-                                            <th>Admitted</th>
-                                            <th>Complain</th>
-                                            <th>Impression Diagnosis</th>
-                                            <th>Age</th>
-                                            <th>Weight</th>
-                                            <th>Activities</th>
-                                            <th>Diet</th>
-                                            <th>Tubes</th>
-                                            <th>Special Info</th>
-                                            <th>Status</th>
-                                            <th>Date Discharge</th>
-                                        </tr>
-                                    </tfooter>
-                                    <!--btn for ADD-->
-                                    <!--btn for ADD-->
-
-                                    <!-- <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission">ADD</a>  -->
-
-                                    <!--btn for ADD-->
-                                    <!--btn for ADD-->
-                                </table>
+                                <div class="col-md-12 text-right mb-5">
+                                    <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission"> Create
+                                        New Admission</a>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table table-bordered data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Admitted</th>
+                                                <th>Complain</th>
+                                                <th>Impression Diagnosis</th>
+                                                <th>age</th>
+                                                <th>Weight</th>
+                                                <th>Activities</th>
+                                                <th>Diets</th>
+                                                <th>Tubes</th>
+                                                <th>Special Info</th>
+                                                <th>Status</th>
+                                                <th>Date Time Discharge</th>
+                                                <th width="280px">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -455,83 +444,109 @@
         |
         |_______________________________________________
     -->
-    <div class="modal fade" id="ajaxModel" tabindex="-1" role="dialog" aria-labelledby="admissionModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="ajaxModel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="admissionModalLabel">Admission Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h4 class="modal-title" id="modelHeading"></h4>
                 </div>
                 <div class="modal-body">
-                    <!-- Admission form fields here -->
                     <form id="admissionForm" name="admissionForm" class="form-horizontal">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="admission_id">
+                        <input type="hidden" name="admission_id" id="admission_id">
+
                         <div class="form-group">
-                            <label for="admitted">Admitted</label>
-                            <input type="text" class="form-control" id="admitted" name="admitted">
-                        </div>
-                        <div class="form-group">
-                            <label for="complain">Complain</label>
-                            <input type="text" class="form-control" id="complain" name="complain">
+                            <label for="admitted date" class="col-sm-2 control-label">Admitted</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" id="admitted" name="admitted" required="">
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="impression_diagnosis">Impression Diagnosis</label>
-                            <input type="text" class="form-control" id="impression_diagnosis"
-                                name="impression_diagnosis">
+                            <label for="complain" class="col-sm-2 control-label">Complain</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="complain" name="complain"
+                                    placeholder="Enter complain" required="">
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="age">Age</label>
-                            <input type="text" class="form-control" id="age" name="age">
+                            <label for="impression diagnosis" class="col-sm-2 control-label">Impression
+                                Diagnosis</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="diagnosis" name="diagnosis"
+                                    placeholder="Details.." value="" required="">
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="weight">Weight</label>
-                            <input type="text" class="form-control" id="weight" name="weight">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="activities">Activities</label>
-                            <input type="text" class="form-control" id="activities" name="activities">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="diet">Diet</label>
-                            <input type="text" class="form-control" id="diet" name="diet">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="tubes">Tubes</label>
-                            <input type="text" class="form-control" id="tubes" name="tubes">
+                            <label for="age" class="col-sm-2 control-label">Age</label>
+                            <div class="col-sm-12">
+                                <input type="integer" class="form-control" id="age" name="age" placeholder="age"
+                                    value="" required="">
+                            </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="special_info">Special Info</label>
-                            <input type="text" class="form-control" id="special_info" name="special_info">
+                            <label for="weight" class="col-sm-2 control-label">Weight</label>
+                            <div class="col-sm-12">
+                                <input type="float" class="form-control" id="weight" name="weight" placeholder="weight"
+                                    required="">
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" name="status">
+                            <label for="activities" class="col-sm-2 control-label">Activities</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="activities" name="activities"
+                                    placeholder="Enter Acitivites" required="">
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="date_time_discharge">Date Time Discharge</label>
-                            <input type="datetime-local" class="form-control" id="date_time_discharge"
-                                name="date_time_discharge">
+                            <label for="diet" class="col-sm-2 control-label">diet</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="diet" name="diet" placeholder="Enter Diets"
+                                    required="">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="tubes" class="col-sm-2 control-label">Tubes</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="tubes" name="tubes" placeholder="Tubes"
+                                    value="" maxlength="50" required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialinfo" class="col-sm-2 control-label">Special Info</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="specialinfo" name="specialinfo"
+                                    placeholder="specialinfo" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="col-sm-2 control-label">Status</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="status" name="status"
+                                    placeholder="Status...." required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="discharge" class="col-sm-2 control-label">Date and Time Discharge</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" id="discharge" name="discharge" required="">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save
+                                changes</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary " aria-label="Close"
-                        data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="saveAdmission" value="create">Save
-                        changes</button>
                 </div>
             </div>
         </div>
@@ -566,95 +581,106 @@
 
 
     <script type="text/javascript">
-    $(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $(function () {
+     
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
+    var table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('ajaxadmissions.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'admitted', name: 'admitted'},
+            {data: 'complain', name: 'complain'},
+            {data: 'diagnosis', name: 'diagnosis'},
+            {data: 'age', name: 'age'},
+            {data: 'weight', name: 'weight'},
+            {data: 'activities', name: 'activities'},
+            {data: 'diet', name: 'diet'},
+            {data: 'tubes', name: 'tubes'},
+            {data: 'specialinfo', name: 'specialinfo'},
+            {data: 'status', name: 'status'},
+            {data: 'discharge', name: 'discharge'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });
+
+     
+    $('#createNewAdmission').click(function () {
+        $('#saveBtn').val("create-admission");
+        $('#admission_id').val('');
+        $('#admissionForm').trigger("reset");
+        $('#modelHeading').html("Create New Admission");
+        $('#ajaxModel').modal('show');
+    });
+    
+
+    $('body').on('click', '.editAdmission', function () {
+        var admission_id = $(this).data('id');
+        $.get("{{ route('ajaxadmissions.index') }}" +'/' + admission_id +'/edit', function (data) {
+            $('#modelHeading').html("Edit admission");
+            $('#saveBtn').val("edit-user");
+            $('#ajaxModel').modal('show');
+            $('#admission_id').val(data.id);
+            $('#admitted').val(data.admitted);
+            $('#complain').val(data.complain);
+            $('#diagnosis').val(data.diagnosis);
+            $('#age').val(data.age);
+            $('#weight').val(data.weight);
+            $('#activities').val(data.activities);
+            $('#diet').val(data.diet);
+            $('#tubes').val(data.tubes);
+            $('#specialinfo').val(data.specialinfo);
+            $('#status').val(data.status);
+            $('#discharge').val(data.discharge);
+        })
+    });
+
+
+    $('#saveBtn').click(function (e) {
+        e.preventDefault();
+        $(this).html('Sending..');
+    
+        $.ajax({
+            data: $('#admissionForm').serialize(),
+            url: "{{ route('ajaxadmissions.store') }}",
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                $('#admissionForm').trigger("reset");
+                $('#ajaxModel').modal('hide');
+                table.draw();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Save Changes');
             }
         });
-        var table = $(".data-table").DataTable({
-            serverSide: true,
-            processing: true,
-            ajax: "{{route('admission.index')}}",
-            columns: [{
-                    data: 'actions',
-                    name: 'actions'
-                },
-                {
-                    data: 'date_time_admitted',
-                    name: 'admitted'
-                },
-                {
-                    data: 'complain',
-                    name: 'complain'
-                },
-                {
-                    data: 'impression_diagnosis',
-                    name: 'impression diagnosis'
-                },
-                {
-                    data: 'age',
-                    name: 'age'
-                },
-                {
-                    data: 'weight',
-                    name: 'weight'
-                },
-                {
-                    data: 'activities',
-                    name: 'activities'
-                },
-                {
-                    data: 'diet',
-                    name: 'diet'
-                },
+    });
 
-                {
-                    data: 'tubes',
-                    name: 'tubes'
-                },
-                {
-                    data: 'special_info',
-                    name: 'special_info'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
-                },
-                {
-                    data: 'date_time_discharge',
-                    name: 'Date Time Discharge'
-                },
-            ]
-        });
-
-        $("#createNewAdmission").click(function() {
-            $("#ajaxModel").modal("show");
-            $('#admissionForm').trigger("reset");
-            $('#admission_id').val('');
-        });
-
-        $("#saveAdmission").click(function(e) {
-            e.preventDefault();
-            $(this).html('save');
-
+    $('body').on('click', '.deleteAdmission', function (){
+        var admission_id = $(this).data("id");
+        var result = confirm("Are You sure want to delete !");
+        if(result){
             $.ajax({
-                data: $("#admissionForm").serializeArray(),
-                url: "{{route('admission.store')}}",
-                type: "POST",
-                dataType: 'json',
-                success: function(data) {
-                    $("#ajaxModel").modal("hide");
-                    $('#admissionForm').trigger("reset");
+                type: "DELETE",
+                url: "{{ route('ajaxadmissions.store') }}"+'/'+admission_id,
+                success: function (data) {
                     table.draw();
                 },
-                error: function(data) {
-                    console.log('error:', data);
-                    $("#saveAdmission").html('Save');
+                error: function (data) {
+                    console.log('Error:', data);
                 }
             });
-        });;
+        }else{
+            return false;
+        }
     });
-    </script>
-
+});
+</script>
 </html>

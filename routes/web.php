@@ -10,7 +10,7 @@ use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 
 //Admission Form
-use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\AdmissionAjaxController;
 
 
 
@@ -77,4 +77,5 @@ Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'
 
 // *****************************************************************************
 // Routes for Admission
-Route::resource('admission',AdmissionController::class);
+
+Route::resource('ajaxadmissions',AdmissionAjaxController::class);
