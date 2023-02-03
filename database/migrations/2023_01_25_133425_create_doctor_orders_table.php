@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
+        //codes for testing
         Schema::create('doctor_orders', function (Blueprint $table) {
             $table->id();
             $table->integer('admission_id');
-            $table->integer('doctor_id');
-            $table->date('date_ordered');
-            $table->enum('type', ['Medication', 'Transfusion', 'Treatment']);
-            $table->string('progress_notes');
+            $table->integer('doctor_order_id');
             $table->integer('nurse_id');
+            $table->date('date_ordered');
+            $table->enum('type', ['Medication', 'Transfusion', 'Treatment', 'ProgressNotes']);
             $table->timestamps();
+
+
 });
     }
 

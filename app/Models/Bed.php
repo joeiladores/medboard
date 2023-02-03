@@ -18,4 +18,10 @@ class Bed extends Model
         'station',
         'status',
     ];
+
+    // Connect to admisison table
+    // public function bed()
+    // {
+    //     return $this->hasOne(Admission::class);
+    // }
 }

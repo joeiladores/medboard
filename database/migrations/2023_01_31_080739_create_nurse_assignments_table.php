@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        //codes for testing
-        Schema::create('order_treatments', function (Blueprint $table) {
+        Schema::create('nurse_assignments', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id')->nullable();
-            $table->string('name');
-            $table->string('type');
-            $table->string('instruction');
-            $table->date('date_started');
-            $table->date('date_done')->nullable();
-            $table->timestamps();
-        });
 
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->dateTime('datetime_start');
+            $table->dateTime('datetime_end');
+            $table->string('shift');
+            $table->string('station');
+            
+            $table->timestamps();
+            
+        });
     }
 
     /**
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_treatments');
+        Schema::dropIfExists('nurse_assignments');
     }
 };
