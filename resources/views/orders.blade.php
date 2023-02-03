@@ -274,7 +274,7 @@ Treatment
                         confirmButtonColor: 'rgb(66,100,208)',
                         text: 'Please fill out all required fields before submitting!'
                       });
-                    } else else {
+                    } else {
                       Swal.fire({
                       title: 'Success!',
                       text: 'New Treatment record has been added!',
