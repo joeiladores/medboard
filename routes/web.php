@@ -1,4 +1,5 @@
 <?php
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 // Admin Controllers
 use App\Http\Controllers\UserController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\NurseAssignmentController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
+use App\Http\Controllers\ProgressNoteController;
+
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -83,6 +86,29 @@ Route::post('/storeTreatment', [OrderTreatmentController::class, 'store'])->name
 Route::get('/editTreatment/{id}', [OrderTreatmentController::class, 'edit'])->name('editTreatment');
 Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->name('updateTreatment');
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
+
+// Routes for Progres Notes
+Route::post('/storeProgressNote', [ProgressNoteController::class, 'store'])->name('storeProgressNote');
+Route::get('/editProgressNote/{id}', [ProgressNoteController::class, 'edit'])->name('editProgressNote');
+Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->name('updateProgressNote');
+Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
+
+Route::get('/generate-pdf', function(){
+    // get the data to display in the PDF
+    $patients = App\Models\Patients::all();
+    // store it in a data array
+    $data = [
+    'patients' => $patients,
+    ];
+    // generate the PDF view
+    // Create the userlist blade
+    $pdf = Pdf::loadView('userlist', $data);
+    // display the PDF in the browser
+    return $pdf->stream('patientlist.pdf');
+    //alternatively, you may directly download it using the ff code.
+    // $pdf->download('name_of_pdf.pdf');
+    })->name('generate-pdf');
+
 
 
 // *****************************************************************************

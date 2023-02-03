@@ -34,7 +34,7 @@ class OrderTransfusionController extends Controller
       
         $orders_transfusion->save();
 
-        return redirect()->route('orders')->with('success', 'New Transfusion added successfully!');
+        return redirect()->route('orders');
     }
 
     public function update(Request $request)
@@ -55,7 +55,7 @@ class OrderTransfusionController extends Controller
         $orders_transfusion = OrderTransfusion::find($id);
         $orders_transfusion->delete();
 
-        return redirect()->route('orders')->with('success', 'Transfusion deleted successfully!');
+        return redirect()->route('orders');
     }
 
 }

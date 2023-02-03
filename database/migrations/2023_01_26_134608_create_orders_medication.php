@@ -13,19 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
+        //codes for testing
         Schema::create('order_medications', function (Blueprint $table) {
             $table->id();
             $table->integer('doctor_order_id')->nullable();
             $table->string('medication');
-            $table->string('dose');
+            $table->double('dose');
             $table->integer('quantity');
             $table->enum('unit',['Gram','Milligram','Microgram']);
             $table->string('frequency');
             $table->string('instructions');
-            $table->dateTime('date_started')->nullable();
-            $table->dateTime('date_stopped')->nullable();
+            $table->date('date_started')->nullable();
+            $table->date('date_stopped')->nullable();
             $table->timestamps();
         });
+
+
+
+       
     }
 
     /**
