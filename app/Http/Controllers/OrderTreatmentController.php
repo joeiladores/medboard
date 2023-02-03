@@ -27,7 +27,7 @@ class OrderTreatmentController extends Controller
 
         $orders_treatment->save();
 
-        return redirect()->route('orders')->with('success', 'New Treatment added successfully!');
+        return redirect()->route('orders');
     }
     public function update(Request $request)
     {
@@ -50,7 +50,7 @@ class OrderTreatmentController extends Controller
         $orders_treatment = OrderTreatment::find($id);
         $orders_treatment->delete();
 
-        return redirect()->route('orders')->with('success', 'Treatment deleted successfully!');
+        return redirect()->route('orders');
     }
 
 }

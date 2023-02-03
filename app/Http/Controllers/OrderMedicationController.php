@@ -43,7 +43,7 @@ class OrderMedicationController extends Controller
 
     $orders_medication->save();
 
-    return redirect()->route('orders')->with('success', 'New Medication added successfully!');
+    return redirect()->route('orders');
 }
 
     public function update(Request $request)
@@ -67,7 +67,7 @@ class OrderMedicationController extends Controller
         $orders_medication = OrderMedication::find($id);
         $orders_medication->delete();
 
-        return redirect()->route('orders')->with('success', 'Medication deleted successfully!');
+        return redirect()->route('orders');
     }
 
     

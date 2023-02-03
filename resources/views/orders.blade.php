@@ -392,27 +392,28 @@ Progress Notes
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
-                        function reply_click_medication(clicked_id) {
+                       function reply_click_medication(clicked_id) {
+                      Swal.fire({
+                        title: 'Delete Medication Record?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: 'rgb(66,100,208)',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Confirm'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.href = "{{ route('destroyMedication', '') }}" + "/" + clicked_id;
                           Swal.fire({
-                            title: 'Delete Medication Record?',
-                            text: "You won't be able to revert this!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: 'rgb(66,100,208)',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Confirm'
-                          }).then((result) => {
-                            if (result.isConfirmed) {
-                              window.location.href = "{{ route('destroyMedication', $order_medication->id) }}";
-                              Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Medication Record has been deleted.',
-                                icon: 'success',
-                                showConfirmButton: false
-                            });
-                            }
+                            title: 'Deleted!',
+                            text: 'Medication Record has been deleted.',
+                            icon: 'success',
+                            showConfirmButton: false
                           });
                         }
+                      });
+                    }
+
                       </script>
                 </tr>
                 @endforeach
@@ -457,7 +458,7 @@ Progress Notes
                             confirmButtonText: 'Confirm'
                           }).then((result) => {
                             if (result.isConfirmed) {
-                              window.location.href = "{{ route('destroyTransfusion', $order_transfusion->id) }}";
+                              window.location.href = "{{ route('destroyTransfusion', '') }}" + "/" + clicked_id;
                               Swal.fire({
                                 title: 'Deleted!',
                                 text: 'Transfusion Record has been deleted.',
@@ -511,7 +512,7 @@ Progress Notes
                             confirmButtonText: 'Confirm'
                           }).then((result) => {
                             if (result.isConfirmed) {
-                              window.location.href = "{{ route('destroyTreatment', $order_treatment->id) }}";
+                              window.location.href = "{{ route('destroyTreatment', '') }}" + "/" + clicked_id;
                               Swal.fire({
                                 title: 'Deleted!',
                                 text: 'Treatment Record has been deleted.',
@@ -559,7 +560,7 @@ Progress Notes
                             confirmButtonText: 'Confirm'
                           }).then((result) => {
                             if (result.isConfirmed) {
-                              window.location.href = "{{ route('destroyProgressNote', $progress_note->id) }}";
+                              window.location.href = "{{ route('destroyProgressNote', '') }}" + "/" + clicked_id;
                               Swal.fire({
                                 title: 'Deleted!',
                                 text: 'Progress Note Record has been deleted.',
@@ -596,20 +597,7 @@ Progress Notes
  <!-- JQuery -->
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Add success alerts -->
- @if(session('success'))
- <div class="alert alert-primary alert-dismissible fade show" role="alert" id="alertMessage" style="position:fixed; top:10px; left:50%; transform:translate(-50%,0); z-index:999;">
-  {{session('success')}}
-</div>
-    <script>
-      setTimeout(function () {
-        $('#alertMessage').alert('close');
-      }, 3000);
-    </script>
-@endif
-
-
-
+ <!-- For Tabs -->
 <script>
   var dataTable = new DataTable("#medicationTable");
   var dataTable = new DataTable("#transfusionTable");
