@@ -8,7 +8,7 @@
 
 /* Login */
 .nav-login{
-  background-image: linear-gradient(to right, #79a2e0, #d9e7fd, #d8ebff, #d4ebf8, #ddecfa);
+  background-image: linear-gradient(to right, #5eb0f3, #d9e7fd, #d8ebff, #d4ebf8, #ddecfa);
 }
 
 .main{
@@ -50,7 +50,7 @@
 
 /* Dashboard */
 .sidebar{
-  background-image: linear-gradient(to right, #79a2e0, #accdff, #b4dbff, #d4ebf8, #ddecfa);
+  background-image: linear-gradient(to right,  #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
 }
 
 .logo-sidebar{

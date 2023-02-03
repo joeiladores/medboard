@@ -25,6 +25,10 @@ Auth::routes();
 Route::get('/home', [PatientsController::class, 'index'])->name('adminHome');
 Route::get('/patient', [PatientsController::class, 'patient'])->name('patientView');
 Route::post('/storePatient', [PatientsController::class, 'store'])->name('storePatient');
+Route::get('/destroyPatient/{id}', [PatientsController::class, 'destroy'])->name('destroyPatient');
+Route::post('/updatePatient', [PatientsController::class, 'update'])->name('updatePatient');
+Route::get('/editPatient/{id}', [PatientsController::class, 'edit'])->name('editPatient');
+
 
 
 // *****************************************************************************

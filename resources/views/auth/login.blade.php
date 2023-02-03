@@ -6,7 +6,7 @@
         <div class="row image-row">
             <div class="col-md-6 side-image">
             </div>
-            <div class="col-md-6 right input-box">
+            <div class="col-md-6 right">
                 <!-- Login Form -->
                 <div>
                     <h2 class="text-center mb-4">Login</h2>
