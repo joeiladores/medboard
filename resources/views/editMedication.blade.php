@@ -15,22 +15,25 @@
                     <input type="text" class="form-control" id="dose" name="dose" value="{{ $order_medication->dose }}" required>
                 </div>
                 <div class="col-4 p-2 d-inline-block">
-                 <div class="form-group mb-3">
-                    <label for="unit">Unit:</label>
-                    <select class="form-select" id="unit" name="unit" value="{{ $order_medication->unit }}" required>
-                        <option selected>Choose...</option>
-                        <option value="Gram">Gram</option>
-                        <option value="Milligram">Milligram</option>
-                        <option value="Microgram">Microgram</option>
-                    </select>
-                    </div>
-                    <script>
-                      var select = document.getElementById("unit");
-                    var selectedValue = select.options[select.selectedIndex].value;
-                    console.log(selectedValue);
-                    </script>
+                <div class="form-group mb-3">
+                <label for="unit">Unit:</label>
+                <select class="form-select" id="unit" name="unit" required>
+                    <option value="Gram">Gram</option>
+                    <option value="Milligram">Milligram</option>
+                    <option value="Microgram">Microgram</option>
+                </select>
                 </div>
-                
+                <script>
+                var select = document.getElementById("unit");
+                var options = select.options;
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].value == "{{ $order_medication->unit }}") {
+                    options[i].selected = true;
+                    break;
+                    }
+                }
+                </script>
+                </div>
                 <div class="col-3 ps-3 d-inline-block">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" value="{{ $order_medication->quantity }}" required>

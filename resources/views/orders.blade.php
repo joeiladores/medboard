@@ -20,6 +20,9 @@ body, html {
   padding: 14px 16px;
   font-size: 17px;
   width: 25%;
+  height: 5%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px 50px 0px 0px;
 }
 
 .tablink:hover {
@@ -32,13 +35,15 @@ body, html {
   display: none;
   padding: 50px 20px;
   height: 100%;
+  border-radius: 50px 50px 0px 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #Medication {background-color: white;}
 #Transfusion {background-color: white;}
 #Treatment {background-color: white;}
 #ProgressNotes {background-color: white;}
 
-/* To hide the required message per text area */
+
 
 </style>
   <div class="card rounded shadow mb-2">
@@ -579,6 +584,9 @@ Progress Notes
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
 
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+
 <!-- For Sweet Alert -->
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
@@ -599,11 +607,6 @@ Progress Notes
       }, 3000);
     </script>
 @endif
-
-
-
-
-
 
 
 
