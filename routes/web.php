@@ -20,6 +20,12 @@ use App\Http\Controllers\OrderTreatmentController;
 use App\Http\Controllers\ProgressNoteController;
 
 
+//Admission Form
+use App\Http\Controllers\AdmissionAjaxController;
+
+
+
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -127,3 +133,5 @@ Route::get('/generate-pdf', function(){
 
 // *****************************************************************************
 // Routes for Admission
+
+Route::resource('ajaxadmissions',AdmissionAjaxController::class);
