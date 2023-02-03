@@ -31,20 +31,21 @@ class OrderMedicationController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $orders_medication = new OrderMedication;
+{
+    $orders_medication = new OrderMedication;
 
-        $orders_medication->medication       = $request->medication;
-        $orders_medication->dose             = $request->dose;
-        $orders_medication->quantity         = $request->quantity;
-        $orders_medication->unit             = $request->unit;
-        $orders_medication->frequency        = $request->frequency;
-        $orders_medication->instructions     = $request->instructions;
+    $orders_medication->medication       = $request->medication;
+    $orders_medication->dose             = $request->dose;
+    $orders_medication->quantity         = $request->quantity;
+    $orders_medication->unit             = $request->unit;
+    $orders_medication->frequency        = $request->frequency;
+    $orders_medication->instructions     = $request->instructions;
 
-        $orders_medication->save();
+    $orders_medication->save();
 
-        return redirect()->route('orders')->with('success', 'New Medication added successfully!');
-    }
+    return redirect()->route('orders')->with('success', 'New Medication added successfully!');
+}
+
     public function update(Request $request)
     {
         $orders_medication = OrderMedication::find($request->id);

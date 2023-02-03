@@ -27,7 +27,7 @@ class OrderTreatmentController extends Controller
 
         $orders_treatment->save();
 
-        return redirect()->route('orders')->with('success', 'New Medication added successfully!');
+        return redirect()->route('orders')->with('success', 'New Treatment added successfully!');
     }
     public function update(Request $request)
     {

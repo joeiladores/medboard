@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-9 p-2">
                     <label for="instructions" class="form-label">Instructions</label>
-                    <input type="text" class="form-control" id="instructions" name="instructions" value="{{ $order_medication->instructions }}"required>
+                    <textarea type="text" class="form-control" id="instructions" name="instructions" rows="3" required>{{ $order_medication->instructions }}</textarea>
                     <input type="hidden" name="id" value="{{ $order_medication->id }}">
                 </div>
                 <button type="submit" class="btn btn-light text-light m-2" style="background-color:rgb(66,100,208);">Edit Medication</button>

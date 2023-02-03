@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12 p-2 d-inline-block">
                     <label for="instruction" class="form-label">Instructions:</label>
-                    <input type="text" class="form-control" id="instruction" name="instruction" value="{{ $order_treatment->instruction }}" required>
+                    <textarea class="form-control" id="instruction" name="instruction" rows="3" required>{{ $order_treatment->instruction }}</textarea>
                 </div>
 
                 <div class="col-5 p-2 mb-3 d-inline-block">
