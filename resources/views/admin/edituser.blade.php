@@ -23,11 +23,19 @@
 
                             <div class="col-md-6">
                                 <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ $user->usertype }}" required autocomplete="usertype" autofocus>
-                                    <option value=0 selected>Select ---</option>
-                                    <option value="Admin">{{ __('Admin') }}</option>
-                                    <option value="Doctor">{{ __('Doctor') }}</option>
-                                    <option value="Nurse">{{ __('Nurse') }}</option>
-                                    <option value="Chief Nurse">{{ __('Chief Nurse') }}</option>
+                                    <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
+                                    @if($user->usertype != 'Admin')
+                                        <option value="Admin">{{ 'Admin' }}</option>
+                                    @endif
+                                    @if($user->usertype != 'Doctor')
+                                        <option value="Doctor">{{ 'Doctor' }}</option>
+                                    @endif
+                                    @if($user->usertype != 'Nurse')
+                                        <option value="Nurse">{{ 'Nurse' }}</option>
+                                    @endif
+                                    @if($user->usertype != 'Chief Nurse')
+                                        <option value="Chief Nurse">{{ 'Chief Nurse' }}</option>
+                                    @endif
                                 </select>
                                 @error('usertype')
                                 <span class="invalid-feedback" role="alert">
@@ -102,7 +110,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror bg-light" name="email" value="{{ $user->email }}" required autocomplete="email" readonly>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -117,7 +125,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $user->password }}" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -132,7 +140,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ $user->passwrod }}" required autocomplete="new-password">
                             </div>
                         </div> -->
 
@@ -141,10 +149,13 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <select id="gender" aria-label="Select gender" class="form-select @error('gender') is-invalid @enderror" name="gender" value="{{ $user->gender }}" required autocomplete="gender" autofocus>
-                                    <option value=0 selected>Select ---</option>
-                                    <option value="Male">{{ __('Male') }}</option>
-                                    <option value="Female">{{ __('Female') }}</option>
+                                <select id="gender" aria-label="Select gender" class="form-select @error('gender') is-invalid @enderror" name="gender" required autocomplete="gender" autofocus>
+                                    <option selected value="{{ $user->gender }}">{{ $user->gender }}</option>
+                                    @if($user->gender != 'Male')
+                                        <option value="Male">{{ __('Male') }}</option>
+                                    @else
+                                        <option value="Female">{{ __('Female') }}</option>
+                                    @endif
                                 </select>
                                 @error('gender')
                                 <span class="invalid-feedback" role="alert">
@@ -189,21 +200,42 @@
                             <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select id="department" aria-label="Select department" class="form-select @error('department') is-invalid @enderror" name="department" value="{{ $user->department }}" required autocomplete="department" autofocus>
-                                    <option value=0 selected>Select ---</option>
-                                    <option value=0>Doctors ----------</option>
-                                    <option value="Emergency Department">{{ __('Emergency Department') }}</option>
-                                    <option value="Intensive Care Unit (ICU)">{{ __('Intensive Care Unit (ICU)') }}</option>
-                                    <option value="Obstetrics and Gynecology (OB/GYN)">{{ __('Obstetrics and Gynecology (OB/GYN)') }}</option>
-                                    <option value="Pediatrics">{{ __('Pediatrics') }}</option>
-                                    <option value="Surgery">{{ __('Surgery') }}</option>
-                                    <option value="Cardiology">{{ __('Cardiology') }}</option>
-                                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>\
-                                    <option value=0>{{ __('Nurses ----------') }}</option>
-                                    <option value="Nursing Department">{{ __('Nursing Department') }}</option>
-                                    <option value=0>{{ __('Admin ----------') }}</option>
-                                    <option value="IT Department">{{ __('IT Department') }}</option>
-                                    <option value="Admission">{{ __('Admission') }}</option>
+                                <select id="department" aria-label="Select department" class="form-select @error('department') is-invalid @enderror" name="department" required autocomplete="department" autofocus>
+                                    @if($user->usertype == 'Doctor')
+                                        <option selected value="{{ $user->department }}">{{ $user->department }}</option>
+                                        @if($user->department != 'Emergency Department')
+                                            <option value="Emergency Department">{{ 'Emergency Department' }}</option>
+                                        @endif
+                                        @if($user->department != 'Intensive Care Unit (ICU)')
+                                            <option value="Intensive Care Unit (ICU)">{{ 'Intensive Care Unit (ICU)' }}</option>
+                                        @endif
+                                        @if($user->department != 'Obstetrics and Gynecology   (OB/GYN)')
+                                            <option value="Obstetrics and Gynecology (OB/GYN)">{{ 'Obstetrics and Gynecology (OB/GYN)' }}</option>
+                                        @endif
+                                        @if($user->department != 'Pediatrics')
+                                            <option value="Pediatrics">{{ 'Pediatrics' }}</option>
+                                        @endif
+                                        @elseif($user->department != 'Surgery')
+                                            <option value="Surgery">{{ 'Surgery' }}</option>
+                                        @if($user->department != 'Cardiology')
+                                            <option value="Cardiology">{{ 'Cardiology' }}</option>
+                                        @endif
+                                        @if($user->department != 'Orthopedics')
+                                            <option value="Orthopedics">{{ 'Orthopedics' }}</option>
+                                        @endif
+                                    @endif
+                                    @if($user->usertype == 'Nurse')
+                                        <option value={{ $user->department }}>{{ $user->department }}</option>
+                                    @endif
+                                    @if($user->usertype == 'Administrator')
+                                        <option value={{ $user->department }}>{{ $user->department }}</option>
+                                        @if($user->department != 'IT Department')
+                                            <option value="IT Department">{{ __('IT Department') }}</option>
+                                        @endif
+                                        @if($user->department != 'Admission')
+                                            <option value="Admission">{{ 'Admission' }}</option>
+                                        @endif
+                                    @endif
                                 </select>
                                 @error('department')
                                 <span class="invalid-feedback" role="alert">
