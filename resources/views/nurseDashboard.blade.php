@@ -90,6 +90,13 @@ body {
                     <td><a href="#">🗒</a></td>
                     <td>Remarks</td>
                 </tr>
+                <tr>
+                    <td>Jan 2,2022</td>
+                    <td>Sample Name</td>
+                    <td>A01</td>
+                    <td><a href="#">🗒</a></td>
+                    <td>Remarks</td>
+                </tr>
             </tbody>
            </table>
       </div>

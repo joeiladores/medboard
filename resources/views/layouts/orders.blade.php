@@ -94,11 +94,10 @@ border-radius: 0px 44px 32px 0px;">
  
 </div>
      <!--CARD START -->
-      <main class="py-4">
+      <!-- <main class="py-4"> -->
             @yield('content')
-        </main>
+        <!-- </main> -->
 
-        </table>
     </div>
             </div>
         </div>
