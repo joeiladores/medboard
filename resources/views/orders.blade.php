@@ -365,8 +365,8 @@ Progress Notes
             <thead>
                 <tr>
                     <th>Medication</th>
-                    <th>Dosage</th>
                     <th>Quantity</th>
+                    <th>Dosage</th>
                     <th>Unit</th>
                     <th>Frequency</th>
                     <th>Instructions</th>
@@ -379,9 +379,9 @@ Progress Notes
             @foreach($order_medications as $order_medication)
                 <tr>
                     <td>{{ $order_medication->medication }}</td>
+                    <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->dose }}</td>
                     <td>{{ $order_medication->unit }}</td>
-                    <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
                     <td> {{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
@@ -604,7 +604,7 @@ Progress Notes
   var dataTable = new DataTable("#treatmentTable");
   var dataTable = new DataTable("#progressNotesTable");
 
-    function openPage(pageName, elmnt, color) {
+  function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
