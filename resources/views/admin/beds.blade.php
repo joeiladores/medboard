@@ -27,7 +27,7 @@
       <table class="table table-hover" id="bedTable">
         <thead class="fw-bold">
           <tr>
-            <td>Beds ID</td>
+            <td>Bed ID</td>
             <td>Bed Number</td>
             <td>Room</td>
             <td>Room Type</td>
@@ -109,7 +109,7 @@
     </div>
 
     <!-- Edit Bed Modal -->
-    <div class="modal fade" id="editBedModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade " id="editBedModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -122,7 +122,7 @@
                 @csrf
                 <div class="mb-3">
                   <label for="editbed_bednum" class="form-label">Bed Number</label>
-                  <input type="text" class="form-control" name="bednum" id="editbed_bednum" required readonly>
+                  <input type="text" class="form-control bg-light" name="bednum" id="editbed_bednum" required readonly>
                 </div>
                 <div class="mb-3">
                   <label for="editbed_room" class="form-label">Room</label>
@@ -167,6 +167,14 @@
 
   <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <!-- For DataTables -->
+  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+  </script>  
+
+   <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
     const dataTable = new DataTable('#bedTable');  

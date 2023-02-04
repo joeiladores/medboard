@@ -46,20 +46,20 @@ class UserController extends Controller
 
         $user = new User;
 
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->usertype = $request->usertype;
-        $user->lastname = $request->lastname;
-        $user->firstname = $request->firstname;
-        $user->middlename = $request->middlename;
-        $user->birthdate = $request->birthdate;
-        $user->gender = $request->gender;
-        $user->address = $request->address;
-        $user->phone = $request->phone;
-        $user->department = $request->department;
-        $user->specialization = $request->specialization;
-        $user->imagepath = $request->imagepath;
-        $user->name = $request->firstname . ' ' . $request->lastname;
+        $user->email            = $request->email;
+        $user->password         = $request->password;
+        $user->usertype         = $request->usertype;
+        $user->lastname         = $request->lastname;
+        $user->firstname        = $request->firstname;
+        $user->middlename       = $request->middlename;
+        $user->birthdate        = $request->birthdate;
+        $user->gender           = $request->gender;
+        $user->address          = $request->address;
+        $user->phone            = $request->phone;
+        $user->department       = $request->department;
+        $user->specialization   = $request->specialization;
+        $user->imagepath        = $request->imagepath;
+        $user->name             = $request->firstname . ' ' . $request->lastname;
 
         $user->save();
 
@@ -74,23 +74,32 @@ class UserController extends Controller
 
     protected function updateUser(Request $request) {        
         $user = User::find($request->id);
-        $originalemail = $user->bednum;
+        // $originalemail = $user->bednum;
         
-        $user->email  = $request->email;
-        $user->name = $request->name;        
-        // FILL UP OTHER COLUMNS
-        // ...
-        // ...
-        // ...
+        $user->usertype         = $request->usertype;
+        $user->lastname         = $request->lastname;
+        $user->firstname        = $request->firstname;
+        $user->middlename       = $request->middlename;
+        $user->birthdate        = $request->birthdate;
+        $user->gender           = $request->gender;
+        $user->address          = $request->address;
+        $user->phone            = $request->phone;
+        $user->department       = $request->department;
+        $user->specialization   = $request->specialization;
+        $user->imagepath        = $request->imagepath;
+        $user->name             = $request->firstname . ' ' . $request->lastname;
+
+        // $user->email  = $request->email;
+        // $user->name = $request->name;        
         
         // IF new email is already existing in the database
-        if($user->email != $originalemail) {
-            $userexist = User::where('email', $bed->email)->first();
-            if($userexist != NULL) {
-                return redirect()->route('users')
-                ->with('error', 'User number already exists!');
-            }
-        }
+        // if($user->email != $originalemail) {
+        //     $userexist = User::where('email', $bed->email)->first();
+        //     if($userexist != NULL) {
+        //         return redirect()->route('users')
+        //         ->with('error', 'User number already exists!');
+        //     }
+        // }
 
         $user->save();
         return redirect()->route('users')->with('success', 'User is successfully updated!');

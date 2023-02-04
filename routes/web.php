@@ -45,6 +45,7 @@ Route::get('/admin/users', [UserController::class, 'users'])->name('users');
 Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
 Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
 Route::get('/admin/edituser/{id}', [UserController::class, 'editUser'])->name('edituser');
+Route::post('/admin/updateuser', [UserController::class, 'updateUser'])->name('updateuser');
 Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
 
 Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
