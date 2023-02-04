@@ -28,7 +28,7 @@
                 <div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <p class="fs-4">Welcome to MedBoard</p>
+                        <p class="fs-4">Welcome to <strong class="text-primary">MedBoard</strong></p>
                     </ul>
                 </div>
             </div>
@@ -37,6 +37,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <div>
+            <div class="row text-center">
+                <p>Property of <strong class="text-primary">Group 2 (WD29)</strong></p>
+            </div>
+        </div>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

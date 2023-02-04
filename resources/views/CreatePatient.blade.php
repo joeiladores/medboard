@@ -39,9 +39,9 @@
                                                         <div class="col-md-3">
                                                             <select id="marital_status" name="marital_status" class="form-select" required>
                                                                 <option selected>Marital Status</option>
-                                                                <option value="single">Single</option>
-                                                                <option value="married">Married</option>
-                                                                <option value="widowed">Widowed</option>
+                                                                <option value="single">single</option>
+                                                                <option value="married">married</option>
+                                                                <option value="widowed">widowed</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3">
@@ -50,8 +50,8 @@
                                                         <div class="col-md-3">
                                                             <select id="gender" name="gender" class="form-select" required>
                                                                 <option selected>Gender</option>
-                                                                <option value="male">Male</option>
-                                                                <option value="female">Female</option>
+                                                                <option value="male">male</option>
+                                                                <option value="female">female</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3">
@@ -100,8 +100,8 @@
         </div>
 
         <!-- TABS -->
-        <button class="tablink btn border-dark fw-bold" onclick="openPage('PatientList', this, 'rgb(66,100,208)')" id="defaultOpen">List of Patients</button>
-        <button class="tablink btn border-dark fw-bold" onclick="openPage('PendingView', this, 'rgb(66,100,208)')">BLANGKO PA</button>
+        <button class="tablink btn border-dark fw-bold" onclick="openPage('PatientList', this, 'rgba(126, 187, 252, 1)')" id="defaultOpen">List of Patients</button>
+        <button class="tablink btn border-dark fw-bold" onclick="openPage('PendingView', this, 'rgba(126, 187, 252, 1)')">BLANGKO PA</button>
 
         <div id="PatientList" class="tabcontent">
             <table class="table table-hover" id="patientTable">
@@ -116,7 +116,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($allPatients as $patient)
+                    @foreach($allPatients as $patient)
                     <tr>
                         <td>{{ $patient->id }}</td>
                         <td>{{ $patient->lastname }}, {{ $patient->firstname }} {{ $patient->midname }}</td>
@@ -128,92 +128,92 @@
                             <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                             <!-- Edit Patient Modal Button -->
                             <div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPatient">
-                                Edit
-                            </button>
+                                <button type="button" class="btn btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
+                                    Edit
+                                </button>
 
-                            <!-- Edit Patient Modal-->
-                            <div class="modal fade" id="editPatient" tabindex="1" aria-labelledby="editPatientLabel" aria-hidden="true">
-                                <<div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary">
-                                            <h5 class="modal-title text-light" id="editPatient">Edit Patient</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="card">
-                                                <form method="POST" action="{{ route('updatePatient') }}">
-                                                    @csrf
-                                                    <div class="row g-3 p-3">
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" value="{{ $patient->lastname }}" required>
+                                <!-- Edit Patient Modal-->
+                                <div class="modal fade" id="editPatientModal" tabindex="1" aria-labelledby="editPatientLabel" aria-hidden="true">
+                                    <<div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h5 class="modal-title text-light" id="editPatient">Edit Patient</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <form method="POST" action="{{ route('updatePatient') }}">
+                                                        @csrf
+                                                        <div class="row g-3 p-3">
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" id="editpatient_lastname" name="lastname" required>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" id="editpatient_firstname" name="firstname" required>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" id="editpatient_midname" name="midname">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <select id="editpatient_marital_status" name="marital_status" class="form-select" required>
+                                                                    <option selected value="{{ $patient->marital_status }}">{{$patient->marital_status }}</option>
+                                                                    <option value="single">single</option>
+                                                                    <option value="married">married</option>
+                                                                    <option value="widowed">widowed</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input type="date" class="form-control" id="editpatient_birth_date" name="birth_date" required>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <select id="editpatient_gender" name="gender" class="form-select" required>
+                                                                    <option selected value="{{ $patient->gender }}">{{ $patient->gender }}</option>
+                                                                    <option value="male">male</option>
+                                                                    <option value="female">female</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <select id="editpatient_blood_type" name="blood_type" class="form-select" required>
+                                                                    <option selected value="{{ $patient->blood_type }}">{{ $patient->blood_type }}</option>
+                                                                    <option value="A">A</option>
+                                                                    <option value="B">B</option>
+                                                                    <option value="AB">AB</option>
+                                                                    <option value="O">O</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control" id="editpatient_address" name="address" required>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input type="number" class="form-control" id="editpatient_phone" name="phone" required>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" id="editpatient_health_insurance" name="health_insurance">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control" id="editpatient_relative_fullname" name="relative_fullname" required>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" id="editpatient_relation" name="relation" required>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input type="number" class="form-control" id="editpatient_relative_phone" name="relative_phone" required>
+                                                            </div>
+                                                            <input type="hidden" name="id" id="editpatient_id">
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" value="{{ $patient->firstname }}" required>
+                                                        <hr>
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Update</button>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="Middle Name (optional)" value="{{ $patient->midname }}">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <select id="marital_status" name="marital_status" class="form-select" value="{{ $patient->marital_status }}" required>
-                                                                <option selected>Marital Status</option>
-                                                                <option value="single">Single</option>
-                                                                <option value="married">Married</option>
-                                                                <option value="widowed">Widowed</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ $patient->birth_date }}" required>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <select id="gender" name="gender" class="form-select" value="{{ $patient->gender }}" required>
-                                                                <option selected>Gender</option>
-                                                                <option value="male">Male</option>
-                                                                <option value="female">Female</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <select id="blood_type" name="blood_type" class="form-select" value="{{ $patient->blood_type }}" required>
-                                                                <option selected>Blood Type</option>
-                                                                <option value="A">A</option>
-                                                                <option value="B">B</option>
-                                                                <option value="AB">AB</option>
-                                                                <option value="O">O</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ $patient->address }}" required>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="{{ $patient->phone }}" required>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="Health Insurance (optional)" value="{{ $patient->health_insurance }}">
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <input type="text" class="form-control" id="relative_fullname" name="relative_fullname" placeholder="Relative Fullname" value="{{ $patient->relative_fullname }}" required>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="relation" name="relation" placeholder="Relation to patient" value="{{ $patient->relation }}" required>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input type="number" class="form-control" id="relative_phone" name="relative_phone" placeholder="Relative Contact" value="{{ $patient->relative_phone }}" required>
-                                                        </div>
-                                                        <input type="hidden" name="id" value="{{ $patient->id }}">
-                                                    </div>
-                                                    <hr>
-                                                    <div>
-                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Update</button>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                </div>
                             </div>
-                        </div>
                         </td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>

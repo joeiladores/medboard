@@ -28,6 +28,7 @@ Route::post('/storePatient', [PatientsController::class, 'store'])->name('storeP
 Route::get('/destroyPatient/{id}', [PatientsController::class, 'destroy'])->name('destroyPatient');
 Route::post('/updatePatient', [PatientsController::class, 'update'])->name('updatePatient');
 Route::get('/editPatient/{id}', [PatientsController::class, 'edit'])->name('editPatient');
+Route::get('/patients/{id}', [PatientsController::class, 'showPatient'])->name('patients');
 
 
 

@@ -17,7 +17,7 @@
         <div class="p-3 bg-white border shadow d-flex justify-content-around align-items-center rounded">
           <div>
             <h3 class="fs-1 fw-bold second-text">2</h3>
-            <p class="fs-3 text-primary">Doctors Available</p>
+            <p class="fs-3 text-primary">Total Doctors</p>
           </div>
           <i class="fa-solid fa-user-doctor fs-1 primary-text border rounded-full secondary-bg p-3"></i>
         </div>
@@ -27,7 +27,7 @@
         <div class="p-3 bg-white border shadow d-flex justify-content-around align-items-center rounded">
           <div>
             <h3 class="fs-1 fw-bold second-text">8</h3>
-            <p class="fs-3 text-primary">Nurse Available</p>
+            <p class="fs-3 text-primary">Total Nurses</p>
           </div>
           <i class="fa-solid fa-user-nurse fs-1 primary-text border rounded-full secondary-bg p-3"></i>
         </div>

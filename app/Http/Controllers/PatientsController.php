@@ -40,7 +40,7 @@ class PatientsController extends Controller
 
     public function update(Request $request){
 
-        $patient= Patients::find($request->id);
+        $patient = Patients::find($request->id);
 
         $patient->lastname          = $request->lastname;
         $patient->firstname         = $request->firstname;
@@ -73,6 +73,12 @@ class PatientsController extends Controller
         $patient->delete();
 
         return redirect()->route('patientView')->with('success', 'Patient deleted successfully!');
+    }
+
+    // for edit modal to show database detail per patient
+    public function showPatient($id) {
+        $patient = Patients::find($id);
+        return response()->json($patient);
     }
 
 
