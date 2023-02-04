@@ -26,63 +26,19 @@ class DatabaseSeeder extends Seeder
 
         // SEEDER ADMIN
         \App\Models\User::create([
-            'name' => 'Joelyn Ladores',
-            'email' => 'joelynladores@gmail.com',
+            'name' => 'User Admin',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('password123'),
-            'usertype' => 'Admin',
-            'lastname' => 'Ladores',
-            'firstname' => 'Joelyn',
+            'usertype' => 1,
+            'lastname' => 'Admin',
+            'firstname' => 'User',
+            'birthdate' => fake()->dateTime(),
             'gender' => 'Female',
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'Active',
-            'department' => Arr::random(['IT Department']),
-            'specialization' => Arr::random(['Software Developer']),
-        ]);
-
-        \App\Models\User::create([
-            'name' => 'Rica Guno',
-            'email' => 'ricaguno@gmail.com',
-            'password' => Hash::make('password123'),
-            'usertype' => 'Admin',
-            'lastname' => 'Guno',
-            'firstname' => 'Rica',
-            'gender' => 'Female',
-            'address' => fake()->address(),
-            'phone' => fake()->phoneNumber,
-            'status' => 'Active',
-            'department' => Arr::random(['IT Department']),
-            'specialization' => Arr::random(['Software Developer']),
-        ]);
-
-        \App\Models\User::create([
-            'name' => 'Norman Mendiola',
-            'email' => 'normanmendiola@gmail.com',
-            'password' => Hash::make('password123'),
-            'usertype' => 'Admin',
-            'lastname' => 'Mendiola',
-            'firstname' => 'Norman',
-            'gender' => 'Male',
-            'address' => fake()->address(),
-            'phone' => fake()->phoneNumber,
-            'status' => 'Active',
-            'department' => Arr::random(['IT Department']),
-            'specialization' => Arr::random(['Software Developer']),
-        ]);
-
-        \App\Models\User::create([
-            'name' => 'Jomar Neri',
-            'email' => 'jomarneri@gmail.com',
-            'password' => Hash::make('password123'),
-            'usertype' => 'Admin',
-            'lastname' => 'Neri',
-            'firstname' => 'Jomar',
-            'gender' => 'Male',
-            'address' => fake()->address(),
-            'phone' => fake()->phoneNumber,
-            'status' => 'Active',
-            'department' => Arr::random(['IT Department']),
-            'specialization' => Arr::random(['Software Developer']),
+            'department' => 'IT Department',
+            'specialization' => 'IT Officer',
         ]);
 
         // SEEDER ADMISSION OFFICER
@@ -94,15 +50,17 @@ class DatabaseSeeder extends Seeder
             'name' => $firstname . ' ' . $lastname,
             'email' => fake()->freeEmail(),
             'password' => Hash::make('password123'),
+            'usertype' => 1,
             'lastname' => $lastname,
             'firstname' => $firstname,
             'middlename' => fake()->lastName(),
+            'birthdate' => fake()->dateTime(),
             'gender' => 'Female',
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'Active',
-            'department' => Arr::random(['Admission']),
-            'specialization' => Arr::random(['Admission Officer']),
+            'department' => 'Admission',
+            'specialization' => 'Admission Officer',
         ]);
 
 
@@ -116,10 +74,11 @@ class DatabaseSeeder extends Seeder
                 'name' => $firstname . ' ' . $lastname,
                 'email' => fake()->freeEmail(),
                 'password' => Hash::make('password123'),
-                'usertype' => 'Doctor',
+                'usertype' => 2,
                 'lastname' => $lastname,
                 'firstname' => $firstname,
                 'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
                 'gender' => $gender,
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
@@ -141,10 +100,11 @@ class DatabaseSeeder extends Seeder
                 'name' => $firstname . ' ' . $lastname,
                 'email' => fake()->freeEmail(),
                 'password' => Hash::make('password123'),
-                'usertype' => 'Nurse',
+                'usertype' => 3,
                 'lastname' => $lastname,
                 'firstname' => $firstname,
                 'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
                 'gender' => $gender,
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
@@ -164,10 +124,11 @@ class DatabaseSeeder extends Seeder
                 'name' => $firstname . ' ' . $lastname,
                 'email' => fake()->freeEmail(),
                 'password' => Hash::make('password123'),
-                'usertype' => 'Chief Nurse',
+                'usertype' => 4,
                 'lastname' => $lastname,
                 'firstname' => $firstname,
                 'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
                 'gender' => $gender,
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
@@ -219,7 +180,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Seeder for Nurse Assignment to Station    
-        for($i = 16; $i <= 17; $i++) {
+        for($i = 13; $i <= 14; $i++) {
             \App\Models\NurseAssignment::create([
                 'user_id' => $i,
                 'datetime_start' => '2023-01-30 07:00:00',
@@ -229,7 +190,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for($i = 18; $i <= 19; $i++) {
+        for($i = 15; $i <= 16; $i++) {
             \App\Models\NurseAssignment::create([
                 'user_id' => $i,
                 'datetime_start' => '2023-02-04 15:00:00',
@@ -239,7 +200,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for($i = 20; $i <= 21; $i++) {
+        for($i = 17; $i <= 18; $i++) {
             \App\Models\NurseAssignment::create([
                 'user_id' => $i,
                 'datetime_start' => '2023-02-04 23:00:00',
@@ -249,7 +210,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for($i = 22; $i <= 22; $i++) {
+        for($i = 19; $i <= 19; $i++) {
             \App\Models\NurseAssignment::create([
                 'user_id' => $i,
                 'datetime_start' => '2023-01-30 07:00:00',
@@ -259,7 +220,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for($i = 23; $i <= 23; $i++) {
+        for($i = 20; $i <= 20; $i++) {
             \App\Models\NurseAssignment::create([
                 'user_id' => $i,
                 'datetime_start' => '2023-02-04 15:00:00',
@@ -269,7 +230,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for($i = 24; $i <= 24; $i++) {
+        for($i = 21; $i <= 21; $i++) {
             \App\Models\NurseAssignment::create([
                 'user_id' => $i,
                 'datetime_start' => '2023-02-04 23:00:00',

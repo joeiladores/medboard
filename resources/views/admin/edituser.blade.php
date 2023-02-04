@@ -23,6 +23,7 @@
 
                             <div class="col-md-6">
                                 <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ $user->usertype }}" required autocomplete="usertype" autofocus>
+                                    
                                     <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
                                     @if($user->usertype != 'Admin')
                                         <option value="Admin">{{ 'Admin' }}</option>

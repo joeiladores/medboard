@@ -40,7 +40,14 @@
         @foreach($users as $user)
         <tr>
           <td>{{ $user->id }}</td>
-          <td>{{ $user->usertype }}</td>
+
+          @switch($user->usertype)
+            @case(2) <td>{{ 'Doctor' }}</td> @break
+            @case(3) <td>{{ 'Nurse' }}</td> @break
+            @case(4) <td>{{ 'Chief Nurse' }}</td> @break
+            @default <td>{{ 'Admin' }}</td>
+          @endswitch
+
           <td>{{ $user->name }}</td>
           <td>{{ $user->department }}</td>
           <td>{{ $user->specialization }}</td>
@@ -83,10 +90,10 @@
                 <div class="col-md-6">
                   <select class="form-select" aria-label="Select user type" name="usertype" id="usertype" required>
                     <option value=0 selected>Select ---</option>
-                    <option value="Admin">{{ __('Admin') }}</option>
-                    <option value="Doctor">{{ __('Doctor') }}</option>
-                    <option value="Nurse">{{ __('Nurse') }}</option>
-                    <option value="Chief Nurse">{{ __('Chief Nurse') }}</option>
+                    <option value=1>{{ 'Admin' }}</option>
+                    <option value=2>{{ 'Doctor' }}</option>
+                    <option value=3>{{ 'Nurse' }}</option>
+                    <option value=4>{{ 'Chief Nurse' }}</option>
                   </select>
                   @error('usertype')
                   <span class="invalid-feedback" role="alert">
