@@ -80,7 +80,7 @@ Route::get('/doctorsOrders', function () {
     return view('doctorsOrders');
 });
 
-// For Doctor's Order Display View
+// For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
 Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
 
 
@@ -107,12 +107,21 @@ Route::get('/editTreatment/{id}', [OrderTreatmentController::class, 'edit'])->na
 Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->name('updateTreatment');
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
 
+// *****************************************************************************
 // Routes for Progres Notes
 Route::post('/storeProgressNote', [ProgressNoteController::class, 'store'])->name('storeProgressNote');
 Route::get('/editProgressNote/{id}', [ProgressNoteController::class, 'edit'])->name('editProgressNote');
 Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->name('updateProgressNote');
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
 
+// *****************************************************************************
+// Nurse's Dashboard View
+Route::get('/nurseDashboard', function () {
+    return view('nurseDashboard');
+});
+
+
+// *****************************************************************************
 Route::get('/generate-pdf', function(){
     // get the data to display in the PDF
     $patients = App\Models\Patients::all();
