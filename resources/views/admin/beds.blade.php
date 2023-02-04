@@ -122,7 +122,7 @@
                 @csrf
                 <div class="mb-3">
                   <label for="editbed_bednum" class="form-label">Bed Number</label>
-                  <input type="text" class="form-control" name="bednum" id="editbed_bednum" required>
+                  <input type="text" class="form-control" name="bednum" id="editbed_bednum" required readonly>
                 </div>
                 <div class="mb-3">
                   <label for="editbed_room" class="form-label">Room</label>
@@ -144,6 +144,8 @@
                       <option value="Nurse Station 1">Nurse Station 1</option>
                       <option value="Nurse Station 2">Nurse Station 2</option>
                       <option value="Nurse Station 3">Nurse Station 3</option>
+                      <option value="ER">ER</option>
+                      <option value="Outpatient">Outpatient</option>
                   </select>
                 </div>
                 <div class="mb-3">
@@ -163,8 +165,30 @@
       </div>
     </div>   
 
+  <!--Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
   <script>
-    const bedTable = new DataTable('#bedTable');  
+    const dataTable = new DataTable('#bedTable');  
+
+    const editBedModal = new bootstrap.Modal('#editBedModal', {
+      keyboard: false
+    });
+
+    function showEditBedModal(bed_id) {
+      fetch('{{ url('/admin/showbed/') }}/' + bed_id)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('editbed_bednum').value = data.bednum;
+            document.getElementById('editbed_room').value = data.room;
+            document.getElementById('editbed_room_type').value = data.room_type;
+            document.getElementById('editbed_station').value = data.station;
+            document.getElementById('editbed_status').value = data.status;
+            document.getElementById('editbed_id').value = data.id;
+            editBedModal.show();
+        })
+    } 
+
   </script>
 
 @endsection

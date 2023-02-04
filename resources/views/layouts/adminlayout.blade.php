@@ -96,16 +96,29 @@
               <li class="nav-item mt-3">
                 <a href="{{ route('users') }}" class="nav-link text-white">
                   <i class="fa-solid fa-user-doctor fs-3 text-white"></i>
+                  <i class="text-white ms-1">User Management</i>
+                </a>
+              </li>
+              <li class="nav-item mt-3">
+                <a href="{{ route('patient') }}" class="nav-link mt-3">
+                  <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
+                  <i class="text-white ms-1">Patient Management</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="#" class="nav-link mt-3">
                   <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
+                  <i class="text-white ms-1">Admission</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="{{ route('beds') }}" class="nav-link text-white">
                   <i class="">Bed Management</i>
+                </a>
+              </li>
+              <li class="nav-item mt-3">
+                <a href="{{ route('orders') }}" class="nav-link text-white">
+                  <i class="">Doctor's Orders</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
@@ -179,28 +192,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
           integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script>
-    const userTable = new DataTable("#userTable");
-
-    const editBedModal = new bootstrap.Modal('#editBedModal', {
-      keyboard: false
-    });
-
-    function showEditBedModal(bed_id) {
-      fetch('{{ url('/admin/showbed/') }}/' + bed_id)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('editbed_bednum').value = data.bednum;
-            document.getElementById('editbed_room').value = data.room;
-            document.getElementById('editbed_room_type').value = data.room_type;
-            document.getElementById('editbed_station').value = data.station;
-            document.getElementById('editbed_status').value = data.status;
-            document.getElementById('editbed_id').value = data.id;
-            editBedModal.show();
-        })
-    } 
-  </script>
+ 
  
 </body>
 
