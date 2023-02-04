@@ -120,7 +120,7 @@
                     <tr>
                         <td>{{ $patient->id }}</td>
                         <td>{{ $patient->lastname }}, {{ $patient->firstname }} {{ $patient->midname }}</td>
-                        <td><button class="btn btn-sm btn-warning">View</button></td>
+                        <td><a class="btn btn-sm btn-warning" role="button" onclick="showMedHistoryModal({{ }});">{{}}</a></td>
                         <td>Room Pending</td>
                         <td>Active</td>
 
