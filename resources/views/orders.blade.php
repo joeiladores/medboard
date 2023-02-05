@@ -583,10 +583,14 @@ Progress Notes
 
 
 
-<!-- For DataTables -->
+
+
+ <!-- JQuery -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
-
 
 <!-- For Sweet Alert -->
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -594,16 +598,14 @@ Progress Notes
  <!-- For Font Awesome -->
  <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
- <!-- JQuery -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
- <!-- For Tabs -->
+ <!-- For Data Table -->
 <script>
   var dataTable = new DataTable("#medicationTable");
   var dataTable = new DataTable("#transfusionTable");
   var dataTable = new DataTable("#treatmentTable");
   var dataTable = new DataTable("#progressNotesTable");
 
+  // For Tabs
   function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
