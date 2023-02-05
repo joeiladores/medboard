@@ -9,20 +9,86 @@ body {
   /* overflow-x: hidden;
   overflow-y: hidden; */
 }
+/* Defaults */
+#DashboardCard{
+    height:35%; 
+    background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
+    border-radius:30px;
+}
+#DashboardText{
+    padding:4%;
+}
+#DashboardNurseImg{
+    width: 30%;
+    height: 100%;
+    margin: 2px;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 1000px) {
+    #DashboardCard{
+    height:30%;
+}
+  #DashboardSide {
+    display: none;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #DashboardSide {
+    display: none;
+  }
+  #DashboardNurseImg{
+    width: 45%;
+    height: 90%;
+    margin: 2px;
+  }
+}
+@media only screen and (max-width: 660px) {
+    #DashboardCard{
+    height:25%;
+}
+  #DashboardSide {
+    display: none;
+  }
+  #DashboardNurseImg{
+    width: 45%;
+    height: 90%;
+    margin: 2px;
+  }
+}
+@media only screen and (max-width: 500px) {
+    #DashboardCard{
+    height:20%;
+}
+#DashboardText{
+    font-size:15px;
+    padding:
+}
+  #DashboardSide {
+    display: none;
+  }
+  #DashboardNurseImg{
+    width: 45%;
+    height: 95%;
+    margin: 2px;
+  }
+}
+
+
 
 </style>
 
 <div class="row">
   <div class="col-lg-10">
-  <div class="card shadow" style="height:35%; background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius:30px;">
-  <h4 class="text-light p-5" style="position: absolute;">Good Day, Nurse "Name here"<br><br>
-  <p style="font-size:15px;">Today, you are assigned to station "station here"<br>
-  Have a nice day at work!</p>
-</h4>
-  
-<div style="text-align:right;">
-    <img src="{{ asset('images/nursedashboard.png') }}" alt="Image" style="width: 30%; height: 100%; margin: 2px;">
-  </div>
+    <div class="card shadow" id="DashboardCard">
+        <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day, Nurse "Name here"<br><br>
+        <p style="font-size:15px;">Today, you are assigned to station "here"<br>
+        Have a nice day at work!</p>
+        </h4>
+    <!-- Nurse Dashboard img -->
+    <div style="text-align:right;">
+        <img id="DashboardNurseImg" src="{{ asset('images/nursedashboard.png') }}" alt="Image">
+    </div>
 </div>
 
 
@@ -103,10 +169,14 @@ body {
       </div>
     </div>
   </div>
-  <div class="col-lg-2">
+  <div class="col-lg-2" id="DashboardSide">
+    <!-- Side Profile -->
     <div style="padding:20%; height:500px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
         <img src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
     </div>
+     <!--END Side Profile -->
+
+    <!-- Side Time/Date -->
     <div class="mt-2 p-2 text-light" style="height:100px;background: linear-gradient(180.37deg, rgba(66, 100, 208, 0.06) -19.51%, #4264D0 99.68%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 0px 0px 30px 30px;">
     <center>
         <h6 id="currentDate"></h6>
@@ -121,7 +191,7 @@ body {
         document.getElementById("currentTime").innerHTML = currentDate.toLocaleTimeString('en-US', timeOptions);
     </script>
     </div>
-    
+    <!--END Side Time/Date -->
   </div>
 </div>
 </div>
