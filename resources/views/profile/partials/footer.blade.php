@@ -51,33 +51,52 @@
    // Get the element with id="defaultOpen" and click on it
    document.getElementById("defaultOpen").click();
 
-  //  Edit Modal Patient
+   //  Edit Modal Patient
    const editPatientModal = new bootstrap.Modal('#editPatientModal', {
-      keyboard: false
-    });
+     keyboard: false
+   });
 
-    function showEditPatientModal(patient_id) {
-      fetch('{{ url('/patients/') }}/' + patient_id)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('editpatient_lastname').value = data.lastname;
-            document.getElementById('editpatient_firstname').value = data.firstname;
-            document.getElementById('editpatient_midname').value = data.midname;
-            document.getElementById('editpatient_marital_status').value = data.marital_status;
-            document.getElementById('editpatient_birth_date').value = data.birth_date;
-            document.getElementById('editpatient_gender').value = data.gender;
-            document.getElementById('editpatient_blood_type').value = data.blood_type;
-            document.getElementById('editpatient_address').value = data.address;
-            document.getElementById('editpatient_phone').value = data.phone;
-            document.getElementById('editpatient_health_insurance').value = data.health_insurance;
-            document.getElementById('editpatient_relative_fullname').value = data.relative_fullname;
-            document.getElementById('editpatient_relation').value = data.relation;
-            document.getElementById('editpatient_relative_phone').value = data.relative_phone;
-            document.getElementById('editpatient_id').value = data.id;
-            editPatientModal.show();
-        })
-    }
-   
+   function showEditPatientModal(patient_id) {
+     fetch('{{ url('/patients/') }}/' + patient_id)
+       .then(response => response.json())
+       .then(data => {
+         document.getElementById('editpatient_lastname').value = data.lastname;
+         document.getElementById('editpatient_firstname').value = data.firstname;
+         document.getElementById('editpatient_midname').value = data.midname;
+         document.getElementById('editpatient_marital_status').value = data.marital_status;
+         document.getElementById('editpatient_birth_date').value = data.birth_date;
+         document.getElementById('editpatient_gender').value = data.gender;
+         document.getElementById('editpatient_blood_type').value = data.blood_type;
+         document.getElementById('editpatient_address').value = data.address;
+         document.getElementById('editpatient_phone').value = data.phone;
+         document.getElementById('editpatient_health_insurance').value = data.health_insurance;
+         document.getElementById('editpatient_relative_fullname').value = data.relative_fullname;
+         document.getElementById('editpatient_relation').value = data.relation;
+         document.getElementById('editpatient_relative_phone').value = data.relative_phone;
+         document.getElementById('editpatient_id').value = data.id;
+         editPatientModal.show();
+       })
+   }
+
+   // Medical History Modal
+   const patientMedHistoryModal = new bootstrap.Modal('#patientMedHistoryModal', {
+     keyboard: false
+   });
+
+   function showMedHistoryModal(medhistory_id) {
+     fetch('{{ url('/medhistory/') }}/' + medhistory_id)
+       .then(response => response.json())
+       .then(data => {
+         document.getElementById('showpatientmed_date').innerHTML = data.date;
+         document.getElementById('showpatientmed_conditions').innerHTML = data.conditions;
+         document.getElementById('showpatientmed_symptoms').innerHTML = data.symptoms;
+         document.getElementById('showpatientmed_medications').innerHTML = data.medications;
+         document.getElementById('showpatientmed_allergies').innerHTML = data.allergies;
+         document.getElementById('showpatientmed_bad_habit').innerHTML = data.bad_habit;
+         document.getElementById('showpatientmed_id').innerHTML = data.id;
+         patientMedHistoryModal.show();
+       })
+   }
  </script>
 
  </body>

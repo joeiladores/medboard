@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MedicalHistory;
 use App\Models\Patients;
 use Illuminate\Http\Request;
 
@@ -9,14 +10,17 @@ class PatientsController extends Controller
 {
     public function index()
     {
-        return view('HomeAdmin');      // from login direct to admin dashboard
+        return view('HomeAdmin')->with('medical_histories', MedicalHistory::get());
+        // from login direct to admin dashboard
     }
 
-    public function patient(){
+    public function patient()
+    {
         return view('CreatePatient')->with('allPatients', Patients::orderByDesc('created_at')->get());
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $patient = new Patients;
 
@@ -38,7 +42,8 @@ class PatientsController extends Controller
         return redirect()->route('patientView')->with('success', 'New patient added!');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $patient = Patients::find($request->id);
 
@@ -57,7 +62,7 @@ class PatientsController extends Controller
         $patient->relative_phone    = $request->relative_phone;
 
         $patient->save();
-        return redirect()->route('patientView')->with('success', 'Patient updated successfully!');   
+        return redirect()->route('patientView')->with('success', 'Patient updated successfully!');
     }
 
     public function edit($id)
@@ -76,10 +81,16 @@ class PatientsController extends Controller
     }
 
     // for edit modal to show database detail per patient
-    public function showPatient($id) {
+    public function showPatient($id)
+    {
         $patient = Patients::find($id);
         return response()->json($patient);
     }
 
-
+    // for show modal patient med history
+    public function showMedHistory($id)
+    {
+        $medhistory = MedicalHistory::find($id);
+        return response()->json($medhistory);
+    }
 }

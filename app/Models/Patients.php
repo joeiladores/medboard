@@ -28,4 +28,10 @@ class Patients extends Model
         'relative_phone'
 
     ];
+
+    public function medHistory()
+    {
+        return $this->belongsTo(MedicalHistory::class);
+    }
+
 }

@@ -120,7 +120,70 @@
                     <tr>
                         <td>{{ $patient->id }}</td>
                         <td>{{ $patient->lastname }}, {{ $patient->firstname }} {{ $patient->midname }}</td>
-                        <td><a class="btn btn-sm btn-warning" role="button" onclick="showMedHistoryModal({{ }});">{{}}</a></td>
+                        <td>
+                            <!-- Modal button to show medical history -->
+                            <a class="btn btn-sm btn-warning" role="button" onclick="showMedHistoryModal({{ $patient->id }});">View Medical History</a>
+
+                            <!-- Create Medical History Modal of a Patient -->
+
+                            <!-- Medical History Modal Button -->
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#createMedHistoryModal">
+                                + Add Medical History
+                            </button>
+
+                            <!-- Medical History Modal Inputs-->
+                            <div class="modal fade" id="createMedHistoryModal" tabindex="-1" aria-labelledby="createMedHistoryModalLabel" aria-hidden="true">
+                                <<div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success">
+                                            <h5 class="modal-title text-light" id="createMedHistoryModal">Create Patient's Medical History</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card">
+                                                <form method="POST" action="{{ route('storeMedHistory') }}">
+                                                    @csrf
+                                                    <div class="row g-3 p-3">
+                                                        <div class="col-md-3">
+                                                            <input type="date" class="form-control" id="date" name="date" required>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control" id="patient_id" name="patient_id" value="{{ $patient->id }}" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="conditions" class="form-label">Check the conditions that apply to you or to any members of your immediate relatives:</label>
+                                                            <input type="text" class="form-control" id="conditions" name="conditions" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="symptoms" class="form-label">Check the symptoms that you're currently experiencing:</label>
+                                                            <input type="text" class="form-control" id="symptoms" name="symptoms" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="medications" class="form-label">Are you currently taking any medication?</label>
+                                                            <input type="text" class="form-control" id="medications" name="medications" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="allergies" class="form-label">Do you have any medication allergies?</label>
+                                                            <input type="text" class="form-control" id="allergies" name="allergies" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="bad_habit" class="form-label">Do you use or do you have history of using tobacco/alcohol/illegal drugs?</label>
+                                                            <input type="text" class="form-control" id="bad_habit" name="bad_habit" required>
+                                                            <input type="hidden" name="id" id="editpatient_id">
+                                                        </div>
+                                                        
+                                                        <hr>
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add to patient</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </td>
                         <td>Room Pending</td>
                         <td>Active</td>
 
@@ -133,7 +196,7 @@
                                 </button>
 
                                 <!-- Edit Patient Modal-->
-                                <div class="modal fade" id="editPatientModal" tabindex="1" aria-labelledby="editPatientLabel" aria-hidden="true">
+                                <div class="modal fade" id="editPatientModal" tabindex="-1" aria-labelledby="editPatientLabel" aria-hidden="true">
                                     <<div class="modal-dialog modal-lg modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary">
@@ -216,6 +279,37 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <!-- Display Patient Medical History Modal -->
+            <div class="modal modal-md fade" id="patientMedHistoryModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-bold text-center">Patient's Medical History</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <p class="card-title fw-bold" id="showpatientmed_date"></p>
+                                    </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <p class="card-text" id="showpatientmed_conditions"></p>
+                                        <p class="card-text" id="showpatientmed_symptoms"></p>
+                                        <p class="card-text" id="showpatientmed_medications"></p>
+                                        <p class="card-text" id="showpatientmed_allergies"></p>
+                                        <p class="card-text" id="showpatientmed_bad_habit"></p>
+                                        <input type="hidden" name="id" id="showpatientmed_id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div id="PendingView" class="tabcontent">

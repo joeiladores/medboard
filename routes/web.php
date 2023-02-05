@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 // Patient Controllers
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\MedicalHistoryController;
 
 
 Route::get('/', function (){
@@ -29,6 +30,8 @@ Route::get('/destroyPatient/{id}', [PatientsController::class, 'destroy'])->name
 Route::post('/updatePatient', [PatientsController::class, 'update'])->name('updatePatient');
 Route::get('/editPatient/{id}', [PatientsController::class, 'edit'])->name('editPatient');
 Route::get('/patients/{id}', [PatientsController::class, 'showPatient'])->name('patients');
+Route::get('/medhistory/{id}', [PatientsController::class, 'showMedHistory'])->name('patientMedHistory');
+Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
 
 
 
