@@ -44,6 +44,10 @@
 }
 
 
+/* Admin Total Cards */
+.card-bg{
+  background-color: #d4ebf8;
+}
 
 
 
@@ -72,10 +76,6 @@
 
 .secondary-bg{
   background-color: var(--second-bg-color);
-}
-
-.rounded-full{
-  border-radius: 100%;
 }
 
 #wrapper{

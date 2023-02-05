@@ -147,7 +147,7 @@
                                                         <div class="col-md-3">
                                                             <input type="date" class="form-control" id="date" name="date" required>
                                                         </div>
-                                                        <br>
+                                                        <div></div>
                                                         <div class="col-md-4">
                                                             <input type="number" class="form-control" id="patient_id" name="patient_id" value="{{ $patient->id }}" required>
                                                         </div>
@@ -170,7 +170,7 @@
                                                         <div class="col-md-12">
                                                             <label for="bad_habit" class="form-label">Do you use or do you have history of using tobacco/alcohol/illegal drugs?</label>
                                                             <input type="text" class="form-control" id="bad_habit" name="bad_habit" required>
-                                                            <input type="hidden" name="id" id="editpatient_id">
+                                                            
                                                         </div>
                                                         
                                                         <hr>

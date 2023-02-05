@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bed;
 use App\Models\MedicalHistory;
 use App\Models\Patients;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PatientsController extends Controller
 {
     public function index()
     {
-        return view('HomeAdmin')->with('medical_histories', MedicalHistory::get());
+        $totalPatients  = Patients::count();
+        $totalDoctors   = User::where('usertype', 'Doctor')->count();
+        $totalNurses    = User::where('usertype', 'Nurse')->count();
+
+
+        return view('HomeAdmin', compact('totalPatients','totalDoctors','totalNurses'));
         // from login direct to admin dashboard
     }
 
@@ -93,4 +100,7 @@ class PatientsController extends Controller
         $medhistory = MedicalHistory::find($id);
         return response()->json($medhistory);
     }
+
+
+
 }
