@@ -6,7 +6,7 @@
 body, html {
   height: 100%;
   margin: 0;
-  font-family: Arial;
+  /* font-family: Arial; */
   /* overflow-x:hidden;
   overflow-y:hidden; */
 }
@@ -22,7 +22,7 @@ body, html {
   padding: 14px 16px;
   font-size: 17px;
   width: 25%;
-  height: 5%;
+  height: 8%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px 50px 0px 0px;
 }
