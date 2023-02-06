@@ -21,7 +21,9 @@ use App\Http\Controllers\ProgressNoteController;
 
 
 //Admission Form
+
 use App\Http\Controllers\AdmissionAjaxController;
+use App\Http\Controllers\PatientAdmissionController;
 
 
 
@@ -135,6 +137,8 @@ Route::get('/generate-pdf', function(){
 // Routes for Admission
 
 Route::resource('ajaxadmissions',AdmissionAjaxController::class);
+
+Route::resource('patientAdmission',PatientAdmissionController::class);
 
 Route::get('/admission', function () {
     return view('admission');

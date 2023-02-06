@@ -29,3 +29,4 @@ class Patients extends Model
 
     ];
 }
+

@@ -388,22 +388,15 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <div class="col-md-12">
-                                <table class="table table-bordered patient-table">
+                            <table class="table table-bordered patient-table">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Admitted</th>
-                                            <th>Complain</th>
-                                            <th>Impression Diagnosis</th>
+                                            <th>lastname</th>
+                                            <th>birth_date</th>
+                                            <th>gender</th>
                                             <th>age</th>
-                                            <th>Weight</th>
-                                            <th>Activities</th>
-                                            <th>Diets</th>
-                                            <th>Tubes</th>
-                                            <th>Special Info</th>
-                                            <th>Status</th>
-                                            <th>Date Time Discharge</th>
-                                            <th width="280px">Action</th>
+                                            <th>address</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -667,24 +660,35 @@
         --------------------------------------------
         --------------------------------------------*/
 
-        var table = $('.data-table').DataTable({
+
+        var table = $('.patient-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('ajaxadmissions.index') }}",
+            ajax: "{{ route('patientAdmission.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: 'admitted',
-                    name: 'admitted'
+                    data: 'lastname',
+                    name: 'lastname'
                 },
                 {
-                    data: 'complain',
-                    name: 'complain'
+                    data: 'birth_date',
+                    name: 'birth_date'
+                },
+
+                {
+                    data: 'gender',
+                    name: 'gender'
+                },
+                {
+                    data: 'address',
+                    name: 'address'
                 },
             ]
         });
+
 
         $('#createNewAdmission').click(function() {
             $('#saveBtn').val("create-admission");
