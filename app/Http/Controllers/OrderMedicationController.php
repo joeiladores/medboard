@@ -15,7 +15,6 @@ class OrderMedicationController extends Controller
     public function index($id)
 {
     $doctor_order = DoctorOrder::findOrFail ($id);
-    // $doctor_order = DoctorOrder::findOrFail($id);
     $order_medications = OrderMedication::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $order_transfusions = OrderTransfusion::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $order_treatments = OrderTreatment::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
@@ -24,10 +23,9 @@ class OrderMedicationController extends Controller
     return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes'));
 }
 
-  
 public function edit($id)
 {
-    $orders_medications = OrderMedication::findOrFail ($id);
+    $orders_medications = OrderMedication::findOrFail($id);
     $doctor_order_id = $orders_medications->doctor_order_id;
 
     return view('editMedication', ['id' => $doctor_order_id])->with('order_medication', $orders_medications);
@@ -39,6 +37,7 @@ public function edit($id)
 
         $doctor_order_id                    = $request->input('doctor_order_id');
         $orders_medication->doctor_order_id = $doctor_order_id;
+        
         $orders_medication->medication      = $request->medication;
         $orders_medication->dose            = $request->dose;
         $orders_medication->quantity        = $request->quantity;
@@ -78,6 +77,5 @@ public function edit($id)
 
         return redirect()->route('orders', ['id' => $doctor_order_id]);
     }
-
     
 }
