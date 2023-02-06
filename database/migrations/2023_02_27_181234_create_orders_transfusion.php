@@ -20,8 +20,8 @@ return new class extends Migration
             $table->enum('type',['IV','Blood']);
             $table->string('fluid_name');
             $table->string('instruction');
-            $table->dateTime('date_started')->nullable()->default("TBD");
-            $table->dateTime('date_stopped')->nullable()->default("TBD");
+            $table->date('date_started')->nullable();
+            $table->date('date_stopped')->nullable();
             $table->timestamps();
 
             $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
