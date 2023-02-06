@@ -1,4 +1,4 @@
-@extends('layouts.orders')
+@extends('layouts.doctorOrdersSidenav')
 
 @section('content')
 <style>
@@ -36,8 +36,8 @@ body, html {
   color: white;
   display: none;
   padding: 50px 20px;
-  height: 100%;
-  border-radius: 50px 50px 0px 0px;
+  height: 63%;
+  border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #Medication {background-color: white;}
@@ -367,7 +367,7 @@ body, html {
 <button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress Notes</button>
 
 
-<div id="Medication" class="tabcontent">
+<div id="Medication" class="tabcontent mt-4">
 <table class="table" id="medicationTable">
             <thead>
                 <tr>
@@ -393,7 +393,6 @@ body, html {
                     <td>{{ $order_medication->instructions }}</td>
                     <td>{{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
                     <td>{{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
-                    <td style="display:none;">{{ $order_medication->doctor_order_id }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_medication->id }}" onClick="reply_click_medication(this.id)"></button>
                       <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
@@ -429,7 +428,7 @@ body, html {
            </table>
 </div>
 
-<div id="Transfusion" class="tabcontent">
+<div id="Transfusion" class="tabcontent mt-4">
 <table class="table" id="transfusionTable">
             <thead>
                 <tr>
@@ -483,7 +482,7 @@ body, html {
            </table>
 </div>
 
-<div id="Treatment" class="tabcontent">
+<div id="Treatment" class="tabcontent mt-4">
 <table class="table" id="treatmentTable">
             <thead>
                 <tr>
@@ -537,7 +536,7 @@ body, html {
            </table>
 </div>
 
-<div id="ProgressNotes" class="tabcontent">
+<div id="ProgressNotes" class="tabcontent mt-4">
 <table class="table" id="progressNotesTable">
             <thead>
                 <tr>
@@ -585,26 +584,49 @@ body, html {
            </table>
 </div>
 
- <!-- JQuery -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
  <!-- For DataTables -->
-<link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+ <script>
+  
+  $(document).ready( function () {
+     $('#medicationTable').DataTable({
+         "pageLength": 5,
+         "lengthChange": false
+     });
+ } ); 
 
+ $(document).ready( function () {
+     $('#transfusionTable').DataTable({
+         "pageLength": 5,
+         "lengthChange": false
+     });
+ } ); 
+
+ $(document).ready( function () {
+     $('#treatmentTable').DataTable({
+         "pageLength": 5,
+         "lengthChange": false
+     });
+ } ); 
+
+ $(document).ready( function () {
+     $('#progressNotesTable').DataTable({
+         "pageLength": 5,
+         "lengthChange": false
+     });
+ } ); 
+ </script>
 <!-- For Sweet Alert -->
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
  <!-- For Font Awesome -->
  <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
- <!-- For Data Table -->
 <script>
-  var dataTable = new DataTable("#medicationTable");
-  var dataTable = new DataTable("#transfusionTable");
-  var dataTable = new DataTable("#treatmentTable");
-  var dataTable = new DataTable("#progressNotesTable");
-
   // For Tabs
   function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
