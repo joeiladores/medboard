@@ -14,6 +14,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
+use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
@@ -73,15 +74,13 @@ Route::controller(CalendarController::class)->group(function () {
 
 
 // *****************************************************************************
-// Doctor's Orders Routes
+///////////////////// Doctor's Orders Routes/////////////////////////
 
 // Doctor's Orders View
-Route::get('/doctorsOrders', function () {
-    return view('doctorsOrders');
-});
+Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
 
 // For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
-Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
+Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
 
 
 // *****************************************************************************
