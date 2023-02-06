@@ -15,6 +15,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
+use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
@@ -89,15 +90,13 @@ Route::controller(CalendarController::class)->group(function () {
 
 
 // *****************************************************************************
-// Doctor's Orders Routes
+///////////////////// Doctor's Orders Routes/////////////////////////
 
 // Doctor's Orders View
-Route::get('/doctorsOrders', function () {
-    return view('doctorsOrders');
-});
+Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
+Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
 
-// For Doctor's Order Display View
-Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
+// For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
 
 
 // *****************************************************************************
@@ -123,12 +122,21 @@ Route::get('/editTreatment/{id}', [OrderTreatmentController::class, 'edit'])->na
 Route::post('/updateTreatment', [OrderTreatmentController::class, 'update'])->name('updateTreatment');
 Route::get('/destroyTreatment/{id}', [OrderTreatmentController::class, 'destroy'])->name('destroyTreatment');
 
+// *****************************************************************************
 // Routes for Progres Notes
 Route::post('/storeProgressNote', [ProgressNoteController::class, 'store'])->name('storeProgressNote');
 Route::get('/editProgressNote/{id}', [ProgressNoteController::class, 'edit'])->name('editProgressNote');
 Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->name('updateProgressNote');
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
 
+// *****************************************************************************
+// Nurse's Dashboard View
+Route::get('/nurseHome', function () {
+    return view('nurseHome');
+});
+
+
+// *****************************************************************************
 Route::get('/generate-pdf', function(){
     // get the data to display in the PDF
     $patients = App\Models\Patients::all();

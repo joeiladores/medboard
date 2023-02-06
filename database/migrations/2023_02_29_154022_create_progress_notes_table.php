@@ -13,18 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //codes for testing
-        Schema::create('order_treatments', function (Blueprint $table) {
+        Schema::create('progress_notes', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id')->nullable();
-            $table->string('name');
-            $table->string('type');
-            $table->string('instruction');
-            $table->date('date_started');
-            $table->date('date_done')->nullable();
+            $table->unsignedBigInteger('doctor_order_id');
+            $table->string('notes');
             $table->timestamps();
-        });
 
+            $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
+        });
     }
 
     /**
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_treatments');
+        Schema::dropIfExists('progress_notes');
     }
 };

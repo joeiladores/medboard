@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        //codes for testing
+       ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
         Schema::create('order_transfusions', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id')->nullable();
+            $table->unsignedBigInteger('doctor_order_id');
             $table->enum('type',['IV','Blood']);
             $table->string('fluid_name');
             $table->string('instruction');
-            $table->dateTime('date_started')->nullable();
-            $table->dateTime('date_stopped')->nullable();
+            $table->date('date_started')->nullable();
+            $table->date('date_stopped')->nullable();
             $table->timestamps();
+
+            $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
         });
 
 
