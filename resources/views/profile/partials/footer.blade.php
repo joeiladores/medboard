@@ -78,13 +78,13 @@
        })
    }
 
-   // Medical History Modal
+   // Show Medical History Modal of specific Patient
    const patientMedHistoryModal = new bootstrap.Modal('#patientMedHistoryModal', {
      keyboard: false
    });
 
-   function showMedHistoryModal(medhistory_id) {
-     fetch('{{ url('/medhistory/') }}/' + medhistory_id)
+   function showMedHistoryModal(patient_id) {
+     fetch('{{ url('/medhistory/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('showpatientmed_date').innerHTML = data.date;
@@ -92,11 +92,27 @@
          document.getElementById('showpatientmed_symptoms').innerHTML = data.symptoms;
          document.getElementById('showpatientmed_medications').innerHTML = data.medications;
          document.getElementById('showpatientmed_allergies').innerHTML = data.allergies;
-         document.getElementById('showpatientmed_bad_habit').innerHTML = data.bad_habit;
+         document.getElementById('showpatientmed_bad_habit').innerHTML= data.bad_habit;
          document.getElementById('showpatientmed_id').innerHTML = data.id;
          patientMedHistoryModal.show();
        })
    }
+
+  //  Create Medical History of a Patient
+   const createMedHistoryModal = new bootstrap.Modal('#createMedHistoryModal',{
+    keyboard: false
+   });
+
+   function showCreateMedHistoryModal(patient_id){
+    fetch('{{ url('/medhistory/') }}/' + patient_id)
+       .then(response => response.json())
+       .then(data => {
+         document.getElementById('medhistory_patient_name').innerHTML = data.lastname;
+         document.getElementById('createMed_patient_id').value = data.id;
+         createMedHistoryModal.show();
+       })
+   }
+
  </script>
 
  </body>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DoctorDashboard;
 use App\Http\Controllers\NurseAssignmentController;
 // Doctor Order Controllers
 use App\Http\Controllers\OrderMedicationController;
@@ -30,9 +31,11 @@ Route::get('/destroyPatient/{id}', [PatientsController::class, 'destroy'])->name
 Route::post('/updatePatient', [PatientsController::class, 'update'])->name('updatePatient');
 Route::get('/editPatient/{id}', [PatientsController::class, 'edit'])->name('editPatient');
 Route::get('/patients/{id}', [PatientsController::class, 'showPatient'])->name('patients');
-Route::get('/medhistory/{id}', [PatientsController::class, 'showMedHistory'])->name('patientMedHistory');
+Route::get('/medhistory/{id}', [PatientsController::class, 'showPatient'])->name('patientMedHistory');
 Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
+Route::get('/showmedhistory/{id}', [PatientsController:: class, 'showMedHistory'])->name('showmedhistory');
 
+Route::get('/doctorHome', [DoctorDashboard::class, 'index']);
 
 
 // *****************************************************************************

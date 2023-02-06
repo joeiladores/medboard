@@ -55,10 +55,16 @@
 /* Dashboard */
 .sidebar{
   background-image: linear-gradient(to right,  #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
+  border-radius: 0 2.5rem 2.5rem 0;
 }
 
 .logo-sidebar{
   max-width: 4.5rem;
+  height: auto;
+}
+
+.doc-icon{
+  max-width: 8rem;
   height: auto;
 }
 

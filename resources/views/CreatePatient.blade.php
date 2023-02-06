@@ -125,9 +125,9 @@
                             <a class="btn btn-sm btn-warning" role="button" onclick="showMedHistoryModal({{ $patient->id }});">View Medical History</a>
 
                             <!-- Create Medical History Modal of a Patient -->
-
+                
                             <!-- Medical History Modal Button -->
-                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#createMedHistoryModal">
+                            <button type="button" class="btn btn-sm btn-success" onclick="showCreateMedHistoryModal({{ $patient->id }})">
                                 + Add Medical History
                             </button>
 
@@ -149,7 +149,9 @@
                                                         </div>
                                                         <div></div>
                                                         <div class="col-md-4">
-                                                            <input type="number" class="form-control" id="patient_id" name="patient_id" value="{{ $patient->id }}" required>
+                                                    
+                                                        <p id="medhistory_patient_name"></p>
+                                                            <input type="number" class="form-control" id="createMed_patient_id" name="patient_id" required readonly>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label for="conditions" class="form-label">Check the conditions that apply to you or to any members of your immediate relatives:</label>

@@ -23,7 +23,8 @@ class PatientsController extends Controller
 
     public function patient()
     {
-        return view('CreatePatient')->with('allPatients', Patients::orderByDesc('created_at')->get());
+        return view('CreatePatient')->with('allPatients', Patients::orderByDesc('created_at')->get())
+                                    ->with('medhistory', MedicalHistory::get());
     }
 
     public function store(Request $request)
@@ -88,19 +89,23 @@ class PatientsController extends Controller
     }
 
     // for edit modal to show database detail per patient
+    // for show/display med history of a specific patient
     public function showPatient($id)
     {
         $patient = Patients::find($id);
         return response()->json($patient);
     }
 
-    // for show modal patient med history
+    // for create new modal for patient med history
     public function showMedHistory($id)
     {
-        $medhistory = MedicalHistory::find($id);
-        return response()->json($medhistory);
+        
+  
+        $patient = Patients::find($id)->with(MedicalHistory::where('patient_id' -> $id)->get());
+
+
+        dd($patient);
     }
 
-
-
+  
 }

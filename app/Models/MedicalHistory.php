@@ -24,6 +24,6 @@ class MedicalHistory extends Model
 
     public function patientMedHistory()
     {
-        return $this->belongsToMany(Patients::class);
+        return $this->belongsTo(Patients::class);
     }
 }
