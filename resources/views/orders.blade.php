@@ -20,6 +20,9 @@ body, html {
   padding: 14px 16px;
   font-size: 17px;
   width: 25%;
+  height: 5%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px 50px 0px 0px;
 }
 
 .tablink:hover {
@@ -32,11 +35,16 @@ body, html {
   display: none;
   padding: 50px 20px;
   height: 100%;
+  border-radius: 50px 50px 0px 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #Medication {background-color: white;}
 #Transfusion {background-color: white;}
 #Treatment {background-color: white;}
-#Notes {background-color: white;}
+#ProgressNotes {background-color: white;}
+
+
+
 </style>
   <div class="card rounded shadow mb-2">
   <div class="card-body">
@@ -67,7 +75,7 @@ body, html {
       </div>
       <div class="modal-body">
       <div class="card">
-      <form method="POST" action="{{ route('storeMedication') }}">
+      <form  class="medication-form" method="POST" action="{{ route('storeMedication') }}">
                 @csrf
                 <div class="col-12 p-2">
                     <label for="medication" class="form-label">Medication</label>
@@ -75,23 +83,18 @@ body, html {
                 </div>
                 <div class="col-4 p-2 d-inline-block">
                     <label for="dose" class="form-label">Dosage</label>
-                    <input type="text" class="form-control" id="dose" name="dose" required>
+                    <input type="number" class="form-control" id="dose" name="dose" required>
                 </div>
                 <div class="col-4 pt-2 d-inline-block">
                 <div class="form-group">
                 <label for="unit" class="form-label">Unit:</label>
-                    <select class="form-select" id="unit" name="unit">
+                    <select class="form-select" id="unit" name="unit" required>
                         <option selected>Choose...</option>
                         <option value="Gram">Gram</option>
                         <option value="Milligram">Milligram</option>
                         <option value="Microgram">Microgram</option>
                     </select>
                     </div>
-                    <script>
-                      var select = document.getElementById("unit");
-                    var selectedValue = select.options[select.selectedIndex].value;
-                    console.log(selectedValue);
-                    </script>
                 </div>
                 <div class="col-3 ps-3 d-inline-block">
                     <label for="quantity" class="form-label">Quantity</label>
@@ -103,12 +106,40 @@ body, html {
                 </div>
                 <div class="col-12 p-2">
                     <label for="instructions" class="form-label">Instructions</label>
-                    <input type="text" class="form-control" id="instructions" name="instructions" required>
+                    <textarea class="form-control" id="instructions" name="instructions" rows="3" required></textarea>
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
-                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                <!-- Add Medication trigger button -->
+                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateMedicationForm()">Add</button>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
+                <!-- Add Medication Button -->
+                <script>
+                    function validateMedicationForm() {
+                    var form = document.querySelector('.medication-form');
+                    var medication = form.querySelector('#medication').value;
+                    var dose = form.querySelector('#dose').value;
+                    var quantity = form.querySelector('#quantity').value;
+                    var frequency = form.querySelector('#frequency').value;
+                    var instructions = form.querySelector('#instructions').value;
+
+                    if (!medication || !dose || !quantity || !frequency || !instructions) {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        confirmButtonColor: 'rgb(66,100,208)',
+                        text: 'Please fill out all required fields before submitting!'
+                      });
+                    } else {
+                      Swal.fire({
+                      title: 'Success!',
+                      text: 'New Medication record has been added!',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      });
+                    }
+                  }
+                </script>
             </form>
         </div>
       </div>
@@ -131,7 +162,7 @@ body, html {
       </div>
       <div class="modal-body">
       <div class="card">
-      <form method="POST" action="{{ route('storeTransfusion') }}">
+      <form  class="transfusion-form" method="POST" action="{{ route('storeTransfusion') }}">
                 @csrf
                 <div class="col-5 p-2 d-inline-block">
                 <div class="form-group">
@@ -154,12 +185,38 @@ body, html {
                 </div>
                 <div class="col-12 p-2">
                     <label for="instruction" class="form-label">Instructions:</label>
-                    <input type="text" class="form-control" id="instruction" name="instruction" required>
+                    <textarea class="form-control" id="instruction" name="instruction" rows="3" required></textarea>
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+                  <!-- Add Transfusion Button -->
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateTransfusionForm()">Add</button>
                   <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
+                <!-- Add Transfusion validation -->
+                <script>
+                function validateTransfusionForm() {
+                  var form = document.querySelector('.transfusion-form');
+                  var type = form.querySelector('#type').value;
+                  var fluid_name = form.querySelector('#fluid_name').value;
+                  var instruction = form.querySelector('#instruction').value;
+
+                    if (!type || !fluid_name || !instruction) {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        confirmButtonColor: 'rgb(66,100,208)',
+                        text: 'Please fill out all required fields before submitting!'
+                      });
+                    } else {
+                      Swal.fire({
+                      title: 'Success!',
+                      text: 'New Transfusion record has been added!',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      });
+                    }
+                  }
+                </script>
             </form>
         </div>
       </div>
@@ -183,7 +240,7 @@ Treatment
       </div>
       <div class="modal-body">
       <div class="card">
-      <form method="POST" action="{{ route('storeTreatment') }}">
+      <form class="treatment-form"  method="POST" action="{{ route('storeTreatment') }}">
                 @csrf
                 <div class="col-6 p-2 d-inline-block">
                     <label for="name" class="form-label">Name:</label>
@@ -195,18 +252,43 @@ Treatment
                 </div>
                 <div class="col-12 p-2 d-inline-block">
                     <label for="instruction" class="form-label">Instructions:</label>
-                    <input type="text" class="form-control" id="instruction" name="instruction" required>
+                    <textarea class="form-control" id="instruction" name="instruction" rows="3" required></textarea>
                 </div>
 
                 <div class="col-5 p-2 mb-3 d-inline-block">
                         <label for="date_started">Date Start:</label>
                         <input class="form-control" type="date" id="date_started" name="date_started"  required/>
-                       
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+                  <!-- Add Treatment Button -->
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateTreatmentForm()">Add</button>
                   <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
+                <!-- Add Treatment validation -->
+                <script>
+                 function validateTreatmentForm() {
+                  var form = document.querySelector('.treatment-form');
+                  var name = form.querySelector('#name').value;
+                  var type = form.querySelector('#type').value;
+                  var instruction = form.querySelector('#instruction').value;
+                  var date_started = form.querySelector('#date_started').value;
+                    if (!type || !fluid_name || !instruction || !date_started) {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        confirmButtonColor: 'rgb(66,100,208)',
+                        text: 'Please fill out all required fields before submitting!'
+                      });
+                    } else {
+                      Swal.fire({
+                      title: 'Success!',
+                      text: 'New Treatment record has been added!',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      });
+                    }
+                  }
+                </script>
             </form>
         </div>
       </div>
@@ -228,16 +310,40 @@ Progress Notes
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form method="POST" action="">
+      <form class="progressNote-form" method="POST" action="{{ route('storeProgressNote') }}">
       @csrf
       <div class="mb-3">
       <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
     </div>
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
-      <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+    <div>
+                <!-- Add Progress Note trigger button -->
+                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateProgressNoteForm()">Add</button>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                </div>
+                <!-- Add Progress Note Validation -->
+                <script>
+                  function validateProgressNoteForm() {
+                    var progress_notes = document.getElementById("progress_notes").value;
+
+                    if (progress_notes === "") {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        confirmButtonColor: 'rgb(66,100,208)',
+                        text: 'Please fill out the required field before submitting!'
+                      });
+                    } else {
+                      Swal.fire({
+                      title: 'Success!',
+                      text: 'New Progress note record has been added!',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      });
+                    }
+                  }
+                </script>
 </form>
+
       </div>
     </div>
   </div>
@@ -251,7 +357,7 @@ Progress Notes
 <button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
 <button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
 <button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
-<button class="tablink" onclick="openPage('Notes', this, 'rgb(66,100,208)')">Progress Notes</button>
+<button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress Notes</button>
 
 
 <div id="Medication" class="tabcontent">
@@ -278,12 +384,37 @@ Progress Notes
                     <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
-                    <td>{{ $order_medication->date_started }}</td>
-                    <td>{{ $order_medication->date_stopped }}</td>
+                    <td> {{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
+                    <td> {{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyMedication', $order_medication->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    </td>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_medication->id }}" onClick="reply_click_medication(this.id)"></button>
+                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                       function reply_click_medication(clicked_id) {
+                      Swal.fire({
+                        title: 'Delete Medication Record?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: 'rgb(66,100,208)',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Confirm'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.href = "{{ route('destroyMedication', '') }}" + "/" + clicked_id;
+                          Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Medication Record has been deleted.',
+                            icon: 'success',
+                            showConfirmButton: false
+                          });
+                        }
+                      });
+                    }
+
+                      </script>
                 </tr>
                 @endforeach
             </tbody>
@@ -308,12 +439,36 @@ Progress Notes
                     <td>{{ $order_transfusion->type }}</td>
                     <td>{{ $order_transfusion->fluid_name }}</td>
                     <td>{{ $order_transfusion->instruction }}</td>
-                    <td>{{ $order_transfusion->date_started }}</td>
-                    <td>{{ $order_transfusion->date_stopped }}</td>
+                    <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_started), "F j, Y") : '' }}</td>
+                    <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyTransfusion', $order_transfusion->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    </td>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_transfusion->id }}" onClick="reply_click_transfusion(this.id)"></button>
+                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click_transfusion(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Transfusion Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyTransfusion', '') }}" + "/" + clicked_id;
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Transfusion Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
                 </tr>
                 @endforeach
             </tbody>
@@ -338,35 +493,116 @@ Progress Notes
                     <td>{{ $order_treatment->name }}</td>
                     <td>{{ $order_treatment->type }}</td>
                     <td>{{ $order_treatment->instruction }}</td>
-                    <td>{{ $order_treatment->date_started }}</td>
-                    <td>{{ $order_treatment->date_done }}</td>
+                    <td> {{ $order_treatment->date_started ? date_format(new DateTime($order_treatment->date_started), "F j, Y") : '' }}</td>
+                    <td> {{ $order_treatment->date_done ? date_format(new DateTime($order_treatment->date_done), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('destroyTreatment', $order_treatment->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                    </td>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_treatment->id }}" onClick="reply_click_treatment(this.id)"></button>
+                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click_treatment(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Treatment Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyTreatment', '') }}" + "/" + clicked_id;
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Treatment Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
                 </tr>
                 @endforeach
             </tbody>
            </table>
 </div>
 
-<div id="Notes" class="tabcontent">
-  <h3>Notes</h3>
-  <p>DISPLAY Notes HERE</p>
+<div id="ProgressNotes" class="tabcontent">
+<table class="table" id="progressNotesTable">
+            <thead>
+                <tr>
+                    <th>Date Created</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($progress_notes  as $progress_note)
+                <tr>
+                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y") }}</td>
+                    <td>{{ $progress_note->notes }}</td>
+                    <td class="d-flex">
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $progress_note->id }}" onClick="reply_click_progressNotes(this.id)"></button>
+                      <a href="{{ route('editProgressNote', $progress_note->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                   </td>
+                   <!-- To trigger the sweet alert (per ID) -->
+                      <script type="text/javascript">
+                        function reply_click_progressNotes(clicked_id) {
+                          Swal.fire({
+                            title: 'Delete Progress Note Record?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: 'rgb(66,100,208)',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = "{{ route('destroyProgressNote', '') }}" + "/" + clicked_id;
+                              Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Progress Note Record has been deleted.',
+                                icon: 'success',
+                                showConfirmButton: false
+                            });
+                            }
+                          });
+                        }
+                      </script>
+                </tr>
+                @endforeach
+            </tbody>
+           </table>
 </div>
+
+
+
+
 
 <!-- For DataTables -->
 <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
 
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
 
-</script>
+<!-- For Sweet Alert -->
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+ <!-- For Font Awesome -->
+ <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
+ <!-- JQuery -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <!-- For Tabs -->
 <script>
   var dataTable = new DataTable("#medicationTable");
   var dataTable = new DataTable("#transfusionTable");
   var dataTable = new DataTable("#treatmentTable");
-  
+  var dataTable = new DataTable("#progressNotesTable");
 
     function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
@@ -392,9 +628,6 @@ Progress Notes
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
-
-
-
 
 
 @endsection

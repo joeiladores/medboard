@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
+        //codes for testing
         Schema::create('order_treatments', function (Blueprint $table) {
             $table->id();
+            $table->integer('doctor_order_id')->nullable();
             $table->string('name');
             $table->string('type');
             $table->string('instruction');
             $table->date('date_started');
             $table->date('date_done')->nullable();
-            
             $table->timestamps();
         });
+
     }
 
     /**
