@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DoctorDashboard;
 use App\Http\Controllers\NurseAssignmentController;
 
 // Calendar Controller
@@ -17,6 +18,11 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
+
+// Patient Controllers
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\MedicalHistoryController;
+
 use App\Http\Controllers\ProgressNoteController;
 
 
@@ -24,9 +30,7 @@ use App\Http\Controllers\ProgressNoteController;
 use App\Http\Controllers\AdmissionAjaxController;
 
 
-
-
-Route::get('/', function () {
+Route::get('/', function (){
     return redirect()->route('login');
 });
 
@@ -34,9 +38,21 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 // *****************************************************************************
 // Patient Routes
-Route::get('/patient', [App\Http\Controllers\PatientsController::class, 'patient'])->name('patient');
+Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
+Route::get('/patient', [PatientController::class, 'patient'])->name('patientView');
+Route::post('/storePatient', [PatientController::class, 'store'])->name('storePatient');
+Route::get('/destroyPatient/{id}', [PatientController::class, 'destroy'])->name('destroyPatient');
+Route::post('/updatePatient', [PatientController::class, 'update'])->name('updatePatient');
+Route::get('/editPatient/{id}', [PatientController::class, 'edit'])->name('editPatient');
+Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('patients');
+Route::get('/medhistory/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
+Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
+Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
+
+Route::get('/doctorHome', [DoctorDashboard::class, 'index']);
 
 
 // *****************************************************************************
