@@ -116,8 +116,8 @@ Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy
 
 // *****************************************************************************
 // Nurse's Dashboard View
-Route::get('/nurseDashboard', function () {
-    return view('nurseDashboard');
+Route::get('/nurseHome', function () {
+    return view('nurseHome');
 });
 
 
