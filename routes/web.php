@@ -78,9 +78,12 @@ Route::controller(CalendarController::class)->group(function () {
 
 // Doctor's Orders View
 Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
+Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
+
+
 
 // For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
-Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
+// Route::get('/orders', [OrderMedicationController::class, 'index'])->name('orders');
 
 
 // *****************************************************************************

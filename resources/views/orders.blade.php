@@ -78,8 +78,9 @@ body, html {
       </div>
       <div class="modal-body">
       <div class="card">
-      <form  class="medication-form" method="POST" action="{{ route('storeMedication') }}">
+      <form  class="medication-form" method="POST" action="{{ route('storeMedication')}}">
                 @csrf
+                <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
                 <div class="col-12 p-2">
                     <label for="medication" class="form-label">Medication</label>
                     <input type="text" class="form-control" id="medication" name="medication" required>
@@ -387,8 +388,9 @@ Progress Notes
                     <td>{{ $order_medication->unit }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
-                    <td> {{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
-                    <td> {{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
+                    <td>{{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
+                    <td>{{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
+                    <td style="display:none;">{{ $order_medication->doctor_order_id }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_medication->id }}" onClick="reply_click_medication(this.id)"></button>
                       <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>

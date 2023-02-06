@@ -17,7 +17,7 @@ return new class extends Migration
     Schema::create('doctor_orders', function (Blueprint $table) {
         $table->id();
         $table->integer('admission_id');
-        $table->integer('doctor_order_id');
+        $table->integer('doctor_id');
         $table->integer('nurse_id');
         $table->date('date_ordered');
         $table->string('order_type');

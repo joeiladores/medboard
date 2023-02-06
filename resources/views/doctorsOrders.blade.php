@@ -21,7 +21,7 @@
             @foreach($doctor_orders as $doctor_order)
                 <tr>
                     <td>{{ $doctor_order->admission_id }}</td>
-                    <td>{{ $doctor_order->doctor_order_id }}</td>
+                    <td>{{ $doctor_order->doctor_id }}</td>
                     <td>Sample Patient Name</td>
                     <td>Sample Room Number</td>
                     <td>{{ $doctor_order->nurse_id }}</td>
@@ -29,7 +29,7 @@
                    
                     <td class="d-flex">
                     <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
-                    </td>
+ </td>
                 </tr>
                 @endforeach
             </tbody>
