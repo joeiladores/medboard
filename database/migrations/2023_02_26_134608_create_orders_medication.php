@@ -12,26 +12,27 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        //codes for testing
-        Schema::create('order_medications', function (Blueprint $table) {
-            $table->id();
-            $table->integer('doctor_order_id')->nullable();
-            $table->string('medication');
-            $table->double('dose');
-            $table->integer('quantity');
-            $table->enum('unit',['Gram','Milligram','Microgram']);
-            $table->string('frequency');
-            $table->string('instructions');
-            $table->date('date_started')->nullable();
-            $table->date('date_stopped')->nullable();
-            $table->timestamps();
-        });
+{
+    //codes for testing
+    ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
+    Schema::create('order_medications', function (Blueprint $table) {
+        $table->unsignedBigInteger('id');
+        $table->unsignedBigInteger('doctor_order_id')->nullable();
+        $table->string('medication');
+        $table->double('dose');
+        $table->unsignedInteger('quantity');
+        $table->enum('unit', ['Gram', 'Milligram', 'Microgram']);
+        $table->string('frequency');
+        $table->text('instructions');
+        $table->string('order_type')->default('Medication');
+        $table->dateTime('date_started')->nullable();
+        $table->dateTime('date_stopped')->nullable();
+        $table->timestamps();
 
+        $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
+    }); 
+}
 
-
-       
-    }
 
     /**
      * Reverse the migrations.
