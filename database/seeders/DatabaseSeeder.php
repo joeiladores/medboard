@@ -24,50 +24,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // SEEDER DEPARTMENT
-
-        $department = [
-            [
-                'usertype' => 2,
-                'name' => 'Emergency',
-            ],
-            [
-                'usertype' => 2,
-                'name' => 'ICU',
-            ],
-            [
-                'usertype' => 2,
-                'name' => 'B/GYN',
-            ],
-            [
-                'usertype' => 2,
-                'name' => 'Pediatrics',
-            ],
-            [
-                'usertype' => 2,
-                'name' => 'Surgery',
-            ],
-            [
-                'usertype' => 2,
-                'name' => 'Cardiology',
-            ],
-            [
-                'usertype' => 2,
-                'name' => 'Orthopedics',
-            ],
-            [
-                'usertype' => 3,
-                'name' => 'Nursing Department',
-            ],
-            [
-                'usertype' => 1,
-                'name' => 'IT Department',
-            ],            
-        ];
-        foreach ($department as $dept) {
-            \App\Models\Department::create($dept);
-        }
-
         // SEEDER ADMIN
         \App\Models\User::create([
             'name' => 'User Admin',
@@ -180,135 +136,14 @@ class DatabaseSeeder extends Seeder
                 'department_id' => 8,
                 'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
             ]);
-        }
-
-        // SEEDER FOR BEDS
-        $num = 101;
-        for ($i = 1; $i <= 5; $i++) {
-            \App\Models\Bed::create([
-                'bednum' => $i,
-                'room' => $num++,
-                'room_type' => 'Private',
-                'station' => 'Nurse Station 1',              
-            ]);
-        }
-
-        $bed = 6;
-        for ($room = 121; $room <= 125; $room++) {            
-
-            for($i = 0; $i<= 1; $i++) {
-                \App\Models\Bed::create([
-                    'bednum' => $bed + $i,
-                    'room' => $room,
-                    'room_type' => 'Semi Private',
-                    'station' => 'Nurse Station 1',              
-                ]);
-            }
-            $bed += 2;
-        }
-
-        for ($bed = 21; $bed <= 30; $bed++) {   
-                \App\Models\Bed::create([
-                    'bednum' => $bed,
-                    'room' => 'Male Ward',
-                    'room_type' => 'Ward',
-                    'station' => 'Nurse Station 2',             
-                ]);
-        }
-
-        \App\Models\Bed::create([
-            'bednum' => 51,
-            'room' => 'Female Ward',
-            'room_type' => 'Ward',
-            'station' => 'Nurse Station 3',             
-        ]);
-
-        // Seeder for Nurse Assignment to Station    
-        for($i = 13; $i <= 14; $i++) {
-            \App\Models\NurseAssignment::create([
-                'user_id' => $i,
-                'datetime_start' => '2023-01-30 07:00:00',
-                'datetime_end' => '2023-02-04 15:00:00',
-                'shift' => 'AM Shift',
-                'station' => 'Nurse Station 1',             
-            ]);
-        }
-
-        for($i = 15; $i <= 16; $i++) {
-            \App\Models\NurseAssignment::create([
-                'user_id' => $i,
-                'datetime_start' => '2023-02-04 15:00:00',
-                'datetime_end' => '2023-01-30 23:00:00',
-                'shift' => 'PM Shift',
-                'station' => 'Nurse Station 1',             
-            ]);
-        }
-
-        for($i = 17; $i <= 18; $i++) {
-            \App\Models\NurseAssignment::create([
-                'user_id' => $i,
-                'datetime_start' => '2023-02-04 23:00:00',
-                'datetime_end' => '2023-01-30 07:00:00',
-                'shift' => 'Night Shift',
-                'station' => 'Nurse Station 1',             
-            ]);
-        }
-
-        for($i = 19; $i <= 19; $i++) {
-            \App\Models\NurseAssignment::create([
-                'user_id' => $i,
-                'datetime_start' => '2023-01-30 07:00:00',
-                'datetime_end' => '2023-02-04 15:00:00',
-                'shift' => 'AM Shift',
-                'station' => 'Nurse Station 2',             
-            ]);
-        }
-
-        for($i = 20; $i <= 20; $i++) {
-            \App\Models\NurseAssignment::create([
-                'user_id' => $i,
-                'datetime_start' => '2023-02-04 15:00:00',
-                'datetime_end' => '2023-01-30 23:00:00',
-                'shift' => 'PM Shift',
-                'station' => 'Nurse Station 2',             
-            ]);
-        }
-
-        for($i = 21; $i <= 21; $i++) {
-            \App\Models\NurseAssignment::create([
-                'user_id' => $i,
-                'datetime_start' => '2023-02-04 23:00:00',
-                'datetime_end' => '2023-01-30 07:00:00',
-                'shift' => 'Night Shift',
-                'station' => 'Nurse Station 2',             
-            ]);
-        }
+        } 
         
-        // SEEDER FOR THE PATIENT
-        for($i = 1; $i <= 10; $i++) {
-            $gender = Arr::random(['male', 'female']);
-            if ($gender === 'male') $firstname = fake()->firstNameMale();
-            else $firstname = fake()->firstNameFemale();
-            $lastname = fake()->lastName();
-
-            \App\Models\Patients::create([
-                'lastname' => $lastname,
-                'firstname' => $firstname,
-                'midname' => fake()->lastName(),
-                'marital_status' => Arr::random(['single', 'married', 'widowed']),
-                'birth_date' => fake()->dateTime(),
-                'gender' => $gender,
-                'blood_type' => Arr::random(['A','B','AB','O']),
-                'address' => fake()->Address(),
-                'phone' => fake()->phoneNumber,
-                'health_insurance' => fake()->word(),
-                'relative_fullname' => fake()->name(),
-                'relation' => fake()->word(),
-                'relative_phone' => fake()->phoneNumber,
-            ]);
-
-        }
-
-
+        // $this->call([
+        //     BedSeeder::class,
+        //     DepartmentSeeder::class,
+        //     NurseAssignmentSeeder::class,
+        //     PatientSeeder::class,
+        // ]);
+        
     }
 }
