@@ -65,7 +65,7 @@ body, html {
     
 <!-- Medication Modal Button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:rgb(66,100,208);">
-  Medication
++ Medication
 </button>
 
 <!-- Medication Modal-->
@@ -153,7 +153,7 @@ body, html {
 
 <!-- Transfusion Modal Button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
-  Transfusion
++ Transfusion
 </button>
 
 <!-- Transfusion Modal-->
@@ -231,7 +231,7 @@ body, html {
 
 <!-- Treatment Modal Button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
-Treatment
++ Treatment
 </button>
 
 <!-- Treatment Modal-->
@@ -302,7 +302,7 @@ Treatment
 
 <!-- Progress Notes Modal Button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:rgb(66,100,208);">
-Progress Notes
++ Progress Notes
 </button>
 
 <!-- Progress Notes  Modal-->

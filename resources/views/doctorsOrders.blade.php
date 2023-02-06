@@ -3,8 +3,7 @@
 @section('content')
 <div class="card">
 <div class="row">
-    <div class="col-12">
-    <div id="DoctorOrder" class="tabcontent">
+    <div class="col-12 p-5">
 <table class="table" id="doctorOrderTable">
             <thead>
                 <tr>
@@ -34,7 +33,6 @@
                 @endforeach
             </tbody>
            </table>
-</div>
     </div>
   </div>
   </div>
@@ -42,10 +40,18 @@
 
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- For DataTables -->
-<link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+ 
+ <!-- For DataTables -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+ <script>
+   $(document).ready( function () {
+     $('#doctorOrderTable').DataTable({
+         "pageLength": 20,
+         "lengthChange": false
+     });
+ } );  
+ </script>
 
 <!-- For Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -53,9 +59,5 @@
 <!-- For Font Awesome -->
 <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
-<!-- For Data Table -->
-<script>
- var dataTable = new DataTable("#doctorOrderTable");
-</script>
 
 @endsection
