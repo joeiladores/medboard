@@ -20,8 +20,7 @@ class OrderTreatment extends Model
         'date_done'
     ];
 
-    public function DoctorOrder()
-    {
+    public function doctorOrder() {
         return $this->belongsTo(DoctorOrder::class);
-    }
+      }
 }

@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
 {
-    //codes for testing
-    ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
-        Schema::create('order_medications', function (Blueprint $table) {
+       Schema::create('order_medications', function (Blueprint $table) {
         $table->id();
-        $table->unsignedBigInteger('doctor_order_id')->nullable();
+        $table->unsignedBigInteger('doctor_order_id');
         $table->string('medication');
         $table->double('dose');
         $table->unsignedInteger('quantity');

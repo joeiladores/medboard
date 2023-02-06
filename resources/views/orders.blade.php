@@ -168,6 +168,7 @@ body, html {
       <div class="card">
       <form  class="transfusion-form" method="POST" action="{{ route('storeTransfusion') }}">
                 @csrf
+                <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
                 <div class="col-5 p-2 d-inline-block">
                 <div class="form-group">
                 <label for="type" class="form-label">Type:</label>
