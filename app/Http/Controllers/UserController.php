@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Support\Facades\Validator;
 // use PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -13,12 +14,14 @@ class UserController extends Controller
 
     protected function users()
     {
-        return view('admin/users')->with('users', User::all());
+        return view('admin/users')
+        ->with('users', User::all())
+        ->with('departments', Department::all());
     }
 
     protected function registeruser()
     {
-        return view('admin/registeruser');
+        return view('admin/registeruser')->with('departments', Department::all());
     }
 
     protected function storeUser(Request $request)
@@ -28,12 +31,12 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'usertype' => ['required', 'not_in:0'],
             'gender' => ['required', 'not_in:0'],
-            'department' => ['required', 'not_in:0'],
+            'department_id' => ['required', 'not_in:0'],
             'specialization' => ['required', 'not_in:0'],
         ], [
             'usertype.not_in' => 'User Type is required.',
             'gender.not_in' => 'Gender is required.',
-            'department.not_in' => 'Department is required.',
+            'department_id.not_in' => 'Department is required.',
             'specialization.not_in' => 'Specialization is required.',
         ]);
 
@@ -56,7 +59,7 @@ class UserController extends Controller
         $user->gender           = $request->gender;
         $user->address          = $request->address;
         $user->phone            = $request->phone;
-        $user->department       = $request->department;
+        $user->department_id    = $request->department_id;
         $user->specialization   = $request->specialization;
         $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;

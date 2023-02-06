@@ -49,7 +49,7 @@
           @endswitch
 
           <td>{{ $user->name }}</td>
-          <td>{{ $user->department }}</td>
+          <td>{{ $user->department->name }}</td>
           <td>{{ $user->specialization }}</td>
           <td>{{ $user->email }}</td>
           <td>{{ $user->phone }}</td>
@@ -241,19 +241,10 @@
                 <div class="col-md-6">
                   <select class="form-select" aria-label="Select gender" name="department" id="department" required>
                     <option value=0 selected>Select ---</option>
-                    <option value=0>Doctors ----------</option>
-                    <option value="Emergency Department">{{ __('Emergency Department') }}</option>
-                    <option value="Intensive Care Unit (ICU)">{{ __('Intensive Care Unit (ICU)') }}</option>
-                    <option value="Obstetrics and Gynecology (OB/GYN)">{{ __('Obstetrics and Gynecology (OB/GYN)') }}</option>
-                    <option value="Pediatrics">{{ __('Pediatrics') }}</option>
-                    <option value="Surgery">{{ __('Surgery') }}</option>
-                    <option value="Cardiology">{{ __('Cardiology') }}</option>
-                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>\
-                    <option value=0>{{ __('Nurses ----------') }}</option>
-                    <option value="Nursing Department">{{ __('Nursing Department') }}</option>
-                    <option value=0>{{ __('Admin ----------') }}</option>
-                    <option value="IT Department">{{ __('IT Department') }}</option>
-                    <option value="Admission">{{ __('Admission') }}</option>
+                    @foreach($departments as $department)
+                      <option value={{ $department->id }}>{{ $department->name }}</option>
+                    @endforeach
+
                   </select>
                   @error('department')
                   <span class="invalid-feedback" role="alert">

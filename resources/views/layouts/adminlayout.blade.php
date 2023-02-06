@@ -87,7 +87,7 @@
           <div class="collapse navbar-collapse order-last" id="nav">
             <ul class="navbar-nav flex-column w-100 justify-content-center">
               <li class="nav-item mt-3">
-                <a href="{{ route('home') }}" class="nav-link active mt-3">
+                <a href="{{ route('adminHome') }}" class="nav-link active mt-3">
                   <i class="fa-sharp fa-solid fa-house-chimney fs-3 text-white"></i>
                 </a>
               </li>
@@ -98,7 +98,7 @@
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('patient') }}" class="nav-link mt-3">
+                <a href="{{ route('patientView') }}" class="nav-link mt-3">
                   <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
                   <i class="text-white ms-1">Patient Management</i>
                 </a>
@@ -115,7 +115,7 @@
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('orders') }}" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                   <i class="">Doctor's Orders</i>
                 </a>
               </li>

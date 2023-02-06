@@ -24,10 +24,10 @@
                             <div class="col-md-6">
                                 <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ old('usertype') }}" required autocomplete="usertype" autofocus>
                                     <option value=0 selected>Select ---</option> 
-                                    <option value="Admin">{{ __('Admin') }}</option>
-                                    <option value="Doctor">{{ __('Doctor') }}</option>
-                                    <option value="Nurse">{{ __('Nurse') }}</option>
-                                    <option value="Chief Nurse">{{ __('Chief Nurse') }}</option>
+                                    <option value=1>{{ 'Admin' }}</option>
+                                    <option value=2>{{ 'Doctor' }}</option>
+                                    <option value=3>{{ 'Nurse' }}</option>
+                                    <option value=4>{{ 'Chief Nurse' }}</option>
                                 </select>
                                 @error('usertype')
                                     <span class="invalid-feedback" role="alert">
@@ -189,9 +189,12 @@
                             <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select id="department" aria-label="Select department" class="form-select @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
+                                <select id="department_id" aria-label="Select department" class="form-select @error('department_id') is-invalid @enderror" name="department_id" value="{{ old('department_id') }}" required autocomplete="department_id" autofocus>
                                     <option value=0 selected>Select ---</option> 
-                                    <option value=0>Doctors ----------</option> 
+                                    @foreach($departments as $department)
+                                        <option value={{ $department->id }}>{{ $department->name }}</option>
+                                    @endforeach
+                                    <!-- <option value=0>Doctors ----------</option> 
                                     <option value="Emergency Department">{{ __('Emergency Department') }}</option>
                                     <option value="Intensive Care Unit (ICU)">{{ __('Intensive Care Unit (ICU)') }}</option>
                                     <option value="Obstetrics and Gynecology (OB/GYN)">{{ __('Obstetrics and Gynecology (OB/GYN)') }}</option>
@@ -203,9 +206,9 @@
                                     <option value="Nursing Department">{{ __('Nursing Department') }}</option>
                                     <option value=0>{{ __('Admin ----------') }}</option>
                                     <option value="IT Department">{{ __('IT Department') }}</option>
-                                    <option value="Admission">{{ __('Admission') }}</option>
+                                    <option value="Admission">{{ __('Admission') }}</option> -->
                                 </select>
-                                @error('department')
+                                @error('department_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

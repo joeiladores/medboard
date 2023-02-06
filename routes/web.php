@@ -42,7 +42,7 @@ Route::get('/', function (){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 // *****************************************************************************
@@ -65,6 +65,7 @@ Route::get('/doctorHome', [DoctorDashboard::class, 'index']);
 // All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 });
+
 
 Route::get('/admin/users', [UserController::class, 'users'])->name('users');
 Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
