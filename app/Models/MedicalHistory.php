@@ -22,8 +22,8 @@ class MedicalHistory extends Model
         'bad_habit'
     ];
 
-    public function patientMedHistory()
+    public function patient()
     {
-        return $this->belongsTo(Patients::class);
+        return $this->belongsTo(Patient::class);
     }
 }

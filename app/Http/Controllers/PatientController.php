@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Bed;
 use App\Models\MedicalHistory;
-use App\Models\Patients;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class PatientsController extends Controller
+class PatientController extends Controller
 {
     public function index()
     {
-        $totalPatients  = Patients::count();
+        $totalPatients  = Patient::count();
         $totalDoctors   = User::where('usertype', 'Doctor')->count();
         $totalNurses    = User::where('usertype', 'Nurse')->count();
 
@@ -23,14 +23,14 @@ class PatientsController extends Controller
 
     public function patient()
     {
-        return view('CreatePatient')->with('allPatients', Patients::orderByDesc('created_at')->get())
+        return view('CreatePatient')->with('allPatients', Patient::orderByDesc('created_at')->get())
                                     ->with('medhistory', MedicalHistory::get());
     }
 
     public function store(Request $request)
     {
 
-        $patient = new Patients;
+        $patient = new Patient;
 
         $patient->lastname          = $request->lastname;
         $patient->firstname         = $request->firstname;
@@ -53,7 +53,7 @@ class PatientsController extends Controller
     public function update(Request $request)
     {
 
-        $patient = Patients::find($request->id);
+        $patient = Patient::find($request->id);
 
         $patient->lastname          = $request->lastname;
         $patient->firstname         = $request->firstname;
@@ -75,14 +75,14 @@ class PatientsController extends Controller
 
     public function edit($id)
     {
-        $patient = Patients::find($id);
+        $patient = Patient::find($id);
 
         return view('CreatePatient')->with('edit_patient', $patient);
     }
 
     public function destroy($id)
     {
-        $patient = Patients::find($id);
+        $patient = Patient::find($id);
         $patient->delete();
 
         return redirect()->route('patientView')->with('success', 'Patient deleted successfully!');
@@ -92,20 +92,11 @@ class PatientsController extends Controller
     // for show/display med history of a specific patient
     public function showPatient($id)
     {
-        $patient = Patients::find($id);
+        $patient = Patient::find($id);
         return response()->json($patient);
     }
 
-    // for create new modal for patient med history
-    public function showMedHistory($id)
-    {
-        
-  
-        $patient = Patients::find($id)->with(MedicalHistory::where('patient_id' -> $id)->get());
-
-
-        dd($patient);
-    }
+    
 
   
 }

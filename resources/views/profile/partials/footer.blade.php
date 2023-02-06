@@ -78,25 +78,7 @@
        })
    }
 
-   // Show Medical History Modal of specific Patient
-   const patientMedHistoryModal = new bootstrap.Modal('#patientMedHistoryModal', {
-     keyboard: false
-   });
 
-   function showMedHistoryModal(patient_id) {
-     fetch('{{ url('/medhistory/') }}/' + patient_id)
-       .then(response => response.json())
-       .then(data => {
-         document.getElementById('showpatientmed_date').innerHTML = data.date;
-         document.getElementById('showpatientmed_conditions').innerHTML = data.conditions;
-         document.getElementById('showpatientmed_symptoms').innerHTML = data.symptoms;
-         document.getElementById('showpatientmed_medications').innerHTML = data.medications;
-         document.getElementById('showpatientmed_allergies').innerHTML = data.allergies;
-         document.getElementById('showpatientmed_bad_habit').innerHTML= data.bad_habit;
-         document.getElementById('showpatientmed_id').innerHTML = data.id;
-         patientMedHistoryModal.show();
-       })
-   }
 
   //  Create Medical History of a Patient
    const createMedHistoryModal = new bootstrap.Modal('#createMedHistoryModal',{

@@ -122,7 +122,7 @@
                         <td>{{ $patient->lastname }}, {{ $patient->firstname }} {{ $patient->midname }}</td>
                         <td>
                             <!-- Modal button to show medical history -->
-                            <a class="btn btn-sm btn-warning" role="button" onclick="showMedHistoryModal({{ $patient->id }});">View Medical History</a>
+                            <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
 
                             <!-- Create Medical History Modal of a Patient -->
                 
@@ -282,35 +282,7 @@
                 </tbody>
             </table>
 
-            <!-- Display Patient Medical History Modal -->
-            <div class="modal modal-md fade" id="patientMedHistoryModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5 fw-bold text-center">Patient's Medical History</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card border-0">
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <p class="card-title fw-bold" id="showpatientmed_date"></p>
-                                    </div>
-                                    <hr>
-                                    <div class="text-center">
-                                        <p class="card-text" id="showpatientmed_conditions"></p>
-                                        <p class="card-text" id="showpatientmed_symptoms"></p>
-                                        <p class="card-text" id="showpatientmed_medications"></p>
-                                        <p class="card-text" id="showpatientmed_allergies"></p>
-                                        <p class="card-text" id="showpatientmed_bad_habit"></p>
-                                        <input type="hidden" name="id" id="showpatientmed_id">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
         </div>
 
