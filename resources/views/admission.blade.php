@@ -17,7 +17,8 @@
     <link
         nhref="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
     <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -26,23 +27,24 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('datatables/tables.css') }}">
+    <!-- <link rel="stylesheet" href="{{ URL::asset('datatables/tables.css') }}"> -->
     <link rel="stylesheet" href="{{ URL::asset('noty/nest.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/noty.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/notification.js') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/noty.js') }}">
     <style>
-    #logo {
-        height: 100px;
-        width: 100px;
+    .logo {
+        height: 70px;
+        width: 80px;
+
     }
 
     .brand {
-        padding: 10px 50px 50px 50px;
+        padding: 10px 60px 60px 60px;
         display: flex;
         flex-wrap: wrap;
         background: linear-gradient(to top, #89A5FF, #ECEFFA);
-        height: 160px;
+        height: 100px;
 
     }
 
@@ -94,23 +96,6 @@
     }
 
     /**--------------main col area */
-    .form-select {
-        width: 50%;
-    }
-
-
-    .form-control {
-        width: 50%;
-    }
-
-    .modal-content {
-        width: 1200px;
-
-
-        margin-left: -350px;
-
-
-    }
 
 
     .col {
@@ -122,6 +107,10 @@
     }
 
     /***---modal area */
+    table {
+
+    height: 70px;
+}
 
     .modal-body {
         padding: 30px;
@@ -184,7 +173,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="brand">
-                <img src="{{asset('image/logo.png')}}">
+                <img class="logo" src="{{asset('image/logo.png')}}">
             </li>
 
             <li class="nav-item">
@@ -348,10 +337,11 @@
                                         New Admission</a>
                                 </div>
                                 <div class="col-md-12">
-                                    <table class="table table-bordered data-table">
+                                    <table class="table hover stripe display compact table-bordered data-table">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th width="280px">Action</th>
                                                 <th>Admitted</th>
                                                 <th>Complain</th>
                                                 <th>Impression Diagnosis</th>
@@ -363,7 +353,6 @@
                                                 <th>Special Info</th>
                                                 <th>Status</th>
                                                 <th>Date Time Discharge</th>
-                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -388,14 +377,13 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <div class="col-md-12">
-                            <table class="table table-bordered patient-table">
+                                <table class="  hover stripe display compact patient-table">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>lastname</th>
                                             <th>birth_date</th>
                                             <th>gender</th>
-                                            <th>age</th>
                                             <th>address</th>
                                         </tr>
                                     </thead>
@@ -463,7 +451,7 @@
         |
         |_______________________________________________
     -->
-    <div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal fade" id="ajaxModel" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -563,8 +551,8 @@
                         </div>
 
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save
-                                changes</button>
+                            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -599,6 +587,12 @@
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     data: 'admitted',
@@ -644,12 +638,7 @@
                     data: 'discharge',
                     name: 'discharge'
                 },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
+
             ]
         });
 
@@ -660,10 +649,7 @@
         --------------------------------------------
         --------------------------------------------*/
 
-
         var table = $('.patient-table').DataTable({
-            processing: true,
-            serverSide: true,
             ajax: "{{ route('patientAdmission.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
@@ -688,6 +674,7 @@
                 },
             ]
         });
+
 
 
         $('#createNewAdmission').click(function() {
@@ -733,7 +720,7 @@
                     table.draw();
                 },
                 error: function(data) {
-                    console.log('Error:', data);
+                    errorNotification("Error")
                     $('#saveBtn').html('Save Changes');
                 }
             });
