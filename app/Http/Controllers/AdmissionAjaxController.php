@@ -44,17 +44,21 @@ class AdmissionAjaxController extends Controller
     {
         Admission::updateOrCreate(['id' => $request->admission_id],
                 [
+                 'bed_id' => $request->bed_id,
+                 'patient_id' => $request->patient_id,
+                 'primary_doctor_id' => $request->primary_doctor_id,
                  'admitted' => $request->admitted,
                  'diagnosis' => $request->diagnosis, 
                  'age' => $request->age, 
                  'complain' => $request->complain, 
                  'weight' => $request->weight,
+                 'mentalStatus' => $request->mentalStatus,
                  'activities' => $request->activities,
                  'diet' => $request->diet,
                  'tubes' => $request->tubes,
                  'specialinfo' => $request->specialinfo,
                  'status' => $request->status,
-                 'discharge' => $request->discharge
+                 'date_time_discharge' => $request->date_time_discharge
                 ]);
 
 

@@ -14,19 +14,24 @@ class CreateAdmissionsTable extends Migration
      */
     public function up()
     {
+        $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         Schema::create('admissions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
+            $table->foreignId('bed_id')->constrained('beds')->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
+            $table->foreignId('primary_doctor_id')->constrained('users')->onDelete('cascade');
             $table->date('admitted');
             $table->text('complain');
             $table->string('diagnosis');
             $table->integer('age');
             $table->float('weight');
+            $table->float('mentalStatus');
             $table->text('activities');
             $table->text('diet');
             $table->text('tubes');
             $table->text('specialinfo');
             $table->text('status');
-            $table->date('discharge');
+            $table->date('date_time_discharged');
             $table->timestamps();
         });
     }

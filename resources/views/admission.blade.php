@@ -9,27 +9,28 @@
     <meta name="author" content="">
     <title>admission form</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
+        type="text/css" />
     <link
         nhref="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
-        type="text/css" />
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <link rel="stylesheet" href="{{ URL::asset('js/sb.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('datatables/tables.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/nest.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/noty.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/notification.js') }}">
     <link rel="stylesheet" href="{{ URL::asset('noty/noty.js') }}">
-
-
     <style>
     #logo {
         height: 100px;
@@ -93,6 +94,25 @@
     }
 
     /**--------------main col area */
+    .form-select {
+        width: 50%;
+    }
+
+
+    .form-control {
+        width: 50%;
+    }
+
+    .modal-content {
+        width: 1200px;
+
+
+        margin-left: -350px;
+
+
+    }
+
+
     .col {
         border: solid black;
     }
@@ -102,9 +122,6 @@
     }
 
     /***---modal area */
-    .modal-content {
-        width: 700px;
-    }
 
     .modal-body {
         padding: 30px;
@@ -214,45 +231,27 @@
 
 
             <!-- Sidebar Toggler (Sidebar) -->
+
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
 
         </ul>
         <!-- End of Sidebar -->
 
 
 
-
-
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-
-
-
-
-
             <!-- Main Content -->
             <div id="content">
-
-
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-
-
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
+                        <i class="fa-duotone fa-bars"></i>
                     </button>
-
-
-
-
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -267,9 +266,6 @@
                         </div>
                     </form>
                     <!-- End Topbar Search -->
-
-
-
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -356,18 +352,19 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th width="280px">Action</th>
                                                 <th>Admitted</th>
                                                 <th>Complain</th>
                                                 <th>Impression Diagnosis</th>
                                                 <th>age</th>
                                                 <th>Weight</th>
+                                                <th>Mental Status</th>
                                                 <th>Activities</th>
                                                 <th>Diets</th>
                                                 <th>Tubes</th>
                                                 <th>Special Info</th>
                                                 <th>Status</th>
                                                 <th>Date Time Discharge</th>
-                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -400,14 +397,8 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!--________________________________________________
-        |
-        |
-        |
-        |          Logout Modal copy from bootsrap change needed /
+        |          Logout Modal copy from bootsrap change needed
         |         use laravel ui logout and dashboard settings
-        |          
-        |
-        |
         |____________________________________________________
     -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -440,14 +431,15 @@
         |
         |_______________________________________________
     -->
-    <div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal fade " id="ajaxModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content " id="modalContent">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modelHeading"></h4>
                 </div>
-                <div class="modal-body">
-                    <form id="admissionForm" name="admissionForm" class="form-horizontal">
+                <div id="modalBody">
+                    <form id="admissionForm" name="admissionForm">
                         <input type="hidden" name="admission_id" id="admission_id">
 
                         <div class="form-group">
@@ -460,8 +452,8 @@
                         <div class="form-group">
                             <label for="complain" class="col-sm-2 control-label">Complain</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="complain" name="complain"
-                                    placeholder="Enter complain" required="">
+                                <textarea id="complain" class="form-control" aria-label="With textarea" name="complain"
+                                    required=""></textarea>
                             </div>
                         </div>
 
@@ -469,14 +461,15 @@
                             <label for="impression diagnosis" class="col-sm-2 control-label">Impression
                                 Diagnosis</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="diagnosis" name="diagnosis"
-                                    placeholder="Details.." value="" required="">
+                                <textarea class="form-control" aria-label="With textarea" id="diagnosis"
+                                    name="diagnosis" required=""></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="age" class="col-sm-2 control-label">Age</label>
                             <div class="col-sm-12">
+
                                 <input type="integer" class="form-control" id="age" name="age" placeholder="age"
                                     value="" required="">
                             </div>
@@ -492,167 +485,283 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="activities" class="col-sm-2 control-label">Activities</label>
+                            <label for="mentalStatus" class="col-sm-2 control-label">Mental Status</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="activities" name="activities"
-                                    placeholder="Enter Acitivites" required="">
+                                <select id="mentalStatus" name="mentalStatus" class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example">
+                                    <option value="Concius">Concius</option>
+                                    <option value="Drowsy">Drowsy</option>
+                                    <option value="Stupor">Stupor</option>
+                                    <option value="Unconcius">Unconcius</option>
+                                    <option value="Comatose">Comatose</option>
+                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
+                                        id="mentalStatus" name="mentalStatus" required="" placeholder="Other..."></textarea>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="diet" class="col-sm-2 control-label">diet</label>
+                            <label for="activities" class="col-sm-2 control-label">Activities</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="diet" name="diet" placeholder="Enter Diets"
-                                    required="">
+                                <select id="activities" name="activities" class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example">
+                                    <option value="Ambulant">Ambulant</option>
+                                    <option value="Dangle And Sit Up">Dangle And Sit Up</option>
+                                    <option value="Bed Rest With BRP">Bed Rest With BRP</option>
+                                    <option value="CBR W/O BRP">CBR W/O BRP</option>
+                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
+                                        id="activities" name="activities" required="" placeholder="Other..."></textarea>
+                                </select>
                             </div>
                         </div>
+                        <!-- <hr class="mb-3"> -->
 
-
+                        <div class="form-group">
+                            <label for="diet" class="col-sm-2 control-label">Diet</label>
+                            <div class="col-sm-12">
+                                <select id="diet" name="diet" class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example">
+                                    <option value="NPO">NPO</option>
+                                    <option value="DAT">DAT</option>
+                                    <option value="SOFT">SOFT</option>
+                                    <option value="Clear Liquids">Clear Liquids</option>
+                                    <option value="Gen. Liquids">Gen. Liquids</option>
+                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
+                                        id="diet" name="diet" required="" placeholder="Others..."></textarea>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="tubes" class="col-sm-2 control-label">Tubes</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="tubes" name="tubes" placeholder="Tubes"
-                                    value="" maxlength="50" required="">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <select id="tubes" name="tubest" class="form-select form-select-lg mb-3"
+                                            aria-label=".form-select-lg example">
+                                            <option value="Foley Catheter">Foley Catheter</option>
+                                            <option value="Thoracic Tube">Thoracic Tube</option>
+                                            <option value="NGT">NGT</option>
+                                            <option value="CVP">CVP</option>
+                                            <textarea style="width:25%;" class="form-control "
+                                                aria-label="With textarea" id="tubes" name="tubes" required=""
+                                                placeholder="Others.. "></textarea>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="specialinfo" class="col-sm-2 control-label">Special Info</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="specialinfo" name="specialinfo"
-                                    placeholder="specialinfo" required="">
+                                <select id="specialinfo" name="specialinfo" class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example">
+                                    <option value="Weight Daily">Weigh Daily</option>
+                                    <option value="BP Q shift">BP Q shift</option>
+                                    <option value="Neuro VS">Neuro VS</option>
+                                    <option value="Abdominal Girth">Abdominal Girth</option>
+                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
+                                        id="specialinfo" name="specialinfo" required=""
+                                        placeholder="Others..."></textarea>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="status" class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="status" name="status"
-                                    placeholder="Status...." required="">
+                                <select id="tubes" name="tubest" class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example">
+                                    <option value="Admitted">Admitted</option>
+                                    <option value="Discharged">Discharged</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="discharge" class="col-sm-2 control-label">Date and Time Discharge</label>
+                            <label for="date_time_discharge" class="col-sm-2 control-label">Date and Time Discharge</label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" id="discharge" name="discharge" required="">
+                                <input type="date" class="form-control" id="date_time_discharge" name="date_time_discharge" required="">
                             </div>
                         </div>
 
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <div class="col-sm-offset-2 col-sm-10 mb-2">
                             <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save
                                 changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src="{{ URL::asset('js/sb.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('datatables/mydatatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('datatables/dataTables.bootstrap.min.js') }}"></script>
-
     <script type="text/javascript">
-    $(function () {
-     
-    $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    
-    var table = $('.data-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('ajaxadmissions.index') }}",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'admitted', name: 'admitted'},
-            {data: 'complain', name: 'complain'},
-            {data: 'diagnosis', name: 'diagnosis'},
-            {data: 'age', name: 'age'},
-            {data: 'weight', name: 'weight'},
-            {data: 'activities', name: 'activities'},
-            {data: 'diet', name: 'diet'},
-            {data: 'tubes', name: 'tubes'},
-            {data: 'specialinfo', name: 'specialinfo'},
-            {data: 'status', name: 'status'},
-            {data: 'discharge', name: 'discharge'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
-    });
+    $(function() {
 
-     
-    $('#createNewAdmission').click(function () {
-        $('#saveBtn').val("create-admission");
-        $('#admission_id').val('');
-        $('#admissionForm').trigger("reset");
-        $('#modelHeading').html("Create New Admission");
-        $('#ajaxModel').modal('show');
-    });
-    
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-    $('body').on('click', '.editAdmission', function () {
-        var admission_id = $(this).data('id');
-        $.get("{{ route('ajaxadmissions.index') }}" +'/' + admission_id +'/edit', function (data) {
-            $('#modelHeading').html("Edit admission");
-            $('#saveBtn').val("edit-user");
+        var table = $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+
+            ajax: "{{ route('ajaxadmissions.index') }}",
+            columns: [{
+                    data: 'bed_id',
+                    name: 'bed_id'
+                },
+                {
+                    data: 'patient_id',
+                    name: 'patient_id'
+                },
+                {
+                    data: 'primary_doctor_id',
+                    name: 'primary_doctor_id'
+                },
+                {
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'admitted',
+                    name: 'admitted'
+                },
+                {
+                    data: 'complain',
+                    name: 'complain'
+                },
+                {
+                    data: 'diagnosis',
+                    name: 'diagnosis'
+                },
+                {
+                    data: 'age',
+                    name: 'age'
+                },
+                {
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    data: 'mentalStatus',
+                    name: 'mentalStatus'
+                },
+                {
+                    data: 'activities',
+                    name: 'activities'
+                },
+                {
+                    data: 'diet',
+                    name: 'diet'
+                },
+                {
+                    data: 'tubes',
+                    name: 'tubes'
+                },
+                {
+                    data: 'specialinfo',
+                    name: 'specialinfo'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'date_time_discharge',
+                    name: 'date_time_discharge'
+                },
+
+            ]
+        });
+
+
+        $('#createNewAdmission').click(function() {
+            $('#saveBtn').val("create-admission");
+            $('#admission_id').val('');
+            $('#admissionForm').trigger("reset");
+            $('#modelHeading').html("Create New Admission");
             $('#ajaxModel').modal('show');
-            $('#admission_id').val(data.id);
-            $('#admitted').val(data.admitted);
-            $('#complain').val(data.complain);
-            $('#diagnosis').val(data.diagnosis);
-            $('#age').val(data.age);
-            $('#weight').val(data.weight);
-            $('#activities').val(data.activities);
-            $('#diet').val(data.diet);
-            $('#tubes').val(data.tubes);
-            $('#specialinfo').val(data.specialinfo);
-            $('#status').val(data.status);
-            $('#discharge').val(data.discharge);
-        })
-    });
+        });
 
 
-    $('#saveBtn').click(function (e) {
-        e.preventDefault();
-        $(this).html('Sending..');
-    
-        $.ajax({
-            data: $('#admissionForm').serialize(),
-            url: "{{ route('ajaxadmissions.store') }}",
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $('#admissionForm').trigger("reset");
-                $('#ajaxModel').modal('hide');
-                table.draw();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-                $('#saveBtn').html('Save Changes');
+
+
+        $('body').on('click', '.editAdmission', function() {
+            var admission_id = $(this).data('id');
+            $.get("{{ route('ajaxadmissions.index') }}" + '/' + admission_id + '/edit', function(data) {
+                $('#modelHeading').html("Edit admission");
+                $('#saveBtn').val("edit-user");
+                $('#ajaxModel').modal('show');
+                $('#admission_id').val(data.id);
+                $('#admitted').val(data.admitted);
+                $('#complain').val(data.complain);
+                $('#diagnosis').val(data.diagnosis);
+                $('#age').val(data.age);
+                $('#weight').val(data.weight);
+                $('#mentalStatus').val(data.mentalStatus);
+                $('#activities').val(data.activities);
+                $('#diet').val(data.diet);
+                $('#tubes').val(data.tubes);
+                $('#specialinfo').val(data.specialinfo);
+                $('#status').val(data.status);
+                $('#date_time_discharge').val(data.date_time_discharge);
+            })
+        });
+
+
+        $('#saveBtn').click(function(e) {
+            e.preventDefault();
+            $(this).html('Sending..');
+
+            $.ajax({
+                data: $('#admissionForm').serialize(),
+                url: "{{ route('ajaxadmissions.store') }}",
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    $('#admissionForm').trigger("reset");
+                    $('#ajaxModel').modal('hide');
+                    table.draw();
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                    $('#saveBtn').html('Save Changes');
+                }
+            });
+        });
+
+        $('body').on('click', '.deleteAdmission', function() {
+            var admission_id = $(this).data("id");
+            var result = confirm("Are You sure want to delete !");
+            if (result) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ route('ajaxadmissions.store') }}" + '/' + admission_id,
+                    success: function(data) {
+                        table.draw();
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                    }
+                });
+            } else {
+                return false;
             }
         });
     });
+    </script>
 
-    $('body').on('click', '.deleteAdmission', function (){
-        var admission_id = $(this).data("id");
-        var result = confirm("Are You sure want to delete !");
-        if(result){
-            $.ajax({
-                type: "DELETE",
-                url: "{{ route('ajaxadmissions.store') }}"+'/'+admission_id,
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
-            });
-        }else{
-            return false;
-        }
-    });
-});
-</script>
 </html>

@@ -135,3 +135,7 @@ Route::get('/generate-pdf', function(){
 // Routes for Admission
 
 Route::resource('ajaxadmissions',AdmissionAjaxController::class);
+
+Route::get('/admission', function () {
+    return view('admission');
+});
