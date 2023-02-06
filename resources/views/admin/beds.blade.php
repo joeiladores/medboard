@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- Main Content - List of Users -->
+<!-- Bed Content - List of Beds -->
 <div class="container-md p-3">
   <div class="d-flex flex-lg-row flex-column justify-content-between">
     <h1 class="fw-bold">Beds</h1>

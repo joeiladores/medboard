@@ -24,6 +24,50 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // SEEDER DEPARTMENT
+
+        $department = [
+            [
+                'usertype' => 2,
+                'name' => 'Emergency',
+            ],
+            [
+                'usertype' => 2,
+                'name' => 'ICU',
+            ],
+            [
+                'usertype' => 2,
+                'name' => 'B/GYN',
+            ],
+            [
+                'usertype' => 2,
+                'name' => 'Pediatrics',
+            ],
+            [
+                'usertype' => 2,
+                'name' => 'Surgery',
+            ],
+            [
+                'usertype' => 2,
+                'name' => 'Cardiology',
+            ],
+            [
+                'usertype' => 2,
+                'name' => 'Orthopedics',
+            ],
+            [
+                'usertype' => 3,
+                'name' => 'Nursing Department',
+            ],
+            [
+                'usertype' => 1,
+                'name' => 'IT Department',
+            ],            
+        ];
+        foreach ($department as $dept) {
+            \App\Models\Department::create($dept);
+        }
+
         // SEEDER ADMIN
         \App\Models\User::create([
             'name' => 'User Admin',
@@ -37,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'Active',
-            'department' => 'IT Department',
+            'department_id' => 9,
             'specialization' => 'IT Officer',
         ]);
 
@@ -59,7 +103,7 @@ class DatabaseSeeder extends Seeder
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'Active',
-            'department' => 'Admission',
+            'department_id' => 9,
             'specialization' => 'Admission Officer',
         ]);
 
@@ -84,7 +128,7 @@ class DatabaseSeeder extends Seeder
                 'phone' => fake()->phoneNumber,
                 'status' => 'Active',
 
-                'department' => Arr::random(['Emergency Department', 'Intensive Care Unit (ICU)', 'Obstetrics and Gynecology (OB/GYN)', 'Pediatrics', 'Surgery', 'Cardiology', 'Orthopedics']),
+                'department_id' => Arr::random([1, 2, 3, 4, 5, 6, 7]),
 
                 'specialization' => Arr::random(['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist']),
             ]);
@@ -109,7 +153,7 @@ class DatabaseSeeder extends Seeder
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
                 'status' => 'Active',
-                'department' => 'Nursing Department',
+                'department_id' => 8,
                 'specialization' => Arr::random(['Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
             ]);
         }
@@ -133,7 +177,7 @@ class DatabaseSeeder extends Seeder
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
                 'status' => 'Active',
-                'department' => 'Nursing Department',
+                'department_id' => 8,
                 'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
             ]);
         }
@@ -240,6 +284,31 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         
+        // SEEDER FOR THE PATIENT
+        for($i = 1; $i <= 10; $i++) {
+            $gender = Arr::random(['male', 'female']);
+            if ($gender === 'male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+
+            \App\Models\Patients::create([
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'midname' => fake()->lastName(),
+                'marital_status' => Arr::random(['single', 'married', 'widowed']),
+                'birth_date' => fake()->dateTime(),
+                'gender' => $gender,
+                'blood_type' => Arr::random(['A','B','AB','O']),
+                'address' => fake()->Address(),
+                'phone' => fake()->phoneNumber,
+                'health_insurance' => fake()->word(),
+                'relative_fullname' => fake()->name(),
+                'relation' => fake()->word(),
+                'relative_phone' => fake()->phoneNumber,
+            ]);
+
+        }
+
 
     }
 }

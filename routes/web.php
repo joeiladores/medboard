@@ -55,12 +55,23 @@ Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->nam
 
 Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
+
+// Bed Routes 
 Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
 Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');
 // Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
 Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
 Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
 Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
+
+
+// Department Routes
+Route::get('/admin/departments', [DepartmentController::class, 'index'])->name('departments');
+Route::post('/admin/storedepartment', [DepartmentController::class, 'store'])->name('department.store');
+Route::post('/admin/updatedepartment', [DepartmentController::class, 'update'])->name('department.update');
+Route::get('/admin/showdepartment/{id}', [DepartmentController::class, 'show'])->name('department.show');
+Route::get('/admin/deletedepartment/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+
 
 // *****************************************************************************
 // All Doctor Routes List

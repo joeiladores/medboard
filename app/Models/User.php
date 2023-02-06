@@ -82,6 +82,12 @@ class User extends Authenticatable
         return $this->belongsTo(NurseAssignment::class);
     }
 
+    public function nurseSchedule(){
+        return $this->belongsTo(Calendar::class);
+    }
 
+    public function department() {
+        return $this->hasOne(Department::class);
+    }
 
 }
