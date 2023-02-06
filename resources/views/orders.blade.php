@@ -247,6 +247,7 @@ body, html {
       <div class="card">
       <form class="treatment-form"  method="POST" action="{{ route('storeTreatment') }}">
                 @csrf
+                <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
                 <div class="col-6 p-2 d-inline-block">
                     <label for="name" class="form-label">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -317,6 +318,7 @@ body, html {
       <div class="modal-body">
       <form class="progressNote-form" method="POST" action="{{ route('storeProgressNote') }}">
       @csrf
+      <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
       <div class="mb-3">
       <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
     </div>
