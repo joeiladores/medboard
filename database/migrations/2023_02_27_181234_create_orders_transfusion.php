@@ -13,24 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        //codes for testing
-        Schema::create('orders_medications', function (Blueprint $table) {
+       ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
+        Schema::create('order_transfusions', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id')->nullable();
-            $table->string('medication');
-            $table->double('dose');
-            $table->integer('quantity');
-            $table->enum('unit',['Gram','Milligram','Microgram']);
-            $table->string('frequency');
-            $table->string('instructions');
+            $table->unsignedBigInteger('doctor_order_id');
+            $table->enum('type',['IV','Blood']);
+            $table->string('fluid_name');
+            $table->string('instruction');
             $table->date('date_started')->nullable();
             $table->date('date_stopped')->nullable();
             $table->timestamps();
+
+            $table->foreign('doctor_order_id')->references('id')->on('doctor_orders');
         });
 
 
-
-       
+        
     }
 
     /**
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_medication');
+        Schema::dropIfExists('orders_transfusion');
     }
 };

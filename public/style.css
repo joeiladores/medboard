@@ -1,8 +1,187 @@
+:root{
+  --main-bg-color: #1f66d1;
+  --main-text-color: #1353c9;
+  --second-text-color: #014f9e;
+  --second-bg-color: #c1d5ef;
+}
+
+
+/* Login */
+.nav-login{
+  background-image: linear-gradient(to right, #5eb0f3, #d9e7fd, #d8ebff, #d4ebf8, #ddecfa);
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.image-row{
+  width: 900px;
+  height: 480px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
+}
+
+.side-image{
+  background-image: url("images/medical1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 10px 0 0 10px;
+}
+
+
+.right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+/* Admin Total Cards */
+.card-bg{
+  background-color: #d4ebf8;
+}
+
+
+
+
+/* Dashboard */
+.sidebar{
+  background-image: linear-gradient(to right,  #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
+  border-radius: 0 2.5rem 2.5rem 0;
+}
+
 .logo-sidebar{
   max-width: 4.5rem;
   height: auto;
 }
 
-aside{
-  background: linear-gradient(25deg, rgb(62, 107, 255), rgb(152, 171, 228));
+.doc-icon{
+  max-width: 8rem;
+  height: auto;
 }
+
+.primary-text{
+  color: var(--main-text-color);
+}
+
+.second-text{
+  color: var(--second-text-color);
+}
+
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
+
+.secondary-bg{
+  background-color: var(--second-bg-color);
+}
+
+#wrapper{
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper{
+  min-height: 100vh;
+  margin-left: -15rem;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading{
+  padding: 0.9rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group{
+  width: 15rem;
+}
+
+#page-content-wrapper{
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper{
+  margin-left: 0;
+}
+
+#menu-toggle{
+  cursor: pointer;
+}
+
+.list-group-item{
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active{
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+/* Chart */
+.graphBox{
+  position: relative;
+  width: 100%;
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+  min-height: 200px;
+}
+
+.graphBox .box{
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 20px;
+}
+
+
+/* Media Query */
+@media (min-width: 768px){
+  #sidebar-wrapper{
+    margin-left: 0;
+  }
+
+  #page-content-wrapper{
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper{
+    margin-left: -15rem;
+  }
+}
+
+@media (max-width: 991px){
+  .graphBox{
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .side-image{
+    border-radius: 10px 10px 0 0;
+    height: 100px;
+    background-size: cover;
+  }
+}
+
+
+
+
+/*  
+background: linear-gradient(25deg, rgb(45, 86, 223), #aebdeb);
+background: linear-gradient(5deg, rgb(149, 174, 255), #d6e0fd);
+*/

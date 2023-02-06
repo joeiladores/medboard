@@ -13,10 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('progress_notes', function (Blueprint $table) {
+        Schema::create('medical_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id')->nullable();
-            $table->string('notes');
+
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
+            $table->date('date');
+            $table->string('conditions');
+            $table->string('symptoms');
+            $table->string('medications');
+            $table->string('allergies');
+            $table->string('bad_habit');
+
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('progress_notes');
+        Schema::dropIfExists('medical_histories');
     }
 };
