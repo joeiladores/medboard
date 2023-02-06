@@ -14,7 +14,6 @@ class CreateAdmissionsTable extends Migration
      */
     public function up()
     {
-        $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bed_id')->constrained('beds')->onDelete('cascade');
