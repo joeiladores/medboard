@@ -352,19 +352,18 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th width="280px">Action</th>
                                                 <th>Admitted</th>
                                                 <th>Complain</th>
                                                 <th>Impression Diagnosis</th>
                                                 <th>age</th>
                                                 <th>Weight</th>
-                                                <th>Mental Status</th>
                                                 <th>Activities</th>
                                                 <th>Diets</th>
                                                 <th>Tubes</th>
                                                 <th>Special Info</th>
                                                 <th>Status</th>
                                                 <th>Date Time Discharge</th>
+                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -376,18 +375,58 @@
                     </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span> MedBoard @ 2020</span>
+            <!----patient table------>
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Patient Table</h1>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">MYSQL DataTables Example</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="col-md-12">
+                                <table class="table table-bordered patient-table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Admitted</th>
+                                            <th>Complain</th>
+                                            <th>Impression Diagnosis</th>
+                                            <th>age</th>
+                                            <th>Weight</th>
+                                            <th>Activities</th>
+                                            <th>Diets</th>
+                                            <th>Tubes</th>
+                                            <th>Special Info</th>
+                                            <th>Status</th>
+                                            <th>Date Time Discharge</th>
+                                            <th width="280px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span> MedBoard @ 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -431,29 +470,29 @@
         |
         |_______________________________________________
     -->
-    <div class="modal fade " id="ajaxModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="ajaxModel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content " id="modalContent">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modelHeading"></h4>
                 </div>
-                <div id="modalBody">
-                    <form id="admissionForm" name="admissionForm">
+                <div class="modal-body">
+                    <form id="admissionForm" name="admissionForm" class="form-horizontal">
                         <input type="hidden" name="admission_id" id="admission_id">
-
                         <div class="form-group">
-                            <label for="admitted date" class="col-sm-2 control-label">Admitted</label>
+                            <label for="admitted" class="col-sm-2 control-label">admitted</label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" id="admitted" name="admitted" required="">
+                                <input type="date" class="form-control" id="admitted" name="admitted"
+                                    placeholder="Enter admitted" required="">
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <label for="complain" class="col-sm-2 control-label">Complain</label>
                             <div class="col-sm-12">
-                                <textarea id="complain" class="form-control" aria-label="With textarea" name="complain"
-                                    required=""></textarea>
+                                <input type="text" class="form-control" id="complain" name="complain"
+                                    placeholder="Enter complain" required="">
                             </div>
                         </div>
 
@@ -461,15 +500,14 @@
                             <label for="impression diagnosis" class="col-sm-2 control-label">Impression
                                 Diagnosis</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" aria-label="With textarea" id="diagnosis"
-                                    name="diagnosis" required=""></textarea>
+                                <input type="text" class="form-control" id="diagnosis" name="diagnosis"
+                                    placeholder="Details.." value="" required="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="age" class="col-sm-2 control-label">Age</label>
                             <div class="col-sm-12">
-
                                 <input type="integer" class="form-control" id="age" name="age" placeholder="age"
                                     value="" required="">
                             </div>
@@ -477,116 +515,63 @@
 
 
                         <div class="form-group">
-                            <label for="weight" class="col-sm-2 control-label">Weight</label>
+                            <label for="weight" class="col-sm-2 control-label">weight</label>
                             <div class="col-sm-12">
-                                <input type="float" class="form-control" id="weight" name="weight" placeholder="weight"
+                                <input type="integer" class="form-control" id="weight" name="weight" value=""
                                     required="">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mentalStatus" class="col-sm-2 control-label">Mental Status</label>
-                            <div class="col-sm-12">
-                                <select id="mentalStatus" name="mentalStatus" class="form-select form-select-lg mb-3"
-                                    aria-label=".form-select-lg example">
-                                    <option value="Concius">Concius</option>
-                                    <option value="Drowsy">Drowsy</option>
-                                    <option value="Stupor">Stupor</option>
-                                    <option value="Unconcius">Unconcius</option>
-                                    <option value="Comatose">Comatose</option>
-                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
-                                        id="mentalStatus" name="mentalStatus" required="" placeholder="Other..."></textarea>
-                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="activities" class="col-sm-2 control-label">Activities</label>
                             <div class="col-sm-12">
-                                <select id="activities" name="activities" class="form-select form-select-lg mb-3"
-                                    aria-label=".form-select-lg example">
-                                    <option value="Ambulant">Ambulant</option>
-                                    <option value="Dangle And Sit Up">Dangle And Sit Up</option>
-                                    <option value="Bed Rest With BRP">Bed Rest With BRP</option>
-                                    <option value="CBR W/O BRP">CBR W/O BRP</option>
-                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
-                                        id="activities" name="activities" required="" placeholder="Other..."></textarea>
-                                </select>
+                                <input type="text" class="form-control" id="activities" name="activities"
+                                    placeholder="Enter Acitivites" required="">
                             </div>
                         </div>
-                        <!-- <hr class="mb-3"> -->
 
                         <div class="form-group">
-                            <label for="diet" class="col-sm-2 control-label">Diet</label>
+                            <label for="diet" class="col-sm-2 control-label">diet</label>
                             <div class="col-sm-12">
-                                <select id="diet" name="diet" class="form-select form-select-lg mb-3"
-                                    aria-label=".form-select-lg example">
-                                    <option value="NPO">NPO</option>
-                                    <option value="DAT">DAT</option>
-                                    <option value="SOFT">SOFT</option>
-                                    <option value="Clear Liquids">Clear Liquids</option>
-                                    <option value="Gen. Liquids">Gen. Liquids</option>
-                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
-                                        id="diet" name="diet" required="" placeholder="Others..."></textarea>
-                                </select>
+                                <input type="text" class="form-control" id="diet" name="diet" placeholder="Enter Diets"
+                                    required="">
                             </div>
                         </div>
+
+
                         <div class="form-group">
                             <label for="tubes" class="col-sm-2 control-label">Tubes</label>
                             <div class="col-sm-12">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <select id="tubes" name="tubest" class="form-select form-select-lg mb-3"
-                                            aria-label=".form-select-lg example">
-                                            <option value="Foley Catheter">Foley Catheter</option>
-                                            <option value="Thoracic Tube">Thoracic Tube</option>
-                                            <option value="NGT">NGT</option>
-                                            <option value="CVP">CVP</option>
-                                            <textarea style="width:25%;" class="form-control "
-                                                aria-label="With textarea" id="tubes" name="tubes" required=""
-                                                placeholder="Others.. "></textarea>
-                                        </select>
-                                    </div>
-                                </div>
+                                <input type="text" class="form-control" id="tubes" name="tubes" placeholder="tubes"
+                                    value="" maxlength="50" required="">
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="specialinfo" class="col-sm-2 control-label">Special Info</label>
                             <div class="col-sm-12">
-                                <select id="specialinfo" name="specialinfo" class="form-select form-select-lg mb-3"
-                                    aria-label=".form-select-lg example">
-                                    <option value="Weight Daily">Weigh Daily</option>
-                                    <option value="BP Q shift">BP Q shift</option>
-                                    <option value="Neuro VS">Neuro VS</option>
-                                    <option value="Abdominal Girth">Abdominal Girth</option>
-                                    <textarea style="width:25%;" class="form-control " aria-label="With textarea"
-                                        id="specialinfo" name="specialinfo" required=""
-                                        placeholder="Others..."></textarea>
-                                </select>
+                                <input type="text" class="form-control" id="specialinfo" name="specialinfo"
+                                    placeholder="specialinfo" required="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="status" class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-12">
-                                <select id="tubes" name="tubest" class="form-select form-select-lg mb-3"
-                                    aria-label=".form-select-lg example">
-                                    <option value="Admitted">Admitted</option>
-                                    <option value="Discharged">Discharged</option>
-                                </select>
+                                <input type="text" class="form-control" id="status" name="status"
+                                    placeholder="Status...." required="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="date_time_discharge" class="col-sm-2 control-label">Date and Time Discharge</label>
+                            <label for="discharge" class="col-sm-2 control-label">Date and Time Discharge</label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" id="date_time_discharge" name="date_time_discharge" required="">
+                                <input type="date" class="form-control" id="discharge" name="discharge" required="">
                             </div>
                         </div>
 
-                        <div class="col-sm-offset-2 col-sm-10 mb-2">
+                        <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save
                                 changes</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -608,32 +593,19 @@
             }
         });
 
+        /*------------------------------------------
+        --------------------------------------------
+        Render DataTable
+        --------------------------------------------
+        --------------------------------------------*/
+
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-
             ajax: "{{ route('ajaxadmissions.index') }}",
             columns: [{
-                    data: 'bed_id',
-                    name: 'bed_id'
-                },
-                {
-                    data: 'patient_id',
-                    name: 'patient_id'
-                },
-                {
-                    data: 'primary_doctor_id',
-                    name: 'primary_doctor_id'
-                },
-                {
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
                 },
                 {
                     data: 'admitted',
@@ -656,10 +628,6 @@
                     name: 'weight'
                 },
                 {
-                    data: 'mentalStatus',
-                    name: 'mentalStatus'
-                },
-                {
                     data: 'activities',
                     name: 'activities'
                 },
@@ -680,13 +648,43 @@
                     name: 'status'
                 },
                 {
-                    data: 'date_time_discharge',
-                    name: 'date_time_discharge'
+                    data: 'discharge',
+                    name: 'discharge'
                 },
-
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
             ]
         });
 
+
+        /*------------------------------------------
+        --------------------------------------------
+        Render Patient DataTable
+        --------------------------------------------
+        --------------------------------------------*/
+
+        var table = $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('ajaxadmissions.index') }}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'admitted',
+                    name: 'admitted'
+                },
+                {
+                    data: 'complain',
+                    name: 'complain'
+                },
+            ]
+        });
 
         $('#createNewAdmission').click(function() {
             $('#saveBtn').val("create-admission");
@@ -695,9 +693,6 @@
             $('#modelHeading').html("Create New Admission");
             $('#ajaxModel').modal('show');
         });
-
-
-
 
         $('body').on('click', '.editAdmission', function() {
             var admission_id = $(this).data('id');
@@ -711,17 +706,14 @@
                 $('#diagnosis').val(data.diagnosis);
                 $('#age').val(data.age);
                 $('#weight').val(data.weight);
-                $('#mentalStatus').val(data.mentalStatus);
                 $('#activities').val(data.activities);
                 $('#diet').val(data.diet);
                 $('#tubes').val(data.tubes);
                 $('#specialinfo').val(data.specialinfo);
                 $('#status').val(data.status);
-                $('#date_time_discharge').val(data.date_time_discharge);
+                $('#discharge').val(data.discharge);
             })
         });
-
-
         $('#saveBtn').click(function(e) {
             e.preventDefault();
             $(this).html('Sending..');
@@ -742,7 +734,6 @@
                 }
             });
         });
-
         $('body').on('click', '.deleteAdmission', function() {
             var admission_id = $(this).data("id");
             var result = confirm("Are You sure want to delete !");
