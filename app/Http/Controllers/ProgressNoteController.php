@@ -12,7 +12,7 @@ class ProgressNoteController extends Controller
         $progress_notes = ProgressNote::findOrFail($id);
         $doctor_order_id = $progress_notes->doctor_order_id;
 
-        return view('editMedication', ['id' => $doctor_order_id])->with('progress_note', $progress_notes);
+        return view('editProgressNote', ['id' => $doctor_order_id])->with('progress_note', $progress_notes);
     }
 
     public function store(Request $request)
@@ -32,8 +32,6 @@ class ProgressNoteController extends Controller
         $progresss_notes = ProgressNote::find($request->id);
 
         $doctor_order_id = $progresss_notes->doctor_order_id;
-
-        $progresss_notes->doctor_order_id    = $request->doctor_order_id;
         $progresss_notes->notes              = $request->progress_notes;
 
         $progresss_notes->save();

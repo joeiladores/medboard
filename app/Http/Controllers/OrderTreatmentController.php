@@ -13,7 +13,7 @@ class OrderTreatmentController extends Controller
         $orders_treatments = OrderTreatment::findOrFail($id);
         $doctor_order_id = $orders_treatments->doctor_order_id;
 
-        return view('editMedication', ['id' => $doctor_order_id])->with('order_treatment', $orders_treatments);
+        return view('editTreatment', ['id' => $doctor_order_id])->with('order_treatment', $orders_treatments);
     }
 
     public function store(Request $request)
