@@ -23,19 +23,18 @@
 
                             <div class="col-md-6">
                                 <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ $user->usertype }}" required autocomplete="usertype" autofocus>
-                                    
-                                    <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
-                                    @if($user->usertype != 'Admin')
-                                        <option value="Admin">{{ 'Admin' }}</option>
+                                     <option selected value="{{ $user->usertype }}">{{ $$user-usertype }}</option>
+                                    @if($user->usertype != 1)
+                                        <option value=1>{{ 'Admin' }}</option>
                                     @endif
-                                    @if($user->usertype != 'Doctor')
-                                        <option value="Doctor">{{ 'Doctor' }}</option>
+                                    @if($user->usertype != 2)
+                                        <option value=2>{{ 'Doctor' }}</option>
                                     @endif
-                                    @if($user->usertype != 'Nurse')
-                                        <option value="Nurse">{{ 'Nurse' }}</option>
+                                    @if($user->usertype != 3)
+                                        <option value=3>{{ 'Nurse' }}</option>
                                     @endif
-                                    @if($user->usertype != 'Chief Nurse')
-                                        <option value="Chief Nurse">{{ 'Chief Nurse' }}</option>
+                                    @if($user->usertype != 4)
+                                        <option value=4>{{ 'Chief Nurse' }}</option>
                                     @endif
                                 </select>
                                 @error('usertype')
