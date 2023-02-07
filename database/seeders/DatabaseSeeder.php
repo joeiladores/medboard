@@ -278,6 +278,31 @@ class DatabaseSeeder extends Seeder
                 'station' => 'Nurse Station 2',             
             ]);
         }
+
+
+        // SEEDER FOR THE PATIENT
+        for($i = 1; $i <= 10; $i++) {
+            $gender = Arr::random(['male', 'female']);
+            if ($gender === 'male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+
+            \App\Models\Patient::create([
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'midname' => fake()->lastName(),
+                'marital_status' => Arr::random(['single', 'married', 'widowed']),
+                'birth_date' => fake()->dateTime(),
+                'gender' => $gender,
+                'blood_type' => Arr::random(['A','B','AB','O']),
+                'address' => fake()->Address(),
+                'phone' => fake()->phoneNumber,
+                'health_insurance' => fake()->word(),
+                'relative_fullname' => fake()->name(),
+                'relation' => fake()->word(),
+                'relative_phone' => fake()->phoneNumber,
+            ]);
+        }
         
 
     }

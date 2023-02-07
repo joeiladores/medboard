@@ -4,33 +4,33 @@
 <div class="container-fluid px-4">
 
     <a href="{{ route('patientView') }}" class="btn btn-md btn-primary mb-3">⇦ Go back</a>
-    <h2 class="mt-2 second-text text-center">Medical History</h2>
+    <h2 class="second-text text-center">Medical History</h2>
 
-    <div class="row g-3 my-2">
-        <div class="col-md-12">
-            <div class="row card-bg p-4 border shadow rounded-5 second-text">
+    <div class="row g-3 my-2 d-flex justify-content-center mb-3">
+        <div class="col-md-7">
+            <div class="row card card-bg p-4 border shadow rounded-5 second-text">
                 <div class="col-12">
-                    <p class="fw-bold">Patients Fullname :
-                        <span class="fs-3">
+                    <p class="fw-bold">Patients Full Name :
+                        <span class="fs-3 ms-2">
                             {{ $medhistoryinfos->lastname }},
                             {{ $medhistoryinfos->firstname }}
                             {{ $medhistoryinfos->midname }}
                         </span>
                     </p>
+                    <hr>
                 </div>
                 @foreach($medhistoryinfos->medhistory as $medhistoryinfo)
-                <div class="col-6">
+                <div class="col-12">
+                    <p class="fw-bold">Last update: <strong class="ms-3">{{ $medhistoryinfo->created_at }}</strong></p>
                     <p class="fw-bold">
-                        Conditions : {{ $medhistoryinfo->conditions }}
-                        Symptoms : {{ $medhistoryinfo->symptoms }}
-                        Medications : {{ $medhistoryinfo->medications }}
-                        Allergies : {{ $medhistoryinfo->allergies }}
-                        Bad habits : {{ $medhistoryinfo->bad_habit }}
-                    </p>
+                        Conditions : <strong class="fs-4 ms-3"> {{ $medhistoryinfo->conditions }} </strong><br>
+                        Symptoms : <strong class="fs-4 ms-3"> {{ $medhistoryinfo->symptoms }} </strong><br>
+                        Medications : <strong class="fs-4 ms-3"> {{ $medhistoryinfo->medications }} </strong><br>
+                        Allergies : <strong class="fs-4 ms-3"> {{ $medhistoryinfo->allergies }} </strong><br>
+                        Bad habits : <strong class="fs-4 ms-3"> {{ $medhistoryinfo->bad_habit }} </strong></p>
+                        <hr>
                 </div>
-                <div class="col-6">
 
-                </div>
                 @endforeach
             </div>
         </div>

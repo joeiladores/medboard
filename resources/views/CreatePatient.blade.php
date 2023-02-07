@@ -100,8 +100,6 @@
         </div>
 
         <!-- TABS -->
-        <button class="tablink btn border-dark fw-bold" onclick="openPage('PatientList', this, 'rgba(126, 187, 252, 1)')" id="defaultOpen">List of Patients</button>
-        <button class="tablink btn border-dark fw-bold" onclick="openPage('PendingView', this, 'rgba(126, 187, 252, 1)')">BLANGKO PA</button>
 
         <div id="PatientList" class="tabcontent">
             <table class="table table-hover" id="patientTable">
@@ -282,35 +280,6 @@
             </table>
 
            
-
-        </div>
-
-        <div id="PendingView" class="tabcontent">
-            <table class="table" id="pendingView">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="d-flex">
-                            <a href="" class="btn btn-sm btn-danger text-light me-1">Delete</a>
-                            <a href="" class="btn btn-sm text-light" style="background-color:rgb(66,100,208);">Edit</a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-
-        <div id="" class="">
 
         </div>
 

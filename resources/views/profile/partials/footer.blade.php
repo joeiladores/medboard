@@ -16,40 +16,22 @@
  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
  <script src="/chart.js"></script>
 
-
  <!-- For DataTables -->
  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
  </script>
 
  <script>
+   $(document).ready(function() {
+     $('#patientTable').DataTable({
+       "pageLength": 5,
+       "lengthChange": true
+     });
+   });
+ </script>
+
+ <script>
    var dataTable = new DataTable("#patientTable");
-   var dataTable = new DataTable("#pendingView");
-
-
-   function openPage(pageName, elmnt, color) {
-     // Hide all elements with class="tabcontent" by default */
-     var i, tabcontent, tablinks;
-     tabcontent = document.getElementsByClassName("tabcontent");
-     for (i = 0; i < tabcontent.length; i++) {
-       tabcontent[i].style.display = "none";
-     }
-
-     // Remove the background color of all tablinks/buttons
-     tablinks = document.getElementsByClassName("tablink");
-     for (i = 0; i < tablinks.length; i++) {
-       tablinks[i].style.backgroundColor = "";
-     }
-
-     // Show the specific tab content
-     document.getElementById(pageName).style.display = "block";
-
-     // Add the specific color to the button used to open the tab content
-     elmnt.style.backgroundColor = color;
-   }
-
-   // Get the element with id="defaultOpen" and click on it
-   document.getElementById("defaultOpen").click();
 
    //  Edit Modal Patient
    const editPatientModal = new bootstrap.Modal('#editPatientModal', {
@@ -57,7 +39,7 @@
    });
 
    function showEditPatientModal(patient_id) {
-     fetch('{{ url('/patients/') }}/' + patient_id)
+     fetch('{{ url(' / patients / ') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('editpatient_lastname').value = data.lastname;
@@ -80,13 +62,13 @@
 
 
 
-  //  Create Medical History of a Patient
-   const createMedHistoryModal = new bootstrap.Modal('#createMedHistoryModal',{
-    keyboard: false
+   //  Create Medical History of a Patient
+   const createMedHistoryModal = new bootstrap.Modal('#createMedHistoryModal', {
+     keyboard: false
    });
 
-   function showCreateMedHistoryModal(patient_id){
-    fetch('{{ url('/medhistory/') }}/' + patient_id)
+   function showCreateMedHistoryModal(patient_id) {
+     fetch('{{ url(' / medhistory / ') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('medhistory_patient_name').innerHTML = data.lastname;
@@ -94,7 +76,6 @@
          createMedHistoryModal.show();
        })
    }
-
  </script>
 
  </body>

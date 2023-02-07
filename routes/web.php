@@ -139,7 +139,7 @@ Route::get('/nurseHome', function () {
 // *****************************************************************************
 Route::get('/generate-pdf', function(){
     // get the data to display in the PDF
-    $patients = App\Models\Patients::all();
+    $patients = App\Models\Patient::all();
     // store it in a data array
     $data = [
     'patients' => $patients,

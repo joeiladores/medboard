@@ -58,7 +58,7 @@
 
 <!-- Navbar Starts -->
 <div id="page-content-wrapper">
-  <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-3 px-3">
+  <nav class="navbar navbar-expand-lg navbar-light px-3">
     <div class="d-flex align-items-center">
       <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
       <h2 class="fs-1 m-0 ms-3">Admin Dashboard</h2>
@@ -82,3 +82,4 @@
     </div>
 
   </nav>
+  <!-- Navbar Ends -->
