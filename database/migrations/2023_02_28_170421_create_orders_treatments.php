@@ -16,7 +16,7 @@ return new class extends Migration
         ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
         Schema::create('order_treatments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('doctor_order_id')->constrained('doctor_orders')->onDelete('cascade');
+            $table->unsignedBigInteger('doctor_order_id')->constrained('doctor_orders')->onDelete('cascade');
             $table->string('name');
             $table->string('type');
             $table->string('instruction');
