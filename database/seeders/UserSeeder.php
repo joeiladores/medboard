@@ -17,15 +17,19 @@ class UserSeeder extends Seeder
     public function run()
     {
         // SEEDER ADMIN
+        $gender = Arr::random(['Male', 'Female']);
+        if ($gender === 'Male') $firstname = fake()->firstNameMale();
+        else $firstname = fake()->firstNameFemale();
+        $lastname = fake()->lastName();
         \App\Models\User::create([
-            'name' => 'Admin Admin',
+            'name' => $firstname . ' ' . $lastname,
             'email' => 'admin@admin.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('admin@admin.com'),
             'usertype' => 'admin',
-            'lastname' => 'Admin',
-            'firstname' => 'Admin',
+            'lastname' => $lastname,
+            'firstname' => $firstname,
             'birthdate' => fake()->dateTime(),
-            'gender' => 'Female',
+            'gender' => $gender,
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'active',
@@ -137,7 +141,7 @@ class UserSeeder extends Seeder
         \App\Models\User::create([
             'name' => $firstname . ' ' . $lastname,
             'email' => 'nurse@nurse.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('nurse@nurse.com'),
             'usertype' => 'nurse',
             'lastname' => $lastname,
             'firstname' => $firstname,
@@ -159,7 +163,7 @@ class UserSeeder extends Seeder
             \App\Models\User::create([
                 'name' => $firstname . ' ' . $lastname,
                 'email' => 'doctor@doctor.com',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('doctor@doctor.com'),
                 'usertype' => 'doctor',
                 'lastname' => $lastname,
                 'firstname' => $firstname,

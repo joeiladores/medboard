@@ -56,7 +56,7 @@
     </div>
     
     <!-- Create Specialization Modal -->
-    <div class="modal fade" id="createDepartmentModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="createSpecializationModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -113,7 +113,7 @@
                   </select>             
                 </div> 
                 <div class="mb-3">
-                  <label for="editspec_name" class="form-label">Specioalization Name</label>
+                  <label for="editspec_name" class="form-label">Specialization</label>
                   <input type="text" class="form-control" name="name" id="editspec_name" required>  
                 </div>                        
                 <input type="hidden" name="id" id="editspec_id"">
@@ -149,8 +149,8 @@
         .then(data => {
           document.getElementById('editspec_usertype').value = data.usertype;
             document.getElementById('editspec_name').value = data.name;
-            document.getElementById('editdept_id').value = data.id;
-            editDepartmentModal.show();
+            document.getElementById('editspec_id').value = data.id;
+            editSpecializationModal.show();
         })
     } 
 

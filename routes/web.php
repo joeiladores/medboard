@@ -104,7 +104,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/specialization', [SpecializationController::class, 'index'])->name('specialization');
     Route::post('/admin/storespecialization', [SpecializationController::class, 'store'])->name('specialization.store');
     Route::post('/admin/updatespecialization', [SpecializationController::class, 'update'])->name('specialization.update');
-    Route::get('/admin/showdspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
+    Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
     Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
 
 });
