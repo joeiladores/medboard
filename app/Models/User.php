@@ -90,4 +90,8 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class);
     }
 
+    public function specialization() {
+        return $this->belongsTo(Specialization::class);
+    }
+
 }

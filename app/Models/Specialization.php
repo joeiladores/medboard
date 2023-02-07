@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Specialization extends Model
 {
     use HasFactory;
+
+    protected $table = 'specializations';
+
+    protected $fillable = [
+        'usertype',
+        'name',
+
+    ];
+
+    public function user() {
+        return $this->hasMany(User::class);
+    }
 }
