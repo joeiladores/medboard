@@ -88,51 +88,51 @@
             <ul class="navbar-nav flex-column w-100 justify-content-center">
               <li class="nav-item mt-3">
                 <a href="{{ route('adminHome') }}" class="nav-link active mt-3">
-                  <i class="fa-sharp fa-solid fa-house-chimney fs-3 text-white"></i>
+                  <i class="fa-sharp fa-solid fa-house-chimney fs-3"></i>
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('users') }}" class="nav-link text-white">
-                  <i class="fa-solid fa-user-doctor fs-3 text-white"></i>
-                  <i class="text-white ms-1">User Management</i>
+                <a href="{{ route('users') }}" class="nav-link">
+                  <i class="fa-solid fa-user-doctor fs-3"></i>
+                  <i class="ms-1">User Management</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="{{ route('patientView') }}" class="nav-link mt-3">
-                  <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
-                  <i class="text-white ms-1">Patient Management</i>
+                  <i class="fa-sharp fa-solid fa-bed-pulse fs-3"></i>
+                  <i class="ms-1">Patient Management</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="#" class="nav-link mt-3">
-                  <i class="fa-sharp fa-solid fa-bed-pulse fs-3 text-white"></i>
-                  <i class="text-white ms-1">Admission</i>
+                  <i class="fa-sharp fa-solid fa-bed-pulse fs-3"></i>
+                  <i class="ms-1">Admission</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('beds') }}" class="nav-link text-white">
+                <a href="{{ route('beds') }}" class="nav-link">
                   <i class="">Bed Management</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="#" class="nav-link text-white">
+                <a href="#" class="nav-link">
                   <i class="">Doctor's Orders</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
-                <a href="{{ route('nurseassignments') }}" class="nav-link text-white">
+                <a href="{{ route('nurseassignments') }}" class="nav-link">
                   <i class="">Nurses Assignment</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="{{ route('calendar.index') }}" class="nav-link mt-3">
-                  <i class="fa-solid fa-calendar-days fs-3 text-white ms-1"></i>
-                  <i class="text-white ms-1">Schedule</i>
+                  <i class="fa-solid fa-calendar-days fs-3 ms-1"></i>
+                  <i class="ms-1">Schedule</i>
                 </a>
               </li>
               <li class="nav-item mt-3">
                 <a href="#" class="nav-link mt-3">
-                  <i class="fa-sharp fa-solid fa-gear fs-3 text-white"></i>
+                  <i class="fa-sharp fa-solid fa-gear fs-3"></i>
                 </a>
               </li>
             </ul>

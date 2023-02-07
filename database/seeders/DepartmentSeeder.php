@@ -30,7 +30,7 @@ class DepartmentSeeder extends Seeder
             ],
             [
                 'usertype' => 2,
-                'name' => 'B/GYN',
+                'name' => 'OB/GYN',
             ],
             [
                 'usertype' => 2,

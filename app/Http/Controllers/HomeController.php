@@ -54,6 +54,6 @@ class HomeController extends Controller
      */
     public function chiefnurseHome()
     {
-        return view('chiefnurseHome');
+        return view('nurseHome');
     }
 }

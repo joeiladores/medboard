@@ -152,8 +152,8 @@
                   <label for="editbed_status" class="form-label">Status</label>
                   <select class="form-select" aria-label="Select status" name="status" id="editbed_status" required>
                       <option selected class="text-center"> --- Select ---</option>    
-                      <option value="Empty">Empty</option>
-                      <option value="Occupied">Occupied</option>
+                      <option value="vacant">Vacant</option>
+                      <option value="occupied">Occupied</option>
                   </select>
                 </div>                
                 <input type="hidden" name="id" id="editbed_id"">

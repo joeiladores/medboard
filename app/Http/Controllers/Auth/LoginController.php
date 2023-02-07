@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -51,11 +52,11 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->usertype == 'doctor') {
-                return redirect()->route('doctor.home');
+                return redirect()->route('doctorHome');
             }else if (auth()->user()->usertype == 'nurse') {
-                return redirect()->route('nurse.home');
+                return redirect()->route('nurseHome');
             }else if (auth()->user()->usertype == 'chiefnurse') {
-                return redirect()->route('chiefnurse.home');
+                return redirect()->route('chiefnurseHome');
             }else{
                 return redirect()->route('adminHome');
             }

@@ -87,7 +87,7 @@ class UserController extends Controller
         $user->gender           = $request->gender;
         $user->address          = $request->address;
         $user->phone            = $request->phone;
-        $user->department       = $request->department;
+        $user->department_id    = $request->department_id;
         $user->specialization   = $request->specialization;
         $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;

@@ -35,7 +35,7 @@ class BedSeeder extends Seeder
                 \App\Models\Bed::create([
                     'bednum' => $bed + $i,
                     'room' => $room,
-                    'room_type' => 'Semi Private',
+                    'room_type' => 'Semi-Private',
                     'station' => 'Nurse Station 1',              
                 ]);
             }

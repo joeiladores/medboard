@@ -66,13 +66,8 @@
               <form method="POST" action="{{ route('department.store') }}">
                 @csrf
                 <div class="mb-3">
-                  <label for="ecreatedept_name" class="form-label">Department Name</label>
-                  <select class="form-select" aria-label="Select department" name="name" id="createdept_name" required>
-                      <option selected value=0>Select ---</option>   
-                      @foreach($departments as $department)
-                        <option value={{ $department->id }}>{{ $department->name }}</option>
-                      @endforeach
-                  </select>                  
+                  <label for="createdept_name" class="form-label">Department Name</label>
+                  <input type="text" class="form-control" name="name" id="createdept_name" required>              
                 </div>                
                 <input type="hidden" name="id" id="id"">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -83,7 +78,7 @@
       </div>
     </div>
 
-    <!-- Edit Bed Modal -->
+    <!-- Edit Department Modal -->
     <div class="modal fade " id="editDepartmentModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -97,14 +92,7 @@
                 @csrf
                 <div class="mb-3">
                   <label for="editdept_name" class="form-label">Department Name</label>
-                  <select class="form-select" aria-label="Select department" name="name" id="editdept_name" required>
-                      <option value={{  }}>t</option>   
-                      @foreach($departments as $department)
-
-                          <option value={{ $department->id }}>{{ $department->name }}</option>
-
-                      @endforeach
-                  </select>  
+                  <input type="text" class="form-control" name="name" id="editdept_name" required>  
                 </div>                        
                 <input type="hidden" name="id" id="editdept_id"">
                 <button type="submit" class="btn btn-primary">Submit</button>

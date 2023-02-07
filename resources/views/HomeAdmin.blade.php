@@ -3,6 +3,10 @@
   <div class="container-fluid px-4">
     <div class="row g-3 my-2">
 
+      @if(auth()->user()->usertype == 'admin')
+        <div class=”panel-heading”>Admin User</div>
+      @endif
+
       <div class="col-md-3">
         <div class="card card-body card-bg p-3 text-center border shadow rounded-pill">
          

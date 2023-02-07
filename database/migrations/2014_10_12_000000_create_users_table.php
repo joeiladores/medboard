@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             
-            $table->tinyInteger('usertype')->default(1);
+            $table->string('usertype')->nullable();
             // Users: 1=>admin, 2=>doctor, 3=>nurse, 4=>chiefnurse
             $table->string('lastname')->nullable();
             $table->string('firstname')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->enum('specialization', ['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist', 'Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse', 'IT Officer', 'Admission Officer'])->nullable();
             $table->string('imagepath')->nullable()->nullable();
-            $table->enum('status', ['Active', 'Inactive'])->default('Active')->nullable();           
+            $table->enum('status', ['active', 'inactive'])->default('active')->nullable();           
 
             $table->string('name');
             $table->string('email')->unique();

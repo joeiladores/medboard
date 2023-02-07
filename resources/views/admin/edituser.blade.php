@@ -23,18 +23,21 @@
 
                             <div class="col-md-6">
                                 <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ $user->usertype }}" required autocomplete="usertype" autofocus>
-                                     <option selected value="{{ $user->usertype }}">{{ $$user-usertype }}</option>
-                                    @if($user->usertype != 1)
-                                        <option value=1>{{ 'Admin' }}</option>
+
+                                    @if($user->usertype != 'admin') <option value='admin'>{{ 'admin' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
                                     @endif
-                                    @if($user->usertype != 2)
-                                        <option value=2>{{ 'Doctor' }}</option>
+
+                                    @if($user->usertype != 'doctor') <option value='doctor'>{{ 'doctor' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
                                     @endif
-                                    @if($user->usertype != 3)
-                                        <option value=3>{{ 'Nurse' }}</option>
+
+                                    @if($user->usertype != 'nurse') <option value=3>{{ 'nurse' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
                                     @endif
-                                    @if($user->usertype != 4)
-                                        <option value=4>{{ 'Chief Nurse' }}</option>
+
+                                    @if($user->usertype != 'chiefnurse') <option value='chiefnurse'>{{ 'chief nurse' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
                                     @endif
                                 </select>
                                 @error('usertype')
@@ -106,7 +109,7 @@
                         </div>
 
                         <!-- Email -->
-                        <!-- <div class="row mb-3">
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
@@ -118,10 +121,10 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- Password -->
-                        <!-- <div class="row mb-3">
+                        <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -133,16 +136,16 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- Confirm Password -->
-                        <!-- <div class="row mb-3">
+                        <div class="row mb-3">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ $user->passwrod }}" required autocomplete="new-password">
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- Gender -->
                         <div class="row mb-3">
@@ -200,9 +203,9 @@
                             <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select id="department" aria-label="Select department" class="form-select @error('department') is-invalid @enderror" name="department" required autocomplete="department" autofocus>
+                                <select id="department_id" aria-label="Select department" class="form-select @error('department_id') is-invalid @enderror" name="department_id" required autocomplete="department_id" autofocus>
                                     @if($user->usertype == 'Doctor')
-                                        <option selected value="{{ $user->department }}">{{ $user->department }}</option>
+                                        <option selected value="{{ $user->department_id }}">{{ $user->department->name }}</option>
                                         @if($user->department != 'Emergency Department')
                                             <option value="Emergency Department">{{ 'Emergency Department' }}</option>
                                         @endif
@@ -237,7 +240,7 @@
                                         @endif
                                     @endif
                                 </select>
-                                @error('department')
+                                @error('department_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

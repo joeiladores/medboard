@@ -6,10 +6,10 @@
 <div class="container">
     <div class="d-flex justify-content-center">
         <!-- <h1>Admin</h1> -->
-        @if(auth()->user()->is_doctor == 1)
-            <a href="{{url('doctor/routes')}}">Doctor</a>
-        @else
+        @if(auth()->user()->usertype == 'admin')
             <div class=”panel-heading”>Admin User</div>
+        @else(auth()->user()->usertype == 'doctor')            
+            <a href="{{url('doctor/routes')}}">Doctor</a>
         @endif
 
     </div>

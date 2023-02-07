@@ -7,7 +7,7 @@ use App\Models\Department;
 
 class DepartmentController extends Controller
 {
-    public function departments() {
+    public function index() {
         return view('admin/departments')->with('departments', Department::all());
     }
 

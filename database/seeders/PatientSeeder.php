@@ -34,11 +34,11 @@ class PatientSeeder extends Seeder
                 'gender' => $gender,
                 'blood_type' => Arr::random(['A','B','AB','O']),
                 'address' => fake()->Address(),
-                'phone' => fake()->phoneNumber,
+                'phone' => 11111,
                 'health_insurance' => fake()->word(),
                 'relative_fullname' => fake()->name(),
                 'relation' => fake()->word(),
-                'relative_phone' => fake()->phoneNumber,
+                'relative_phone' => 11111,
             ]);
 
         }
