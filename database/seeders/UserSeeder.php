@@ -28,13 +28,14 @@ class UserSeeder extends Seeder
             'usertype' => 'admin',
             'lastname' => $lastname,
             'firstname' => $firstname,
+            'middlename' => fake()->lastName(),
             'birthdate' => fake()->dateTime(),
             'gender' => $gender,
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'active',
             'department_id' => 9,
-            'specialization' => 'IT Officer',
+            'specialization_id' => 1,
         ]);
 
         // SEEDER ADMISSION OFFICER
@@ -56,7 +57,7 @@ class UserSeeder extends Seeder
             'phone' => fake()->phoneNumber,
             'status' => 'active',
             'department_id' => 9,
-            'specialization' => 'Admission Officer',
+            'specialization_id' => 1,
         ]);
 
 
@@ -79,10 +80,8 @@ class UserSeeder extends Seeder
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
-
                 'department_id' => Arr::random([1, 2, 3, 4, 5, 6, 7]),
-
-                'specialization' => Arr::random(['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist']),
+                'specialization_id' => Arr::random([2, 3, 4, 5, 6, 7]),
             ]);
         }
 
@@ -106,7 +105,7 @@ class UserSeeder extends Seeder
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
                 'department_id' => 8,
-                'specialization' => Arr::random(['Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
+                'specialization_id' => Arr::random([8,9,10,11]),
             ]);
         }
 
@@ -130,7 +129,7 @@ class UserSeeder extends Seeder
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
                 'department_id' => 8,
-                'specialization' => Arr::random(['ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse']),
+                'specialization_id' => Arr::random([8,9,10,11]),
             ]);
         } 
 
@@ -152,7 +151,7 @@ class UserSeeder extends Seeder
             'phone' => fake()->phoneNumber,
             'status' => 'active',
             'department_id' => 8,
-            'specialization' => 'Registered Nurse',
+            'specialization_id' => 8,
         ]);
 
 
@@ -174,7 +173,7 @@ class UserSeeder extends Seeder
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
                 'department_id' => 5,
-                'specialization' => 'Surgeon',
+                'specialization_id' => 2,
             ]);
     }
 }

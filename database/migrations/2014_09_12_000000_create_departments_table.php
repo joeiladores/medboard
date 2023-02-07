@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             
-            $table->tinyInteger('usertype')->default(1);
+            $table->string('usertype');
             $table->string('name');
             
             $table->timestamps();

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
-            $table->enum('specialization', ['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist', 'Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse', 'IT Officer', 'Admission Officer'])->nullable();
+            $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
             $table->string('imagepath')->nullable()->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active')->nullable();           
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Specialization;
 use Illuminate\Support\Facades\Validator;
 // use PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,12 +17,15 @@ class UserController extends Controller
     {
         return view('admin/users')
         ->with('users', User::all())
-        ->with('departments', Department::all());
+        ->with('departments', Department::all())
+        ->with('specializations', Specialization::all());
     }
 
     protected function registeruser()
     {
-        return view('admin/registeruser')->with('departments', Department::all());
+        return view('admin/registeruser')
+        ->with('departments', Department::all())
+        ->with('specializations', Specialization::all());
     }
 
     protected function storeUser(Request $request)
@@ -32,12 +36,12 @@ class UserController extends Controller
             'usertype' => ['required', 'not_in:0'],
             'gender' => ['required', 'not_in:0'],
             'department_id' => ['required', 'not_in:0'],
-            'specialization' => ['required', 'not_in:0'],
+            'specialization_id' => ['required', 'not_in:0'],
         ], [
             'usertype.not_in' => 'User Type is required.',
             'gender.not_in' => 'Gender is required.',
             'department_id.not_in' => 'Department is required.',
-            'specialization.not_in' => 'Specialization is required.',
+            'specialization_id.not_in' => 'Specialization is required.',
         ]);
 
         if ($validator->fails()) {
@@ -60,7 +64,7 @@ class UserController extends Controller
         $user->address          = $request->address;
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
-        $user->specialization   = $request->specialization;
+        $user->specialization_id   = $request->specialization_id;
         $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
 
@@ -71,13 +75,22 @@ class UserController extends Controller
 
     public function editUser($id) {
         $user = User::find($id);
+        // dd($user);
+        $dept = Department::with('user')->find($id);  
+        // dd($dept);
+        // $spec = Specialization::where('id', $user->specialization_id)->get();
+        // dd($spec);
 
-        return view('admin/edituser')->with('user', $user);
+        return view('admin/edituser')
+        ->with('user', $user)
+        ->with('dept', Department::with('user')->find($id))
+        ->with('departments', Department::all())
+        ->with('spec', Specialization::with('user')->find($id))
+        ->with('specializations', Specialization::all());
     }
 
     protected function updateUser(Request $request) {        
         $user = User::find($request->id);
-        // $originalemail = $user->bednum;
         
         $user->usertype         = $request->usertype;
         $user->lastname         = $request->lastname;
@@ -88,7 +101,7 @@ class UserController extends Controller
         $user->address          = $request->address;
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
-        $user->specialization   = $request->specialization;
+        $user->specialization_id   = $request->specialization_id;
         $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
 

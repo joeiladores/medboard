@@ -200,45 +200,16 @@
 
                         <!-- Department -->
                         <div class="row mb-3">
-                            <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
+                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select id="department_id" aria-label="Select department" class="form-select @error('department_id') is-invalid @enderror" name="department_id" required autocomplete="department_id" autofocus>
-                                    @if($user->usertype == 'Doctor')
-                                        <option selected value="{{ $user->department_id }}">{{ $user->department->name }}</option>
-                                        @if($user->department != 'Emergency Department')
-                                            <option value="Emergency Department">{{ 'Emergency Department' }}</option>
+                                <select id="department_id" aria-label="Select department" class="form-select @error('department_id') is-invalid @enderror" name="department_id" value="{{ $user->department_id }}" required autocomplete="department_id" autofocus>
+                                    <option selected value="{{ $dept->id }}">{{ $dept->name }}</option>
+                                    @foreach($departments as $department)
+                                        @if($department->id != $dept->id)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
                                         @endif
-                                        @if($user->department != 'Intensive Care Unit (ICU)')
-                                            <option value="Intensive Care Unit (ICU)">{{ 'Intensive Care Unit (ICU)' }}</option>
-                                        @endif
-                                        @if($user->department != 'Obstetrics and Gynecology   (OB/GYN)')
-                                            <option value="Obstetrics and Gynecology (OB/GYN)">{{ 'Obstetrics and Gynecology (OB/GYN)' }}</option>
-                                        @endif
-                                        @if($user->department != 'Pediatrics')
-                                            <option value="Pediatrics">{{ 'Pediatrics' }}</option>
-                                        @endif
-                                        @elseif($user->department != 'Surgery')
-                                            <option value="Surgery">{{ 'Surgery' }}</option>
-                                        @if($user->department != 'Cardiology')
-                                            <option value="Cardiology">{{ 'Cardiology' }}</option>
-                                        @endif
-                                        @if($user->department != 'Orthopedics')
-                                            <option value="Orthopedics">{{ 'Orthopedics' }}</option>
-                                        @endif
-                                    @endif
-                                    @if($user->usertype == 'Nurse')
-                                        <option value={{ $user->department }}>{{ $user->department }}</option>
-                                    @endif
-                                    @if($user->usertype == 'Administrator')
-                                        <option value={{ $user->department }}>{{ $user->department }}</option>
-                                        @if($user->department != 'IT Department')
-                                            <option value="IT Department">{{ __('IT Department') }}</option>
-                                        @endif
-                                        @if($user->department != 'Admission')
-                                            <option value="Admission">{{ 'Admission' }}</option>
-                                        @endif
-                                    @endif
+                                    @endforeach
                                 </select>
                                 @error('department_id')
                                 <span class="invalid-feedback" role="alert">
@@ -250,31 +221,18 @@
 
                         <!-- Specialization -->
                         <div class="row mb-3">
-                            <label for="specialization" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
+                            <label for="specialization_id" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select id="specialization" aria-label="Select specialization" class="form-select @error('specialization') is-invalid @enderror" name="specialization" value="{{ $user->specialization }}" required autocomplete="specialization" autofocus>
-                                    <option value=0 selected>Select ---</option>
-                                    <option value=0>Doctors ----------</option>
-                                    <option value="Internal Medicine">{{ __('Internal Medicine') }}</option>
-                                    <option value="Surgeon">{{ __('Surgeon') }}</option>
-                                    <option value="Pediatrician">{{ __('Pediatrician') }}</option>
-                                    <option value="Ob-gyne">{{ __('Ob-gyne') }}</option>
-                                    <option value="Orthopedic">{{ __('Orthopedic') }}</option>
-                                    <option value="Cardiologist">{{ __('Cardiologist') }}</option>
-                                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>
-                                    <option value="Neurologist">{{ __('Neurologist') }}</option>
-                                    <option value=0>Nurses ----------</option>
-                                    <option value="Registered Nurse">{{ __('Registered Nurse') }}</option>
-                                    <option value="ICU Nurse">{{ __('ICU Nurse') }}</option>
-                                    <option value="ER Nurse">{{ __('ER Nurse') }}</option>
-                                    <option value="Geriatic Nurse">{{ __('Geriatic Nurse') }}</option>
-                                    <option value="Orthopedic Nurse">{{ __('Orthopedic Nurse') }}</option>
-                                    <option value=0>{{ __('Admin -----------') }}</option>
-                                    <option value="Software Developer">{{ __('Software Developer') }}</option>
-                                    <option value="Admission Officer">{{ __('Admission Officer') }}</option>
+                                <select id="specialization_id" aria-label="Select specialization" class="form-select @error('specialization_id') is-invalid @enderror" name="specialization_id" value="{{ $user->specialization_id }}" required autocomplete="specialization_id" autofocus>
+                                    <option selected value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                    @foreach($specializations as $specialization)
+                                        @if($specialization->id != $spec->id)
+                                            <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
-                                @error('specialization')
+                                @error('specialization_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
