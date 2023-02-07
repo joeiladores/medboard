@@ -14,7 +14,6 @@ class DoctorOrder extends Model
     protected $fillable = [
         'admission_id',
         'doctor_order_id',
-        'nurse_id',
         'date_ordered'
     ];
 

@@ -11,7 +11,6 @@
                     <th>Doctor id Test</th>
                     <th>Patient Name</th>
                     <th>Room Number</th>
-                    <th>Assigned Nurse</th>
                     <th>Date Ordered</th>
                     <th>Actions</th>
                 </tr>
@@ -23,7 +22,6 @@
                     <td>{{ $doctor_order->doctor_id }}</td>
                     <td>Sample Patient Name</td>
                     <td>Sample Room Number</td>
-                    <td>{{ $doctor_order->nurse_id }}</td>
                     <td> {{ date_format(new DateTime($doctor_order->date_ordered), "F j, Y") }}</td>
                    
                     <td class="d-flex">
