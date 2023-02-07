@@ -125,7 +125,6 @@
                             <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
 
                             <!-- Create Medical History Modal of a Patient -->
-                
                             <!-- Medical History Modal Button -->
                             <button type="button" class="btn btn-sm btn-success" onclick="showCreateMedHistoryModal({{ $patient->id }})">
                                 + Add Medical History
