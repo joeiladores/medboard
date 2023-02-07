@@ -84,7 +84,7 @@
                 <div class="mb-3">
                   <label for="createbed_room_type" class="form-label">Room Type</label>
                   <select class="form-select" aria-label="Select room type" name="room_type" id="createbed_room_type" required>
-                      <option selected class="text-center"> --- Select ---</option>   
+                      <option selected> Select ---</option>   
                       <option value="Private">Private</option>
                       <option value="Semi-Private">Semi-Private</option>
                       <option value="Ward">Ward</option>
@@ -93,7 +93,7 @@
                 <div class="mb-3">
                   <label for="createbed_station" class="form-label">Station</label>
                   <select class="form-select" aria-label="Select station" name="station" id="createbed_station" required>
-                      <option selected class="text-center"> --- Select ---</option>    
+                      <option selected> Select ---</option>    
                       <option value="Nurse Station 1">Nurse Station 1</option>
                       <option value="Nurse Station 2">Nurse Station 2</option>
                       <option value="Nurse Station 3">Nurse Station 3</option>
