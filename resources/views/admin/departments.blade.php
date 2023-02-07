@@ -36,11 +36,11 @@
           @foreach($departments as $department)
           <tr>
             <td>{{ $department->id }}</td>
-            <td>{{ $bedepartmentd->name }}</td>
+            <td>{{ $department->name }}</td>
 
             <td>  
               <button type="button" class="btn btn-sm" onclick="showEditDepartmentModal({{ $department->id }});">🖊️</button>       
-              <a class="btn btn-sm" href="{{ route('deletedepartment', $department->id) }}">❌</a>
+              <a class="btn btn-sm" href="{{ route('department.delete', $department->id) }}">❌</a>
             </td>
           </tr>
           @endforeach
@@ -53,7 +53,7 @@
       </table>
     </div>
     
-    <!-- Create Bed Modal -->
+    <!-- Create Department Modal -->
     <div class="modal fade" id="createDepartmentModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -66,8 +66,13 @@
               <form method="POST" action="{{ route('department.store') }}">
                 @csrf
                 <div class="mb-3">
-                  <label for="createdept_name" class="form-label">Department Name</label>
-                  <input type="text" class="form-control" name="name" id="createdept_name" required>
+                  <label for="ecreatedept_name" class="form-label">Department Name</label>
+                  <select class="form-select" aria-label="Select department" name="name" id="createdept_name" required>
+                      <option selected value=0>Select ---</option>   
+                      @foreach($departments as $department)
+                        <option value={{ $department->id }}>{{ $department->name }}</option>
+                      @endforeach
+                  </select>                  
                 </div>                
                 <input type="hidden" name="id" id="id"">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -88,11 +93,18 @@
           </div>
           <div class="modal-body">
             <div class="card py-3 px-4 border-0">
-              <form method="POST" action="{{ route('updatedepartment') }}">
+              <form method="POST" action="{{ route('department.update') }}">
                 @csrf
                 <div class="mb-3">
                   <label for="editdept_name" class="form-label">Department Name</label>
-                  <input type="text" class="form-control bg-light" name="name" id="editdept_name" required readonly>
+                  <select class="form-select" aria-label="Select department" name="name" id="editdept_name" required>
+                      <option value={{  }}>t</option>   
+                      @foreach($departments as $department)
+
+                          <option value={{ $department->id }}>{{ $department->name }}</option>
+
+                      @endforeach
+                  </select>  
                 </div>                        
                 <input type="hidden" name="id" id="editdept_id"">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -125,9 +137,9 @@
       fetch('{{ url('/admin/showdepartment/') }}/' + department_id)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('editdept_name').value = data.bednum;
+            document.getElementById('editdept_name').value = data.name;
             document.getElementById('editdept_id').value = data.id;
-            editBedModal.show();
+            editDepartmentModal.show();
         })
     } 
 
