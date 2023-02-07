@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
 {
-    //codes for testing
+    //codes for testing // Waiting for admissions - manual add to DB for now
     Schema::create('doctor_orders', function (Blueprint $table) {
         $table->id();
-        $table->integer('admission_id');
-        $table->integer('doctor_id');
-        $table->integer('nurse_id');
+        $table->foreignId('admission_id');
+        $table->foreignId('doctor_id');
+        $table->foreignId('nurse_id');
         $table->date('date_ordered');
         $table->string('order_type');
         $table->timestamps();
