@@ -16,12 +16,13 @@ return new class extends Migration
     //codes for testing // Waiting for admissions - manual add to DB for now
     Schema::create('doctor_orders', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('admission_id');
+        $table->unsignedBigInteger('admission_id')->constrained('admissions')->onDelete('cascade');
         $table->foreignId('doctor_id');
-        $table->foreignId('nurse_id');
         $table->date('date_ordered');
         $table->string('order_type');
         $table->timestamps();
+
+        $table->foreign('admission_id')->references('id')->on('admissions');
     });
 }
 
