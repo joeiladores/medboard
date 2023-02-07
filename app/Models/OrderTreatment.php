@@ -9,6 +9,8 @@ class OrderTreatment extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_treatments';
+
     protected $fillable = [
         'doctor_order_id',
         'name',
@@ -18,8 +20,7 @@ class OrderTreatment extends Model
         'date_done'
     ];
 
-    public function DoctorOrder()
-    {
+    public function doctorOrder() {
         return $this->belongsTo(DoctorOrder::class);
-    }
+      }
 }

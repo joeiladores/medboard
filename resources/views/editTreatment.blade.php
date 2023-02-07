@@ -1,8 +1,8 @@
-@extends('layouts.orders')
+@extends('layouts.doctorOrdersSidenav')
 
 @section('content')
-<h3>Edit Transfusion</h3>
-<a href="{{ route('orders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light">← Go back</a>
+<h3>Edit Treatment</h3>
+<a href="{{ route('orders', $order_treatment->doctor_order_id) }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light">← Go back</a>
 <div class="card p-5 m-4">
       <form method="POST" action="{{ route('updateTreatment') }}">
                 @csrf
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12 p-2 d-inline-block">
                     <label for="instruction" class="form-label">Instructions:</label>
-                    <input type="text" class="form-control" id="instruction" name="instruction" value="{{ $order_treatment->instruction }}" required>
+                    <textarea class="form-control" id="instruction" name="instruction" rows="3" required>{{ $order_treatment->instruction }}</textarea>
                 </div>
 
                 <div class="col-5 p-2 mb-3 d-inline-block">

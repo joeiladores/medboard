@@ -87,18 +87,17 @@ border-radius: 0px 44px 32px 0px;">
                     
                 </div>
             </div>
+            
             <div class="col-sm p-3 min-vh-100">
-                <!-- content -->
                 <h2></h2>
                 <div class="container-fluid">
  
 </div>
-                <!--CARD START -->
-      <main class="py-4">
+     <!--CARD START -->
+      <!-- <main class="py-4"> -->
             @yield('content')
-        </main>
+        <!-- </main> -->
 
-        </table>
     </div>
             </div>
         </div>

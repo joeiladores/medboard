@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderMedication extends Model
+class ProgressNote extends Model
 {
     use HasFactory;
 
-    protected $table = 'order_medications';
+    protected $table = 'progress_notes';
 
     protected $fillable = [
         'doctor_order_id',
-        'medication',
-        'dose',
-        'quantity',
-        'unit',
-        'frequency',
-        'instructions',
+        'notes',
     ];
 
     public function doctorOrder() {

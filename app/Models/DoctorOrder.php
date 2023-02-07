@@ -9,28 +9,17 @@ class DoctorOrder extends Model
 {
     use HasFactory;
 
+    protected $table = 'doctor_orders';
+
     protected $fillable = [
-        'date_ordered',
-        'type',
-        'progress_notes',
         'admission_id',
-        'doctor_id',
+        'doctor_order_id',
         'nurse_id',
+        'date_ordered'
     ];
 
-    // public function admission()
-    // {
-    //     return $this->belongsTo(Admission::class);
-    // }
-
-    // public function doctor()
-    // {
-    //     return $this->belongsTo(Doctor::class);
-    // }
-
-    // public function nurse()
-    // {
-    //     return $this->belongsTo(Nurse::class);
-    // }
+    public function orderMedications() {
+        return $this->hasMany(OrderMedication::class);
+      }
 }
 
