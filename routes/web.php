@@ -135,6 +135,7 @@ Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy
 // *****************************************************************************
 // Nurse's Dashboard View
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
 
 
 // *****************************************************************************
