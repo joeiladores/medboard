@@ -6,10 +6,9 @@
 <div class="container-md p-3">
   <h1 class="fw-bold">Users</h1>
   <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <h5 class="flex-grow-1">List of Users</h5>
 
     @if (Route::has('register'))
-    <p><a href="{{ route('registeruser') }}" class="btn btn-primary me-3">+ Add New User</a></p>
+    <p><a href="{{ route('registeruser') }}" class="btn btn-primary me-3 flex-end">+ Add New User</a></p>
     <!-- <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New User</button> -->
     <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a>
     @endif
@@ -41,9 +40,17 @@
         <tr>
           <td>{{ $user->id }}</td>
           <td>{{ $user->usertype }}</td>
+
+          <!-- @switch($user->usertype)
+            @case(2)  @break
+            @case(3) <td>{{ 'Nurse' }}</td> @break
+            @case(4) <td>{{ 'Chief Nurse' }}</td> @break
+            @default <td>{{ 'Admin' }}</td>
+          @endswitch -->
+
           <td>{{ $user->name }}</td>
-          <td>{{ $user->department }}</td>
-          <td>{{ $user->specialization }}</td>
+          <td>{{ $user->department->name }}</td>
+          <td>{{ $user->specialization->name }}</td>
           <td>{{ $user->email }}</td>
           <td>{{ $user->phone }}</td>
           <td>
@@ -83,10 +90,10 @@
                 <div class="col-md-6">
                   <select class="form-select" aria-label="Select user type" name="usertype" id="usertype" required>
                     <option value=0 selected>Select ---</option>
-                    <option value="Admin">{{ __('Admin') }}</option>
-                    <option value="Doctor">{{ __('Doctor') }}</option>
-                    <option value="Nurse">{{ __('Nurse') }}</option>
-                    <option value="Chief Nurse">{{ __('Chief Nurse') }}</option>
+                    <option value='admin'>{{ 'Admin' }}</option>
+                    <option value='doctor'>{{ 'Doctor' }}</option>
+                    <option value='nurse'>{{ 'Nurse' }}</option>
+                    <option value='chiefnurse'>{{ 'Chief Nurse' }}</option>
                   </select>
                   @error('usertype')
                   <span class="invalid-feedback" role="alert">
@@ -229,24 +236,15 @@
 
               <!-- Department -->
               <div class="row mb-3">
-                <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
+                <label for="department" class="col-md-4 col-form-label text-md-end">{{ 'Department' }}</label>
 
                 <div class="col-md-6">
                   <select class="form-select" aria-label="Select gender" name="department" id="department" required>
                     <option value=0 selected>Select ---</option>
-                    <option value=0>Doctors ----------</option>
-                    <option value="Emergency Department">{{ __('Emergency Department') }}</option>
-                    <option value="Intensive Care Unit (ICU)">{{ __('Intensive Care Unit (ICU)') }}</option>
-                    <option value="Obstetrics and Gynecology (OB/GYN)">{{ __('Obstetrics and Gynecology (OB/GYN)') }}</option>
-                    <option value="Pediatrics">{{ __('Pediatrics') }}</option>
-                    <option value="Surgery">{{ __('Surgery') }}</option>
-                    <option value="Cardiology">{{ __('Cardiology') }}</option>
-                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>\
-                    <option value=0>{{ __('Nurses ----------') }}</option>
-                    <option value="Nursing Department">{{ __('Nursing Department') }}</option>
-                    <option value=0>{{ __('Admin ----------') }}</option>
-                    <option value="IT Department">{{ __('IT Department') }}</option>
-                    <option value="Admission">{{ __('Admission') }}</option>
+                    @foreach($departments as $department)
+                      <option value={{ $department->id }}>{{ $department->name }}</option>
+                    @endforeach
+
                   </select>
                   @error('department')
                   <span class="invalid-feedback" role="alert">
@@ -258,29 +256,14 @@
 
               <!-- Specialization -->
               <div class="row mb-3">
-                <label for="specialization" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
+                <label for="specialization" class="col-md-4 col-form-label text-md-end">{{ 'Specialization' }}</label>
 
                 <div class="col-md-6">
                   <select class="form-select" aria-label="Select gender" name="specialization" id="specialization" required>
                     <option value=0 selected>Select ---</option>
-                    <option value=0>Doctors ----------</option>
-                    <option value="Internal Medicine">{{ __('Internal Medicine') }}</option>
-                    <option value="Surgeon">{{ __('Surgeon') }}</option>
-                    <option value="Pediatrician">{{ __('Pediatrician') }}</option>
-                    <option value="Ob-gyne">{{ __('Ob-gyne') }}</option>
-                    <option value="Orthopedic">{{ __('Orthopedic') }}</option>
-                    <option value="Cardiologist">{{ __('Cardiologist') }}</option>
-                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>
-                    <option value="Neurologist">{{ __('Neurologist') }}</option>
-                    <option value=0>Nurses ----------</option>
-                    <option value="Registered Nurse">{{ __('Registered Nurse') }}</option>
-                    <option value="ICU Nurse">{{ __('ICU Nurse') }}</option>
-                    <option value="ER Nurse">{{ __('ER Nurse') }}</option>
-                    <option value="Geriatic Nurse">{{ __('Geriatic Nurse') }}</option>
-                    <option value="Orthopedic Nurse">{{ __('Orthopedic Nurse') }}</option>
-                    <option value=0>{{ __('Admin -----------') }}</option>
-                    <option value="Software Developer">{{ __('Software Developer') }}</option>
-                    <option value="Admission Officer">{{ __('Admission Officer') }}</option>
+                    @foreach($specializations as $specialization)
+                      <option value={{ $specialization->id }}>{{ $specialization->name }}</option>
+                    @endforeach
                   </select>
                   @error('specialization')
                   <span class="invalid-feedback" role="alert">
@@ -318,5 +301,21 @@
       </div>
     </div>
   </div>
+
+  <!--Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <!-- For DataTables -->
+  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+  </script>  
+
+   <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  <script>
+    const dataTable = new DataTable('#userTable');  
+  </script>
 
 @endsection

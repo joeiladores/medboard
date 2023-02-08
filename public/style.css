@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Roboto+Mono&display=swap');
+
 :root{
   --main-bg-color: #1f66d1;
   --main-text-color: #1353c9;
   --second-text-color: #014f9e;
   --second-bg-color: #c1d5ef;
+}
+
+body {
+  /* font-size: 0.9375rem; */
+  /* font-family: 'Roboto+Mono', sans-serif; */
+  /* background-color: #F3F3F9; */
 }
 
 
