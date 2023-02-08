@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Department;
 use App\Models\Specialization;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 // use PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -16,7 +18,7 @@ class UserController extends Controller
     protected function users()
     {
         return view('admin/users')
-        ->with('users', User::all())
+        ->with('users', User::all()->sortDesc())
         ->with('departments', Department::all())
         ->with('specializations', Specialization::all());
     }
@@ -54,7 +56,7 @@ class UserController extends Controller
         $user = new User;
 
         $user->email            = $request->email;
-        $user->password         = $request->password;
+        $user->password         = Hash::make($request->password);
         $user->usertype         = $request->usertype;
         $user->lastname         = $request->lastname;
         $user->firstname        = $request->firstname;
@@ -65,8 +67,23 @@ class UserController extends Controller
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
-        $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
+
+        if($request->hasFile('imagepath')){
+            $request->validate([
+                'imagepath' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
+            ]);
+
+            $imagepath = $request->file('imagepath');
+            $filename = time().".".$imagepath->getClientOriginalExtension();
+            
+            // Save image in storage
+            Storage::putFileAs('public/images', $imagepath, $filename);
+
+            $user->imagepath = $filename;
+        }else{
+            $user->imagepath = null;
+        }
 
         $user->save();
 
@@ -76,7 +93,7 @@ class UserController extends Controller
     public function editUser($id) {
         $user = User::find($id);
         // dd($user);
-        $dept = Department::with('user')->find($id);  
+        // $dept = Department::with('user')->find($id);  
         // dd($dept);
         // $spec = Specialization::where('id', $user->specialization_id)->get();
         // dd($spec);

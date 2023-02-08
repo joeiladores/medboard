@@ -224,10 +224,10 @@
 
                         <!-- Image Path -->
                         <div class="row mb-3">
-                            <label for="imagepath" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image File') }}</label>
+                            <label for="imagepath" style="cursor: pointer;" class="col-md-4 col-form-label text-md-end">{{ 'Add Profile Photo' }}</label>
 
                             <div class="col-md-6">
-                                <input id="imagepath" type="file" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
+                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
 
                                 @error('imagepath')
                                     <span class="invalid-feedback" role="alert">

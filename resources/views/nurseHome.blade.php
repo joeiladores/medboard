@@ -90,7 +90,13 @@ body {
         <img id="DashboardNurseImg" src="{{ asset('images/nursedashboard.png') }}" alt="Image">
     </div>
 </div>
-
+<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-5">
+      <i class="fas fa-project-diagram fs-2 me-2"></i>
+      {{ __('Logout') }}
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+      @csrf
+    </form>
 
     <div class="row">
     <div class="col-lg-12">
