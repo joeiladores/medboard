@@ -1,4 +1,4 @@
-@extends('layouts.doctorOrdersSidenav')
+@extends('layouts.NurseLayout')
 
 @section('content')
 <h3>Edit Medication</h3>
