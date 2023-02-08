@@ -51,13 +51,13 @@ body {
   }
   #DashboardNurseImg{
     width: 45%;
-    height: 80%;
+    height: 90%;
     margin: 2px;
   }
 }
 @media only screen and (max-width: 500px) {
     #DashboardCard{
-    height:22%;
+    height:20%;
 }
 #DashboardText{
     font-size:15px;
@@ -68,7 +68,7 @@ body {
   }
   #DashboardNurseImg{
     width: 40%;
-    height: 90%;
+    height: 85%;
   }
 }
 
@@ -93,7 +93,7 @@ body {
     <div class="row">
     <div class="col-lg-12">
       <div class="card rounded shadow mt-3 p-2">
-      <table class="table p-4" id="nursesDashboardTable">
+      <table class="table" id="nursesDashboardTable">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -169,7 +169,7 @@ body {
   </div>
   <div class="col-lg-2" id="DashboardSide">
     <!-- Side Profile -->
-    <div style="padding:20%; height:530px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
+    <div style="padding:20%; height:500px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
         <center>
           <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
           <p style="font-size:17px; font-weight:600;" class="text-light">Nurse Cruz</p>

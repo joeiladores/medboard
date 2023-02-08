@@ -9,4 +9,11 @@ class NurseDashboardController extends Controller
     public function index(){
         return view('nurseHome');
     }
+
+
+    public function patients(){
+        return view('nursePatients');
+    }
 }
+
+
