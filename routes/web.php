@@ -139,6 +139,7 @@ Route::get('/generate-pdf', function(){
 Route::resource('ajaxadmissions',AdmissionAjaxController::class);
 
 Route::resource('patientAdmission',PatientAdmissionController::class);
+Route::get('/next-admission-id', [AdmissionAjaxController::class, 'nextAdmissionId'])->name('next-admission-id');
 
 Route::get('/admission', function () {
     return view('admission');

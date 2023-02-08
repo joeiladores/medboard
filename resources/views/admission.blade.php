@@ -109,8 +109,8 @@
     /***---modal area */
     table {
 
-    height: 70px;
-}
+        height: 70px;
+    }
 
     .modal-body {
         padding: 30px;
@@ -332,10 +332,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <div class="col-md-12 text-right mb-5">
-                                    <a class="btn btn-success" href="javascript:void(0)" id="createNewAdmission"> Create
-                                        New Admission</a>
-                                </div>
+
                                 <div class="col-md-12">
                                     <table class="table hover stripe display compact table-bordered data-table">
                                         <thead>
@@ -378,13 +375,15 @@
                         <div class="table-responsive">
                             <div class="col-md-12">
                                 <table class="  hover stripe display compact patient-table">
+                                    <button id="button">Admit Patient</button>
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>lastname</th>
+                                            <th>Last Name</th>
+                                            <th>First name</th>
                                             <th>birth_date</th>
-                                            <th>gender</th>
-                                            <th>address</th>
+                                            <th>Gender</th>
+                                            <th>Address</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -451,7 +450,8 @@
         |
         |_______________________________________________
     -->
-    <div class="modal fade" id="ajaxModel" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="ajaxModel" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -506,16 +506,48 @@
                         <div class="form-group">
                             <label for="activities" class="col-sm-2 control-label">Activities</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="activities" name="activities"
-                                    placeholder="Enter Acitivites" required="">
+                                <select size="1" id="activities" name="activities">
+                                    <option value="Ambulant">
+                                        Ambulant
+                                    </option>
+                                    <option value="Dangle and sit up">
+                                        Dangle and sit up
+                                    </option>
+                                    <option value="Bedrest with BRP">
+                                        New York
+                                    </option>
+                                    <option value="CBR w/o BRP">
+                                        CBR w/o BRP
+                                    </option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="diet" class="col-sm-2 control-label">diet</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="diet" name="diet" placeholder="Enter Diets"
-                                    required="">
+                                <select size="1" id="diet" name="diet">
+                                    <option value="NPO" >
+                                    NPO
+                                    </option>
+                                    <option value="dat">
+                                    Dat
+                                    <option value="soft">
+                                    Soft
+                                    </option>
+                                    <option value="clearLiquids">
+                                    Clear Liquids
+                                    </option>
+                                    <option value="genliquids">
+                                    Gen. liquids
+                                    </option>
+                                    <option value="lslfnpo">
+                                    LSLF then NPO
+                                    </option>
+                                    <option value="tidPremeals">
+                                    tID Pre-meals
+                                    </option>
+                                </select>
                             </div>
                         </div>
 
@@ -523,30 +555,80 @@
                         <div class="form-group">
                             <label for="tubes" class="col-sm-2 control-label">Tubes</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="tubes" name="tubes" placeholder="tubes"
-                                    value="" maxlength="50" required="">
+                                    <select size="1" id="tubes" name="tubes">
+                                    <option value="foleyCatheter" >
+                                    Foley Catheter
+                                    </option>
+                                    <option value="thoracicTube">
+                                    Thoracic Tube
+                                    <option value="ngt">
+                                    NGT
+                                    </option>
+                                    <option value="cvp">
+                                    CVP
+                                    </option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="specialinfo" class="col-sm-2 control-label">Special Info</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="specialinfo" name="specialinfo"
-                                    placeholder="specialinfo" required="">
+                                    <select size="1" id="specialinfo" name="specialinfo">
+                                    <option value="weightDaily" >
+                                    Weight Daily
+                                    </option>
+                                    <option value="bpqshift">
+                                    Bp Q shift
+                                    <option value="neuroVS">
+                                    Neuro VS
+                                    </option>
+                                    <option value="abdominalGirth">
+                                    Abdominal Girth
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mentalStatus" class="col-sm-2 control-label">Mental Status</label>
+                            <div class="col-sm-12">
+                                    <select size="1" id="mentalStatus" name="mentalStatus">
+                                    <option value="conscious" >
+                                    Conscious
+                                    </option>
+                                    <option value="drowsy" >
+                                    Drowsy
+                                    </option>
+                                    <option value="stupor" >
+                                    Stupor
+                                    </option>
+                                    <option value="unconscious" >
+                                    Unconscious
+                                    </option>
+                                    <option value="comatose" >
+                                    Comatose
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="status" class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="status" name="status"
-                                    placeholder="Status...." required="">
+                                    <select size="1" id="status" name="status">
+                                    <option value="Admitted" >
+                                    Admitted
+                                    </option>
+                                    <option value="Discharged" >
+                                    Discharged
+                                    </option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="discharge" class="col-sm-2 control-label">Date and Time Discharge</label>
-                            <div class="col-sm-12">
-                                <input type="date" class="form-control" id="discharge" name="discharge" required="">
+                            <label for="date_time_discharged" class="col-sm-2 control-label">Date and Time Discharge</label>
+                            <div class="col-sm-12 " disabled>
+                                <input type="date" class="form-control" id="date_time_discharged" name="date_time_discharged" required="">
                             </div>
                         </div>
 
@@ -580,13 +662,32 @@
         --------------------------------------------
         --------------------------------------------*/
 
+
+
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{{ route('ajaxadmissions.index') }}",
-            columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+            columns: [
+                // {
+                //     data: 'primary_doctor_id',
+                //     name: 'primary_doctor_id',
+                // },
+                // {
+                //     data: 'bed_id',
+                //     name: 'bed_id'
+                // },
+                // {
+                //     data: 'patient_id',
+                //     name: 'patient_id'
+                // },
+                // {
+                //     data: 'user_id',
+                //     name: 'user_id'
+                // },
+                {
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'action',
@@ -635,8 +736,8 @@
                     name: 'status'
                 },
                 {
-                    data: 'discharge',
-                    name: 'discharge'
+                    data: 'date_time_discharged',
+                    name: 'date_time_discharged'
                 },
 
             ]
@@ -652,12 +753,16 @@
         var table = $('.patient-table').DataTable({
             ajax: "{{ route('patientAdmission.index') }}",
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'lastname',
                     name: 'lastname'
+                },
+                {
+                    data: 'firstname',
+                    name: 'firsttname'
                 },
                 {
                     data: 'birth_date',
@@ -674,16 +779,65 @@
                 },
             ]
         });
-
-
-
-        $('#createNewAdmission').click(function() {
+        $('.patient-table tbody').on('click', 'tr', function() {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        $('#button').click(function() {
+            var selectedRow = table.row('.selected');
+            if (!selectedRow.data() || !selectedRow.data().id) {
+                alert("The selected row does not have an 'id' from the database.");
+                return;
+            }
             $('#saveBtn').val("create-admission");
             $('#admission_id').val('');
             $('#admissionForm').trigger("reset");
             $('#modelHeading').html("Create New Admission");
             $('#ajaxModel').modal('show');
         });
+
+        $('#saveBtn').click(function(e) {
+            e.preventDefault();
+            // send a request to the server to get the next available admission ID
+            $.ajax({
+                type: "GET",
+                url: "/next-admission-id",
+                success: function(data) {
+                    var admissionID = data.id;
+                    var admissionExists = false;
+                    // check if the table has an "id" column
+                    if (!table.column('id').visible()) {
+                        // return error message
+                        alert("The selected table does not have an 'id' column.");
+                        return;
+                    }
+                    // check if the admission ID already exists in the table
+                    table.rows().every(function() {
+                        if (this.data()[0] === admissionID) {
+                            admissionExists = true;
+                            return false; // exit the loop
+                        }
+                    });
+                    if (admissionExists) {
+                        // return error message
+                        alert("Admission ID already exists!");
+                        return;
+                    }
+                    // add the admission ID to the form data
+                    $('#admission_id').val(admissionID);
+
+                },
+                error: function(data) {
+                    // handle the error
+                    console.error("Failed to get next admission ID", data);
+                }
+            });
+        });
+
 
         $('body').on('click', '.editAdmission', function() {
             var admission_id = $(this).data('id');

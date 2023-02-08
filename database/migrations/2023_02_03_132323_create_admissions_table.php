@@ -15,18 +15,23 @@ class CreateAdmissionsTable extends Migration
     public function up()
     {
         Schema::create('admissions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
+            $table->foreignId('bed_id')->constrained('beds')->onDelete('cascade')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable();
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade')->nullable();
+            $table->foreignId('primary_doctor_id')->constrained('users')->onDelete('cascade')->nullable();
             $table->date('admitted');
             $table->text('complain');
             $table->string('diagnosis');
             $table->integer('age');
             $table->float('weight');
-            $table->text('activities');
-            $table->text('diet');
-            $table->text('tubes');
-            $table->text('specialinfo');
-            $table->text('status');
-            $table->date('discharge');
+            $table->enum('activities', ['Ambulant', 'Dangle and sit up','Bedrest with BRP','CBR w/o BRP',])->nullable();
+            $table->enum('diet', ['NPO', 'dat','soft','clearLiquids','genliquids','lslfnpo','tidPremeals'])->nullable();
+            $table->enum('tubes', ['foleyCatheter', 'thoracicTube','ngt','cvp'])->nullable();
+            $table->enum('specialinfo', ['weightDaily', 'bpqshift','neuroVS','abdominalGirth',])->nullable();
+            $table->enum('mentalStatus', ['conscious', 'drowsy','stupor','unconscious','comatose',])->nullable();
+            $table->enum('status', ['Admitted','Discharged'])->nullable();
+            $table->date('date_time_discharged')->nullable();
             $table->timestamps();
         });
     }
@@ -40,5 +45,6 @@ class CreateAdmissionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('admissions');
+        Schema::dropIfExists('patients');
     }
 };
