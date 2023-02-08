@@ -65,7 +65,6 @@ border-radius: 0px 44px 32px 0px;"
 
 .list-group-item{
   border: none;
-  padding: 20px 30px;
 }
 
 .list-group-item.active{
@@ -134,6 +133,11 @@ border-radius: 0px 44px 32px 0px;"
     background-size: cover;
   }
 }
+.list-group-item {
+  height: 65px;
+  line-height: 40px;
+}
+
 </style>
 
 <body>
@@ -147,24 +151,21 @@ border-radius: 0px 44px 32px 0px;"
     <p></p>
   </div>
 
-  <div class="list-group list-group-flush my-3" >
-    <a href="{{ route('adminHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold  text-dark">
-      <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>
-      Home
-    </a>
-    <a href="{{ route('patientView') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>
-      Patients
+  <div class="list-group list-group my-3">
+    <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold  text-dark">
+      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
     </a>
     <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <i class="fa-solid fa-calendar-days fs-2 me-2"></i>
-      Calendar
+      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
     </a>
     <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <i class="fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>
-      Forms
+      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
     </a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark mt-5">
+    <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
+    <p class="text-light"><i class="text-light fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
+      
+    </a>
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light mt-5">
       <i class="fas fa-project-diagram fs-2 me-2"></i>
       {{ __('Logout') }}
     </a>
