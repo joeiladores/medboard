@@ -1,4 +1,4 @@
-@extends('layouts.doctorOrdersSidenav')
+@extends('layouts.NurseLayout')
 
 @section('content')
 <style>
@@ -11,7 +11,7 @@ body {
 }
 /* Defaults */
 #DashboardCard{
-    height:35%; 
+    height:35%;
     background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
     border-radius:30px;
 }
@@ -20,8 +20,7 @@ body {
 }
 #DashboardNurseImg{
     width: 30%;
-    height: 100%;
-    margin: 2px;
+    height: 115%;
 }
 
 /* Responsiveness */
@@ -33,7 +32,7 @@ body {
     display: none;
   }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 720px) {
   #DashboardSide {
     display: none;
   }
@@ -68,9 +67,8 @@ body {
     display: none;
   }
   #DashboardNurseImg{
-    width: 45%;
-    height: 95%;
-    margin: 2px;
+    width: 40%;
+    height: 85%;
   }
 }
 
@@ -174,7 +172,7 @@ body {
     <div style="padding:20%; height:500px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
         <center>
           <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
-          <p style="font-size:17px; font-weight:600;" class="text-light">Elaine Cruz</p>
+          <p style="font-size:17px; font-weight:600;" class="text-light">Nurse Cruz</p>
           <p style="font-size:15px; font-weight:500;" class="text-light">Dialysis Nurse</p>
         </center>
     </div>
@@ -213,7 +211,7 @@ body {
 <script>
   $(document).ready( function () {
     $('#nursesDashboardTable').DataTable({
-        "pageLength": 6,
+        "pageLength": 5,
         "lengthChange": false
     });
 } );  
@@ -227,9 +225,4 @@ body {
  <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
  
-
- <!-- Bootstrap 5-->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
 @endsection

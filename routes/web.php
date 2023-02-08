@@ -20,6 +20,9 @@ use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 
+//NurseDashboard Controllers
+use App\Http\Controllers\NurseDashboardController;
+
 // Patient Controllers
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicalHistoryController;
@@ -131,9 +134,7 @@ Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy
 
 // *****************************************************************************
 // Nurse's Dashboard View
-Route::get('/nurseHome', function () {
-    return view('nurseHome');
-});
+Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
 
 
 // *****************************************************************************
