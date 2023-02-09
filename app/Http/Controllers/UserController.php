@@ -78,7 +78,7 @@ class UserController extends Controller
             $filename = time().".".$imagepath->getClientOriginalExtension();
             
             // Save image in storage
-            Storage::putFileAs('public/images', $imagepath, $filename);
+            Storage::putFileAs('public/images/profile', $imagepath, $filename);
 
             $user->imagepath = $filename;
         }else{

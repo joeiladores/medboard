@@ -9,7 +9,6 @@
 
     @if (Route::has('register'))
     <p><a href="{{ route('registeruser') }}" class="btn btn-primary me-3 flex-end">+ Add New User</a></p>
-    <!-- <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#createUserModal">+ New User</button> -->
     <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a>
     @endif
   </div>
@@ -31,6 +30,7 @@
           <td>Specialization</td>
           <td>Email</td>
           <td>Phone</td>
+          <td>Status</td>
           <td>Action</td>
         </tr>
       </thead>
@@ -53,11 +53,10 @@
           <td>{{ $user->specialization->name }}</td>
           <td>{{ $user->email }}</td>
           <td>{{ $user->phone }}</td>
+          <td>{{ $user->status }}</td>
           <td>
             <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
-            <!-- <a class="btn btn-sm" href="#">❌</a> -->
-            <!-- <button type="button" class="btn btn-sm" onclick="showEditUserModal({{ $user->id }});">🖊️</button>        -->
-              <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
+            <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
           </td>
         </tr>
         @endforeach

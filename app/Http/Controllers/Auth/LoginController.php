@@ -51,15 +51,22 @@ class LoginController extends Controller
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            if (auth()->user()->usertype == 'doctor') {
-                return redirect()->route('doctorHome');
-            }else if (auth()->user()->usertype == 'nurse') {
-                return redirect()->route('nurseHome');
-            }else if (auth()->user()->usertype == 'chiefnurse') {
-                return redirect()->route('nurseHome');
-            }else{
-                return redirect()->route('adminHome');
+
+            if(auth()->user()->status == 'active') {
+                if (auth()->user()->usertype == 'doctorHome') {
+                    return redirect()->route('doctor');
+                }else if (auth()->user()->usertype == 'nurse') {
+                    return redirect()->route('nurseHome');
+                }else if (auth()->user()->usertype == 'chiefnurse') {
+                    return redirect()->route('nurseHome');
+                }else{
+                    return redirect()->route('adminHome');
+                }
             }
+            else {
+                return redirect()->route('login')->with('error', 'You account is inactive, Please contact the administrator.');
+            }
+            
         }else{
             return redirect()->route('login')
                 ->with('error','Email-Address And Password Are Wrong.');
