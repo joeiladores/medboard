@@ -19,15 +19,15 @@
 
                         <!-- User Type -->
                         <div class="row mb-3">
-                            <label for="usertype" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
+                            <label for="usertype" class="col-md-4 col-form-label text-md-end">{{ 'User Type' }}</label>
 
                             <div class="col-md-6">
                                 <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ old('usertype') }}" required autocomplete="usertype" autofocus>
                                     <option value=0 selected>Select ---</option> 
-                                    <option value="Admin">{{ __('Admin') }}</option>
-                                    <option value="Doctor">{{ __('Doctor') }}</option>
-                                    <option value="Nurse">{{ __('Nurse') }}</option>
-                                    <option value="Chief Nurse">{{ __('Chief Nurse') }}</option>
+                                    <option value='admin'>{{ 'admin' }}</option>
+                                    <option value='doctor'>{{ 'doctor' }}</option>
+                                    <option value='nurse'>{{ 'nurse' }}</option>
+                                    <option value='chiefnurse'>{{ 'chief nurse' }}</option>
                                 </select>
                                 @error('usertype')
                                     <span class="invalid-feedback" role="alert">
@@ -189,23 +189,13 @@
                             <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
 
                             <div class="col-md-6">
-                                <select id="department" aria-label="Select department" class="form-select @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
+                                <select id="department_id" aria-label="Select department" class="form-select @error('department_id') is-invalid @enderror" name="department_id" value="{{ old('department_id') }}" required autocomplete="department_id" autofocus>
                                     <option value=0 selected>Select ---</option> 
-                                    <option value=0>Doctors ----------</option> 
-                                    <option value="Emergency Department">{{ __('Emergency Department') }}</option>
-                                    <option value="Intensive Care Unit (ICU)">{{ __('Intensive Care Unit (ICU)') }}</option>
-                                    <option value="Obstetrics and Gynecology (OB/GYN)">{{ __('Obstetrics and Gynecology (OB/GYN)') }}</option>
-                                    <option value="Pediatrics">{{ __('Pediatrics') }}</option>
-                                    <option value="Surgery">{{ __('Surgery') }}</option>
-                                    <option value="Cardiology">{{ __('Cardiology') }}</option>
-                                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>\
-                                    <option value=0>{{ __('Nurses ----------') }}</option>
-                                    <option value="Nursing Department">{{ __('Nursing Department') }}</option>
-                                    <option value=0>{{ __('Admin ----------') }}</option>
-                                    <option value="IT Department">{{ __('IT Department') }}</option>
-                                    <option value="Admission">{{ __('Admission') }}</option>
+                                    @foreach($departments as $department)
+                                        <option value={{ $department->id }}>{{ $department->name }}</option>
+                                    @endforeach
                                 </select>
-                                @error('department')
+                                @error('department_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -218,28 +208,13 @@
                             <label for="specialization" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
 
                             <div class="col-md-6">
-                                <select id="specialization" aria-label="Select specialization" class="form-select @error('specialization') is-invalid @enderror"  name="specialization" value="{{ old('specialization') }}" required autocomplete="specialization" autofocus>
+                                <select id="specialization_id" aria-label="Select specialization" class="form-select @error('specialization_id') is-invalid @enderror"  name="specialization_id" value="{{ old('specialization_id') }}" required autocomplete="specialization_id" autofocus>
                                     <option value=0 selected>Select ---</option> 
-                                    <option value=0>Doctors ----------</option> 
-                                    <option value="Internal Medicine">{{ __('Internal Medicine') }}</option>
-                                    <option value="Surgeon">{{ __('Surgeon') }}</option>
-                                    <option value="Pediatrician">{{ __('Pediatrician') }}</option>
-                                    <option value="Ob-gyne">{{ __('Ob-gyne') }}</option>
-                                    <option value="Orthopedic">{{ __('Orthopedic') }}</option>
-                                    <option value="Cardiologist">{{ __('Cardiologist') }}</option>
-                                    <option value="Orthopedics">{{ __('Orthopedics') }}</option>
-                                    <option value="Neurologist">{{ __('Neurologist') }}</option>
-                                    <option value=0>Nurses ----------</option> 
-                                    <option value="Registered Nurse">{{ __('Registered Nurse') }}</option>
-                                    <option value="ICU Nurse">{{ __('ICU Nurse') }}</option>
-                                    <option value="ER Nurse">{{ __('ER Nurse') }}</option>
-                                    <option value="Geriatic Nurse">{{ __('Geriatic Nurse') }}</option>
-                                    <option value="Orthopedic Nurse">{{ __('Orthopedic Nurse') }}</option>
-                                    <option value=0>{{ __('Admin -----------') }}</option>
-                                    <option value="Software Developer">{{ __('Software Developer') }}</option>
-                                    <option value="Admission Officer">{{ __('Admission Officer') }}</option>
+                                    @foreach($specializations as $specialization)
+                                        <option value={{ $specialization->id }}>{{ $specialization->name }}</option>
+                                    @endforeach
                                 </select>
-                                @error('specialization')
+                                @error('specialization_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -249,10 +224,10 @@
 
                         <!-- Image Path -->
                         <div class="row mb-3">
-                            <label for="imagepath" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image File') }}</label>
+                            <label for="imagepath" style="cursor: pointer;" class="col-md-4 col-form-label text-md-end">{{ 'Add Profile Photo' }}</label>
 
                             <div class="col-md-6">
-                                <input id="imagepath" type="file" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
+                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
 
                                 @error('imagepath')
                                     <span class="invalid-feedback" role="alert">
@@ -275,4 +250,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

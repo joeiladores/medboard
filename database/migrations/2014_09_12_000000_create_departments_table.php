@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('beds', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
             
-            $table->string('bednum');
-            $table->string('room');
-            $table->string('room_type');
-            $table->string('station');
-            $table->enum('status', ['vacant', 'occupied'])->default('vacant');
+            $table->string('usertype');
+            $table->string('name');
             
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beds');
+        Schema::dropIfExists('departments');
     }
 };

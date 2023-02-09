@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Roboto+Mono&display=swap');
+
 :root{
   --main-bg-color: #1f66d1;
   --main-text-color: #1353c9;
   --second-text-color: #014f9e;
   --second-bg-color: #c1d5ef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.9375rem;
+  font-family: 'Roboto+Mono', sans-serif;
+}
+
+body {
+  /* background-color: #F3F3F9; */
 }
 
 
@@ -21,7 +35,7 @@
 .image-row{
   width: 900px;
   height: 480px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background: #fff;
   box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
 }
@@ -31,7 +45,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
+  /* position: relative; */
   border-radius: 10px 0 0 10px;
 }
 
@@ -40,7 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
 
@@ -56,6 +70,7 @@
 .sidebar{
   background-image: linear-gradient(to right,  #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
   border-radius: 0 2.5rem 2.5rem 0;
+  /* background-color: #43518B; */
 }
 
 .logo-sidebar{
