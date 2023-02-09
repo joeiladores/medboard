@@ -1,4 +1,4 @@
-@extends('layouts.doctorOrdersSidenav')
+@extends('layouts.NurseLayout')
 
 @section('content')
 <style>
@@ -36,6 +36,7 @@ body, html {
   color: white;
   display: none;
   padding: 50px 20px;
+  margin: 14px;
   height: 63%;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -46,11 +47,10 @@ body, html {
 #ProgressNotes {background-color: white;}
 
 
-
 </style>
 <a href="{{ route('doctorsOrders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
-  <div class="card rounded shadow mb-2">
-  <div class="card-body">
+  <div class="card rounded shadow m-3">
+  <div class="card-body m-2">
   <div class="d-flex justify-content-between">
   <h6>Patient ID: 1</h6>
   <div>
@@ -62,9 +62,10 @@ body, html {
   <div class="d-flex justify-content-between">
   <h6 class="mr-2">Assigned Nurse: Cruz</h6>
   <div>
-    
+ 
 <!-- Medication Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:rgb(66,100,208);">
+<br>
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:rgb(66,100,208);">
 + Medication
 </button>
 
@@ -152,7 +153,7 @@ body, html {
 </div>
 
 <!-- Transfusion Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
 + Transfusion
 </button>
 
@@ -231,7 +232,7 @@ body, html {
 <!-- END Transfusion Modal-->
 
 <!-- Treatment Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
 + Treatment
 </button>
 
@@ -303,11 +304,11 @@ body, html {
 </div>
 
 <!-- Progress Notes Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:rgb(66,100,208);">
 + Progress Notes
 </button>
 
-<!-- Progress Notes  Modal-->
+<!-- Progress Notes Modal-->
 <div class="modal fade" id="progressNotesModal" tabindex="-1" aria-labelledby="progressNotesLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -361,10 +362,12 @@ body, html {
 </div>
 
 <!-- TABS -->
-<button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
-<button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
-<button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
-<button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress Notes</button>
+<div class="m-3">
+  <button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
+  <button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
+  <button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
+  <button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress&nbsp;Notes</button>
+</div>
 
 
 <div id="Medication" class="tabcontent mt-4">
@@ -594,28 +597,28 @@ body, html {
   
   $(document).ready( function () {
      $('#medicationTable').DataTable({
-         "pageLength": 5,
+         "pageLength": 3,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#transfusionTable').DataTable({
-         "pageLength": 5,
+         "pageLength": 3,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#treatmentTable').DataTable({
-         "pageLength": 5,
+         "pageLength": 3,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#progressNotesTable').DataTable({
-         "pageLength": 5,
+         "pageLength": 3,
          "lengthChange": false
      });
  } ); 

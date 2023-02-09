@@ -13,12 +13,6 @@ class DoctorOrdersController extends Controller
         return view('doctorsOrders',compact('doctor_orders'));
     }
 
-    public function show($id)
-{
-    $doctor_order = DoctorOrder::find($id);
-
-    return view('orders.show', compact('doctor_order'));
-}
 
 }
     

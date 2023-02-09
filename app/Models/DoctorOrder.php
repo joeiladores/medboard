@@ -14,12 +14,25 @@ class DoctorOrder extends Model
     protected $fillable = [
         'admission_id',
         'doctor_order_id',
-        'nurse_id',
         'date_ordered'
     ];
 
-    public function orderMedications() {
+    public function orderMedication() {
         return $this->hasMany(OrderMedication::class);
+    }
+    public function orderTransfusion() {
+        return $this->hasMany(OrderTransfusion::class);
+    }
+    public function orderTreatment() {
+        return $this->hasMany(OrderTreatment::class);
+    }
+    public function progressNote() {
+        return $this->hasMany(ProgressNote::class);
+    }
+    public function admission() {
+        return $this->belongsTo(Admission::class);
       }
+
+    
 }
 

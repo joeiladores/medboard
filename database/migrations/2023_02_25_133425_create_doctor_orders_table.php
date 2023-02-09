@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
 {
-    //codes for testing
+    //codes for testing // Waiting for admissions - manual add to DB for now
     Schema::create('doctor_orders', function (Blueprint $table) {
         $table->id();
-        $table->integer('admission_id');
-        $table->integer('doctor_id');
-        $table->integer('nurse_id');
-        $table->date('date_ordered');
-        $table->string('order_type');
+        $table->unsignedBigInteger('admission_id')->constrained('admissions')->onDelete('cascade');
+        $table->integer('doctor_id')->nullable(); //nullable for testing
+        $table->date('date_ordered')->nullable(); //nullable for testing
         $table->timestamps();
+
+        $table->foreign('admission_id')->references('id')->on('admissions');
     });
 }
 

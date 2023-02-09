@@ -16,7 +16,7 @@ return new class extends Migration
        ///////////////////////////////// READY TO CONNECT WITH ADMISSIONS TABLE/////////////////////////////////////////////////////
         Schema::create('order_transfusions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('doctor_order_id');
+            $table->unsignedBigInteger('doctor_order_id')->constrained('doctor_orders')->onDelete('cascade');
             $table->enum('type',['IV','Blood']);
             $table->string('fluid_name');
             $table->string('instruction');
