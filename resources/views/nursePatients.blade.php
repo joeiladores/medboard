@@ -68,7 +68,7 @@ body {
 <h4>Patients List</h4>
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow mt-3 p-2">
+      <div class="card rounded shadow mt-1 p-2">
       <table class="table p-4" id="nursesDashboardTable">
             <thead>
                 <tr>
@@ -86,70 +86,7 @@ body {
                     <td>Sample Name</td>
                     <td>A01</td>
                     <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
+                    <td><a href="#" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a></td>
                 </tr>
             </tbody>
            </table>
