@@ -27,12 +27,12 @@
                 {{-- <p class="mt-2 text-white">The requested page does not exist.</p> --}}
 
                 @if(Auth::user()->usertype == 'doctor')
-                <a class="btn bg-secondary text-white d-inline-flex align-items-center mt-3" href="{{ route('doctor') }}">
+                <a class="btn bg-secondary text-white d-inline-flex align-items-center mt-3" href="{{ route('doctorHome') }}">
                     Back to Home
                 </a>
                 @endif
                 @if(Auth::user()->usertype == 'nurse')
-                <a class="btn bg-secondary text-white d-inline-flex align-items-center mt-3" href="{{ route('nurse') }}">
+                <a class="btn bg-secondary text-white d-inline-flex align-items-center mt-3" href="{{ route('nurseHome') }}">
                     Back to Home
                 </a>
                 @endif

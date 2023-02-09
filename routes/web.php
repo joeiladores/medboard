@@ -45,8 +45,8 @@ Route::get('/', function (){
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctor');
-Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurse');
+Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
+Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
 
 // *****************************************************************************
 // Patient Routes
@@ -73,7 +73,7 @@ Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHi
 // All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
-    Route::get('/home', [PatientController::class, 'index'])->name('admin');
+    Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
     Route::get('/admin/users', [UserController::class, 'users'])->name('users');
     Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
     Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
@@ -109,6 +109,16 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 });
 
+// *****************************************************************************
+// Calendar Routes
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+Route::resource('calendar', CalendarController::class)->only(['index', 'edit', 'store']);
+Route::controller(CalendarController::class)->group(function () {
+    Route::get('getevents', 'getEvents')->name('calendar.getevents');
+    Route::put('update/events', 'updateEvents')->name('calendar.updateevents');
+    Route::post('resize/events', 'resizeEvents')->name('calendar.resizeevents');
+    Route::post('drop/events', 'dropEvents')->name('calendar.dropevents');
+});
 
 
 // *****************************************************************************
@@ -155,24 +165,10 @@ Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy
 
 // *****************************************************************************
 // All Nurse Routes List
- 
 
 
 // *****************************************************************************
 // All Chief Nurse Routes List
-
-Route::get('/chiefnurse/home', [HomeController::class, 'chiefnurseHome'])->name('chiefnurse.home');
-
-// *****************************************************************************
-// Calendar Routes
-Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
-Route::resource('calendar', CalendarController::class)->only(['index', 'edit', 'store']);
-Route::controller(CalendarController::class)->group(function () {
-    Route::get('getevents', 'getEvents')->name('calendar.getevents');
-    Route::put('update/events', 'updateEvents')->name('calendar.updateevents');
-    Route::post('resize/events', 'resizeEvents')->name('calendar.resizeevents');
-    Route::post('drop/events', 'dropEvents')->name('calendar.dropevents');
-});
 
 Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
 Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
@@ -220,5 +216,5 @@ Route::get('/generate-pdf', function(){
 Route::resource('ajaxadmissions', AdmissionAjaxController::class);
 
 Route::get('/admission', function () {
-    return view('admission');
+    return view('admission')->name('admissions');
 });

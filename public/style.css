@@ -70,6 +70,7 @@ body {
 .sidebar{
   background-image: linear-gradient(to right,  #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
   border-radius: 0 2.5rem 2.5rem 0;
+  /* background-color: #43518B; */
 }
 
 .logo-sidebar{
