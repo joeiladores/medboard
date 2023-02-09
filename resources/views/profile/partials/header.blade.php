@@ -59,7 +59,11 @@
         <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
           <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
           Specialization Management
-        </a>      
+        </a>
+        <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
+          <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
+          Nurse Assignment
+        </a>       
         <!-- route('calendar')  -->
         <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
           <i class="fa-solid fa-calendar-days fs-2 me-2"></i>
