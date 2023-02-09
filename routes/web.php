@@ -1,12 +1,19 @@
 <?php
-use Barryvdh\DomPDF\Facade\Pdf;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
 // Admin Controllers
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DoctorDashboard;
 use App\Http\Controllers\NurseAssignmentController;
+
+// PDF
+use Barryvdh\DomPDF\Facade\Pdf;
 
 // Calendar Controller
 use App\Http\Controllers\CalendarController;
@@ -37,12 +44,13 @@ Route::get('/', function (){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
+Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
 
 // *****************************************************************************
 // Patient Routes
-Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
+
 Route::get('/patient', [PatientController::class, 'patient'])->name('patientView');
 Route::post('/storePatient', [PatientController::class, 'store'])->name('storePatient');
 Route::get('/destroyPatient/{id}', [PatientController::class, 'destroy'])->name('destroyPatient');
@@ -54,44 +62,68 @@ Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHisto
 Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
 Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 
-Route::get('/doctorHome', [DoctorDashboard::class, 'index']);
 
+// Route::middleware(['auth', 'user-access:doctor'])->group(function () {
+// });
+// Route::middleware(['auth', 'user-access:nurse'])->group(function () {   
+// });
+// Route::middleware(['auth', 'user-access:chiefnurse'])->group(function () {
+// });
 
 // *****************************************************************************
-// Admin routes
-Route::get('/admin/users', [UserController::class, 'users'])->name('users');
-Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
-Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
-Route::get('/admin/edituser/{id}', [UserController::class, 'editUser'])->name('edituser');
-Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
+// All Admin Routes List
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
-Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
-Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
+    Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
+    Route::get('/admin/users', [UserController::class, 'users'])->name('users');
+    Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
+    Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
+    Route::get('/admin/edituser/{id}', [UserController::class, 'editUser'])->name('edituser');
+    Route::post('/admin/updateuser', [UserController::class, 'updateUser'])->name('updateuser');
+    Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
 
-Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
+    Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
-Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
-Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');
-// Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
-Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
-Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
-Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
 
+    // Bed Routes 
+    Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
+    Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');
+    // Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
+    Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
+    Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
+    Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
+
+
+    // Department Routes
+    Route::get('/admin/departments', [DepartmentController::class, 'index'])->name('departments');
+    Route::post('/admin/storedepartment', [DepartmentController::class, 'store'])->name('department.store');
+    Route::post('/admin/updatedepartment', [DepartmentController::class, 'update'])->name('department.update');
+    Route::get('/admin/showdepartment/{id}', [DepartmentController::class, 'show'])->name('department.show');
+    Route::get('/admin/deletedepartment/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+
+    // Specialization Routes
+    Route::get('/admin/specialization', [SpecializationController::class, 'index'])->name('specialization');
+    Route::post('/admin/storespecialization', [SpecializationController::class, 'store'])->name('specialization.store');
+    Route::post('/admin/updatespecialization', [SpecializationController::class, 'update'])->name('specialization.update');
+    Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
+    Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
+
+});
 
 // *****************************************************************************
 // Calendar Routes
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
-Route::resource('calendar', CalendarController::class)->only(['index','edit','store']);
+Route::resource('calendar', CalendarController::class)->only(['index', 'edit', 'store']);
 Route::controller(CalendarController::class)->group(function () {
-    Route::get('getevents','getEvents')->name('calendar.getevents');
-    Route::put('update/events','updateEvents')->name('calendar.updateevents');
-    Route::post('resize/events','resizeEvents')->name('calendar.resizeevents');
-    Route::post('drop/events','dropEvents')->name('calendar.dropevents');
+    Route::get('getevents', 'getEvents')->name('calendar.getevents');
+    Route::put('update/events', 'updateEvents')->name('calendar.updateevents');
+    Route::post('resize/events', 'resizeEvents')->name('calendar.resizeevents');
+    Route::post('drop/events', 'dropEvents')->name('calendar.dropevents');
 });
 
 
 // *****************************************************************************
-///////////////////// Doctor's Orders Routes/////////////////////////
+// All Doctor Routes List
 
 // Doctor's Orders View
 Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
@@ -130,11 +162,34 @@ Route::get('/editProgressNote/{id}', [ProgressNoteController::class, 'edit'])->n
 Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->name('updateProgressNote');
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
 
+
+
+// *****************************************************************************
+// All Nurse Routes List
+
+
+// *****************************************************************************
+// All Chief Nurse Routes List
+
+Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
+Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
+
+
+
+// *****************************************************************************
+// Doctor's Orders Routes
+
+// Doctor's Orders View
+Route::get('/doctorsOrders', function () {
+    return view('doctorsOrders');
+});
+
+
 // *****************************************************************************
 // Nurse's Dashboard View
-Route::get('/nurseHome', function () {
-    return view('nurseHome');
-});
+// Route::get('/nurseHome', function () {
+//     return view('nurseHome');
+// });
 
 
 // *****************************************************************************
@@ -143,7 +198,7 @@ Route::get('/generate-pdf', function(){
     $patients = App\Models\Patient::all();
     // store it in a data array
     $data = [
-    'patients' => $patients,
+        'patients' => $patients,
     ];
     // generate the PDF view
     // Create the userlist blade
@@ -152,11 +207,15 @@ Route::get('/generate-pdf', function(){
     return $pdf->stream('patientlist.pdf');
     //alternatively, you may directly download it using the ff code.
     // $pdf->download('name_of_pdf.pdf');
-    })->name('generate-pdf');
+})->name('generate-pdf');
 
 
 
 // *****************************************************************************
 // Routes for Admission
 
-Route::resource('ajaxadmissions',AdmissionAjaxController::class);
+Route::resource('ajaxadmissions', AdmissionAjaxController::class);
+
+Route::get('/admission', function () {
+    return view('admission')->name('admissions');
+});
