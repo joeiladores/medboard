@@ -125,7 +125,7 @@
                             <!-- Create Medical History Modal of a Patient -->
                             <!-- Create Medical History Modal Button -->
                             <button type="button" class="btn btn-sm btn-success" onclick="showCreateMedHistoryModal({{ $patient->id }})">
-                                + Add Medical History
+                                + Add Medical
                             </button>
 
                             <!-- Medical History Modal Inputs-->
@@ -199,10 +199,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="">
+                                                <form method="POST" action="{{ route('storeAdmit') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
-                                                        
+                                                        <div class="col-md-1">
+                                                            <input type="number" class="form-control" id="admit_patient_id" name="patient_id" required readonly>
+                                                        </div>
+
                                                         <hr>
                                                         <div>
                                                             <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Admit patient</button>

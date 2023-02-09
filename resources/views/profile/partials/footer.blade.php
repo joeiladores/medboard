@@ -59,7 +59,7 @@
    });
 
    function showCreateMedHistoryModal(patient_id) {
-     fetch('{{ url('/medhistory/') }}/' + patient_id)
+     fetch('{{ url('/showpatient/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('medhistory_patient_name').innerHTML = data.lastname;
@@ -74,9 +74,10 @@
    });
 
    function showAdmitModal(patient_id) {
-     fetch('{{ url('/medhistory/') }}/' + patient_id)
+     fetch('{{ url('/showpatient/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
+         document.getElementById('admit_patient_id').value = data.id;
 
          createAdmitModal.show();
        })
