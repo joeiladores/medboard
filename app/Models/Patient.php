@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Patients extends Model
+class Patient extends Model
 {
     use HasFactory;
 
@@ -28,5 +28,11 @@ class Patients extends Model
         'relative_phone'
 
     ];
+
+    public function medhistory()
+    {
+        return $this->hasMany(MedicalHistory::class);
+    }
+
 }
 

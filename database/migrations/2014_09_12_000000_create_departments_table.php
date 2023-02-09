@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('progress_notes', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_order_id')->nullable();
-            $table->string('notes');
+            
+            $table->string('usertype');
+            $table->string('name');
+            
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('progress_notes');
+        Schema::dropIfExists('departments');
     }
 };

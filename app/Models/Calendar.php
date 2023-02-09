@@ -15,6 +15,7 @@ class Calendar extends Model
     protected $table = 'calendars';
 
     protected $fillable = [
+        'user_id',
         'title',
         'start',
         'end',
@@ -23,4 +24,10 @@ class Calendar extends Model
         'color',
         'resourceId'
     ];
+
+    // Connect to users table
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
