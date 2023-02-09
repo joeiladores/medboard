@@ -36,7 +36,7 @@ use App\Http\Controllers\ProgressNoteController;
 
 //Admission Form
 use App\Http\Controllers\AdmissionAjaxController;
-
+use App\Http\Controllers\AdmissionNewController;
 
 Route::get('/', function (){
     return redirect()->route('login');
@@ -57,9 +57,10 @@ Route::get('/destroyPatient/{id}', [PatientController::class, 'destroy'])->name(
 Route::post('/updatePatient', [PatientController::class, 'update'])->name('updatePatient');
 Route::get('/editPatient/{id}', [PatientController::class, 'edit'])->name('editPatient');
 Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('patients');
-Route::get('/medhistory/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
+Route::get('/showpatient/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
 Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
 Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
+Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 
 
 // Route::middleware(['auth', 'user-access:doctor'])->group(function () {

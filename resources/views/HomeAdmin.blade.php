@@ -1,6 +1,6 @@
 @include('profile.partials.header', ['title' => 'MedBoard - Admin'])
 
-  <div class="container-fluid px-4">
+<div class="container-fluid px-4">
     <div class="row g-3 my-2">
 
       <div class="col-md-3">
@@ -34,26 +34,25 @@
           <i class="fs-1 fa-solid fa-user-nurse primary-text pb-2"></i>
         </div>
       </div>
-
     </div>
-
-    <div class="graphBox">
-      <!-- Charts Starts-->
-
-      <div class="box border shadow">
-        <canvas id="patientBar"></canvas>
-      </div>
-
-      <div class="box border shadow">
-        <canvas id="patientChart"></canvas>
-      </div>
-
-
-      <!-- Charts Ends -->
-
-    </div>
-
   </div>
+</div>
+
+<div class="graphBox">
+  <!-- Charts Starts-->
+
+  <div class="box border shadow">
+    <canvas id="patientBar"></canvas>
+  </div>
+
+  <div class="box border shadow">
+    <canvas id="patientChart"></canvas>
+  </div>
+
+
+  <!-- Charts Ends -->
+
+</div>
 
 </div>
 

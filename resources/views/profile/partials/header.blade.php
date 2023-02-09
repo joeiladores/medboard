@@ -78,7 +78,6 @@
         </form>
       </div>
     </div>
-
     <!-- Sidebar Ends -->
 
     <!-- Navbar Starts -->
@@ -105,5 +104,6 @@
             </li>
           </ul>
         </div>
+  </nav>
+  <!-- Navbar Ends -->
 
-      </nav>
