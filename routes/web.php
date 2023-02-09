@@ -45,8 +45,8 @@ Route::get('/', function (){
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
-Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
+Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctor');
+Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurse');
 
 // *****************************************************************************
 // Patient Routes
@@ -73,7 +73,7 @@ Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHi
 // All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
-    Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
+    Route::get('/home', [PatientController::class, 'index'])->name('admin');
     Route::get('/admin/users', [UserController::class, 'users'])->name('users');
     Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
     Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');

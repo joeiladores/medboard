@@ -7,9 +7,15 @@
   --second-bg-color: #c1d5ef;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.9375rem;
+  font-family: 'Roboto+Mono', sans-serif;
+}
+
 body {
-  /* font-size: 0.9375rem; */
-  /* font-family: 'Roboto+Mono', sans-serif; */
   /* background-color: #F3F3F9; */
 }
 
@@ -29,7 +35,7 @@ body {
 .image-row{
   width: 900px;
   height: 480px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background: #fff;
   box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
 }
@@ -39,7 +45,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
+  /* position: relative; */
   border-radius: 10px 0 0 10px;
 }
 
@@ -48,7 +54,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
 

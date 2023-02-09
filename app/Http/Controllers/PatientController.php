@@ -12,19 +12,23 @@ class PatientController extends Controller
 {
     public function index()
     {
+        // TODO: TO CHANGE THIS LATER TO GET PATIENTS FROM ADMISSION TABLE WHERE STUATUS IS ADMITTED        
         $totalPatients  = Patient::count();
-        $totalDoctors   = User::where('usertype', 'Doctor')->count();
-        $totalNurses    = User::where('usertype', 'Nurse')->count();
+        // TODO: TO ADD IN THE QUERY THE DOCTORS AND NURSES WITH STATUS = ACTIVE
+        $totalDoctors   = User::where('usertype', 'Doctor')->where('status', 'active')->count();
+        $totalNurses    = User::where('usertype', 'Nurse')->where('status', 'active')->count();
+
+        $totalVacantBeds = Bed::where('status', 'vacant')->count();
 
 
-        return view('HomeAdmin', compact('totalPatients','totalDoctors','totalNurses'));
+        return view('HomeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
         // from login direct to admin dashboard
     }
 
     public function patient()
     {
         return view('CreatePatient')->with('allPatients', Patient::orderByDesc('created_at')->get())
-                                    ->with('medhistory', MedicalHistory::get());
+            ->with('medhistory', MedicalHistory::get());
     }
 
     public function store(Request $request)
@@ -95,8 +99,4 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         return response()->json($patient);
     }
-
-    
-
-  
 }

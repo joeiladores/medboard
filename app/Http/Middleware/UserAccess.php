@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 // use Illuminate\Support\Facades\Auth;
 
 class UserAccess
@@ -21,7 +22,9 @@ class UserAccess
             return $next($request);
         }
           
-        return response()->json(['You do not have permission to access for this page.']);
-        /* return response()->view('errors.check-permission'); */
+        // return response()->json(['You do not have permission to access for this page.']);
+        throw new UnauthorizedHttpException('Unauthorized');
+        return response()->view('errors.401'); 
+        // return redirect()->route('nurse');
     }
 }
