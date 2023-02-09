@@ -22,15 +22,6 @@
  </script>
 
  <script>
-   $(document).ready(function() {
-     $('#patientTable').DataTable({
-       "pageLength": 5,
-       "lengthChange": true
-     });
-   });
- </script>
-
- <script>
    var dataTable = new DataTable("#patientTable");
 
    //  Edit Modal Patient
@@ -39,7 +30,7 @@
    });
 
    function showEditPatientModal(patient_id) {
-     fetch('{{ url(' / patients / ') }}/' + patient_id)
+     fetch('{{ url('/patients/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('editpatient_lastname').value = data.lastname;
@@ -68,12 +59,26 @@
    });
 
    function showCreateMedHistoryModal(patient_id) {
-     fetch('{{ url(' / medhistory / ') }}/' + patient_id)
+     fetch('{{ url('/medhistory/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('medhistory_patient_name').innerHTML = data.lastname;
          document.getElementById('createMed_patient_id').value = data.id;
          createMedHistoryModal.show();
+       })
+   }
+
+   //  Create Admission of a Patient
+   const createAdmitModal = new bootstrap.Modal('#createAdmitModal', {
+     keyboard: false
+   });
+
+   function showAdmitModal(patient_id) {
+     fetch('{{ url('/medhistory/') }}/' + patient_id)
+       .then(response => response.json())
+       .then(data => {
+
+         createAdmitModal.show();
        })
    }
  </script>

@@ -108,8 +108,8 @@
                         <th>Patients ID#</th>
                         <th>Full Name</th>
                         <th>Medical History</th>
-                        <th>Room #</th>
-                        <th>Status</th>
+                        <th>----</th>
+                        <th>Admission</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -123,7 +123,7 @@
                             <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
 
                             <!-- Create Medical History Modal of a Patient -->
-                            <!-- Medical History Modal Button -->
+                            <!-- Create Medical History Modal Button -->
                             <button type="button" class="btn btn-sm btn-success" onclick="showCreateMedHistoryModal({{ $patient->id }})">
                                 + Add Medical History
                             </button>
@@ -146,8 +146,8 @@
                                                         </div>
                                                         <div></div>
                                                         <div class="col-md-4">
-                                                    
-                                                        <p id="medhistory_patient_name"></p>
+
+                                                            <p id="medhistory_patient_name"></p>
                                                             <input type="number" class="form-control" id="createMed_patient_id" name="patient_id" required readonly>
                                                         </div>
                                                         <div class="col-md-12">
@@ -169,9 +169,9 @@
                                                         <div class="col-md-12">
                                                             <label for="bad_habit" class="form-label">Do you use or do you have history of using tobacco/alcohol/illegal drugs?</label>
                                                             <input type="text" class="form-control" id="bad_habit" name="bad_habit" required>
-                                                            
+
                                                         </div>
-                                                        
+
                                                         <hr>
                                                         <div>
                                                             <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add to patient</button>
@@ -183,14 +183,43 @@
                             </div>
 
                         </td>
-                        <td>Room Pending</td>
-                        <td>Active</td>
+                        <td>######</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info px-3" onclick="showAdmitModal({{ $patient->id }})">
+                                Admit
+                            </button>
+
+                            <!-- Create Admit Modal -->
+                            <div class="modal fade" id="createAdmitModal" tabindex="-1" aria-labelledby="createAdmitModalLabel" aria-hidden="true">
+                                <<div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success">
+                                            <h5 class="modal-title text-light" id="createAdmitModal">Create Patient's Admission</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card">
+                                                <form method="POST" action="">
+                                                    @csrf
+                                                    <div class="row g-3 p-3">
+                                                        
+                                                        <hr>
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Admit patient</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </td>
 
                         <td class="d-flex">
                             <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
                             <!-- Edit Patient Modal Button -->
                             <div>
-                                <button type="button" class="btn btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
+                                <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
                                     Edit
                                 </button>
 
@@ -279,7 +308,7 @@
                 </tbody>
             </table>
 
-           
+
 
         </div>
 
