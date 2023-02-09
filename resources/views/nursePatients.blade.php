@@ -15,18 +15,13 @@ body {
     background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
     border-radius:30px;
 }
-#DashboardText{
-    padding:4%;
-}
-#DashboardNurseImg{
-    width: 30%;
-    height: 115%;
-}
+
+
 
 /* Responsiveness */
 @media only screen and (max-width: 1000px) {
     #DashboardCard{
-    height:30%;
+    height:10%;
 }
   #DashboardSide {
     display: none;
@@ -36,11 +31,7 @@ body {
   #DashboardSide {
     display: none;
   }
-  #DashboardNurseImg{
-    width: 45%;
-    height: 90%;
-    margin: 2px;
-  }
+
 }
 @media only screen and (max-width: 660px) {
     #DashboardCard{
@@ -49,11 +40,7 @@ body {
   #DashboardSide {
     display: none;
   }
-  #DashboardNurseImg{
-    width: 45%;
-    height: 80%;
-    margin: 2px;
-  }
+ 
 }
 @media only screen and (max-width: 500px) {
     #DashboardCard{
@@ -66,10 +53,7 @@ body {
   #DashboardSide {
     display: none;
   }
-  #DashboardNurseImg{
-    width: 40%;
-    height: 90%;
-  }
+
 }
 
 
@@ -78,27 +62,13 @@ body {
 
 <div class="row">
   <div class="col-lg-10">
-    <div class="card shadow" id="DashboardCard">
-        <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day, Nurse "Name here"<br><br>
-        <p style="font-size:15px;">Today, you are assigned to station "here"<br>
-        Have a nice day at work!</p>
-        </h4>
-    <!-- Nurse Dashboard img -->
-    <div style="text-align:right;">
-        <img id="DashboardNurseImg" src="{{ asset('images/nursedashboard.png') }}" alt="Image">
-    </div>
+    <div class="card shadow" id="DashboardCard" style="display:none;">
+        
 </div>
-<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-5">
-      <i class="fas fa-project-diagram fs-2 me-2"></i>
-      {{ __('Logout') }}
-    </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-      @csrf
-    </form>
-
+<h4>Patients List</h4>
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow mt-3 p-2">
+      <div class="card rounded shadow mt-1 p-2">
       <table class="table p-4" id="nursesDashboardTable">
             <thead>
                 <tr>
@@ -116,56 +86,7 @@ body {
                     <td>Sample Name</td>
                     <td>A01</td>
                     <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
+                    <td><a href="#" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a></td>
                 </tr>
             </tbody>
            </table>
@@ -217,7 +138,7 @@ body {
 <script>
   $(document).ready( function () {
     $('#nursesDashboardTable').DataTable({
-        "pageLength": 5,
+        "pageLength": 10,
         "lengthChange": false
     });
 } );  

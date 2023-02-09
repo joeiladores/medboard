@@ -16,7 +16,6 @@
  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
  <script src="/chart.js"></script>
 
-
  <!-- For DataTables -->
  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
@@ -24,32 +23,6 @@
 
  <script>
    var dataTable = new DataTable("#patientTable");
-   var dataTable = new DataTable("#pendingView");
-
-
-   function openPage(pageName, elmnt, color) {
-     // Hide all elements with class="tabcontent" by default */
-     var i, tabcontent, tablinks;
-     tabcontent = document.getElementsByClassName("tabcontent");
-     for (i = 0; i < tabcontent.length; i++) {
-       tabcontent[i].style.display = "none";
-     }
-
-     // Remove the background color of all tablinks/buttons
-     tablinks = document.getElementsByClassName("tablink");
-     for (i = 0; i < tablinks.length; i++) {
-       tablinks[i].style.backgroundColor = "";
-     }
-
-     // Show the specific tab content
-     document.getElementById(pageName).style.display = "block";
-
-     // Add the specific color to the button used to open the tab content
-     elmnt.style.backgroundColor = color;
-   }
-
-   // Get the element with id="defaultOpen" and click on it
-   document.getElementById("defaultOpen").click();
 
    //  Edit Modal Patient
    const editPatientModal = new bootstrap.Modal('#editPatientModal', {
@@ -80,13 +53,13 @@
 
 
 
-  //  Create Medical History of a Patient
-   const createMedHistoryModal = new bootstrap.Modal('#createMedHistoryModal',{
-    keyboard: false
+   //  Create Medical History of a Patient
+   const createMedHistoryModal = new bootstrap.Modal('#createMedHistoryModal', {
+     keyboard: false
    });
 
-   function showCreateMedHistoryModal(patient_id){
-    fetch('{{ url('/medhistory/') }}/' + patient_id)
+   function showCreateMedHistoryModal(patient_id) {
+     fetch('{{ url('/showpatient/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
          document.getElementById('medhistory_patient_name').innerHTML = data.lastname;
@@ -95,6 +68,20 @@
        })
    }
 
+   //  Create Admission of a Patient
+   const createAdmitModal = new bootstrap.Modal('#createAdmitModal', {
+     keyboard: false
+   });
+
+   function showAdmitModal(patient_id) {
+     fetch('{{ url('/showpatient/') }}/' + patient_id)
+       .then(response => response.json())
+       .then(data => {
+         document.getElementById('admit_patient_id').value = data.id;
+
+         createAdmitModal.show();
+       })
+   }
  </script>
 
  </body>

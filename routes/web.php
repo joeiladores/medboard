@@ -22,6 +22,9 @@ use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 use App\Http\Controllers\ProgressNoteController;
 
+//NurseDashboard Controllers
+use App\Http\Controllers\NurseDashboardController;
+
 // Patient Controllers
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicalHistoryController;
@@ -31,6 +34,8 @@ use App\Http\Controllers\AdmissionAjaxController;
 
 // PDF
 use Barryvdh\DomPDF\Facade\Pdf;
+
+use App\Http\Controllers\AdmissionNewController;
 
 
 Route::get('/', function (){
@@ -52,9 +57,10 @@ Route::get('/destroyPatient/{id}', [PatientController::class, 'destroy'])->name(
 Route::post('/updatePatient', [PatientController::class, 'update'])->name('updatePatient');
 Route::get('/editPatient/{id}', [PatientController::class, 'edit'])->name('editPatient');
 Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('patients');
-Route::get('/medhistory/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
+Route::get('/showpatient/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
 Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
 Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
+Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 
 
 // Route::middleware(['auth', 'user-access:doctor'])->group(function () {
@@ -170,19 +176,9 @@ Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 's
 
 
 // *****************************************************************************
-// Doctor's Orders Routes
-
-// Doctor's Orders View
-Route::get('/doctorsOrders', function () {
-    return view('doctorsOrders');
-});
-
-
-// *****************************************************************************
 // Nurse's Dashboard View
-// Route::get('/nurseHome', function () {
-//     return view('nurseHome');
-// });
+Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
 
 
 // *****************************************************************************

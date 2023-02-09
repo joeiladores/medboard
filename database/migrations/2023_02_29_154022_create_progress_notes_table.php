@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('progress_notes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('doctor_order_id');
+            $table->unsignedBigInteger('doctor_order_id')->constrained('doctor_orders')->onDelete('cascade');
             $table->string('notes');
             $table->timestamps();
 

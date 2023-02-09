@@ -23,11 +23,11 @@ return new class extends Migration
             $table->enum('gender',['male','female']);
             $table->enum('blood_type',['A','B','AB','O']);
             $table->string('address');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('health_insurance');
             $table->string('relative_fullname');
             $table->string('relation');
-            $table->integer('relative_phone');
+            $table->string('relative_phone');
             $table->timestamps();
         });
     }

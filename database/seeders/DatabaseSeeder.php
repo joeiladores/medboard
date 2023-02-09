@@ -33,6 +33,6 @@ class DatabaseSeeder extends Seeder
             NurseAssignmentSeeder::class,
             PatientSeeder::class,
         ]);
-        
+       
     }
 }
