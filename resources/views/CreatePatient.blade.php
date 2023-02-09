@@ -125,7 +125,7 @@
                             <!-- Create Medical History Modal of a Patient -->
                             <!-- Create Medical History Modal Button -->
                             <button type="button" class="btn btn-sm btn-success" onclick="showCreateMedHistoryModal({{ $patient->id }})">
-                                + Add Medical
+                                + Add Medical History
                             </button>
 
                             <!-- Medical History Modal Inputs-->
@@ -202,13 +202,112 @@
                                                 <form method="POST" action="{{ route('storeAdmit') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
-                                                        <div class="col-md-1">
-                                                            <input type="number" class="form-control" id="admit_patient_id" name="patient_id" required readonly>
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <span class="fs-4" id="admit_patient_id" name="patient_id"></span>
+                                                                    <input type="number" class="form-control" id="patient_id" name="patient_id">
+                                                                </div>
+                                                                <div class="col-md-11">
+                                                                    <span class="fs-4" id="admit_patient_lastname"></span>
+                                                                    <span class="fs-4" id="admit_patient_firstname"></span>
+                                                                    <span class="fs-4" id="admit_patient_midname"></span>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
+                                                        <hr>
+                                                        <div class="col-md-2">
+                                                            <input type="number" class="form-control" id="age" name="age" placeholder="Age" required>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="number" class="form-control" id="weight" name="weight" step="any" placeholder="Weight (kg)" required>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <select id="bed_id" name="bed_id" class="form-select" required>
+                                                                <option selected>Available Rooms</option>
+                                                                <option value="101">101</option>
+                                                                <option value="102">102</option>
+                                                                <option value="103">103</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <select id="type" name="type" class="form-select" required>
+                                                                <option selected>Type</option>
+                                                                <option value="Inpatient">Inpatient</option>
+                                                                <option value="Outpatient">Outpatient</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control" id="admitting_doctor_id" name="admitting_doctor_id" placeholder="Admitting Doctor">
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control" id="complain" name="complain" placeholder="Complain" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control" id="impression_diagnosis" name="impression_diagnosis" placeholder="Impression Diagnosis" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select id="mental_status" name="mental_status" class="form-select" required>
+                                                                <option selected>Mental Status</option>
+                                                                <option value="Conscious">Conscious</option>
+                                                                <option value="Drowsy">Drowsy</option>
+                                                                <option value="Stupor">Stupor</option>
+                                                                <option value="Unconscious">Unconscious</option>
+                                                                <option value="Comatose">Comatose</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select id="activities" name="activities" class="form-select" required>
+                                                                <option selected>Activities</option>
+                                                                <option value="Ambulant">Ambulant</option>
+                                                                <option value="Dangle & sit up">Dangle & sit up</option>
+                                                                <option value="Bedrest w/ BRP">Bedrest w/ BRP</option>
+                                                                <option value="CBR w/o BRP">CBR w/o BRP</option>
+                                                                <option value="Comatose">Comatose</option>
+                                                                <option value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select id="diet" name="diet" class="form-select" required>
+                                                                <option selected>Diet</option>
+                                                                <option value="NPO">NPO</option>
+                                                                <option value="DAT">DAT</option>
+                                                                <option value="Soft">Soft</option>
+                                                                <option value="Clear liquids">Clear liquids</option>
+                                                                <option value="Gen. liquids">Gen. liquids</option>
+                                                                <option value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select id="tubes" name="tubes" class="form-select" required>
+                                                                <option selected>Tubes</option>
+                                                                <option value="Foley catheter">Foley catheter</option>
+                                                                <option value="Thoractic tube">Thoractic tube</option>
+                                                                <option value="NGT">NGT</option>
+                                                                <option value="CVP">CVP</option>
+                                                                <option value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select id="special_info" name="special_info" class="form-select" required>
+                                                                <option selected>Special Info</option>
+                                                                <option value="Weigh daily">Weigh daily</option>
+                                                                <option value="BP Qshift">BP Qshift</option>
+                                                                <option value="Neuro VS">Neuro VS</option>
+                                                                <option value="Abdominal girth">Abdominal girth</option>
+                                                                <option value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select id="status" name="status" class="form-select" required>
+                                                                <option selected>Status</option>
+                                                                <option value="Admitted">Admitted</option>
+                                                                <option value="Discharged">Discharged</option>
+                                                            </select>
+                                                        </div>               
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Admit patient</button>
+                                                            <button type="submit" class="btn btn-primary" style="background-color:rgb(66,100,208);float:right">Admit patient</button>
                                                         </div>
                                                 </form>
                                             </div>

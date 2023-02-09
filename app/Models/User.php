@@ -94,4 +94,10 @@ class User extends Authenticatable
         return $this->belongsTo(Specialization::class);
     }
 
+    // Connect to admission table
+    public function admitDoc()
+    {
+        return $this->belongsTo(AdmissionNew::class);
+    }
+
 }

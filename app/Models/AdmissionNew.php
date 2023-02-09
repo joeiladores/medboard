@@ -26,4 +26,23 @@ class AdmissionNew extends Model
         'status'
     ];
 
+    // Connect to bed table
+    public function adbed()
+    {
+        return $this->belongsTo(Bed::class);
+    }
+
+    // Connect to patient table
+    public function adpatient()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
+    // Connect to users table
+    public function addoc()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
