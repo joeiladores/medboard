@@ -53,8 +53,8 @@ class LoginController extends Controller
         {
 
             if(auth()->user()->status == 'active') {
-                if (auth()->user()->usertype == 'doctorHome') {
-                    return redirect()->route('doctor');
+                if (auth()->user()->usertype == 'doctor') {
+                    return redirect()->route('doctorHome');
                 }else if (auth()->user()->usertype == 'nurse') {
                     return redirect()->route('nurseHome');
                 }else if (auth()->user()->usertype == 'chiefnurse') {
