@@ -9,34 +9,35 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
 
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="/style.css">
+
 </head>
 
-<body>
+<body class="bg-light">
     <main class="main-content">
         <div class="wrapper">
-            <div class="gradient">
-                <div class="container">
-                    <h1>@yield('code')</h1>
-                    <h2 class="mb-0 mt-4 text-white">
-                        Oops! This Page is @yield('message').</h2>
-                    {{-- <p class="mt-2 text-white">The requested page does not exist.</p> --}}
-                    <a class="btn bg-white text-primary d-inline-flex align-items-center mt-3"
-                        href="{{ route('home') }}">
-                        Back to Home</a>
-                </div>
-                <!-- <div class="box">
-                    <div class="c xl-circle">
-                        <div class="c lg-circle">
-                            <div class="c md-circle">
-                                <div class="c sm-circle">
-                                    <div class="c xs-circle">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+            <div class="container-md m-5 p-5 justify-content-center">
+                <h1>@yield('code')</h1>
+                <h2 class="mb-0 mt-4">
+                    Oops! This Page is @yield('message').</h2>
+                {{-- <p class="mt-2 text-white">The requested page does not exist.</p> --}}
+
+                @if(Auth::user()->usertype == 'doctor')
+                <a class="btn bg-secondary text-white d-inline-flex align-items-center mt-3" href="{{ route('doctor') }}">
+                    Back to Home
+                </a>
+                @endif
+                @if(Auth::user()->usertype == 'nurse')
+                <a class="btn bg-secondary text-white d-inline-flex align-items-center mt-3" href="{{ route('nurse') }}">
+                    Back to Home
+                </a>
+                @endif
             </div>
+
         </div>
     </main>
 </body>

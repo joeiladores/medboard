@@ -18,13 +18,18 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $userType)
     {
-        if(auth()->user()->usertype == $userType){
+        if(auth()->user()->usertype != $userType){
+            throw new UnauthorizedHttpException('Unauthorized');
+        }
+
+        try {
             return $next($request);
+        } catch (UnauthorizedHttpException $e) {
+            return response()->view('errors.401', [], 401);
         }
           
-        // return response()->json(['You do not have permission to access for this page.']);
-        throw new UnauthorizedHttpException('Unauthorized');
-        return response()->view('errors.401'); 
-        // return redirect()->route('nurse');
+        // return response()->json(['You do not have permission to access for this page.']);        
+        // return response()->view('errors.401'); 
+        
     }
 }
