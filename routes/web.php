@@ -27,6 +27,9 @@ use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
 
+//NurseDashboard Controllers
+use App\Http\Controllers\NurseDashboardController;
+
 // Patient Controllers
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicalHistoryController;
@@ -177,19 +180,9 @@ Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 's
 
 
 // *****************************************************************************
-// Doctor's Orders Routes
-
-// Doctor's Orders View
-Route::get('/doctorsOrders', function () {
-    return view('doctorsOrders');
-});
-
-
-// *****************************************************************************
 // Nurse's Dashboard View
-// Route::get('/nurseHome', function () {
-//     return view('nurseHome');
-// });
+Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
 
 
 // *****************************************************************************
