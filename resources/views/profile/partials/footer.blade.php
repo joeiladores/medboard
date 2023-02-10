@@ -62,8 +62,11 @@
      fetch('{{ url('/showpatient/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
-         document.getElementById('medhistory_patient_name').innerHTML = data.lastname;
          document.getElementById('createMed_patient_id').value = data.id;
+         document.getElementById('medhistory_patient_lastname').innerHTML = data.lastname;
+         document.getElementById('medhistory_patient_firstname').innerHTML = data.firstname;
+         document.getElementById('medhistory_patient_midname').innerHTML = data.midname;
+         
          createMedHistoryModal.show();
        })
    }

@@ -28,35 +28,42 @@
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required>
+                                                            <label for="lastname" class="form-label">Last Name</label>
+                                                            <input type="text" class="form-control" id="lastname" name="lastname" required>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="Middle Name (optional)">
+                                                        <div class="col-md-5">
+                                                            <label for="firstname" class="form-label">First Name</label>
+                                                            <input type="text" class="form-control" id="firstname" name="firstname" required>
                                                         </div>
                                                         <div class="col-md-3">
+                                                            <label for="midname" class="form-label">Middle Name</label>
+                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="optional">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label for="marital_status" class="form-label">Marital Status</label>
                                                             <select id="marital_status" name="marital_status" class="form-select" required>
-                                                                <option selected>Marital Status</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="single">single</option>
                                                                 <option value="married">married</option>
                                                                 <option value="widowed">widowed</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3">
+                                                            <label for="bith_date" class="form-label">Birth Date</label>
                                                             <input type="date" class="form-control" id="birth_date" name="birth_date" required>
                                                         </div>
                                                         <div class="col-md-3">
+                                                            <label for="gender" class="form-label">Gender</label>
                                                             <select id="gender" name="gender" class="form-select" required>
-                                                                <option selected>Gender</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="male">male</option>
                                                                 <option value="female">female</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3">
+                                                            <label for="blood_type" class="form-label">Blood Type</label>
                                                             <select id="blood_type" name="blood_type" class="form-select" required>
-                                                                <option selected>Blood Type</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="A">A</option>
                                                                 <option value="B">B</option>
                                                                 <option value="AB">AB</option>
@@ -64,27 +71,33 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-5">
-                                                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                                                            <label for="address" class="form-label">Address</label>
+                                                            <input type="text" class="form-control" id="address" name="address" required>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="Health Insurance (optional)">
+                                                            <label for="phone" class="form-label">Phone</label>
+                                                            <input type="number" class="form-control" id="phone" name="phone" required>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label for="health_insurance" class="form-label">Health Insurance</label>
+                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="optional">
                                                         </div>
                                                         <div class="col-md-5">
-                                                            <input type="text" class="form-control" id="relative_fullname" name="relative_fullname" placeholder="Relative Fullname" required>
+                                                            <label for="relative_fullname" class="form-label">Relative Full Name</label>
+                                                            <input type="text" class="form-control" id="relative_fullname" name="relative_fullname" required>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="text" class="form-control" id="relation" name="relation" placeholder="Relation to patient">
+                                                            <label for="relation" class="form-label">Relation to patient</label>
+                                                            <input type="text" class="form-control" id="relation" name="relation" required>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="number" class="form-control" id="relative_phone" name="relative_phone" placeholder="Relative Contact">
+                                                            <label for="relative_phone" class="form-label">Relative Contact</label>
+                                                            <input type="number" class="form-control" id="relative_phone" name="relative_phone" required>
                                                         </div>
                                                     </div>
                                                     <hr>
                                                     <div>
-                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add</button>
+                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add Patient</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -140,14 +153,24 @@
                                                 <form method="POST" action="{{ route('storeMedHistory') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
-                                                        <div class="col-md-3">
-                                                            <input type="date" class="form-control" id="date" name="date" required>
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-4 fs-4">Patient ID :</div>
+                                                                <div class="col-md-4">
+                                                                    <input type="number" class="form-control fs-5" id="createMed_patient_id" name="patient_id" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <span class="fs-4">Patient Name : </span>
+                                                                <span class="fs-4" id="medhistory_patient_lastname"></span>
+                                                                <span class="fs-4" id="medhistory_patient_firstname"></span>
+                                                                <span class="fs-4" id="medhistory_patient_midname"></span>
+                                                            </div>
                                                         </div>
-                                                        <div></div>
-                                                        <div class="col-md-4">
-
-                                                            <p id="medhistory_patient_name"></p>
-                                                            <input type="number" class="form-control" id="createMed_patient_id" name="patient_id" required readonly>
+                                                        <hr>
+                                                        <div class="col-md-3">
+                                                            <label for="date" class="form-label">Date</label>
+                                                            <input type="date" class="form-control" id="date" name="date" required>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label for="conditions" class="form-label">Check the conditions that apply to you or to any members of your immediate relatives:</label>
@@ -192,8 +215,8 @@
                             <div class="modal fade" id="createAdmitModal" tabindex="-1" aria-labelledby="createAdmitModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
-                                        <div class="modal-header bg-success">
-                                            <h5 class="modal-title text-light" id="createAdmitModal">Create Patient's Admission</h5>
+                                        <div class="modal-header bg-info">
+                                            <h5 class="modal-title text-dark" id="createAdmitModal">Create Patient's Admission</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -206,7 +229,7 @@
                                                                 <div class="col-md-6">
                                                                     <div class="row">
                                                                         <div class="col-md-5 fs-4">
-                                                                        Patient ID :
+                                                                            Patient ID :
                                                                         </div>
                                                                         <div class="col-md-7">
                                                                             <input type="number" class="form-control fs-5" id="admit_patient_id" name="patient_id" readonly>
