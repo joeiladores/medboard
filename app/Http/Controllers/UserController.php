@@ -148,6 +148,11 @@ class UserController extends Controller
 
     protected function deleteUser($id) {
         $user = User::find($id);
+        
+        if($user->imagepath != NULL){
+            Storage::delete('/public/images/'.$user->image_path);
+        }
+
         $user->delete();
 
         return redirect()->route('users')->with('success', 'User is successfully deleted!');
