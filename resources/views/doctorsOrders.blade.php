@@ -37,8 +37,32 @@
                   </td>
                   <td>
                       <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
-                  </td>
-              </tr>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $doctor_order->id }}" onClick="reply_click_doctorOrder(this.id)"></button>
+                    </td>
+              </tr> <!-- To trigger the sweet alert (per ID) -->
+              <script type="text/javascript">
+               function reply_click_doctorOrder(clicked_id) {
+              Swal.fire({
+                title: 'Delete Order Record?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(66,100,208)',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = "{{ route('destroyDoctorOrder', '') }}" + "/" + clicked_id;
+                  Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Order Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                  });
+                }
+              });
+            }
+              </script>
           @endif
       @endforeach
       @endforeach

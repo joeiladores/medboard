@@ -56,6 +56,15 @@ class DoctorOrdersController extends Controller
         return redirect()->route('orders', ['id' => $doctor_order]);
     }
 
+    public function destroy($id)
+    {
+        $doctor_order = DoctorOrder::findOrFail ($id);
+        $doctor_order_id = $doctor_order->doctor_order_id;
+        $doctor_order->delete();
+
+        return redirect()->route('doctorOrders', ['id' => $doctor_order_id]);
+    }
+
     // public function show($id)
     // {
     //     $doctor_order = DoctorOrder::find($id);
