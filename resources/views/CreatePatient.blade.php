@@ -123,7 +123,6 @@
                             <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
 
                             <!-- Create Medical History Modal of a Patient -->
-                            <!-- Create Medical History Modal Button -->
                             <button type="button" class="btn btn-sm btn-success" onclick="showCreateMedHistoryModal({{ $patient->id }})">
                                 + Add Medical History
                             </button>
@@ -191,7 +190,7 @@
 
                             <!-- Create Admit Modal -->
                             <div class="modal fade" id="createAdmitModal" tabindex="-1" aria-labelledby="createAdmitModalLabel" aria-hidden="true">
-                                <<div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header bg-success">
                                             <h5 class="modal-title text-light" id="createAdmitModal">Create Patient's Admission</h5>
@@ -204,11 +203,18 @@
                                                     <div class="row g-3 p-3">
                                                         <div class="col">
                                                             <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <span class="fs-4" id="admit_patient_id" name="patient_id"></span>
-                                                                    <input type="number" class="form-control" id="patient_id" name="patient_id">
+                                                                <div class="col-md-6">
+                                                                    <div class="row">
+                                                                        <div class="col-md-5 fs-4">
+                                                                        Patient ID :
+                                                                        </div>
+                                                                        <div class="col-md-7">
+                                                                            <input type="number" class="form-control fs-5" id="admit_patient_id" name="patient_id" readonly>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="col-md-11">
+                                                                    <span class="fs-4">Patient Name : </span>
                                                                     <span class="fs-4" id="admit_patient_lastname"></span>
                                                                     <span class="fs-4" id="admit_patient_firstname"></span>
                                                                     <span class="fs-4" id="admit_patient_midname"></span>
@@ -217,38 +223,53 @@
                                                         </div>
                                                         <hr>
                                                         <div class="col-md-2">
-                                                            <input type="number" class="form-control" id="age" name="age" placeholder="Age" required>
+                                                            <label for="age" class="form-label">Age</label>
+                                                            <input type="number" class="form-control" id="age" name="age" required>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="number" class="form-control" id="weight" name="weight" step="any" placeholder="Weight (kg)" required>
+                                                            <label for="weight" class="form-label">Weight (kg)</label>
+                                                            <input type="number" class="form-control" id="weight" name="weight" step="any" required>
                                                         </div>
                                                         <div class="col-md-3">
+                                                            <label for="bed_id" class="form-label">Available Rooms</label>
                                                             <select id="bed_id" name="bed_id" class="form-select" required>
-                                                                <option selected>Available Rooms</option>
-                                                                <option value="101">101</option>
-                                                                <option value="102">102</option>
-                                                                <option value="103">103</option>
+                                                                @foreach($beds as $bed)
+                                                                <option disabled hidden selected>--- ---</option>
+                                                                <option value="{{ $bed->id}}">{{ ($bed->room).'   '.($bed->room_type) }}
+                                                                </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="col-md-4">
+                                                            <label for="type" class="form-label" class="form-label">Patient Care</label>
                                                             <select id="type" name="type" class="form-select" required>
-                                                                <option selected>Type</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="Inpatient">Inpatient</option>
                                                                 <option value="Outpatient">Outpatient</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-md-12">
-                                                            <input type="text" class="form-control" id="admitting_doctor_id" name="admitting_doctor_id" placeholder="Admitting Doctor">
+                                                        <div class="col-md-6">
+                                                            <label for="admitting_doctor_id" class="form-label">Admitting Doctor :</label>
+                                                            <select id="admitting_doctor_id" name="admitting_doctor_id" class="form-select">
+                                                                <option disabled hidden selected>--- ---</option>
+                                                                @foreach ($doctors as $doctor)
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <input type="text" class="form-control" id="complain" name="complain" placeholder="Complain" required>
+                                                            <label for="complain" class="form-label">Complain</label>
+                                                            <input type="text" class="form-control" id="complain" name="complain" required>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <input type="text" class="form-control" id="impression_diagnosis" name="impression_diagnosis" placeholder="Impression Diagnosis" required>
+                                                            <label for="impression_diagnosis">Impression diagnosis</label>
+                                                            <input type="text" class="form-control" id="impression_diagnosis" name="impression_diagnosis" required>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="mental_status" class="form-label">Mental status</label>
                                                             <select id="mental_status" name="mental_status" class="form-select" required>
-                                                                <option selected>Mental Status</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="Conscious">Conscious</option>
                                                                 <option value="Drowsy">Drowsy</option>
                                                                 <option value="Stupor">Stupor</option>
@@ -257,8 +278,9 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="activities" class="form-label">Activities</label>
                                                             <select id="activities" name="activities" class="form-select" required>
-                                                                <option selected>Activities</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="Ambulant">Ambulant</option>
                                                                 <option value="Dangle & sit up">Dangle & sit up</option>
                                                                 <option value="Bedrest w/ BRP">Bedrest w/ BRP</option>
@@ -268,8 +290,9 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="diet" class="form-label">Diet</label>
                                                             <select id="diet" name="diet" class="form-select" required>
-                                                                <option selected>Diet</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="NPO">NPO</option>
                                                                 <option value="DAT">DAT</option>
                                                                 <option value="Soft">Soft</option>
@@ -279,8 +302,9 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="tubes" class="form-label">Tubes</label>
                                                             <select id="tubes" name="tubes" class="form-select" required>
-                                                                <option selected>Tubes</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="Foley catheter">Foley catheter</option>
                                                                 <option value="Thoractic tube">Thoractic tube</option>
                                                                 <option value="NGT">NGT</option>
@@ -289,8 +313,9 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="special_info" class="form-label"></label>
                                                             <select id="special_info" name="special_info" class="form-select" required>
-                                                                <option selected>Special Info</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="Weigh daily">Weigh daily</option>
                                                                 <option value="BP Qshift">BP Qshift</option>
                                                                 <option value="Neuro VS">Neuro VS</option>
@@ -299,12 +324,13 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="status" class="form-label">Status</label>
                                                             <select id="status" name="status" class="form-select" required>
-                                                                <option selected>Status</option>
+                                                                <option disabled hidden selected>--- ---</option>
                                                                 <option value="Admitted">Admitted</option>
                                                                 <option value="Discharged">Discharged</option>
                                                             </select>
-                                                        </div>               
+                                                        </div>
                                                         <hr>
                                                         <div>
                                                             <button type="submit" class="btn btn-primary" style="background-color:rgb(66,100,208);float:right">Admit patient</button>
@@ -313,7 +339,7 @@
                                             </div>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
 
                         </td>
 

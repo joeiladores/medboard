@@ -13,6 +13,9 @@ class AdmissionNew extends Model
 
     protected $fillable =
     [
+        'bed_id',
+        'patient_id',
+        'admitting_doctor_id',
         'type',
         'complain',
         'impression_diagnosis',
@@ -41,7 +44,7 @@ class AdmissionNew extends Model
     // Connect to users table
     public function addoc()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
 

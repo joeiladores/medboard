@@ -77,7 +77,8 @@
      fetch('{{ url('/showpatient/') }}/' + patient_id)
        .then(response => response.json())
        .then(data => {
-         document.getElementById('admit_patient_id').innerHTML = data.id;
+        //  document.getElementById('admit_p_id').innerHTML = data.id;
+         document.getElementById('admit_patient_id').value = data.id;
          document.getElementById('admit_patient_lastname').innerHTML = data.lastname;
          document.getElementById('admit_patient_firstname').innerHTML = data.firstname;
          document.getElementById('admit_patient_midname').innerHTML = data.midname;

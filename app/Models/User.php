@@ -97,7 +97,7 @@ class User extends Authenticatable
     // Connect to admission table
     public function admitDoc()
     {
-        return $this->belongsTo(AdmissionNew::class);
+        return $this->hasMany(AdmissionNew::class);
     }
 
 }

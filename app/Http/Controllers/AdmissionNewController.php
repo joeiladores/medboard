@@ -3,18 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdmissionNew;
+use App\Models\Patient;
+use App\Models\User;
+use App\Models\Bed;
 use Illuminate\Http\Request;
 
 class AdmissionNewController extends Controller
 {
+
+    public function showAdmitted()
+    {
+        return view('admittedPatients')
+            ->with('allAdmitted', AdmissionNew::orderByDesc('created_at')->get())
+            ->with('allPatients', Patient::orderByDesc('created_at')->get())
+            ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
+            ->with('beds', Bed::where('status', 'vacant')->get());
+    }
+
+
     public function storeAdmit(Request $request)
     {
         $admissionNew = new AdmissionNew;
-
+        // dd($request);
         $admissionNew->bed_id               =   $request->bed_id;
         $admissionNew->patient_id           =   $request->patient_id;
         $admissionNew->admitting_doctor_id  =   $request->admitting_doctor_id;
-        $admissionNew->primary_doctor_id    =   $request->primary_doctor_id;
+
         $admissionNew->type                 =   $request->type;
         $admissionNew->complain             =   $request->complain;
         $admissionNew->impression_diagnosis =   $request->impression_diagnosis;
@@ -28,7 +42,6 @@ class AdmissionNewController extends Controller
         $admissionNew->status               =   $request->status;
 
         $admissionNew->save();
-        return redirect()->route('patientView')->with('success', 'Patient admitted successfully!');
-
+        return redirect()->route('admittedPatient')->with('success', 'New admitted patient added!');
     }
 }
