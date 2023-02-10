@@ -34,11 +34,12 @@ body, html {
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
-  color: white;
+  color: rgb(14, 0, 0);
   display: none;
   padding: 50px 20px;
+  padding-top:70px;
   margin: 14px;
-  height: 63%;
+  height: 370px;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -600,28 +601,28 @@ body, html {
   
   $(document).ready( function () {
      $('#medicationTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 4,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#transfusionTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 4,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#treatmentTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 4,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#progressNotesTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 4,
          "lengthChange": false
      });
  } ); 
