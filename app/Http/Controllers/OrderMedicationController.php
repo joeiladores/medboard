@@ -25,22 +25,27 @@ class OrderMedicationController extends Controller
 
     ////
     $doctor_order = DoctorOrder::first();
-$admittedPatient = DB::table('admission_news')
-            ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
-            ->where('admission_news.id', $doctor_order->admission_id)
-            ->select('admission_news.id as admission_id', 'patients.firstname', 'patients.lastname')
-            ->first();
+    $doctor_order = DoctorOrder::find(request()->route('id'));
 
-            $room = Bed::where('room', $doctor_order->admission_id)->first();
-            $room_number = ($room !== null) ? $room->room : "Unknown";
+    $admittedPatient = DB::table('admission_news')
+        ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+        ->where('admission_news.id', $doctor_order->admission_id)
+        ->select('admission_news.id as admission_id', 'patients.firstname', 'patients.lastname')
+        ->first();
 
-        
+    $roomNumber = DB::table('admission_news')
+        ->join('beds', 'admission_news.patient_id', '=', 'beds.id')
+        ->where('admission_news.id', $doctor_order->admission_id)
+        ->select('admission_news.id as admission_id', 'beds.room')
+        ->first();
 
 
 
 
 
-    return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes','doctor_order','admittedPatient','room_number'));
+
+
+    return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes','doctor_order','admittedPatient','roomNumber'));
 }
 
 public function edit($id)

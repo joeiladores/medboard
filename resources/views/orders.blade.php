@@ -59,9 +59,8 @@ body, html {
         <h6 class="mr-5 pr-5">{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</h6>
   </div>
   </div>
-  <h6>Doctor ID: {{ $doctor_order->doctor_id }}</h6>
   <h6>Patient Name: {{ $admittedPatient->firstname . " " . $admittedPatient->lastname }}</h6>
-  <h6> Room: {{ $room_number }} </h6>
+  <h6> Room: {{ $roomNumber->room }} </h6>
   <div class="d-flex justify-content-between">
   <h6 class="mr-2"></h6>
   <div>
