@@ -13,8 +13,7 @@ class DoctorOrder extends Model
 
     protected $fillable = [
         'admission_id',
-        'doctor_order_id',
-        'date_ordered'
+        'doctor_order_id'
     ];
     public function admission() {
         return $this->belongsTo(Admission::class);

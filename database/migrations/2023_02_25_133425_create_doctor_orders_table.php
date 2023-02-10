@@ -18,7 +18,6 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('admission_id')->constrained('admission_news')->onDelete('cascade');
         $table->unsignedBigInteger('doctor_id')->constrained('admission_news')->onDelete('cascade');
-        $table->date('date_ordered')->nullable(); //nullable for testing
         $table->timestamps();
 
         $table->foreign('admission_id')->references('id')->on('admission_news');
