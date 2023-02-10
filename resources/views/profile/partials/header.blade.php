@@ -63,7 +63,7 @@
         <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
           <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
           Nurse Assignment
-        </a>       
+        </a>
         <!-- route('calendar')  -->
         <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
           <i class="fa-solid fa-calendar-days fs-2 me-2"></i>
@@ -86,28 +86,36 @@
 
     <!-- Navbar Starts -->
     <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-3 px-3">
-        <div class="d-flex align-items-center">
-          <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
-          <h2 class="fs-1 m-0 ms-3">Admin Dashboard</h2>
-        </div>
+      <div class="container-fluid sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-3">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
+            <!-- <h2 class="fs-1 m-0 ms-3">Admin Dashboard</h2> -->
+            <h5 class="fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }} &nbsp;<span class="badge text-bg-primary">{{ Auth::user()->usertype }}</span></h5>
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              {{ session('status') }}
+            </div>
+            @endif
+          </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item-dropdown">
-              <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user fs-2 me-2"></i>
-                My Profile
-              </a>
-              <p>Tuesday, Feb 14, 2023</p>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item-dropdown">
+                <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user fs-2 me-2"></i>
+                  <!-- My Profile -->
+                  {{ Auth::user()->name }}
+                </a>
+                <p class="text-center">{{ date('F j, Y') }}</p>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-            </li>
-          </ul>
-        </div>
-  </nav>
-  <!-- Navbar Ends -->
-
+      <!-- Navbar Ends -->

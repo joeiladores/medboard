@@ -93,8 +93,9 @@ class UserController extends Controller
     public function editUser($id) {
         $user = User::find($id);
         // dd($user);
-        // $dept = Department::with('user')->find($id);  
-        // dd($dept);
+        // $dept = Department::where('id', $user->department_id)->get();
+        $dept = Department::with('user')->find($id);
+        dd($dept);
         // $spec = Specialization::where('id', $user->specialization_id)->get();
         // dd($spec);
 

@@ -34,8 +34,8 @@ class User extends Authenticatable
         'gender',
         'address',
         'phone',
-        'department',
-        'specialization',
+        'department_id',
+        'specialization_id',
         'imagepath',
         'status',
     ];
