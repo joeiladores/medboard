@@ -1,7 +1,7 @@
 @include('profile.partials.header', ['title' => 'MedBoard - Admin'])
 
   <div class="container-fluid px-4">
-    <div class="row g-3 my-2">
+    <div class="row g-3 mt-1 mb-2">
 
       <div class="col-md-3">
         <div class="card card-body card-bg p-3 text-center border shadow rounded-3">

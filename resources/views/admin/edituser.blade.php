@@ -15,38 +15,7 @@
                     </div>
                     @endif
                     <form method="POST" action="{{ route('updateuser') }}" enctype="multipart/form-data">
-                        @csrf
-
-                        <!-- User Type -->
-                        <div class="row mb-3">
-                            <label for="usertype" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ $user->usertype }}" required autocomplete="usertype" autofocus>
-
-                                    @if($user->usertype != 'admin') <option value='admin'>{{ 'admin' }}</option>
-                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
-                                    @endif
-
-                                    @if($user->usertype != 'doctor') <option value='doctor'>{{ 'doctor' }}</option>
-                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
-                                    @endif
-
-                                    @if($user->usertype != 'nurse') <option value=3>{{ 'nurse' }}</option>
-                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
-                                    @endif
-
-                                    @if($user->usertype != 'chiefnurse') <option value='chiefnurse'>{{ 'chief nurse' }}</option>
-                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
-                                    @endif
-                                </select>
-                                @error('usertype')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+                        @csrf                        
 
                         <!-- Last Name -->
                         <div class="row mb-3">
@@ -86,6 +55,37 @@
                                 <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ $user->middlename }}" required autocomplete="middlename" autofocus>
 
                                 @error('middlename')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- User Type -->
+                        <div class="row mb-3">
+                            <label for="usertype" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="usertype" aria-label="Select user type" class="form-select @error('usertype') is-invalid @enderror" name="usertype" value="{{ $user->usertype }}" required autocomplete="usertype" autofocus>
+
+                                    @if($user->usertype != 'admin') <option value='admin'>{{ 'admin' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
+                                    @endif
+
+                                    @if($user->usertype != 'doctor') <option value='doctor'>{{ 'doctor' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
+                                    @endif
+
+                                    @if($user->usertype != 'nurse') <option value=3>{{ 'nurse' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
+                                    @endif
+
+                                    @if($user->usertype != 'chiefnurse') <option value='chiefnurse'>{{ 'chief nurse' }}</option>
+                                    @else <option selected value="{{ $user->usertype }}">{{ $user->usertype }}</option>
+                                    @endif
+                                </select>
+                                @error('usertype')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
