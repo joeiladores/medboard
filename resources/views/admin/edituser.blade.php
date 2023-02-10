@@ -15,7 +15,52 @@
                     </div>
                     @endif
                     <form method="POST" action="{{ route('updateuser') }}" enctype="multipart/form-data">
-                        @csrf
+                        @csrf                        
+
+                        <!-- Last Name -->
+                        <div class="row mb-3">
+                            <label for="lastname" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ $user->lastname }}" required autocomplete="lastname" autofocus>
+
+                                @error('lastname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- First Name -->
+                        <div class="row mb-3">
+                            <label for="firstname" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ $user->firstname }}" required autocomplete="firstname" autofocus>
+
+                                @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Middle Name -->
+                        <div class="row mb-3">
+                            <label for="middlename" class="col-md-4 col-form-label text-md-end">{{ __('Middle Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ $user->middlename }}" required autocomplete="middlename" autofocus>
+
+                                @error('middlename')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <!-- User Type -->
                         <div class="row mb-3">
@@ -48,51 +93,6 @@
                             </div>
                         </div>
 
-                        <!-- Last Name -->
-                        <div class="row mb-3">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ $user->lastname }}" required autocomplete="lastname" autofocus>
-
-                                @error('lastname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Last Name -->
-                        <div class="row mb-3">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ $user->firstname }}" required autocomplete="firstname" autofocus>
-
-                                @error('firstname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Middle Name -->
-                        <div class="row mb-3">
-                            <label for="middlename" class="col-md-4 col-form-label text-md-end">{{ __('Middle Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ $user->middlename }}" required autocomplete="middlename" autofocus>
-
-                                @error('middlename')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
                         <!-- Birthdate -->
                         <div class="row mb-3">
                             <label for="birthdate" class="col-md-4 col-form-label text-md-end">{{ __('Birthdate') }}</label>
@@ -116,24 +116,26 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror bg-light" name="email" value="{{ $user->email }}" required autocomplete="email" readonly>
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
+                        <!-- Will display only if user is admin -->
+                        @if(Auth::user()->usertype == 'admin')
                         <!-- Password -->
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $user->password }}" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -146,6 +148,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ $user->passwrod }}" required autocomplete="new-password">
                             </div>
                         </div>
+                        @endif
 
                         <!-- Gender -->
                         <div class="row mb-3">
@@ -155,9 +158,9 @@
                                 <select id="gender" aria-label="Select gender" class="form-select @error('gender') is-invalid @enderror" name="gender" required autocomplete="gender" autofocus>
                                     <option selected value="{{ $user->gender }}">{{ $user->gender }}</option>
                                     @if($user->gender != 'Male')
-                                        <option value="Male">{{ __('Male') }}</option>
+                                    <option value="Male">{{ __('Male') }}</option>
                                     @else
-                                        <option value="Female">{{ __('Female') }}</option>
+                                    <option value="Female">{{ __('Female') }}</option>
                                     @endif
                                 </select>
                                 @error('gender')
@@ -204,11 +207,11 @@
 
                             <div class="col-md-6">
                                 <select id="department_id" aria-label="Select department" class="form-select @error('department_id') is-invalid @enderror" name="department_id" value="{{ $user->department_id }}" required autocomplete="department_id" autofocus>
-                                    <option selected value="{{ $dept->id }}">{{ $dept->name }}</option>
+                                    <option selected value="{{ $userdept->id }}">{{ $userdept->name }}</option>
                                     @foreach($departments as $department)
-                                        @if($department->id != $dept->id)
-                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                        @endif
+                                    @if($department->id != $userdept->id)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('department_id')
@@ -221,15 +224,15 @@
 
                         <!-- Specialization -->
                         <div class="row mb-3">
-                            <label for="specialization_id" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
+                            <label for="specialization_id" class="col-md-4 col-form-label text-md-end">{{ __('Specialization') }}</label>
 
                             <div class="col-md-6">
                                 <select id="specialization_id" aria-label="Select specialization" class="form-select @error('specialization_id') is-invalid @enderror" name="specialization_id" value="{{ $user->specialization_id }}" required autocomplete="specialization_id" autofocus>
-                                    <option selected value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                    <option selected value="{{ $userspec->id }}">{{ $userspec->name }}</option>
                                     @foreach($specializations as $specialization)
-                                        @if($specialization->id != $spec->id)
-                                            <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
-                                        @endif
+                                    @if($specialization->id != $userspec->id)
+                                    <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('specialization_id')
@@ -240,12 +243,34 @@
                             </div>
                         </div>
 
-                        <!-- Image Path -->
+                        <!-- Status -->
                         <div class="row mb-3">
-                            <label for="imagepath" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image File') }}</label>
+                            <label for="status" class="col-md-4 col-form-label text-md-end">{{ __('Status') }}</label>
 
                             <div class="col-md-6">
-                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png,.webp" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ $user->imagepath }}" autocomplete="imagepath" autofocus>
+                                <select id="status" aria-label="Select status" class="form-select @error('gender') is-invalid @enderror" name="status" required autocomplete="status" autofocus>
+                                    <option selected value="{{ $user->status }}">{{ $user->status }}</option>
+                                    @if($user->status != 'active')
+                                    <option value='active'>active</option>
+                                    @else
+                                    <option value='inactive'>inactive</option>
+                                    @endif
+                                </select>
+                                @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Image Path -->
+                        <div class="row mb-3">
+                            <label for="imagepath" style="cursor: pointer;" class="col-md-4 col-form-label text-md-end">{{ __('Change Profile Photo') }}</label>
+
+                            <div class="col-md-6">
+
+                                <!-- <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png,.webp" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ $user->imagepath }}" autocomplete="imagepath" autofocus> -->
 
                                 @error('imagepath')
                                 <span class="invalid-feedback" role="alert">

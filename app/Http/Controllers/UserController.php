@@ -99,23 +99,24 @@ class UserController extends Controller
 
     public function editUser($id) {
         $user = User::find($id);
-        // dd($user);
-        // $dept = Department::where('id', $user->department_id)->get();
-        // $dept = Department::with('user')->find($id);
-        // dd($dept);
-        // $spec = Specialization::where('id', $user->specialization_id)->get();
-        // dd($spec);
-
+    
+        // $userdept = Department::with('user')->find($id);
+        // In this case it is Many-To-One, this query returns null
+        // This will only work if query is from One-To-Many        
+        // dd($userdept);
+   
         return view('admin/edituser')
         ->with('user', $user)
-        ->with('dept', Department::with('user')->find($id))
+        ->with('userdept', $user->department)
         ->with('departments', Department::all())
-        ->with('spec', Specialization::with('user')->find($id))
+        ->with('userspec', $user->specialization)
         ->with('specializations', Specialization::all());
     }
 
     protected function updateUser(Request $request) {        
         $user = User::find($request->id);
+
+        
         
         $user->usertype         = $request->usertype;
         $user->lastname         = $request->lastname;
@@ -127,6 +128,7 @@ class UserController extends Controller
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
+        $user->status           = $request->status; 
         $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
 
@@ -139,7 +141,7 @@ class UserController extends Controller
             $filename = time().".".$imagepath->getClientOriginalExtension();
             
             // Save image in storage
-            Storage::putFileAs('public/images/profile', $imagepath, $filename);
+            Storage::putFileAs('public/images/profile/', $imagepath, $filename);
 
             $user->imagepath = $filename;
             
