@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Medboard</title>
   <!--Bootstrap CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -18,7 +18,7 @@
 
 <style>
 .sidebar{
-background: linear-gradient(180deg, rgba(66, 100, 208, 0.26) 1.56%, #4264D0 36.46%);
+background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
 box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
 border-radius: 0px 44px 32px 0px;"
 }
@@ -147,7 +147,7 @@ border-radius: 0px 44px 32px 0px;"
 <!-- Sidebar Starts -->
 <div class="sidebar" id="sidebar-wrapper">
   <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase">
-    <img class="logo-sidebar" src="{{asset('/images/medboard-logo-final.png')}}">
+    <img class="logo-sidebar" src="{{asset('/images/medboard-logo.png')}}">
     <p></p>
   </div>
 

@@ -88,17 +88,10 @@ body {
         <img id="DashboardNurseImg" src="{{ asset('images/nursedashboard.png') }}" alt="Image">
     </div>
 </div>
-<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-5">
-      <i class="fas fa-project-diagram fs-2 me-2"></i>
-      {{ __('Logout') }}
-    </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-      @csrf
-    </form>
 
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow mt-3 p-2">
+      <div class="card rounded shadow mt-2 p-4">
       <table class="table p-4" id="nursesDashboardTable">
             <thead>
                 <tr>
@@ -175,7 +168,7 @@ body {
   </div>
   <div class="col-lg-2" id="DashboardSide">
     <!-- Side Profile -->
-    <div style="padding:20%; height:530px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
+    <div style="padding:20%; height:530px; background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 30px 30px 0px 0px;">
         <center>
           <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
           <p style="font-size:17px; font-weight:600;" class="text-light">Nurse Cruz</p>
@@ -185,7 +178,7 @@ body {
      <!--END Side Profile -->
 
     <!-- Side Time/Date -->
-    <div class="mt-2 p-2 text-light" style="height:100px;background: linear-gradient(180.37deg, rgba(66, 100, 208, 0.06) -19.51%, #4264D0 99.68%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 0px 0px 30px 30px;">
+    <div class="mt-2 p-2 text-light" style="height:100px;background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 0px 0px 30px 30px;">
     <center>
         <h6 id="currentDate"></h6>
         <h2 id="currentTime"></h2>
