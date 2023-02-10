@@ -14,7 +14,7 @@
                         {{ session('error') }}
                       </div>
                     @endif
-                    <form method="POST" action="{{ route('storeuser') }}">
+                    <form method="POST" action="{{ route('storeuser') }}" enctype="multipart/form-data">
                         @csrf
 
                         <!-- User Type -->
@@ -227,7 +227,7 @@
                             <label for="imagepath" style="cursor: pointer;" class="col-md-4 col-form-label text-md-end">{{ 'Add Profile Photo' }}</label>
 
                             <div class="col-md-6">
-                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
+                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png,.webp" onchange="imageUpload(event);" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ old('imagepath') }}" autocomplete="imagepath" autofocus>
 
                                 @error('imagepath')
                                     <span class="invalid-feedback" role="alert">

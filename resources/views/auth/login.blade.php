@@ -41,20 +41,17 @@
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
-                            </div
-                  
+                            </div>
+
                             <div class="col-12 px-5 mt-3">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary mx-auto">
                                     {{ __('Login') }}
                                 </button>
-                                <!-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif -->
                             </div>
+
                         </div>
                     </form>
+                </div>
 
             </div>
         </div>

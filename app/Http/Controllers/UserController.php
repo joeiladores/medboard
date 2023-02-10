@@ -67,7 +67,10 @@ class UserController extends Controller
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
-        $user->name             = $request->firstname . ' ' . $request->lastname;
+        $user->name             = $request->firstname . ' ' . $request->lastname;        
+
+
+        // dd($request->hasFile('imagepath'));
 
         if($request->hasFile('imagepath')){
             $request->validate([
@@ -81,9 +84,13 @@ class UserController extends Controller
             Storage::putFileAs('public/images/profile', $imagepath, $filename);
 
             $user->imagepath = $filename;
+            
         }else{
             $user->imagepath = null;
         }
+
+        // dd($request->imagepath);
+        
 
         $user->save();
 
@@ -93,7 +100,8 @@ class UserController extends Controller
     public function editUser($id) {
         $user = User::find($id);
         // dd($user);
-        // $dept = Department::with('user')->find($id);  
+        // $dept = Department::where('id', $user->department_id)->get();
+        // $dept = Department::with('user')->find($id);
         // dd($dept);
         // $spec = Specialization::where('id', $user->specialization_id)->get();
         // dd($spec);
@@ -122,17 +130,22 @@ class UserController extends Controller
         $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
 
-        // $user->email  = $request->email;
-        // $user->name = $request->name;        
-        
-        // IF new email is already existing in the database
-        // if($user->email != $originalemail) {
-        //     $userexist = User::where('email', $bed->email)->first();
-        //     if($userexist != NULL) {
-        //         return redirect()->route('users')
-        //         ->with('error', 'User number already exists!');
-        //     }
-        // }
+        if($request->hasFile('imagepath')){
+            $request->validate([
+                'imagepath' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
+            ]);
+
+            $imagepath = $request->file('imagepath');
+            $filename = time().".".$imagepath->getClientOriginalExtension();
+            
+            // Save image in storage
+            Storage::putFileAs('public/images/profile', $imagepath, $filename);
+
+            $user->imagepath = $filename;
+            
+        }else{
+            $user->imagepath = null;
+        }
 
         $user->save();
         return redirect()->route('users')->with('success', 'User is successfully updated!');
@@ -140,6 +153,12 @@ class UserController extends Controller
 
     protected function deleteUser($id) {
         $user = User::find($id);
+        
+        // dd($user->imagepath);
+        if($user->imagepath != NULL){
+            Storage::delete('/public/images/profile/'.$user->imagepath);
+        }
+
         $user->delete();
 
         return redirect()->route('users')->with('success', 'User is successfully deleted!');

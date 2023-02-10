@@ -21,39 +21,30 @@ class DepartmentSeeder extends Seeder
 
         $department = [
             [
-                'usertype' => 'doctor',
                 'name' => 'Emergency',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'ICU',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'OB/GYN',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'Pediatrics',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'Surgery',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'Cardiology',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'Orthopedics',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'Nursing Department',
             ],
             [
-                'usertype' => 'doctor',
                 'name' => 'IT Department',
             ],            
         ];

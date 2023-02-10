@@ -18,6 +18,9 @@
 
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
+
+  <!-- JS -->
+ 
 </head>
 
 <body>
@@ -63,7 +66,7 @@
         <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
           <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
           Nurse Assignment
-        </a>       
+        </a>
         <!-- route('calendar')  -->
         <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
           <i class="fa-solid fa-calendar-days fs-2 me-2"></i>
@@ -84,30 +87,4 @@
     </div>
     <!-- Sidebar Ends -->
 
-    <!-- Navbar Starts -->
-    <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-3 px-3">
-        <div class="d-flex align-items-center">
-          <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
-          <h2 class="fs-1 m-0 ms-3">Admin Dashboard</h2>
-        </div>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item-dropdown">
-              <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user fs-2 me-2"></i>
-                My Profile
-              </a>
-              <p>Tuesday, Feb 14, 2023</p>
-
-            </li>
-          </ul>
-        </div>
-  </nav>
-  <!-- Navbar Ends -->
-
+    

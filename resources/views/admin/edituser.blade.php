@@ -14,7 +14,7 @@
                         {{ session('error') }}
                     </div>
                     @endif
-                    <form method="POST" action="{{ route('updateuser') }}">
+                    <form method="POST" action="{{ route('updateuser') }}" enctype="multipart/form-data">
                         @csrf
 
                         <!-- User Type -->
@@ -245,7 +245,7 @@
                             <label for="imagepath" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image File') }}</label>
 
                             <div class="col-md-6">
-                                <input id="imagepath" type="file" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ $user->imagepath }}" autocomplete="imagepath" autofocus>
+                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png,.webp" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ $user->imagepath }}" autocomplete="imagepath" autofocus>
 
                                 @error('imagepath')
                                 <span class="invalid-feedback" role="alert">
