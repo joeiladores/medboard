@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Bed;
 use App\Models\DoctorOrder;
 use App\Models\OrderTransfusion;
 use App\Models\OrderMedication;
 use App\Models\OrderTreatment;
 use App\Models\ProgressNote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -19,7 +23,24 @@ class OrderMedicationController extends Controller
     $order_treatments = OrderTreatment::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $progress_notes = ProgressNote::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
 
-    return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes'));
+    ////
+    $doctor_order = DoctorOrder::first();
+$admittedPatient = DB::table('admission_news')
+            ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+            ->where('admission_news.id', $doctor_order->admission_id)
+            ->select('admission_news.id as admission_id', 'patients.firstname', 'patients.lastname')
+            ->first();
+
+            $room = Bed::where('room', $doctor_order->admission_id)->first();
+            $room_number = ($room !== null) ? $room->room : "Unknown";
+
+        
+
+
+
+
+
+    return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes','doctor_order','admittedPatient','room_number'));
 }
 
 public function edit($id)

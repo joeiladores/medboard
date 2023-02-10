@@ -1,6 +1,7 @@
 @extends('layouts.NurseLayout')
 
 @section('content')
+<title>Doctor's Orders</title>
 <style>
     /* Set height of body and the document to 100% to enable "full page tabs" */
 body, html {
@@ -48,20 +49,24 @@ body, html {
 
 
 </style>
+
 <a href="{{ route('doctorsOrders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
   <div class="card rounded shadow m-3">
   <div class="card-body m-2">
   <div class="d-flex justify-content-between">
-  <h6>Patient ID: 1</h6>
+  <h6>Patient ID: {{ $doctor_order->admission_id }}</h6>
   <div>
-        <h6 class="mr-5 pr-5">Date: Jan 26,2023</h6>
+        <h6 class="mr-5 pr-5">{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</h6>
   </div>
   </div>
-  <h6>Patient Name: Juan Luna</h6>
-   <h6> Room ID: A01 </h6>
+  <h6>Doctor ID: {{ $doctor_order->doctor_id }}</h6>
+  <h6>Patient Name: {{ $admittedPatient->firstname . " " . $admittedPatient->lastname }}</h6>
+  <h6> Room: {{ $room_number }} </h6>
   <div class="d-flex justify-content-between">
-  <h6 class="mr-2">Assigned Nurse: Cruz</h6>
+  <h6 class="mr-2"></h6>
   <div>
+
+
  
 <!-- Medication Modal Button -->
 <br>
@@ -321,7 +326,7 @@ body, html {
       @csrf
       <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
       <div class="mb-3">
-      <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
+      <textarea class="form-control col-9" id="progress_notes" name="progress_notes" rows="10" required></textarea>
     </div>
     <div>
                 <!-- Add Progress Note trigger button -->
@@ -423,7 +428,6 @@ body, html {
                         }
                       });
                     }
-
                       </script>
                 </tr>
                 @endforeach

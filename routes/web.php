@@ -131,6 +131,7 @@ Route::controller(CalendarController::class)->group(function () {
 // Doctor's Orders View
 Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
 Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
+Route::post('/storeDoctorOrders', [DoctorOrdersController::class, 'store'])->name('storeDoctorOrders');
 
 // For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
 

@@ -16,7 +16,9 @@ class DoctorOrder extends Model
         'doctor_order_id',
         'date_ordered'
     ];
-
+    public function admission() {
+        return $this->belongsTo(Admission::class);
+      }
     public function orderMedication() {
         return $this->hasMany(OrderMedication::class);
     }
@@ -29,9 +31,7 @@ class DoctorOrder extends Model
     public function progressNote() {
         return $this->hasMany(ProgressNote::class);
     }
-    public function admission() {
-        return $this->belongsTo(Admission::class);
-      }
+
 
     
 }
