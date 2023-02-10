@@ -67,7 +67,10 @@ class UserController extends Controller
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
-        $user->name             = $request->firstname . ' ' . $request->lastname;
+        $user->name             = $request->firstname . ' ' . $request->lastname;        
+
+
+        // dd($request->hasFile('imagepath'));
 
         if($request->hasFile('imagepath')){
             $request->validate([
@@ -81,9 +84,13 @@ class UserController extends Controller
             Storage::putFileAs('public/images/profile', $imagepath, $filename);
 
             $user->imagepath = $filename;
+            
         }else{
             $user->imagepath = null;
         }
+
+        // dd($request->imagepath);
+        
 
         $user->save();
 
@@ -94,8 +101,8 @@ class UserController extends Controller
         $user = User::find($id);
         // dd($user);
         // $dept = Department::where('id', $user->department_id)->get();
-        $dept = Department::with('user')->find($id);
-        dd($dept);
+        // $dept = Department::with('user')->find($id);
+        // dd($dept);
         // $spec = Specialization::where('id', $user->specialization_id)->get();
         // dd($spec);
 

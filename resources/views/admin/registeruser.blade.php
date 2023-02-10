@@ -14,7 +14,7 @@
                         {{ session('error') }}
                       </div>
                     @endif
-                    <form method="POST" action="{{ route('storeuser') }}">
+                    <form method="POST" action="{{ route('storeuser') }}" enctype="multipart/form-data">
                         @csrf
 
                         <!-- User Type -->

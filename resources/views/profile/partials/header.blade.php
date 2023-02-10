@@ -18,6 +18,10 @@
 
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
+
+  <!-- JS -->
+  <script src="./js/main.js" type="module"></script>
+
 </head>
 
 <body>

@@ -16,19 +16,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             
-            $table->string('usertype')->nullable();
+            $table->string('usertype');
             // Users: 1=>admin, 2=>doctor, 3=>nurse, 4=>chiefnurse
-            $table->string('lastname')->nullable();
-            $table->string('firstname')->nullable();
-            $table->string('middlename')->nullable();
-            $table->date('birthdate')->nullable();
-            $table->enum('gender', ['Male', 'Female'])->nullable();
-            $table->string('address')->nullable();
+            $table->string('lastname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->date('birthdate');
+            $table->enum('gender', ['Male', 'Female']);
+            $table->string('address');
             $table->string('phone')->nullable();
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
-            $table->string('imagepath')->nullable()->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('active')->nullable();           
+            $table->string('imagepath')->nullable()->default(null);
+            $table->enum('status', ['active', 'inactive'])->default('active');           
 
             $table->string('name');
             $table->string('email')->unique();
