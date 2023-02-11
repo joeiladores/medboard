@@ -1,23 +1,27 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Admin-Nurse Assignment'])
 
 @section('content')
 
 <!-- Main Content - List of Users -->
 <div class="container-md p-3">
-  <h1 class="fw-bold">Nurse Assignments</h1>
-    @if (Route::has('register'))
-      <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createNurseAssignmentModal">+ New Nurse Assignment</button>
-    @endif
-
-    @if( session('success') )
-    <div class="alert alert-success my-3" role="alert">
-      {{ session('success') }}
+  <div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="flex-grow-1">
+      <h4 class="fw-bold text-secondary f-poppins">USER ASSIGNMENT</h4>
     </div>
+    @if (Route::has('register'))
+    <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createNurseAssignmentModal">+ New Nurse Assignment</button>
+    @endif
+  </div>
+
+  @if( session('success') )
+  <div class="alert alert-success my-3" role="alert">
+    {{ session('success') }}
+  </div>
   @endif
 
   <div class="table-responsive my-3">
     <table class="table table-hover" id="nurseAssignmentTable">
-      <thead class="fw-bold">
+      <thead class="third-bg-color">
         <tr>
           <td>Assignment ID</td>
           <td>User ID</td>
@@ -120,7 +124,7 @@
                     <option value=0 selected>Select ---</option>
                     <option value="AM Shift">AM Shift</option>
                     <option value="PM Shift">PM Shift</option>
-                    <option value="Night Shift">Night Shift</option>                   
+                    <option value="Night Shift">Night Shift</option>
                   </select>
                   @error('shift')
                   <span class="invalid-feedback" role="alert">
@@ -139,7 +143,7 @@
                     <option value=0 selected>Select ---</option>
                     <option value="Nurse Station 1">Nurse Station 1</option>
                     <option value="Nurse Station 2">Nurse Station 2</option>
-                    <option value="Nurse Station 3">Nurse Station 3</option>                   
+                    <option value="Nurse Station 3">Nurse Station 3</option>
                   </select>
                   @error('station')
                   <span class="invalid-feedback" role="alert">
@@ -160,8 +164,21 @@
     </div>
   </div>
 
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+
+
   <script>
-    const nurseAssignmentTable = new DataTable('#nurseAssignmentTable');
+    $(document).ready(function() {
+      $('#nurseAssignmentTable').DataTable({
+        "pageLength": 10,
+        "lengthChange": true
+      });
+    });
   </script>
 
-@endsection
+  @endsection

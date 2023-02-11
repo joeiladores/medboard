@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Admin-Users'])
 
 @section('content')
 <div class="container p-5">

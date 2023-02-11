@@ -1,17 +1,24 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Admin-Users'])
 
 @section('content')
 
 <!-- Main Content - List of Users -->
 <div class="container-md p-3">
-  <h1 class="fw-bold">Users</h1>
-  <div class="d-flex flex-lg-row flex-column justify-content-between">
+  <div class="d-flex bg-main">
+    <div class="flex-grow-1">
+      <h4 class="fw-bold text-secondary f-poppins">USERS</h4>
+    </div>
+    <div class="flex-lg-row justify-content-end">
+      @if (Route::has('register'))
+      <span><a href="{{ route('registeruser') }}" class="btn btn-primary me-3 flex-end">+ Add New User</a></span>
+      <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a><span>
+      </span>
 
-    @if (Route::has('register'))
-    <p><a href="{{ route('registeruser') }}" class="btn btn-primary me-3 flex-end">+ Add New User</a></p>
-    <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a>
-    @endif
+      @endif
+    </div>
   </div>
+
+
 
   @if( session('success') )
   <div class="alert alert-success my-3" role="alert">
@@ -21,7 +28,7 @@
 
   <div class="table-responsive my-3">
     <table class="table table-hover" id="userTable">
-      <thead class="fw-bold">
+      <thead class="third-bg-color">
         <tr>
           <td>User ID</td>
           <td>User Type</td>
@@ -65,12 +72,17 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- For DataTables -->
-  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
-  </script>  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+
 
   <script>
-    const dataTable = new DataTable('#userTable');  
+    $(document).ready(function() {
+      $('#userTable').DataTable({
+        "pageLength": 10,
+        "lengthChange": true
+      });
+    });
   </script>
 
-@endsection
+  @endsection
