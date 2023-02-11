@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\returnSelf;
+
 class Patient extends Model
 {
     use HasFactory;
@@ -29,9 +31,16 @@ class Patient extends Model
 
     ];
 
+    // Connect to medical history table
     public function medhistory()
     {
         return $this->hasMany(MedicalHistory::class);
+    }
+
+    // Connect to admission table
+    public function admission()
+    {
+        return $this->belongsToMany(AdmissionNew::class);
     }
 
 }

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Roboto+Mono&display=swap');
 
-:root{
+:root {
   --main-bg-color: #1f66d1;
   --main-text-color: #1353c9;
   --second-text-color: #014f9e;
@@ -13,26 +13,27 @@
   box-sizing: border-box;
   font-size: 0.9375rem;
   font-family: 'Roboto+Mono', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
 }
 
-body {
-  /* background-color: #F3F3F9; */
-}
+/* body {
+  background-color: #F3F3F9;
+} */
 
 
 /* Login */
-.nav-login{
+.nav-login {
   background-image: linear-gradient(to right, #5eb0f3, #d9e7fd, #d8ebff, #d4ebf8, #ddecfa);
 }
 
-.main{
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
-.image-row{
+.image-row {
   width: 900px;
   height: 480px;
   /* border-radius: 10px; */
@@ -40,7 +41,7 @@ body {
   box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
 }
 
-.side-image{
+.side-image {
   background-image: url("images/medical1.jpg");
   background-position: center;
   background-size: cover;
@@ -50,7 +51,7 @@ body {
 }
 
 
-.right{
+.right {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +60,7 @@ body {
 
 
 /* Admin Total Cards */
-.card-bg{
+.card-bg {
   background-color: #d4ebf8;
 }
 
@@ -67,13 +68,33 @@ body {
 
 
 /* Dashboard */
-.sidebar{
-  background-image: linear-gradient(to right,  #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
+.sticky {
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transition: all .1s ease-out;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+    transition-property: all;
+  
+}
+
+.fa-icon {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.sidebar {
+  background-image: linear-gradient(to right, #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
   border-radius: 0 2.5rem 2.5rem 0;
   /* background-color: #43518B; */
 }
 
-.logo-sidebar{
+.logo-sidebar {
   max-width: 4.5rem;
   height: auto;
 }
@@ -83,11 +104,11 @@ body {
   height: auto;
 } */
 
-.primary-text{
+.primary-text {
   color: var(--main-text-color);
 }
 
-.second-text{
+.second-text {
   color: var(--second-text-color);
 }
 
@@ -95,49 +116,49 @@ body {
   background-color: var(--main-bg-color);
 }
 
-.secondary-bg{
+.secondary-bg {
   background-color: var(--second-bg-color);
 }
 
-#wrapper{
+#wrapper {
   overflow-x: hidden;
 }
 
-#sidebar-wrapper{
+#sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
   transition: margin 0.25s ease-out;
 }
 
-#sidebar-wrapper .sidebar-heading{
+#sidebar-wrapper .sidebar-heading {
   padding: 0.9rem 1.25rem;
   font-size: 1.2rem;
 }
 
-#sidebar-wrapper .list-group{
+#sidebar-wrapper .list-group {
   width: 15rem;
 }
 
-#page-content-wrapper{
+#page-content-wrapper {
   min-width: 100vw;
 }
 
-#wrapper.toggled #sidebar-wrapper{
+#wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
 }
 
-#menu-toggle{
+#menu-toggle {
   cursor: pointer;
 }
 
-.list-group-item{
+.list-group-item {
   border: none;
-  padding: 20px 30px;
+  padding: 10px 20px;
 }
 
 
 /* Chart */
-.graphBox{
+.graphBox {
   position: relative;
   width: 100%;
   padding: 1.2rem;
@@ -147,7 +168,7 @@ body {
   min-height: 200px;
 }
 
-.graphBox .box{
+.graphBox .box {
   position: relative;
   background: #fff;
   padding: 1rem;
@@ -157,30 +178,30 @@ body {
 
 
 /* Media Query */
-@media (min-width: 768px){
-  #sidebar-wrapper{
+@media (min-width: 768px) {
+  #sidebar-wrapper {
     margin-left: 0;
   }
 
-  #page-content-wrapper{
+  #page-content-wrapper {
     min-width: 0;
     width: 100%;
   }
 
-  #wrapper.toggled #sidebar-wrapper{
+  #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
 }
 
-@media (max-width: 991px){
-  .graphBox{
+@media (max-width: 991px) {
+  .graphBox {
     grid-template-columns: 1fr;
     height: auto;
   }
 }
 
-@media only screen and (max-width: 768px){
-  .side-image{
+@media only screen and (max-width: 768px) {
+  .side-image {
     border-radius: 10px 10px 0 0;
     height: 100px;
     background-size: cover;

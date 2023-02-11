@@ -18,6 +18,9 @@
 
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
+
+  <!-- JS -->
+
 </head>
 
 <body>
@@ -26,56 +29,56 @@
 
     <!-- Sidebar Starts -->
     <div class="sidebar" id="sidebar-wrapper">
-      <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+      <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold border-bottom">
         <img class="logo-sidebar" src="{{asset('/images/medboard-logo-final.png')}}">
-        <p class="fw-bold fs-4">MEDBOARD</p>
+        <p class="fw-bold fs-4">MedBoard</p>
       </div>
 
       <div class="list-group list-group-flush my-3">
-        <a href="{{ route('adminHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>
-          Home
+        <a href="{{ route('adminHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+          <i class="fa-sharp fa-solid fa-house-chimney fa-icon"></i>
+          <span>Home</span>
         </a>
-        <a href="{{ route('patientView') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>
-          Patients
+        <a href="{{ route('patientView') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-sharp fa-solid fa-bed-pulse fa-icon"></i>
+          <span>Patients</span>          
         </a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <!-- <i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i> -->
-          Admission
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-hospital fa-icon"></i>
+          <span>Admission</span>          
         </a>
-        <a href="{{ route('users') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
-          User Management
+        <a href="{{ route('users') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <i class="fa-solid fa-user fa-icon"></i>
+        <span>User Management</span>          
         </a>
-        <a href="{{ route('beds') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
-          Bed Management
+        <a href="{{ route('beds') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-bed fa-icon"></i>
+          <span>Bed Management</span>          
         </a>
-        <a href="{{ route('departments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
+        <a href="{{ route('departments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <i class="fa-solid fa-building-user fa-icon"></i>
           Department Management
         </a>
-        <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
-          Specialization Management
+        <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-people-roof fa-icon"></i>
+          <span>Specialization Management</span>          
         </a>
-        <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <!-- <i class="fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i> -->
-          Nurse Assignment
-        </a>       
+        <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-user-nurse fa-icon"></i>
+          <span>Nurse Assignment</span>          
+        </a>
         <!-- route('calendar')  -->
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <i class="fa-solid fa-calendar-days fs-2 me-2"></i>
-          Calendar
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-calendar-days fa-icon"></i>
+          <span>Calendar</span>          
         </a>
-        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
-          <i class="fa-sharp fa-solid fa-gear fs-2 me-2"></i>
+        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-sharp fa-solid fa-gear fa-icon"></i>
           Settings
         </a>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-5">
-          <i class="fas fa-project-diagram fs-2 me-2"></i>
-          {{ __('Logout') }}
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
+          <i class="fas fa-project-diagram fa-icon"></i>
+          <span>{{ __('Logout') }}</span>          
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
@@ -86,28 +89,62 @@
 
     <!-- Navbar Starts -->
     <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-3 px-3">
-        <div class="d-flex align-items-center">
-          <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
-          <h2 class="fs-1 m-0 ms-3">Admin Dashboard</h2>
-        </div>
+      <div class="container sticky" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2)">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-3">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <!-- Header -->
+          <div class="d-flex">
+            <!-- Sidebar Toggler -->
+            <div class="row">
+              <div class="col-md-3 col-2 align-self-center">
+                <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
+              </div>
+              <div class="col align-self-center">
+                <!-- Welcome User -->
+                <div class="fs-6 fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }}</div>
+                <div>{{ \Carbon\Carbon::now()->format('F j, Y') }}</div>
+              </div>              
+            </div>            
+          
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              {{ session('status') }}
+            </div>
+            @endif
+          </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item-dropdown">
-              <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user fs-2 me-2"></i>
-                My Profile
-              </a>
-              <p>Tuesday, Feb 14, 2023</p>
+          <!-- Toggler Button -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            </li>
-          </ul>
-        </div>
-  </nav>
-  <!-- Navbar Ends -->
-
+          <!-- Profile Photo and User -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item-dropdown">
+                <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="d-flex">
+                    <!-- Photo -->
+                    <div class="flex-grow-1 align-self-center">
+                      @if(Auth::user()->imagepath != NULL)
+                      <img src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
+                      @else
+                      <i class="fas fa-user fs-2 me-1"></i>
+                      @endif
+                    </div>
+                    <!-- My Profile -->
+                     <div class="ms-2 align-self-center">
+                      <div>{{ Auth::user()->name }} </div>
+                      <div class="text-secondary">{{ ucfirst(Auth::user()->usertype) }}</div>
+                      
+                     </div>               
+                      
+                  </div>
+                    
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- Navbar Ends -->

@@ -34,8 +34,8 @@ class User extends Authenticatable
         'gender',
         'address',
         'phone',
-        'department',
-        'specialization',
+        'department_id',
+        'specialization_id',
         'imagepath',
         'status',
     ];
@@ -92,6 +92,12 @@ class User extends Authenticatable
 
     public function specialization() {
         return $this->belongsTo(Specialization::class);
+    }
+
+    // Connect to admission table
+    public function admitDoc()
+    {
+        return $this->hasMany(AdmissionNew::class);
     }
 
 }

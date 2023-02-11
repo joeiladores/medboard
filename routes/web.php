@@ -70,7 +70,11 @@ Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('p
 Route::get('/showpatient/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
 Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
 Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
+
+// *****************************************************************************
+// Routes for Admission
 Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
+Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
 
 
 // Route::middleware(['auth', 'user-access:doctor'])->group(function () {
@@ -245,12 +249,13 @@ Route::post('/reset-password', function (Request $request) {
                 'password' => Hash::make($password)
             ])->setRememberToken(Str::random(60));
  
-            $user->save();
+//             $user->save();
  
-            event(new PasswordReset($user));
-        }
+//         //     event(new PasswordReset($user));
+//         }
     );
  
+
     return $status === Password::PASSWORD_RESET
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);

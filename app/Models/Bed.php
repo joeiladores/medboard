@@ -19,9 +19,9 @@ class Bed extends Model
         'status',
     ];
 
-    // Connect to admisison table
-    // public function bed()
-    // {
-    //     return $this->hasOne(Admission::class);
-    // }
+    //Connect to admisison table
+    public function admission()
+    {
+        return $this->hasMany(AdmissionNew::class);
+    }
 }
