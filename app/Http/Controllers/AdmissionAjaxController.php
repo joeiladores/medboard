@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admission;
+use App\Models\Patients;
 use DataTables;
 
 class AdmissionAjaxController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +24,9 @@ class AdmissionAjaxController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
    
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editAdmission">Edit</a>';
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn  btn-sm editAdmission"><i class="fa-duotone fa-pencil"></i></a>';
    
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteAdmission">Delete</a>';
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn  btn-sm deleteAdmission"><i class="fa-duotone fa-trash"></i></a>';
     
                             return $btn;
                     })
@@ -33,6 +36,8 @@ class AdmissionAjaxController extends Controller
       
         return view('AdmissionAjax');
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -44,20 +49,26 @@ class AdmissionAjaxController extends Controller
     {
         Admission::updateOrCreate(['id' => $request->admission_id],
                 [
-                 'admitted' => $request->admitted,
-                 'diagnosis' => $request->diagnosis, 
-                 'age' => $request->age, 
-                 'complain' => $request->complain, 
-                 'weight' => $request->weight,
-                 'activities' => $request->activities,
-                 'diet' => $request->diet,
-                 'tubes' => $request->tubes,
-                 'specialinfo' => $request->specialinfo,
-                 'status' => $request->status,
-                 'discharge' => $request->discharge
+                    'bed_id' => $request->bed_id,
+                    'user_id' => $request->bed_id,
+                    'patient_id' => $request->patient_id,
+                    'primary_doctor_id' => $request->primary_doctor_id,
+                    'admitted' => $request->admitted,
+                    'complain' => $request->complain, 
+                    'diagnosis' => $request->diagnosis, 
+                    'age' => $request->age, 
+                    'weight' => $request->weight,
+                    'activities' => $request->activities,
+                    'diet' => $request->diet,
+                    'tubes' => $request->tubes,
+                    'specialinfo' => $request->specialinfo,
+                    'mentalStatus' => $request->mentalStatus,
+                    'status' => $request->status,
+                    'date_time_discharged' => $request->date_time_discharged
                 ]);
 
-
+        
+            
         return response()->json(['success'=>'Admission saved successfully.']);
     }
     /**
@@ -84,4 +95,18 @@ class AdmissionAjaxController extends Controller
      
         return response()->json(['success'=>'Admission deleted successfully.']);
     }
+
+
+
+
+    public function nextAdmissionId(Request $request)
+{
+    $nextId = Admission::max('id') + 1;
+    return response()->json(['id' => $nextId]);
 }
+
+}
+
+                //  'bed_id' => $request->bed_id,
+                //  'patient_id' => $request->patient_id,
+                //  'primary_doctor_id' => $request->primary_doctor_id,
