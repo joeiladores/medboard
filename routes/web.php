@@ -252,7 +252,7 @@ Route::post('/reset-password', function (Request $request) {
 //             $user->save();
  
 //         //     event(new PasswordReset($user));
-//         }
+         }
     );
  
 
