@@ -5,16 +5,21 @@ use App\Models\AdmissionNew;
 use App\Models\DoctorOrder;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DoctorOrdersController extends Controller
 {
     public function index()
     {
-        //Get and Display Patient name where status is Admitted
+
+        $user_id = Auth::id();
         $admittedPatient = DB::table('admission_news')
         ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
-        ->where('status', 'Admitted')
+        ->where([
+            ['status', 'Admitted'],
+            ['primary_doctor_id', $user_id]
+        ])
         ->select('admission_news.id as admission_id', 'patients.firstname', 'patients.lastname', 'admission_news.primary_doctor_id')
         ->get();
 
@@ -34,9 +39,12 @@ class DoctorOrdersController extends Controller
         ->get();
 
         //Get and Display All Admitted Patient List
+        //Eloquent ver - suggested
         $doctor_orders = DoctorOrder::orderBy('created_at', 'desc')->get();
-        
 
+        //Query builder - more complex
+        //$doctor_orders = DB::table('doctor_orders')->orderBy('created_at', 'desc')->get();
+        
         return view('doctorsOrders', ['admittedPatient'=>$admittedPatient ,'patient_name' => $patient_name,'room_num'=>$room_num, 'doctor_orders' => $doctor_orders]);
 
     }
@@ -62,7 +70,7 @@ class DoctorOrdersController extends Controller
         $doctor_order_id = $doctor_order->doctor_order_id;
         $doctor_order->delete();
 
-        return redirect()->route('doctorOrders', ['id' => $doctor_order_id]);
+        return redirect()->route('doctorsOrders', ['id' => $doctor_order_id]);
     }
 
     // public function show($id)

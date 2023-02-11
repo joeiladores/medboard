@@ -18,7 +18,7 @@
               <th>Admission id Test</th>
               <th>Doctor id Test</th>
               <th>Patient Name</th>
-              <th>Room Number</th>
+              <th>Room</th>
               <th>Date Ordered</th>
               <th>Actions</th>
           </tr>
@@ -53,6 +53,10 @@
               }).then((result) => {
                 if (result.isConfirmed) {
                   window.location.href = "{{ route('destroyDoctorOrder', '') }}" + "/" + clicked_id;
+                  // Redirect to the "doctorsOrders" view after the record is deleted
+                setTimeout(function() {
+                    window.location.href = "{{ route('doctorsOrders') }}";
+                }, 1000);
                   Swal.fire({
                     title: 'Deleted!',
                     text: 'Order Record has been deleted.',
