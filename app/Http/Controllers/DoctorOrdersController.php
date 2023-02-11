@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\AdmissionNew;
 use App\Models\DoctorOrder;
 use App\Models\Patient;
+use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,10 +42,9 @@ class DoctorOrdersController extends Controller
 
         //Get and Display All Admitted Patient List
         //Eloquent ver - suggested
-        $doctor_orders = DoctorOrder::orderBy('created_at', 'desc')->get();
+        $doctor_orders = DoctorOrder::orderBy('created_at', 'desc')
+        ->get();
 
-        //Query builder - more complex
-        //$doctor_orders = DB::table('doctor_orders')->orderBy('created_at', 'desc')->get();
         
         return view('doctorsOrders', ['admittedPatient'=>$admittedPatient ,'patient_name' => $patient_name,'room_num'=>$room_num, 'doctor_orders' => $doctor_orders]);
 
@@ -59,6 +60,8 @@ class DoctorOrdersController extends Controller
     
         $doctor_order->admission_id      =  $admission_id;
         $doctor_order->doctor_id         =  $primary_doctor_id;
+        $doctor_order->created_at        = Carbon::now(new DateTimeZone('Asia/Singapore'));
+
         $doctor_order->save();
     
         return redirect()->route('orders', ['id' => $doctor_order]);
