@@ -13,11 +13,12 @@ class AdmissionNewController extends Controller
 
     public function showAdmitted()
     {
-        $admitpatients = Patient::with('admitPatient')->get();
+        $admission = Patient::with('admission')->get();
+        // dd($admission);
 
 
         return view('admittedPatients')
-            ->with('admitpatients', $admitpatients)
+            ->with('admission', $admission)
             ->with('allAdmitted', AdmissionNew::orderByDesc('created_at')->get())
             ->with('allPatients', Patient::orderByDesc('created_at')->get())
             ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
