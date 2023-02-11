@@ -55,18 +55,19 @@
                                         </button>
                                         <x-nav-link :href="route('register')"
                                             :active="request()->routeIs('registeruser')">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="button" class="btn btn-primary">
                                                 {{ __('Register') }}
                                             </button>
                                         </x-nav-link>
                                     </div>
                                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                    <x-nav-link :href="route('register')" :active="request()->routeIs('registeruser')">
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    </x-nav-link>
-                </div>
+                                        <x-nav-link :href="route('register')"
+                                            :active="request()->routeIs('registeruser')">
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        </x-nav-link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
