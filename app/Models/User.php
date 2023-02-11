@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -33,8 +34,8 @@ class User extends Authenticatable
         'gender',
         'address',
         'phone',
-        'department',
-        'specialization',
+        'department_id',
+        'specialization_id',
         'imagepath',
         'status',
     ];
@@ -58,6 +59,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Interact with the user's first name.
+     *
+     * @param  string  $value
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function uesrtype(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["admin", "doctor", "nurse", "chiefnurse"][$value],
+        );
+    }
+
     // Doctor attends to one or more patients in an admission
     public function attendsTo(){
         return $this->hasMany(Admission::class);
@@ -68,5 +82,22 @@ class User extends Authenticatable
         return $this->belongsTo(NurseAssignment::class);
     }
 
-    // 
+    public function nurseSchedule(){
+        return $this->belongsTo(Calendar::class);
+    }
+
+    public function department() {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function specialization() {
+        return $this->belongsTo(Specialization::class);
+    }
+
+    // Connect to admission table
+    public function admitDoc()
+    {
+        return $this->hasMany(AdmissionNew::class);
+    }
+
 }

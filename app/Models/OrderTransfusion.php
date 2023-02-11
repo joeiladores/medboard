@@ -16,12 +16,9 @@ class OrderTransfusion extends Model
         'type',
         'fluid_name',
         'instruction',
-        'date_started',
-        'date_stopped',
     ];
-    public function DoctorOrder()
-    {
+    public function doctorOrder() {
         return $this->belongsTo(DoctorOrder::class);
-    }
+      }
     
 }

@@ -1,4 +1,4 @@
-@extends('layouts.orders')
+@extends('layouts.NurseLayout')
 
 @section('content')
 <style>
@@ -6,7 +6,9 @@
 body, html {
   height: 100%;
   margin: 0;
-  font-family: Arial;
+  /* font-family: Arial; */
+  /* overflow-x:hidden;
+  overflow-y:hidden; */
 }
 
 /* Style tab links */
@@ -20,7 +22,7 @@ body, html {
   padding: 14px 16px;
   font-size: 17px;
   width: 25%;
-  height: 5%;
+  height: 8%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px 50px 0px 0px;
 }
@@ -34,8 +36,9 @@ body, html {
   color: white;
   display: none;
   padding: 50px 20px;
-  height: 100%;
-  border-radius: 50px 50px 0px 0px;
+  margin: 14px;
+  height: 63%;
+  border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #Medication {background-color: white;}
@@ -44,10 +47,10 @@ body, html {
 #ProgressNotes {background-color: white;}
 
 
-
 </style>
-  <div class="card rounded shadow mb-2">
-  <div class="card-body">
+<a href="{{ route('doctorsOrders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
+  <div class="card rounded shadow m-3">
+  <div class="card-body m-2">
   <div class="d-flex justify-content-between">
   <h6>Patient ID: 1</h6>
   <div>
@@ -59,10 +62,11 @@ body, html {
   <div class="d-flex justify-content-between">
   <h6 class="mr-2">Assigned Nurse: Cruz</h6>
   <div>
-    
+ 
 <!-- Medication Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:rgb(66,100,208);">
-  Medication
+<br>
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:rgb(66,100,208);">
++ Medication
 </button>
 
 <!-- Medication Modal-->
@@ -75,8 +79,9 @@ body, html {
       </div>
       <div class="modal-body">
       <div class="card">
-      <form  class="medication-form" method="POST" action="{{ route('storeMedication') }}">
+      <form  class="medication-form" method="POST" action="{{ route('storeMedication')}}">
                 @csrf
+                <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
                 <div class="col-12 p-2">
                     <label for="medication" class="form-label">Medication</label>
                     <input type="text" class="form-control" id="medication" name="medication" required>
@@ -148,8 +153,8 @@ body, html {
 </div>
 
 <!-- Transfusion Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
-  Transfusion
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
++ Transfusion
 </button>
 
 <!-- Transfusion Modal-->
@@ -164,6 +169,7 @@ body, html {
       <div class="card">
       <form  class="transfusion-form" method="POST" action="{{ route('storeTransfusion') }}">
                 @csrf
+                <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
                 <div class="col-5 p-2 d-inline-block">
                 <div class="form-group">
                 <label for="type" class="form-label">Type:</label>
@@ -226,8 +232,8 @@ body, html {
 <!-- END Transfusion Modal-->
 
 <!-- Treatment Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
-Treatment
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
++ Treatment
 </button>
 
 <!-- Treatment Modal-->
@@ -242,6 +248,7 @@ Treatment
       <div class="card">
       <form class="treatment-form"  method="POST" action="{{ route('storeTreatment') }}">
                 @csrf
+                <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
                 <div class="col-6 p-2 d-inline-block">
                     <label for="name" class="form-label">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -297,11 +304,11 @@ Treatment
 </div>
 
 <!-- Progress Notes Modal Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:rgb(66,100,208);">
-Progress Notes
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:rgb(66,100,208);">
++ Progress Notes
 </button>
 
-<!-- Progress Notes  Modal-->
+<!-- Progress Notes Modal-->
 <div class="modal fade" id="progressNotesModal" tabindex="-1" aria-labelledby="progressNotesLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -312,6 +319,7 @@ Progress Notes
       <div class="modal-body">
       <form class="progressNote-form" method="POST" action="{{ route('storeProgressNote') }}">
       @csrf
+      <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
       <div class="mb-3">
       <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
     </div>
@@ -354,19 +362,21 @@ Progress Notes
 </div>
 
 <!-- TABS -->
-<button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
-<button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
-<button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
-<button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress Notes</button>
+<div class="m-3">
+  <button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
+  <button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
+  <button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
+  <button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress&nbsp;Notes</button>
+</div>
 
 
-<div id="Medication" class="tabcontent">
+<div id="Medication" class="tabcontent mt-4">
 <table class="table" id="medicationTable">
             <thead>
                 <tr>
                     <th>Medication</th>
-                    <th>Dosage</th>
                     <th>Quantity</th>
+                    <th>Dosage</th>
                     <th>Unit</th>
                     <th>Frequency</th>
                     <th>Instructions</th>
@@ -379,13 +389,13 @@ Progress Notes
             @foreach($order_medications as $order_medication)
                 <tr>
                     <td>{{ $order_medication->medication }}</td>
+                    <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->dose }}</td>
                     <td>{{ $order_medication->unit }}</td>
-                    <td>{{ $order_medication->quantity }}</td>
                     <td>{{ $order_medication->frequency }}</td>
                     <td>{{ $order_medication->instructions }}</td>
-                    <td> {{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
-                    <td> {{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
+                    <td>{{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
+                    <td>{{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_medication->id }}" onClick="reply_click_medication(this.id)"></button>
                       <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
@@ -421,7 +431,7 @@ Progress Notes
            </table>
 </div>
 
-<div id="Transfusion" class="tabcontent">
+<div id="Transfusion" class="tabcontent mt-4">
 <table class="table" id="transfusionTable">
             <thead>
                 <tr>
@@ -475,7 +485,7 @@ Progress Notes
            </table>
 </div>
 
-<div id="Treatment" class="tabcontent">
+<div id="Treatment" class="tabcontent mt-4">
 <table class="table" id="treatmentTable">
             <thead>
                 <tr>
@@ -529,7 +539,7 @@ Progress Notes
            </table>
 </div>
 
-<div id="ProgressNotes" class="tabcontent">
+<div id="ProgressNotes" class="tabcontent mt-4">
 <table class="table" id="progressNotesTable">
             <thead>
                 <tr>
@@ -577,34 +587,51 @@ Progress Notes
            </table>
 </div>
 
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+ <!-- For DataTables -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+ <script>
+  
+  $(document).ready( function () {
+     $('#medicationTable').DataTable({
+         "pageLength": 3,
+         "lengthChange": false
+     });
+ } ); 
 
+ $(document).ready( function () {
+     $('#transfusionTable').DataTable({
+         "pageLength": 3,
+         "lengthChange": false
+     });
+ } ); 
 
+ $(document).ready( function () {
+     $('#treatmentTable').DataTable({
+         "pageLength": 3,
+         "lengthChange": false
+     });
+ } ); 
 
-
-<!-- For DataTables -->
-<link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-
+ $(document).ready( function () {
+     $('#progressNotesTable').DataTable({
+         "pageLength": 3,
+         "lengthChange": false
+     });
+ } ); 
+ </script>
 <!-- For Sweet Alert -->
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
  <!-- For Font Awesome -->
  <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
 
- <!-- JQuery -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
- <!-- For Tabs -->
 <script>
-  var dataTable = new DataTable("#medicationTable");
-  var dataTable = new DataTable("#transfusionTable");
-  var dataTable = new DataTable("#treatmentTable");
-  var dataTable = new DataTable("#progressNotesTable");
-
-    function openPage(pageName, elmnt, color) {
+  // For Tabs
+  function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");

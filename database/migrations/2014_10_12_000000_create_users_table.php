@@ -16,18 +16,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             
-            $table->enum('usertype', ['Admin', 'Doctor', 'Nurse', 'Chief Nurse'])->default('Admin')->nullable();
-            $table->string('lastname')->nullable();
-            $table->string('firstname')->nullable();
-            $table->string('middlename')->nullable();
-            $table->date('birthdate')->nullable();
-            $table->enum('gender', ['Male', 'Female'])->nullable();
-            $table->string('address')->nullable();
+            $table->string('usertype');
+            // Users: 1=>admin, 2=>doctor, 3=>nurse, 4=>chiefnurse
+            $table->string('lastname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->date('birthdate');
+            $table->enum('gender', ['Male', 'Female']);
+            $table->string('address');
             $table->string('phone')->nullable();
-            $table->enum('department', ['Emergency Department', 'Intensive Care Unit (ICU)', 'Obstetrics and Gynecology (OB/GYN)', 'Pediatrics', 'Surgery', 'Cardiology', 'Orthopedics', 'Nursing Department', 'IT Department', 'Admission'])->nullable();
-            $table->enum('specialization', ['Internal Medicine', 'Surgeon', 'Pediatrician', 'Ob-gyne', 'Orthopedic', 'Cardiologist', 'Neurologist', 'Registered Nurse', 'ICU Nurse', 'ER Nurse', 'Geriatic Nurse', 'Orthopedic Nurse', 'Oncology Nurse', 'Software Developer', 'Admission Officer'])->nullable();
-            $table->string('imagepath')->nullable()->nullable();
-            $table->enum('status', ['Active', 'Inactive'])->default('Active')->nullable();           
+            $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
+            $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
+            $table->string('imagepath')->nullable()->default(null);
+            $table->enum('status', ['active', 'inactive'])->default('active');           
 
             $table->string('name');
             $table->string('email')->unique();
