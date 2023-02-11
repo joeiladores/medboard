@@ -30,19 +30,19 @@ class AdmissionNew extends Model
     ];
 
     // Connect to bed table
-    public function adbed()
+    public function bed()
     {
         return $this->belongsTo(Bed::class);
     }
 
     // Connect to patient table
-    public function adpatient()
+    public function patient()
     {
-        return $this->hasMany(Patient::class);
+        return $this->belongsTo(Patient::class);
     }
 
     // Connect to users table
-    public function addoc()
+    public function doctor()
     {
         return $this->hasMany(User::class);
     }

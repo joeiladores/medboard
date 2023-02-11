@@ -20,8 +20,8 @@ class Bed extends Model
     ];
 
     //Connect to admisison table
-    public function admitBed()
+    public function admission()
     {
-        return $this->hasOne(Admission::class);
+        return $this->hasMany(AdmissionNew::class);
     }
 }
