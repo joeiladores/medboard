@@ -33,12 +33,11 @@
                   <td>{{ $doctor_order->doctor_id }}</td>
                   <td>{{ ($patient_names->firstname)." ".($patient_names->lastname) }}</td> 
                   <td>{{ $room_nums->room}}</td>
-                  <td>{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}
-                  </td>
+                  <td>{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</td>
                   <td>
                       <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $doctor_order->id }}" onClick="reply_click_doctorOrder(this.id)"></button>
-                    </td>
+                  </td>
               </tr> <!-- To trigger the sweet alert (per ID) -->
               <script type="text/javascript">
                function reply_click_doctorOrder(clicked_id) {

@@ -51,7 +51,7 @@ body, html {
 
 </style>
 
-<a href="{{ route('doctorsOrders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
+<a href="{{ route('nurseHome') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
   <div class="card rounded shadow m-3">
   <div class="card-body m-2">
   <div class="d-flex justify-content-between">

@@ -555,7 +555,7 @@ body, html {
             <tbody>
             @foreach($progress_notes  as $progress_note)
                 <tr>
-                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y") }}</td>
+                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y g:i A") }}</td>
                     <td>{{ $progress_note->notes }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $progress_note->id }}" onClick="reply_click_progressNotes(this.id)"></button>
