@@ -184,6 +184,8 @@ Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 's
 // *****************************************************************************
 // Nurse's Dashboard View
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
+
 Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
 
 

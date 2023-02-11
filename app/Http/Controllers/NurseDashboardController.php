@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\DoctorOrder;
 use App\Models\NurseAssignment;
+use App\Models\OrderMedication;
+use App\Models\OrderTransfusion;
+use App\Models\OrderTreatment;
+use App\Models\ProgressNote;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +35,8 @@ class NurseDashboardController extends Controller
             ['beds.station', $assigned_station->station]
         ])
         ->select(
-            'doctor_orders.doctor_id as doctor_id', 
+            'doctor_orders.id',
+            'doctor_orders.doctor_id as doctor_id',
             'patients.firstname', 
             'patients.lastname',
             'beds.room as room',
@@ -43,14 +48,35 @@ class NurseDashboardController extends Controller
     
     
 }
-
-
-    
-
-
     public function patients(){
         return view('nursePatients');
     }
+
+    public function nurseOrderView($id){
+            $doctor_order = DoctorOrder::findOrFail ($id);
+            $order_medications = OrderMedication::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
+            $order_transfusions = OrderTransfusion::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
+            $order_treatments = OrderTreatment::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
+            $progress_notes = ProgressNote::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
+        
+            $doctor_order = DoctorOrder::first();
+    $doctor_order = DoctorOrder::find(request()->route('id'));
+
+    $admittedPatient = DB::table('admission_news')
+        ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+        ->where('admission_news.id', $doctor_order->admission_id)
+        ->select('admission_news.id as admission_id', 'patients.firstname', 'patients.lastname')
+        ->first();
+
+    $roomNumber = DB::table('admission_news')
+        ->join('beds', 'admission_news.patient_id', '=', 'beds.id')
+        ->where('admission_news.id', $doctor_order->admission_id)
+        ->select('admission_news.id as admission_id', 'beds.room')
+        ->first();
+
+            return view('nurseDoctorOrdersView', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes','doctor_order','admittedPatient','roomNumber'));
+    }
+    
 }
 
 

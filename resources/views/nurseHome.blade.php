@@ -109,7 +109,9 @@ body {
             <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
             <td>{{ $patientsInStations->room }}</td>
             <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>
-            <td></td>
+            <td>
+              <a href="{{ route('nurseDoctorOrdersView', $patientsInStations->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
+            </td>
         </tr>
         @endforeach
             </tbody>

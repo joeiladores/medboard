@@ -22,6 +22,7 @@ class OrderMedicationController extends Controller
     $order_transfusions = OrderTransfusion::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $order_treatments = OrderTreatment::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $progress_notes = ProgressNote::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
+    
 
     ////
     $doctor_order = DoctorOrder::first();
@@ -38,12 +39,6 @@ class OrderMedicationController extends Controller
         ->where('admission_news.id', $doctor_order->admission_id)
         ->select('admission_news.id as admission_id', 'beds.room')
         ->first();
-
-
-
-
-
-
 
     return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes','doctor_order','admittedPatient','roomNumber'));
 }
