@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             SpecializationSeeder::class,
             UserSeeder::class,
             BedSeeder::class,            
-            NurseAssignmentSeeder::class,
+            // NurseAssignmentSeeder::class,
             PatientSeeder::class,
         ]);
        

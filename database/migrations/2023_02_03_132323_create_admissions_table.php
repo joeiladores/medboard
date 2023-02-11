@@ -15,7 +15,7 @@ class CreateAdmissionsTable extends Migration
     public function up()
     {
         Schema::create('admissions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->date('admitted');
             $table->text('complain');
             $table->string('diagnosis');

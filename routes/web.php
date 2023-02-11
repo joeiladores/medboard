@@ -9,23 +9,18 @@ use App\Http\Controllers\BedController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\DoctorDashboard;
+
 use App\Http\Controllers\NurseAssignmentController;
-
-// PDF
-use Barryvdh\DomPDF\Facade\Pdf;
-
-// Calendar Controller
 use App\Http\Controllers\CalendarController;
-
-// Calendar Controller
 use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
+use App\Http\Controllers\DoctorDashboard;
 use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
 use App\Http\Controllers\OrderTreatmentController;
+use App\Http\Controllers\ProgressNoteController;
 
 //NurseDashboard Controllers
 use App\Http\Controllers\NurseDashboardController;
@@ -34,12 +29,14 @@ use App\Http\Controllers\NurseDashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicalHistoryController;
 
-use App\Http\Controllers\ProgressNoteController;
-
-
 //Admission Form
 use App\Http\Controllers\AdmissionAjaxController;
+
+// PDF
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Http\Controllers\AdmissionNewController;
+
 
 Route::get('/', function (){
     return redirect()->route('login');
@@ -78,6 +75,7 @@ Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])-
 // All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
+     // User Routes 
     Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
     Route::get('/admin/users', [UserController::class, 'users'])->name('users');
     Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
@@ -86,17 +84,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('/admin/updateuser', [UserController::class, 'updateUser'])->name('updateuser');
     Route::get('/admin/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('deleteuser');
 
-    Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
-
-
     // Bed Routes 
     Route::get('/admin/beds', [BedController::class, 'beds'])->name('beds');
     Route::post('/admin/storebed', [BedController::class, 'storeBed'])->name('storebed');
-    // Route::get('/admin/editbed/{id}', [BedController::class, 'editBed'])->name('editBed');
     Route::post('/admin/updatebed', [BedController::class, 'updateBed'])->name('updatebed');
     Route::get('/admin/showbed/{id}', [BedController::class, 'showBed'])->name('showbed');
     Route::get('/admin/deletebed/{id}', [BedController::class, 'deleteBed'])->name('deletebed');
-
 
     // Department Routes
     Route::get('/admin/departments', [DepartmentController::class, 'index'])->name('departments');
@@ -111,6 +104,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('/admin/updatespecialization', [SpecializationController::class, 'update'])->name('specialization.update');
     Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
     Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
+
+    // PDF Route
+    Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
 });
 

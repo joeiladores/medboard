@@ -15,6 +15,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "countup.js": "^2.4.2",
         "fullcalendar": "^6.1.1"
     }
 }
