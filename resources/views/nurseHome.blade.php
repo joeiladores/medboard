@@ -79,7 +79,7 @@ body {
 <div class="row">
   <div class="col-lg-10">
     <div class="card shadow" id="DashboardCard">
-        <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day, Nurse "Name here"<br><br>
+        <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day, Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}<br><br>
         <p style="font-size:15px;">Today, you are assigned to station "here"<br>
         Have a nice day at work!</p>
         </h4>
@@ -171,7 +171,7 @@ body {
     <div style="padding:20%; height:530px; background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 30px 30px 0px 0px;">
         <center>
           <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
-          <p style="font-size:17px; font-weight:600;" class="text-light">Nurse Cruz</p>
+          <p style="font-size:17px; font-weight:600;" class="text-light">Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
           <p style="font-size:15px; font-weight:500;" class="text-light">Dialysis Nurse</p>
         </center>
     </div>
