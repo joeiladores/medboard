@@ -211,8 +211,8 @@ Route::get('/generate-pdf', function(){
 
 
 // *****************************************************************************
-// Routes for Admission
-Route::post('/forgot-password', function (Request $request) {
+// Routes for password resets
+Route::post('/password-reset', function (Request $request) {
     $request->validate(['email' => 'required|email']);
  
     $status = Password::sendResetLink(
@@ -225,9 +225,9 @@ Route::post('/forgot-password', function (Request $request) {
 })->middleware('guest')->name('password.email');
 
 
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
+// Route::get('/forgot-password', function () {
+//     return view('auth.forgot-password');
+// })->middleware('guest')->name('password.request');  // reset password when loggin
 
 
 
