@@ -95,71 +95,23 @@ body {
       <table class="table p-4" id="nursesDashboardTable">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Room</th>
-                    <th>Kardex</th>
-                    <th>Remarks</th>
+                  <th>Doctor id Test</th>
+                  <th>Patient Name</th>
+                  <th>Room</th>
+                  <th>Date Ordered</th>
+                  <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td>Remarks</td>
-                </tr>
+              @foreach($patientsInStation as $patientsInStations)
+        <tr>
+            <td>{{ $patientsInStations->doctor_id }}</td>
+            <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
+            <td>{{ $patientsInStations->room }}</td>
+            <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>
+            <td></td>
+        </tr>
+        @endforeach
             </tbody>
            </table>
       </div>
