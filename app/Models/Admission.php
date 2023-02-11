@@ -13,8 +13,21 @@ class Admission extends Model
      * @var array
      */
     protected $fillable = [
-        'admitted', 'complain','diagnosis','age','weight','activities','diet','tubes','specialinfo'
-        ,'status','discharge'
-
-    ];
+        'bed_id',
+        'user_id',
+        'patient_id',
+        'primary_doctor_id',
+        'admitted', 
+        'complain',
+        'diagnosis',
+        'age',
+        'weight',
+        'activities',
+        'diet',
+        'tubes',
+        'specialinfo',
+        'mentalStatus',
+        'status',
+        'date_time_discharged',
+        ];
 }
