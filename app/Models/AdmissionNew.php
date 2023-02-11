@@ -36,9 +36,9 @@ class AdmissionNew extends Model
     }
 
     // Connect to patient table
-    public function patient()
+    public function patients()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsToMany(Patient::class);
     }
 
     // Connect to users table

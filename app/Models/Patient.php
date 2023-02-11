@@ -40,7 +40,8 @@ class Patient extends Model
     // Connect to admission table
     public function admission()
     {
-        return $this->hasMany(AdmissionNew::class);
+        return $this->belongsToMany(AdmissionNew::class);
     }
 
 }
+
