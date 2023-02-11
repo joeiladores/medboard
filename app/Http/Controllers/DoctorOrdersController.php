@@ -30,6 +30,10 @@ class DoctorOrdersController extends Controller
         $patient_name = DB::table('doctor_orders')
         ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
         ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+        ->where([
+            ['status', 'Admitted'],
+            ['primary_doctor_id', $user_id]
+        ])
         ->select('doctor_orders.id as doctor_orders_id', 'patients.firstname' ,'patients.lastname')
         ->get();
        
@@ -37,10 +41,11 @@ class DoctorOrdersController extends Controller
         $room_num = DB::table('doctor_orders')
         ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
         ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
+        ->where('primary_doctor_id', $user_id)
         ->select('doctor_orders.id as doctor_orders_id', 'beds.room')
         ->get();
 
-        //Get and Display All Admitted Patient List
+        //Get and Display All of the Admitted Patient List
         //Eloquent ver - suggested
         $doctor_orders = DoctorOrder::orderBy('created_at', 'desc')
         ->get();
