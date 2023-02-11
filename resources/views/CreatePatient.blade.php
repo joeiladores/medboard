@@ -367,11 +367,11 @@
                         </td>
 
                         <td class="d-flex">
-                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1">Delete</a>
+                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
                             <!-- Edit Patient Modal Button -->
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
-                                    Edit
+                                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
                                 </button>
 
                                 <!-- Edit Patient Modal-->
@@ -388,15 +388,19 @@
                                                         @csrf
                                                         <div class="row g-3 p-3">
                                                             <div class="col-md-4">
+                                                                <label for="editpatient_lastname" class="form-label">Last Name</label>
                                                                 <input type="text" class="form-control" id="editpatient_lastname" name="lastname" required>
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="editpatient_firstname" class="form-label">First Name</label>
                                                                 <input type="text" class="form-control" id="editpatient_firstname" name="firstname" required>
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="editpatient_midname" class="form-label">Middle Name</label>
                                                                 <input type="text" class="form-control" id="editpatient_midname" name="midname">
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <label for="editpatient_marital_status" class="form-label">Marital Status</label>
                                                                 <select id="editpatient_marital_status" name="marital_status" class="form-select" required>
                                                                     <option selected value="{{ $patient->marital_status }}">{{$patient->marital_status }}</option>
                                                                     <option value="single">single</option>
@@ -405,9 +409,11 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <label for="editpatient_birth_date" class="form-label">Birth Date</label>
                                                                 <input type="date" class="form-control" id="editpatient_birth_date" name="birth_date" required>
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <label for="editpatient_gender" class="form-label">Gender</label>
                                                                 <select id="editpatient_gender" name="gender" class="form-select" required>
                                                                     <option selected value="{{ $patient->gender }}">{{ $patient->gender }}</option>
                                                                     <option value="male">male</option>
@@ -415,6 +421,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <label for="editpatient_blood_type" class="form-label">Blood Type</label>
                                                                 <select id="editpatient_blood_type" name="blood_type" class="form-select" required>
                                                                     <option selected value="{{ $patient->blood_type }}">{{ $patient->blood_type }}</option>
                                                                     <option value="A">A</option>
@@ -424,21 +431,27 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-5">
+                                                                <label for="editpatient_address" class="form-label">Address</label>
                                                                 <input type="text" class="form-control" id="editpatient_address" name="address" required>
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <label for="editpatient_phone" class="form-label">Phone</label>
                                                                 <input type="number" class="form-control" id="editpatient_phone" name="phone" required>
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="editpatient_health_insurance" class="form-label">Health Insurance</label>
                                                                 <input type="text" class="form-control" id="editpatient_health_insurance" name="health_insurance">
                                                             </div>
                                                             <div class="col-md-5">
+                                                                <label for="editpatient_relative_fullname" class="form-label">Relative Full Name</label>
                                                                 <input type="text" class="form-control" id="editpatient_relative_fullname" name="relative_fullname" required>
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="editpatient_relation" class="form-label">Relation to patient</label>
                                                                 <input type="text" class="form-control" id="editpatient_relation" name="relation" required>
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <label for="editpatient_relative_phone" class="form-label">Relative Phone</label>
                                                                 <input type="number" class="form-control" id="editpatient_relative_phone" name="relative_phone" required>
                                                             </div>
                                                             <input type="hidden" name="id" id="editpatient_id">

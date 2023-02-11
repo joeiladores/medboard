@@ -60,6 +60,9 @@ Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('p
 Route::get('/showpatient/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
 Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
 Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
+
+// *****************************************************************************
+// Routes for Admission
 Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
 
@@ -204,8 +207,8 @@ Route::get('/generate-pdf', function(){
 // *****************************************************************************
 // Routes for Admission
 
-Route::resource('ajaxadmissions', AdmissionAjaxController::class);
+// Route::resource('ajaxadmissions', AdmissionAjaxController::class);
 
-Route::get('/admission', function () {
-    return view('admission')->name('admissions');
-});
+// Route::get('/admission', function () {
+//     return view('admission')->name('admissions');
+// });

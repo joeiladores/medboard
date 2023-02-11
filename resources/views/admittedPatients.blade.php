@@ -23,20 +23,24 @@
                     <th>Full Name</th>
                     <th>Admitted Doctor</th>
                     <th>Room #</th>
+                    <th>Type of care</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($allAdmitted as $admitpatient)
+                @foreach($admittedinfo as $admitpatient)
                 <tr>
                     <td>{{ $admitpatient->id }}</td>
-                    <td>{{ $admitpatient->patient_id }} {{ $admitpatient->lastname }}, {{ $admitpatient->firstname }} {{ $admitpatient->midname }}</td>
+                    <td>{{ $admitpatient->patient_id }} {{ $admitpatient->p_lastname }}, {{ $admitpatient->p_firstname }} {{ $admitpatient->p_midname }}</td>
 
-                    <td>{{ $admitpatient->admitting_doctor_id }}</td>
-                    <td>{{ $admitpatient->bed_id }}</td>
+                    <td>Dr. {{ $admitpatient->d_lastname }}, {{ $admitpatient->d_firstname }}  {{ $admitpatient->d_middlename }}</td>
+                    <td>{{ $admitpatient->room }}</td>
+                    <td>{{ $admitpatient->type }}</td>
                     <td>{{ $admitpatient->status }}</td>
-                    <td>edit delete</td>
+                    <td><a href="" class="btn btn-sm btn-primary text-light me-1"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                    <a href="" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
+                    </td>
 
                 </tr>
                 @endforeach
