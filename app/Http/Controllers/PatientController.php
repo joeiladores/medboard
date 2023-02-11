@@ -32,7 +32,9 @@ class PatientController extends Controller
     public function patient()
     {
         return view('CreatePatient')->with('allPatients', Patient::orderByDesc('created_at')->get())
-            ->with('medhistory', MedicalHistory::get());
+            ->with('medhistory', MedicalHistory::get())
+            ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
+            ->with('beds', Bed::where('status', 'vacant')->get());
     }
 
     public function store(Request $request)

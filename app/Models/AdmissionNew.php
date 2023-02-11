@@ -13,6 +13,9 @@ class AdmissionNew extends Model
 
     protected $fillable =
     [
+        'bed_id',
+        'patient_id',
+        'admitting_doctor_id',
         'type',
         'complain',
         'impression_diagnosis',
@@ -25,5 +28,24 @@ class AdmissionNew extends Model
         'special_info',
         'status'
     ];
+
+    // Connect to bed table
+    public function adbed()
+    {
+        return $this->belongsTo(Bed::class);
+    }
+
+    // Connect to patient table
+    public function adpatient()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
+    // Connect to users table
+    public function addoc()
+    {
+        return $this->hasMany(User::class);
+    }
+
 
 }
