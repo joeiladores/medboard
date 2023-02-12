@@ -87,6 +87,7 @@ Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])-
 
 // *****************************************************************************
 // All Admin Routes List
+
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
      // User Routes 

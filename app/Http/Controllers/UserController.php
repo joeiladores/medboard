@@ -113,7 +113,20 @@ class UserController extends Controller
         ->with('specializations', Specialization::all());
     }
 
-    protected function updateUser(Request $request) {        
+    protected function updateUser(Request $request) {   
+        
+        $validator = Validator::make($request->all(), 
+        [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('edituser')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Update user is not successfull!');;
+        }
+
         $user = User::find($request->id);
         $current_image = $user->imagepath;        
         
@@ -122,6 +135,7 @@ class UserController extends Controller
         $user->firstname        = $request->firstname;
         $user->middlename       = $request->middlename;
         $user->birthdate        = $request->birthdate;
+        $user->password         = Hash::make($request->password);
         $user->gender           = $request->gender;
         $user->address          = $request->address;
         $user->phone            = $request->phone;
@@ -129,6 +143,7 @@ class UserController extends Controller
         $user->specialization_id   = $request->specialization_id;
         $user->status           = $request->status; 
         $user->name             = $request->firstname . ' ' . $request->lastname;
+
         
         if($request->hasFile('imagepath')){
             $request->validate([
