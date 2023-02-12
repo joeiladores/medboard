@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('bed_id')->constrained('beds')->onDelete('cascade');
             $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
             $table->foreignId('admitting_doctor_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('primary_doctor_id')->constrained('users')->onDelete('cascade');
 
             $table->enum('type', ['Inpatient', 'Outpatient']);
             $table->string('complain');

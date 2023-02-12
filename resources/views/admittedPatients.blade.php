@@ -20,10 +20,11 @@
             <thead>
                 <tr>
                     <th>Patients ID#</th>
-                    <th>Full Name</th>
-                    <th>Admitted Doctor</th>
+                    <th>Patients Full Name</th>
+                    <th>Admitting Doctor</th>
                     <th>Room #</th>
                     <th>Type of care</th>
+                    <th>Primary Doctor</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -34,12 +35,13 @@
                     <td>{{ $admitpatient->id }}</td>
                     <td>{{ $admitpatient->patient_id }} {{ $admitpatient->p_lastname }}, {{ $admitpatient->p_firstname }} {{ $admitpatient->p_midname }}</td>
 
-                    <td>Dr. {{ $admitpatient->d_lastname }}, {{ $admitpatient->d_firstname }}  {{ $admitpatient->d_middlename }}</td>
+                    <td>Dr. {{ $admitpatient->ad_lastname }}, {{ $admitpatient->ad_firstname }}  {{ $admitpatient->ad_middlename }}</td>
                     <td>{{ $admitpatient->room }}</td>
                     <td>{{ $admitpatient->type }}</td>
+                    <td>Dr. {{ $admitpatient->pd_lastname }}, {{ $admitpatient->pd_firstname }}  {{ $admitpatient->pd_middlename }}</td>
                     <td>{{ $admitpatient->status }}</td>
                     <td><a href="" class="btn btn-sm btn-primary text-light me-1"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                    <a href="" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="{{ route('destroyAdmitted', $admitpatient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
 
                 </tr>
