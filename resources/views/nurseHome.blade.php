@@ -23,6 +23,14 @@ body {
     height: 115%;
 }
 
+#tableSize{
+  color: rgb(14, 0, 0);
+  padding: 50px;
+  height: 410px;
+  border-radius: 50px 50px 25px 25px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 /* Responsiveness */
 @media only screen and (max-width: 1000px) {
     #DashboardCard{
@@ -70,7 +78,12 @@ body {
     width: 40%;
     height: 90%;
   }
+  #tableSize{
+  height: 460px;
 }
+}
+
+
 
 
 
@@ -87,9 +100,6 @@ body {
         @else
           No assigned station
         @endif
-
-
-       
         </h4>
     <!-- Nurse Dashboard img -->
     <div style="text-align:right;">
@@ -97,24 +107,29 @@ body {
     </div>
 </div>
 
+
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow mt-2 p-4">
-      <table class="table p-4" id="nursesDashboardTable">
+      <div class="card rounded shadow mt-2 p-2" id="tableSize">
+      <h5 class="pt-3 ms-2">Patients under your station with Doctor's orders</h5>
+      {{-- @if(isset($assigned_station) && $assigned_station->station)
+      {{ $assigned_station->station }}
+      @endif --}}
+      <table class="table" id="nursesDashboardTable">
             <thead>
-                <tr>
-                  <th>Doctor id Test</th>
-                  <th>Patient Name</th>
-                  <th>Room</th>
-                  <th>Date Ordered</th>
-                  <th>Actions</th>
+                <tr style="background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);">
+                  <th class="text-light">Assigned Doctor</th>
+                  <th class="text-light">Patient Name</th>
+                  <th class="text-light">Room</th>
+                  <th class="text-light">Date Ordered</th>
+                  <th class="text-light">Actions</th>
                 </tr>
             </thead>
             <tbody>
               @if(isset($patientsInStation))
               @foreach($patientsInStation as $patientsInStations)
         <tr>
-            <td>{{ $patientsInStations->doctor_id }}</td>
+            <td>{{ $patientsInStations->doctor_firstname . " " . $patientsInStations->doctor_lastname }}</td>
             <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
             <td>{{ $patientsInStations->room }}</td>
             <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>

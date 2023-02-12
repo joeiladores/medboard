@@ -65,31 +65,36 @@ body {
     <div class="card shadow" id="DashboardCard" style="display:none;">
         
 </div>
-<h4>Patients List</h4>
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow mt-1 p-2">
-      <table class="table p-4" id="nursesDashboardTable">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Room</th>
-                    <th>Kardex</th>
-                    <th>Remarks</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td>Jan 2,2022</td>
-                    <td>Sample Name</td>
-                    <td>A01</td>
-                    <td><a href="#">🗒</a></td>
-                    <td><a href="#" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a></td>
-                </tr>
-            </tbody>
-           </table>
+      <div class="card rounded shadow p-2">
+      <h5 class="pt-3 ms-2">Patients List</h5>
+      <table class="table" id="nursesDashboardTable">
+        <thead>
+            <tr style="background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);">
+              <th class="text-light">Assigned Doctor</th>
+              <th class="text-light">Patient Name</th>
+              <th class="text-light">Room</th>
+              <th class="text-light">Date Ordered</th>
+              <th class="text-light">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          @if(isset($patientsInStation))
+          @foreach($patientsInStation as $patientsInStations)
+    <tr>
+        <td>{{ $patientsInStations->doctor_firstname . " " . $patientsInStations->doctor_lastname }}</td>
+        <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
+        <td>{{ $patientsInStations->room }}</td>
+        <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>
+        <td>
+          <a href="{{ route('nurseDoctorOrdersView', $patientsInStations->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
+        </td>
+    </tr>
+    @endforeach
+    @endif
+        </tbody>
+       </table>
       </div>
       </div>
     </div>

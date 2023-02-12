@@ -15,8 +15,8 @@
 
       <thead>
           <tr>
-              <th>Admission id Test</th>
-              <th>Doctor id Test</th>
+              <th style="display:none;">Doctor id Test</th>
+              <th>Patient ID</th>
               <th>Patient Name</th>
               <th>Room</th>
               <th>Date Ordered</th>
@@ -29,8 +29,8 @@
       @foreach($patient_name as $patient_names)
           @if($doctor_order->id == $room_nums->doctor_orders_id && $doctor_order->id == $patient_names->doctor_orders_id)
               <tr>
-                  <td>{{ $doctor_order->admission_id}}</td>
-                  <td>{{ $doctor_order->doctor_id }}</td>
+                  <td style="display:none;">{{ $doctor_order->doctor_id }}</td>
+                  <td>{{ $patient_names->id}}</td>
                   <td>{{ ($patient_names->firstname)." ".($patient_names->lastname) }}</td> 
                   <td>{{ $room_nums->room}}</td>
                   <td>{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</td>

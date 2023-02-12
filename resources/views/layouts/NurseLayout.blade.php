@@ -151,7 +151,7 @@ border-radius: 0px 44px 32px 0px;"
     <p></p>
   </div>
 
-  <div class="list-group list-group my-3">
+  <div class="list-group list-group my-3 ps-3">
     <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold  text-dark">
       <p class="text-light"><i class="text-light fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
     </a>
