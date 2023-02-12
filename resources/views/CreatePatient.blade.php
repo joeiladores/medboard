@@ -276,7 +276,7 @@
                                                             <select id="admitting_doctor_id" name="admitting_doctor_id" class="form-select">
                                                                 <option disabled hidden selected>--- ---</option>
                                                                 @foreach ($doctors as $doctor)
-                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                                 </option>
                                                                 @endforeach
                                                             </select>
@@ -351,7 +351,7 @@
                                                             <select id="primary_doctor_id" name="primary_doctor_id" class="form-select">
                                                                 <option disabled hidden selected>--- ---</option>
                                                                 @foreach ($doctors as $doctor)
-                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                                 </option>
                                                                 @endforeach
                                                             </select>

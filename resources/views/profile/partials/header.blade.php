@@ -43,7 +43,7 @@
           <i class="fa-sharp fa-solid fa-bed-pulse fa-icon"></i>
           <span>Patients</span>          
         </a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <a href="{{ route('admittedPatient') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-hospital fa-icon"></i>
           <span>Admission</span>          
         </a>
