@@ -17,8 +17,8 @@
 
     <!-- TABS -->
     <div class="m-3">
-        <button class="tablink btn border px-4" onclick="openPage('AdmittedList', this, 'rgb(66,100,208)')" id="defaultOpen">Admitted Patients</button>
-        <button class="tablink btn border px-4" onclick="openPage('Medication', this, 'rgb(66,100,208)')">ALL</button>
+        <button class="tablink btn border p-3 fw-bold" onclick="openPage('AdmittedList', this, 'rgb(94, 176, 243)')" id="defaultOpen">Current Admitted</button>
+        <button class="tablink btn border p-3 fw-bold" onclick="openPage('Medication', this, 'rgb(94, 176, 243)')">All Admitted</button>
     </div>
 
     <div id="AdmittedList" class="tabcontent">
@@ -232,23 +232,24 @@
             </tbody>
         </table>
 
-        <div id="Medication" class="tabcontent mt-4">
+    </div>
+
+    <div id="Medication" class="tabcontent mt-4">
             <table class="table" id="medicationTable">
                 <thead>
                     <tr>
-                        <th>Medication</th>
-                        <th>Quantity</th>
-                        <th>Dosage</th>
-                        <th>Unit</th>
-                        <th>Frequency</th>
-                        <th>Instructions</th>
-                        <th>Date Start</th>
-                        <th>Date Stop</th>
-                        <th>Actions</th>
+                      <th>Patients ID#</th>
+                      <th>Patients Full Name</th>
+                      <th>Admitting Doctor</th>
+                      <th>Room #</th>
+                      <th>Type of care</th>
+                      <th>Primary Doctor</th>
+                      <th>Status</th>
+                      <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-    
+                
                     <tr>
                         <td></td>
                         <td></td>
@@ -258,41 +259,13 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="d-flex">
-                            <!-- <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="" onClick="reply_click_medication(this.id)"></button>
-                            <a href="" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a> -->
-                        </td>
+
                         <!-- To trigger the sweet alert (per ID) -->
-                        <!-- <script type="text/javascript">
-                            function reply_click_medication(clicked_id) {
-                                Swal.fire({
-                                    title: 'Delete Medication Record?',
-                                    text: "You won't be able to revert this!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: 'rgb(66,100,208)',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Confirm'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.href = "{{ route('destroyMedication', '') }}" + "/" + clicked_id;
-                                        Swal.fire({
-                                            title: 'Deleted!',
-                                            text: 'Medication Record has been deleted.',
-                                            icon: 'success',
-                                            showConfirmButton: false
-                                        });
-                                    }
-                                });
-                            }
-                        </script> -->
                     </tr>
- 
+               
                 </tbody>
             </table>
         </div>
-
-    </div>
 </div>
 
 
@@ -302,11 +275,10 @@
 
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- For DataTables -->
-<link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
-</script>
+ 
+ <!-- For DataTables -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
 
 <script>
     var dataTable = new DataTable("#admittedTable");
