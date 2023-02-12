@@ -14,12 +14,15 @@ class AdmissionNewController extends Controller
     public function showAdmitted()
     {
        $admissions = AdmissionNew::
-          leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
+
+        leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
                 ->where('admission_news.status', 'Admitted')
 
-        ->leftJoin('users', 'users.id', '=', 'admission_news.admitting_doctor_id')
+        // ->leftJoin('users', 'users.id', '=', 'admission_news.admitting_doctor_id')
+        ->leftJoin('users', 'users.id', '=', 'admission_news.primary_doctor_id')
         ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
-        
+    
+
         ->get([
 
             'admission_news.id',
@@ -35,9 +38,13 @@ class AdmissionNewController extends Controller
 
             'beds.room',
 
-            'users.lastname AS d_lastname',
-            'users.firstname AS d_firstname',
-            'users.middlename AS d_middlename'
+            // 'users.lastname AS ad_lastname',
+            // 'users.firstname AS ad_firstname',
+            // 'users.middlename AS ad_middlename',
+
+            'users.lastname AS pd_lastname',
+            'users.firstname AS pd_firstname',
+            'users.middlename AS pd_middlename'
         
         ]);
 
@@ -65,6 +72,7 @@ class AdmissionNewController extends Controller
         $admissionNew->bed_id               =   $request->bed_id;
         $admissionNew->patient_id           =   $request->patient_id;
         $admissionNew->admitting_doctor_id  =   $request->admitting_doctor_id;
+        $admissionNew->primary_doctor_id    =   $request->primary_doctor_id;
 
         $admissionNew->type                 =   $request->type;
         $admissionNew->complain             =   $request->complain;
@@ -80,5 +88,13 @@ class AdmissionNewController extends Controller
 
         $admissionNew->save();
         return redirect()->route('admittedPatient')->with('success', 'New admitted patient added!');
+    }
+
+    public function destroy($id)
+    {
+        $admissionNew = AdmissionNew::find($id);
+        $admissionNew->delete();
+
+        return redirect()->route('admittedPatient')->with('success', 'Patient deleted successfully!');
     }
 }

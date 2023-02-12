@@ -75,6 +75,7 @@ Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHi
 // Routes for Admission
 Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
+Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
 
 
 // Route::middleware(['auth', 'user-access:doctor'])->group(function () {
@@ -257,7 +258,7 @@ Route::post('/reset-password', function (Request $request) {
  
 //         //     event(new PasswordReset($user));
 //         }
-    );
+});
  
 
     return $status === Password::PASSWORD_RESET
