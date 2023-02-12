@@ -51,7 +51,7 @@ body, html {
 
 </style>
 
-<a href="{{ route('doctorsOrders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
+<a href="{{ route('nurseHome') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
   <div class="card rounded shadow m-3">
   <div class="card-body m-2">
   <div class="d-flex justify-content-between">
@@ -555,7 +555,7 @@ body, html {
             <tbody>
             @foreach($progress_notes  as $progress_note)
                 <tr>
-                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y g:i A") }}</td>
+                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y") }}</td>
                     <td>{{ $progress_note->notes }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $progress_note->id }}" onClick="reply_click_progressNotes(this.id)"></button>
