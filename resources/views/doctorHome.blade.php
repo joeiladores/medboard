@@ -73,10 +73,8 @@
                         <li class="nav-item-dropdown">
                             <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user fs-2 me-2"></i>
-                                My Profile
+                                {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}
                             </a>
-                            <p class="text-center">Dr. Warner Bros Smith <br>
-                                Pediatrician <br>
                         </li>
                     </ul>
                 </div>
@@ -90,7 +88,7 @@
                     <div class="col-md-12">
                         <div class="row card-bg p-4 border shadow rounded-5 second-text d-flex justify-content-center">
                             <div class="col-6">
-                                <h3>Welcome Dr. Smith</h3>
+                                <h3>Welcome {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}</h3>
                                 <p>Have a nice day!</p>
                                 <br>
                                 <p>Date: Feb 14, 2023</p>

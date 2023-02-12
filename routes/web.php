@@ -57,6 +57,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
 Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
+Route::get('/doctorHome', [HomeController::class, 'doctorHome'])->name('doctorHome');
 
 // *****************************************************************************
 // Patient Routes
@@ -252,7 +253,7 @@ Route::post('/reset-password', function (Request $request) {
 //             $user->save();
  
 //         //     event(new PasswordReset($user));
-//         }
+        }
     );
  
 

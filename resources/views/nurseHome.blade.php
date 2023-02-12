@@ -193,9 +193,14 @@ body {
             <center>
                 <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image"
                     style="width: 100%; height: 30%;">
-                <p style="font-size:17px; font-weight:600;" class="text-light">{{ strtoupper(Auth::user()->usertype) }}  {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}</p>
+                <p style="font-size:13px; font-weight:600;" class="text-light">  {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}</p>
+                <h6 style="font-size:13px; font-weight:600;"  class="text-light">
+                {{ strtoupper(Auth::user()->usertype) }}
+                </h6>
             </center>
+
         </div>
+
         <!--END Side Profile -->
 
         <!-- Side Time/Date -->
