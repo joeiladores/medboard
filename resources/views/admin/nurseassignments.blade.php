@@ -1,79 +1,91 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Admin-Nurse Assignment'])
 
 @section('content')
 
 <!-- Main Content - List of Users -->
 <div class="container-md p-3">
-  <h1 class="fw-bold">Nurse Assignments</h1>
-    @if (Route::has('register'))
-      <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createNurseAssignmentModal">+ New Nurse Assignment</button>
-    @endif
-
-    @if( session('success') )
-    <div class="alert alert-success my-3" role="alert">
-      {{ session('success') }}
+  <div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="flex-grow-1">
+      <h3 class="fw-bold text-secondary f-poppins">NURSE ASSIGNMENT</h3>
     </div>
+    @if (Route::has('register'))
+    <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createNurseAssignmentModal">+ New Nurse Assignment</button>
+    @endif
+  </div>
+
+  @if( session('success') )
+  <div class="alert alert-success my-3" role="alert">
+    {{ session('success') }}
+  </div>
   @endif
 
-  <div class="table-responsive my-3">
-    <table class="table table-hover" id="nurseAssignmentTable">
-      <thead class="fw-bold">
-        <tr>
-          <td>Assignment ID</td>
-          <td>User ID</td>
-          <td>Date Time Start</td>
-          <td>Date Time End</td>
-          <td>Shift</td>
-          <td>Station</td>
-          <td>Action</td>
-        </tr>
-      </thead>
-      <tbody>
-        @if(count($nurseassignments) > 0)
-        @foreach($nurseassignments as $nurseassignment)
-        <tr>
-          <td>{{ $nurseassignment->id }}</td>
-          <td>{{ $nurseassignment->user_id }}</td>
-          <td>{{ $nurseassignment->datetime_start }}</td>
-          <td>{{ $nurseassignment->datetime_end }}</td>
-          <td>{{ $nurseassignment->shift }}</td>
-          <td>{{ $nurseassignment->station }}</td>
-          <td>
-            <a class="btn btn-sm" href="#">🖊️</a>
-            <a class="btn btn-sm" href="#">❌</a>
-          </td>
-        </tr>
-        @endforeach
-        @else
-        <tr>
-          <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
-        </tr>
-        @endif
-      </tbody>
-    </table>
+  <div class="container-md my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <table id="nurseAssignmentTable" class="table table-hover  display nowrap" cellspacing="0" width="100%">
+          <thead class="third-bg-color">
+            <tr>
+              <td>Assignment ID</td>
+              <td>User ID</td>
+              <td>Date Time Start</td>
+              <td>Date Time End</td>
+              <td>Shift</td>
+              <td>Station</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            @if(count($nurseassignments) > 0)
+            @foreach($nurseassignments as $nurseassignment)
+            <tr>
+              <td>{{ $nurseassignment->id }}</td>
+              <td>{{ $nurseassignment->user_id }}</td>
+              <td>{{ $nurseassignment->datetime_start }}</td>
+              <td>{{ $nurseassignment->datetime_end }}</td>
+              <td>{{ $nurseassignment->shift }}</td>
+              <td>{{ $nurseassignment->station }}</td>
+              <td>
+                <a class="btn btn-sm" href="#">🖊️</a>
+                <a class="btn btn-sm" href="{{ route('deletenurseassignment', $nurseassignment->id) }}">❌</a>
+              </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+      </div>
+    </div>    
   </div>
 
   <!-- Create Nurse Assignment Modal -->
-  <div class="modal modal-lg fade" id="createNurseAssignmentModal" tabindex="-1" aria-hidden="true">
+  <div class="modal modal-lg fade" id="createNurseAssignmentModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header third-bg-color">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Nurse Assignment</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="card py-3 px-4 border-0">
             <form method="POST" action="{{ route('storenurseassignment') }}">
               @csrf
 
-              <!-- User ID -->
+              <!-- Nurse Dropdown -->
               <div class="row mb-3">
-                <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('User ID') }}</label>
+                <label for="nurse_id" class="col-md-4 col-form-label text-md-end">{{ ('Nurse') }}</label>
 
                 <div class="col-md-6">
-                  <input id="user_id" type="text" class="form-control @error('user_id') is-invalid @enderror" name="user_id" value="{{ old('user_id') }}" required autocomplete="lastname" autofocus>
-
-                  @error('user_id')
+                  <select id="nurse_id" aria-label="Select nurse" class="form-select @error('nurse_id') is-invalid @enderror" name="nurse_id" value="{{ old('nurse_id') }}" required autocomplete="nurse_id" autofocus>
+                    <option value=0 selected>Select ---</option>
+                    @foreach($nurses as $nurse)
+                    <option value={{ $nurse->id }}>{{ $nurse->name }}</option>
+                    @endforeach
+                  </select>
+                  @error('nurse_id')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -120,7 +132,7 @@
                     <option value=0 selected>Select ---</option>
                     <option value="AM Shift">AM Shift</option>
                     <option value="PM Shift">PM Shift</option>
-                    <option value="Night Shift">Night Shift</option>                   
+                    <option value="Night Shift">Night Shift</option>
                   </select>
                   @error('shift')
                   <span class="invalid-feedback" role="alert">
@@ -139,7 +151,7 @@
                     <option value=0 selected>Select ---</option>
                     <option value="Nurse Station 1">Nurse Station 1</option>
                     <option value="Nurse Station 2">Nurse Station 2</option>
-                    <option value="Nurse Station 3">Nurse Station 3</option>                   
+                    <option value="Nurse Station 3">Nurse Station 3</option>
                   </select>
                   @error('station')
                   <span class="invalid-feedback" role="alert">
@@ -148,6 +160,7 @@
                   @enderror
                 </div>
               </div>
+              <!-- <input type="hidden" name="id" id="nurse_id"> -->
               <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -160,8 +173,28 @@
     </div>
   </div>
 
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/fc-4.2.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/fc-4.2.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
+
+
   <script>
-    const nurseAssignmentTable = new DataTable('#nurseAssignmentTable');
+    $(document).ready(function() {
+      $('#nurseAssignmentTable').DataTable({
+        rowReorder: {
+          selector: 'td:nth-child(2)'
+        },
+        responsive: true,
+        pageLength: 10,
+        lengthChange: true
+      });
+    });
   </script>
 
-@endsection
+  @endsection

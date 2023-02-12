@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Specialization;
 
 class SpecializationController extends Controller
@@ -14,6 +15,17 @@ class SpecializationController extends Controller
     public function store(Request $request)
     {
         $specialization = new Specialization;
+
+        
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'unique:specializations'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('specialization')
+                ->with('error', 'Specialization already exists!');
+        }
+
         $specialization->usertype = $request->usertype;        
         $specialization->name = $request->name;        
         $specialization->save();

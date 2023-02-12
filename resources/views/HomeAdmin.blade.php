@@ -38,8 +38,8 @@
     </div>
   </div>
 
-  <div class="graphBox">
-    <!-- Charts Starts-->
+  <!-- Charts Starts-->
+  <div class="graphBox">    
 
     <div class="box border shadow">
       <canvas id="patientBar"></canvas>
@@ -48,10 +48,9 @@
     <div class="box border shadow">
       <canvas id="patientChart"></canvas>
     </div>
-
-
-    <!-- Charts Ends -->
+    
   </div>
+  <!-- Charts Ends -->
 
 
 

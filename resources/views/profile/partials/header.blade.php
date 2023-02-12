@@ -89,7 +89,7 @@
 
     <!-- Navbar Starts -->
     <div id="page-content-wrapper">
-      <div class="container sticky" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2)">
+      <div class="container-fluid" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2)">
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-3">
 
           <!-- Header -->
@@ -102,7 +102,7 @@
               <div class="col align-self-center">
                 <!-- Welcome User -->
                 <div class="fs-6 fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }}</div>
-                <div>{{ \Carbon\Carbon::now()->format('F j, Y') }}</div>
+                <div>{{ \Carbon\Carbon::now(new DateTimeZone('Asia/Singapore'))->format('D, F j, Y') }}</div>
               </div>              
             </div>            
           
