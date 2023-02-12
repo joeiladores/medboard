@@ -5,6 +5,7 @@
   --main-text-color: #1353c9;
   --second-text-color: #014f9e;
   --second-bg-color: #c1d5ef;
+  --third-bg-color: #43518B;
 }
 
 * {
@@ -16,9 +17,24 @@
   /* font-family: 'Poppins', sans-serif; */
 }
 
-/* body {
-  background-color: #F3F3F9;
-} */
+body {  
+  /* padding-top: 70px; */
+  /* background-color: #F3F3F9; */
+}
+
+.third-bg-color {
+  background-color:#43518B;
+  /* background-color: #86A8F8; */
+  color: #ADB9EA;
+}
+
+.f-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.f-roboto {
+  font-family: 'Roboto', sans-serif;
+}
 
 
 /* Login */
@@ -70,6 +86,10 @@
 /* Dashboard */
 .sticky {
   position: sticky;
+  height: 100%;
+  min-width: 100vw;
+  flex-grow: 1;
+  flex-basis: 200px;
   top: 0;
   right: 0;
   z-index: 1;
@@ -77,9 +97,16 @@
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
     transition-delay: 0s;
-    transition-property: all;
-  
+    transition-property: all;  
 }
+
+/* height: 100%;
+    width: 10rem;
+    flex-grow: 1;
+    flex-basis: 200px;
+    position: sticky;
+    top: 5rem;
+    cursor: pointer; */
 
 .fa-icon {
   width: 30px;
@@ -140,7 +167,7 @@
 }
 
 #page-content-wrapper {
-  min-width: 100vw;
+  /* min-width: 100vw; */
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -155,6 +182,13 @@
   border: none;
   padding: 10px 20px;
 }
+
+/* .list-group-item:hover {
+  border:#43518B;
+  background-color: #43518B;
+  text-decoration-color: #ADB9EA;
+} */
+
 
 
 /* Chart */

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Department;
 
 class DepartmentController extends Controller
@@ -14,6 +15,16 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $department = new Department;
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'unique:departments'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('departments')
+                ->with('error', 'Department already exists!');
+        }
+
         $department->name = $request->name;        
         $department->save();
 
