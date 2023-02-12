@@ -128,9 +128,8 @@ class UserController extends Controller
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
         $user->status           = $request->status; 
-        $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
-
+        
         if($request->hasFile('imagepath')){
             $request->validate([
                 'imagepath' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
@@ -142,18 +141,23 @@ class UserController extends Controller
             // Save image in storage
             Storage::putFileAs('public/images/profile/', $imagepath, $filename);
 
-            $user->imagepath = $filename;
+            // Check if the user image exists prior to updating to new image
+            // Delete the old image
+            // dd($user->imagepath);
+            if($current_image != null){
+                Storage::delete('/public/images/profile/'.$current_image);
+            }
+
+            $user->imagepath = $filename;           
             
         }else{
-            $user->imagepath = null;
-        }
-
-        // Check if the user image exists prior to updating to new image
-        // Delete the old image
-        // dd($user->imagepath);
-        if($current_image != NULL && $user->imagepath != NULL){
-            Storage::delete('/public/images/profile/'.$current_image);
-        }
+            if($current_image == null){
+                $user->imagepath = null;
+            }
+            else {
+                $user->imagepath = $current_image;
+            }
+        }        
 
         $user->save();
         return redirect()->route('users')->with('success', 'User is successfully updated!');

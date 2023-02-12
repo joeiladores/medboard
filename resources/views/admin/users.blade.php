@@ -22,8 +22,10 @@
 
 
   @if( session('success') )
-  <div class="alert alert-success my-3" role="alert">
-    {{ session('success') }}
+  <div class="container px-4">
+    <div class="alert alert-success my-3" role="alert">
+      {{ session('success') }}
+    </div>
   </div>
   @endif
 
