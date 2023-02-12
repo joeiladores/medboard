@@ -80,8 +80,16 @@ body {
   <div class="col-lg-10">
     <div class="card shadow" id="DashboardCard">
         <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day, Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}<br><br>
-        <p style="font-size:15px;">Today, you are assigned to <b>{{ $assigned_station->station }}</b><br>
-        Have a nice day at work!</p>
+        <p style="font-size:15px;">
+          @if(isset($assigned_station) && $assigned_station->station)
+          Today, you are assigned to <b>{{ $assigned_station->station }}</b><br> 
+          Have a nice day at work!</p>
+        @else
+          No assigned station
+        @endif
+
+
+       
         </h4>
     <!-- Nurse Dashboard img -->
     <div style="text-align:right;">
@@ -103,6 +111,7 @@ body {
                 </tr>
             </thead>
             <tbody>
+              @if(isset($patientsInStation))
               @foreach($patientsInStation as $patientsInStations)
         <tr>
             <td>{{ $patientsInStations->doctor_id }}</td>
@@ -114,6 +123,7 @@ body {
             </td>
         </tr>
         @endforeach
+        @endif
             </tbody>
            </table>
       </div>

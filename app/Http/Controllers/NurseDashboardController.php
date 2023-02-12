@@ -25,27 +25,48 @@ class NurseDashboardController extends Controller
 
         // Get the authenticated user's assigned station
         $assigned_station = NurseAssignment::where('user_id', $user->id)->first();
-        
-    $patientsInStation = DB::table('doctor_orders')
-        ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
-        ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
-        ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
-        ->where([
-            ['admission_news.status', 'Admitted'],
-            ['beds.station', $assigned_station->station]
-        ])
-        ->select(
-            'doctor_orders.id',
-            'doctor_orders.doctor_id as doctor_id',
-            'patients.firstname', 
-            'patients.lastname',
-            'beds.room as room',
-            'doctor_orders.created_at'
-        )
-        ->get();
 
-        return view('nurseHome', ['patientsInStation' => $patientsInStation,'name' => $name, 'user' => $user, 'specialization' => $specialization, 'assigned_station' => $assigned_station]);
-    
+        if ($assigned_station) {
+          $patientsInStation = DB::table('doctor_orders')
+            ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
+            ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+            ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
+            ->where([
+                ['admission_news.status', 'Admitted'],
+                ['beds.station', $assigned_station->station]
+            ])
+            ->select(
+                'doctor_orders.id',
+                'doctor_orders.doctor_id as doctor_id',
+                'patients.firstname', 
+                'patients.lastname',
+                'beds.room as room',
+                'doctor_orders.created_at'
+            )
+            ->get();
+          return view('nurseHome', ['patientsInStation' => $patientsInStation, 'name' => $name, 'user' => $user, 'specialization' => $specialization, 'assigned_station' => $assigned_station]);
+        } else {
+            $patientsInStation = DB::table('doctor_orders')
+            ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
+            ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+            ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
+            ->where([
+                ['admission_news.status', 'Admitted']
+            ])
+            ->select(
+                'doctor_orders.id',
+                'doctor_orders.doctor_id as doctor_id',
+                'patients.firstname', 
+                'patients.lastname',
+                'beds.room as room',
+                'doctor_orders.created_at'
+            )
+            ->get();
+          return view('nurseHome', ['name' => $name, 'user' => $user, 'specialization' => $specialization]);
+        }
+        
+
+       
     
 }
     public function patients(){
