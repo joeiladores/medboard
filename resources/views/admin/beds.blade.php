@@ -2,17 +2,18 @@
 
 @section('content')
 
-<!-- Bed Content - List of Beds -->
-<div class="container-md p-3">
-  <div class="d-flex flex-lg-row flex-column justify-content-between p-3">
-    <div class="flex-grow-1">
-      <h3 class="fw-bold text-secondary f-poppins">BEDS</h3>
+  <!-- Bed Content - List of Beds -->
+  <div class="container p-3">
+    <div class="row py-3">
+      <div class="col">
+        <h3 class="fw-bold text-secondary f-poppins">BEDS</h3>
+      </div>
+      <div class="col d-flex flex-grow-1 justify-content-end">
+        @if (Route::has('register'))
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
+        @endif
+      </div>    
     </div>
-    <div>
-      @if (Route::has('register'))
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
-      @endif
-    </div>    
   </div>
 
   @if( session('success') )
@@ -26,7 +27,7 @@
   </div>
   @endif
 
-  <div class="container-sm my-3">
+  <div class="container px-3">
     <div class="row">
       <div class="col-md-12">
         <table id="bedTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
@@ -60,7 +61,7 @@
             @endforeach
             @else
             <tr>
-              <td colspan="5" class="p-3 text-center">There are no beds yet in the database.</td>
+              <td colspan="7" class="p-3 text-center">There are no beds yet in the database.</td>
             </tr>
             @endif
           </tbody>
@@ -177,48 +178,22 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- For DataTables -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css"/> 
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.css"/> 
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.js"></script>
 
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
   <script>
-    // $(document).ready(function () {
-    //   $("#container").load();
-    //   setInterval(function () {
-    //     $("#container").load();
-    //   }, 1000);
-    // });
-
 
     $(document).ready(function() {
-      $('#bedTable').DataTable({
-        responsive: true,
-        pageLength: 10,
-        lengthChange: true
-      });
-    });
-
-
-    $(document).ready(function() {
-        $('#example').DataTable({
-            responsive: true
+        $('#bedTable').DataTable({
+          responsive: true,
+          fixedHeader: true
         });
-    } );  
-
-  </script>
-
-<!-- <script>
-    $(document).ready(function() {
-      var table = $('#bedTable').DataTable({
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-      });
     });
-  </script> -->
+  
+  </script>
 
   <script>
     const editBedModal = new bootstrap.Modal('#editBedModal', {

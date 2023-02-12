@@ -2,19 +2,20 @@
 
 @section('content')
 
-<!-- Main Content - List of Users -->
-<div class="container p-3">
-  <div class="row p-3 flex-wrap">
-    <div class="col-6">
-      <h3 class="fw-bold text-secondary f-poppins">USERS</h3>
-    </div>
-    <div class="col-6 d-flex justify-content-end">
-      @if (Route::has('register'))
-      <span><a href="{{ route('registeruser') }}" class="btn btn-primary me-2 flex-end">+ Add New User</a></span>
-      <!-- <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a><span> -->
-      </span>
+  <!-- Main Content - List of Users -->
+  <div class="container p-4">
+    <div class="row py-2">
+      <div class="col">
+        <h3 class="fw-bold text-secondary f-poppins">USERS</h3>
+      </div>
+      <div class="col d-flex flex-grow-1 justify-content-end">
+        @if (Route::has('register'))
+        <span><a href="{{ route('registeruser') }}" class="btn btn-primary flex-end">+ Add New User</a></span>
+        <!-- <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a><span> -->
+        </span>
 
-      @endif
+        @endif
+      </div>
     </div>
   </div>
 
@@ -26,7 +27,7 @@
   </div>
   @endif
 
-  <div class="container my-3">
+  <div class="container px-4">
     <div class="row">
       <div class="col-md-12">
         <table id="userTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
@@ -39,8 +40,8 @@
               <td>Specialization</td>
               <td>Email</td>
               <td>Phone</td>  
-              <td>Status</td>            
-              <td>Action</td>              
+              <td>Action</td>   
+              <td>Status</td>
             </tr>
           </thead>
           <tbody>
@@ -52,18 +53,18 @@
               <td>{{ $user->usertype }}</td>              
               <td>{{ $user->department->name }}</td>
               <td>{{ $user->specialization->name }}</td>
-              <td>{{ $user->email }}</td>
-              <td>{{ $user->status }}</td>
+              <td>{{ $user->email }}</td>              
               <td>{{ $user->phone }}</td>              
               <td>
                 <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
                 <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
-              </td>              
+              </td>  
+              <td>{{ $user->status }}</td>            
             </tr>
             @endforeach
             @else
             <tr>
-              <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
+              <td colspan="9" class="p-3 text-center">There are no users yet in the database.</td>
             </tr>
             @endif
           </tbody>
@@ -82,21 +83,11 @@
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
  
- <script>
+  <script>
     $(document).ready(function() {
       $('#userTable').DataTable({
-        // scrollY:        "300px",
-        // scrollX:        true,
-        // scrollCollapse: true,
-        // paging:         false,
-        // fixedColumns:   {
-        //     left: 1,
-        //     right: 1
-        // }
-        // rowReorder: {
-        //     selector: 'td:nth-child(2)'
-        // },
-        responsive: true
+        responsive: true,
+        fixedHeader: true
       });
     });
   </script>
