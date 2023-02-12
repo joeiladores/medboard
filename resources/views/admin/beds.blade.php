@@ -6,7 +6,7 @@
 <div class="container-md p-3">
   <div class="d-flex flex-lg-row flex-column justify-content-between">
     <div class="flex-grow-1">
-      <h4 class="fw-bold text-secondary f-poppins">BEDS</h4>
+      <h3 class="fw-bold text-secondary f-poppins">BEDS</h3>
     </div>
     @if (Route::has('register'))
     <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
@@ -176,7 +176,7 @@
 
   <!-- For DataTables -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css"/> 
- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
 
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

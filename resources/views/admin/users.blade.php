@@ -6,7 +6,7 @@
 <div class="container-md p-3">
   <div class="d-flex bg-main">
     <div class="flex-grow-1">
-      <h4 class="fw-bold text-secondary f-poppins">USERS</h4>
+      <h3 class="fw-bold text-secondary f-poppins">USERS</h3>
     </div>
     <div class="flex-lg-row justify-content-end">
       @if (Route::has('register'))
@@ -26,46 +26,50 @@
   </div>
   @endif
 
-  <div class="my-3">
-    <table class="table table-hover responsive" id="userTable">
-      <thead class="third-bg-color">
-        <tr>
-          <td>User ID</td>
-          <td>User Type</td>
-          <td>Name</td>
-          <td>Department</td>
-          <td>Specialization</td>
-          <td>Email</td>
-          <td>Phone</td>
-          <td>Status</td>
-          <td>Action</td>
-        </tr>
-      </thead>
-      <tbody>
-        @if(count($users) > 0)
-        @foreach($users as $user)
-        <tr>
-          <td>{{ $user->id }}</td>
-          <td>{{ $user->usertype }}</td>
-          <td>{{ $user->name }}</td>
-          <td>{{ $user->department->name }}</td>
-          <td>{{ $user->specialization->name }}</td>
-          <td>{{ $user->email }}</td>
-          <td>{{ $user->phone }}</td>
-          <td>{{ $user->status }}</td>
-          <td>
-            <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
-            <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
-          </td>
-        </tr>
-        @endforeach
-        @else
-        <tr>
-          <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
-        </tr>
-        @endif
-      </tbody>
-    </table>
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <table id="userTable" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+          <thead class="third-bg-color">
+            <tr>
+              <td>User ID</td>
+              <td>User Type</td>
+              <td>Name</td>
+              <td>Department</td>
+              <td>Specialization</td>
+              <td>Email</td>
+              <td>Phone</td>
+              <td>Status</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            @if(count($users) > 0)
+            @foreach($users as $user)
+            <tr>
+              <td>{{ $user->id }}</td>
+              <td>{{ $user->usertype }}</td>
+              <td>{{ $user->name }}</td>
+              <td>{{ $user->department->name }}</td>
+              <td>{{ $user->specialization->name }}</td>
+              <td>{{ $user->email }}</td>
+              <td>{{ $user->phone }}</td>
+              <td>{{ $user->status }}</td>
+              <td>
+                <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
+                <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
+              </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+      </div>    
+    </div>  
   </div>
 
   <!-- JQuery -->

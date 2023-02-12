@@ -32,6 +32,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.f-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
 
 /* Login */
 .nav-login {

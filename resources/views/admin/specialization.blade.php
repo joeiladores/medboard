@@ -24,37 +24,41 @@
   </div>
   @endif
 
-  <div class="my-3">
-    <table class="table table-hover responsive" id="specializationTable">
-      <thead class="third-bg-color">
-        <tr>
-          <td>ID</td>
-          <td>User Type</td>
-          <td>Specialization</td>
-          <td>Action</td>
-        </tr>
-      </thead>
-      <tbody>
-        @if(count($specializations) > 0)
-        @foreach($specializations as $specialization)
-        <tr>
-          <td>{{ $specialization->id }}</td>
-          <td>{{ $specialization->usertype }}</td>
-          <td>{{ $specialization->name }}</td>
+  <div class="container-md my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <table id="specializationTable" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+          <thead class="third-bg-color">
+            <tr>
+              <td>ID</td>
+              <td>User Type</td>
+              <td>Specialization</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            @if(count($specializations) > 0)
+            @foreach($specializations as $specialization)
+            <tr>
+              <td>{{ $specialization->id }}</td>
+              <td>{{ $specialization->usertype }}</td>
+              <td>{{ $specialization->name }}</td>
 
-          <td>
-            <button type="button" class="btn btn-sm" onclick="showEditSpecializationModal({{ $specialization->id }});">🖊️</button>
-            <a class="btn btn-sm" href="{{ route('specialization.delete', $specialization->id) }}">❌</a>
-          </td>
-        </tr>
-        @endforeach
-        @else
-        <tr>
-          <td colspan="5" class="p-3 text-center">There are no specializations yet in the database.</td>
-        </tr>
-        @endif
-      </tbody>
-    </table>
+              <td>
+                <button type="button" class="btn btn-sm" onclick="showEditSpecializationModal({{ $specialization->id }});">🖊️</button>
+                <a class="btn btn-sm" href="{{ route('specialization.delete', $specialization->id) }}">❌</a>
+              </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="5" class="p-3 text-center">There are no specializations yet in the database.</td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+      </div>
+    </div>    
   </div>
 
   <!-- Create Specialization Modal -->

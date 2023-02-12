@@ -6,7 +6,7 @@
 <div class="container-md p-3">
   <div class="d-flex flex-lg-row flex-column justify-content-between">
     <div class="flex-grow-1">
-      <h4 class="fw-bold text-secondary f-poppins">NURSE ASSIGNMENT</h4>
+      <h3 class="fw-bold text-secondary f-poppins">NURSE ASSIGNMENT</h3>
     </div>
     @if (Route::has('register'))
     <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createNurseAssignmentModal">+ New Nurse Assignment</button>
@@ -19,42 +19,46 @@
   </div>
   @endif
 
-  <div class="my-3">
-    <table class="table table-hover responsive" id="nurseAssignmentTable">
-      <thead class="third-bg-color">
-        <tr>
-          <td>Assignment ID</td>
-          <td>User ID</td>
-          <td>Date Time Start</td>
-          <td>Date Time End</td>
-          <td>Shift</td>
-          <td>Station</td>
-          <td>Action</td>
-        </tr>
-      </thead>
-      <tbody>
-        @if(count($nurseassignments) > 0)
-        @foreach($nurseassignments as $nurseassignment)
-        <tr>
-          <td>{{ $nurseassignment->id }}</td>
-          <td>{{ $nurseassignment->user_id }}</td>
-          <td>{{ $nurseassignment->datetime_start }}</td>
-          <td>{{ $nurseassignment->datetime_end }}</td>
-          <td>{{ $nurseassignment->shift }}</td>
-          <td>{{ $nurseassignment->station }}</td>
-          <td>
-            <a class="btn btn-sm" href="#">🖊️</a>
-            <a class="btn btn-sm" href="#">❌</a>
-          </td>
-        </tr>
-        @endforeach
-        @else
-        <tr>
-          <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
-        </tr>
-        @endif
-      </tbody>
-    </table>
+  <div class="container-md my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <table id="nurseAssignmentTable" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+          <thead class="third-bg-color">
+            <tr>
+              <td>Assignment ID</td>
+              <td>User ID</td>
+              <td>Date Time Start</td>
+              <td>Date Time End</td>
+              <td>Shift</td>
+              <td>Station</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            @if(count($nurseassignments) > 0)
+            @foreach($nurseassignments as $nurseassignment)
+            <tr>
+              <td>{{ $nurseassignment->id }}</td>
+              <td>{{ $nurseassignment->user_id }}</td>
+              <td>{{ $nurseassignment->datetime_start }}</td>
+              <td>{{ $nurseassignment->datetime_end }}</td>
+              <td>{{ $nurseassignment->shift }}</td>
+              <td>{{ $nurseassignment->station }}</td>
+              <td>
+                <a class="btn btn-sm" href="#">🖊️</a>
+                <a class="btn btn-sm" href="#">❌</a>
+              </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="5" class="p-3 text-center">There are no users yet in the database.</td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+      </div>
+    </div>    
   </div>
 
   <!-- Create Nurse Assignment Modal -->
