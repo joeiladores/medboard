@@ -34,7 +34,7 @@ class DoctorOrdersController extends Controller
             ['status', 'Admitted'],
             ['primary_doctor_id', $user_id]
         ])
-        ->select('doctor_orders.id as doctor_orders_id', 'patients.firstname' ,'patients.lastname')
+        ->select('doctor_orders.id as doctor_orders_id', 'patients.firstname' ,'patients.lastname','patients.id')
         ->get();
        
         //Get and Display room type inside table
