@@ -93,9 +93,9 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-3">
 
           <!-- Header -->
-          <div class="d-flex">
-            <!-- Sidebar Toggler -->
+          <div class="d-flex">            
             <div class="row">
+              <!-- Sidebar Toggler -->
               <div class="col-md-3 col-2 align-self-center">
                 <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
               </div>
@@ -113,7 +113,7 @@
             @endif
           </div>
 
-          <!-- Toggler Button -->
+          <!-- Profile Toggler Button -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
