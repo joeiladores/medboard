@@ -58,10 +58,10 @@
   </div>
 
   <!-- Create Nurse Assignment Modal -->
-  <div class="modal modal-lg fade" id="createNurseAssignmentModal" tabindex="-1" aria-hidden="true">
+  <div class="modal modal-lg fade" id="createNurseAssignmentModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header third-bg-color">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Nurse Assignment</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -70,14 +70,33 @@
             <form method="POST" action="{{ route('storenurseassignment') }}">
               @csrf
 
-              <!-- User ID -->
-              <div class="row mb-3">
+              <!-- Nurse -->
+              <!-- <div class="row mb-3">
                 <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('User ID') }}</label>
 
                 <div class="col-md-6">
                   <input id="user_id" type="text" class="form-control @error('user_id') is-invalid @enderror" name="user_id" value="{{ old('user_id') }}" required autocomplete="lastname" autofocus>
 
                   @error('user_id')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+              </div> -->
+
+              <!-- Nurse Dropdown -->
+              <div class="row mb-3">
+                <label for="nurse_id" class="col-md-4 col-form-label text-md-end">{{ ('Nurse') }}</label>
+
+                <div class="col-md-6">
+                  <select id="nurse_id" aria-label="Select nurse" class="form-select @error('nurse_id') is-invalid @enderror" name="nurse_id" value="{{ old('nurse_id') }}" required autocomplete="nurse_id" autofocus>
+                    <option value=0 selected>Select ---</option>
+                    @foreach($nurses as $nurse)
+                    <option value={{ $nurse->id }}>{{ $nurse->name }}</option>
+                    @endforeach
+                  </select>
+                  @error('nurse_id')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -152,6 +171,7 @@
                   @enderror
                 </div>
               </div>
+              <!-- <input type="hidden" name="id" id="nurse_id"> -->
               <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary">Submit</button>

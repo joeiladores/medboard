@@ -24,43 +24,47 @@
   </div>
   @endif
 
-  <div class="my-3">
-    <table class="table table-hover responsive" id="bedTable">
-      <thead class="third-bg-color">
-        <tr>
-          <td>Bed ID</td>
-          <td>Bed Number</td>
-          <td>Room</td>
-          <td>Room Type</td>
-          <td>Station</td>
-          <td>Status</td>
-          <td>Action</td>
-        </tr>
-      </thead>
-      <tbody>
-        @if(count($beds) > 0)
-        @foreach($beds as $bed)
-        <tr>
-          <td>{{ $bed->id }}</td>
-          <td>{{ $bed->bednum }}</td>
-          <td>{{ $bed->room }}</td>
-          <td>{{ $bed->room_type }}</td>
-          <td>{{ $bed->station }}</td>
-          <td>{{ $bed->status }}</td>
-          <td>
-            <button type="button" class="btn btn-sm" onclick="showEditBedModal({{ $bed->id }});">🖊️</button>
-            <a class="btn btn-sm" href="{{ route('deletebed', $bed->id) }}">❌</a>
-          </td>
-        </tr>
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <table id="bedTable" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+          <thead class="third-bg-color">
+            <tr>
+              <td>Bed ID</td>
+              <td>Bed Number</td>
+              <td>Room</td>
+              <td>Room Type</td>
+              <td>Station</td>
+              <td>Status</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            @if(count($beds) > 0)
+            @foreach($beds as $bed)
+            <tr>
+              <td>{{ $bed->id }}</td>
+              <td>{{ $bed->bednum }}</td>
+              <td>{{ $bed->room }}</td>
+              <td>{{ $bed->room_type }}</td>
+              <td>{{ $bed->station }}</td>
+              <td>{{ $bed->status }}</td>
+              <td>
+                <button type="button" class="btn btn-sm" onclick="showEditBedModal({{ $bed->id }});">🖊️</button>
+                <a class="btn btn-sm" href="{{ route('deletebed', $bed->id) }}">❌</a>
+              </td>
+            </tr>
 
-        @endforeach
-        @else
-        <tr>
-          <td colspan="5" class="p-3 text-center">There are no beds yet in the database.</td>
-        </tr>
-        @endif
-      </tbody>
-    </table>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="5" class="p-3 text-center">There are no beds yet in the database.</td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+      </div>    
+    </div>    
   </div>
 
   <!-- Create Bed Modal -->
@@ -166,21 +170,47 @@
       </div>
     </div>
   </div>
-
-  <!-- Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
+  
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- For DataTables -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css"/>
- 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css"/> 
  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
- 
 
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
   <script>
+    // $(document).ready(function () {
+    //   $("#container").load();
+    //   setInterval(function () {
+    //     $("#container").load();
+    //   }, 1000);
+    // });
+
+
+    $(document).ready(function() {
+      $('#bedTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true,
+        pageLength: 10,
+        lengthChange: true
+      });
+    });
+
+
+    $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    } );  
+
+  </script>
+
+<!-- <script>
     $(document).ready(function() {
       var table = $('#bedTable').DataTable({
         rowReorder: {
@@ -189,7 +219,7 @@
         responsive: true
       });
     });
-  </script>
+  </script> -->
 
   <script>
     const editBedModal = new bootstrap.Modal('#editBedModal', {

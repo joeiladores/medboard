@@ -78,8 +78,4 @@ class BedController extends Controller
         return response()->json($bed);
     }
 
-    // public function countVacant() {
-    //     return Bed::all()->count();
-    // }
-
 }

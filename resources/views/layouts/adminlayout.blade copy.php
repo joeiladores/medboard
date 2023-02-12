@@ -18,7 +18,6 @@
 
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
-  <link href="{{ asset('/style.css') }}" rel="stylesheet">
 
   <!--FullCalendar-->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.2/main.min.css' rel='stylesheet'/>
@@ -43,7 +42,7 @@
 
       <!--Side Bar-->
       <aside class="col-md-3 col-xl-2 p-0 flex-shrink-1">
-        <nav class="navbar navbar-expand-md navbar-primary bd-primary flex-md-column flex-row align-items-center py-2 text-center sticky-top" id="sidebar">
+        <nav class="navbar navbar-expand-md navbar-primary bd-primary flex-md-column flex-row align-items-center py-2 text-center" id="sidebar">
 
           <!-- Project Logo -->
           <div class="text-center p-3">
@@ -127,9 +126,8 @@
         </nav>
       </aside>
 
-      <main class="col p-0 m-0">
-        <!-- Header -->
-        <div class="container-fluid m-0 p-0 sticky-top">
+      <!-- Header -->
+      <div class="container-fluid m-0 p-0 sticky">
           <div class="row justify-content-center">
             <div class="col">
               <div class="card">
@@ -156,6 +154,8 @@
             </div>
           </div>
         </div>
+
+      <main class="col p-0 m-0 ">        
 
         @yield('content')
         
