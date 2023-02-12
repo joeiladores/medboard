@@ -22,7 +22,7 @@
   <div class="container-md my-3">
     <div class="row">
       <div class="col-md-12">
-        <table id="nurseAssignmentTable" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+        <table id="nurseAssignmentTable" class="table table-hover  display nowrap" cellspacing="0" width="100%">
           <thead class="third-bg-color">
             <tr>
               <td>Assignment ID</td>
@@ -67,7 +67,7 @@
       <div class="modal-content">
         <div class="modal-header third-bg-color">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Nurse Assignment</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="card py-3 px-4 border-0">

@@ -27,7 +27,7 @@
   <div class="container-md my-3">
     <div class="row">
       <div class="col-md-12">
-        <table id="specializationTable" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+        <table id="specializationTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
           <thead class="third-bg-color">
             <tr>
               <td>ID</td>
