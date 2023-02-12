@@ -100,26 +100,27 @@ class NurseDashboardController extends Controller
 
     public function patientList(){
 
-          $patientsInStation = DB::table('doctor_orders')
-            ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
-            ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
-            ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
-            ->join('users', 'users.id', '=', 'doctor_orders.doctor_id')
-            ->where([
-                ['admission_news.status', 'Admitted']
-            ])
-            ->select(
-                'doctor_orders.id',
-                'users.firstname as doctor_firstname', 
-                'users.lastname as doctor_lastname',
-                'patients.firstname', 
-                'patients.lastname',
-                'beds.room as room',
-                'doctor_orders.created_at'
-            )
-            ->get();
-          return view('nursePatients', ['patientsInStation' => $patientsInStation]);
-        }
+        $user = Auth::user();
+        $name = $user->firstname . " " . $user->lastname;
+
+        // Get the authenticated user's specialization
+        $specialization = Specialization::where('id', $user->specialization_id)->first();
+
+        $patientAdmitted = DB::table('admission_news')
+        ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+        ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
+        ->join('users', 'admission_news.primary_doctor_id', '=', 'users.id')
+        ->where('admission_news.status', 'Admitted')
+        ->select(
+            'patients.id as patient_id',
+            DB::raw("CONCAT(patients.firstname, ' ', patients.lastname) as patient_fullname"),
+            DB::raw("CONCAT(users.firstname, ' ', users.lastname) as primary_doctor_fullname"),
+            'admission_news.created_at as admission_date',
+            'beds.room as room'
+        )
+        ->get();
+      return view('nursePatients', ['patientAdmitted' => $patientAdmitted, 'name' => $name, 'user' => $user, 'specialization' => $specialization]);
+    
 }
 
-
+}

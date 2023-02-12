@@ -5,9 +5,8 @@
 body {
   height: 100%;
   margin: 0;
-  /* font-family: Arial; */
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
+  font-size: 0.9375rem;
+  font-family: 'Roboto+Mono', sans-serif;
 }
 /* Defaults */
 #DashboardCard{

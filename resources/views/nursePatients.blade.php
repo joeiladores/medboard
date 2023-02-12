@@ -15,7 +15,13 @@ body {
     background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
     border-radius:30px;
 }
-
+#tableSize{
+  color: rgb(14, 0, 0);
+  padding: 50px;
+  height: 620px;
+  border-radius: 50px 50px 25px 25px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
 
 /* Responsiveness */
@@ -67,32 +73,28 @@ body {
 </div>
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow p-2">
-      <h5 class="pt-3 ms-2">Patients List</h5>
+      <div class="card rounded shadow p-2" id="tableSize">
+      <h5 class="pt-3 ms-2">Admitted Patients List</h5>
       <table class="table" id="nursesDashboardTable">
         <thead>
-            <tr style="background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);">
-              <th class="text-light">Assigned Doctor</th>
-              <th class="text-light">Patient Name</th>
-              <th class="text-light">Room</th>
-              <th class="text-light">Date Ordered</th>
-              <th class="text-light">Actions</th>
-            </tr>
+          <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Primary Doctor Name</th>
+            <th>Admission Date</th>
+            <th>Room</th>
+          </tr>
         </thead>
         <tbody>
-          @if(isset($patientsInStation))
-          @foreach($patientsInStation as $patientsInStations)
-    <tr>
-        <td>{{ $patientsInStations->doctor_firstname . " " . $patientsInStations->doctor_lastname }}</td>
-        <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
-        <td>{{ $patientsInStations->room }}</td>
-        <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>
-        <td>
-          <a href="{{ route('nurseDoctorOrdersView', $patientsInStations->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
-        </td>
-    </tr>
-    @endforeach
-    @endif
+          @foreach($patientAdmitted as $patientsAdmitted)
+            <tr>
+              <td>{{ $patientsAdmitted->patient_id }}</td>
+              <td>{{ $patientsAdmitted->patient_fullname }}</td>
+              <td>{{ $patientsAdmitted->primary_doctor_fullname }}</td>
+              <td>{{ date_format(new DateTime( $patientsAdmitted->admission_date), "F j, Y g:i A") }}</td>
+              <td>{{ $patientsAdmitted->room }}</td>
+            </tr>
+          @endforeach
         </tbody>
        </table>
       </div>
@@ -101,17 +103,17 @@ body {
   </div>
   <div class="col-lg-2" id="DashboardSide">
     <!-- Side Profile -->
-    <div style="padding:20%; height:530px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
-        <center>
-          <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
-          <p style="font-size:17px; font-weight:600;" class="text-light">Nurse Cruz</p>
-          <p style="font-size:15px; font-weight:500;" class="text-light">Dialysis Nurse</p>
-        </center>
-    </div>
+    <div style="padding:15%; height:530px; background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 30px 30px 0px 0px;">
+      <center>
+        <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
+        <p style="font-size:17px; font-weight:600;" class="text-light">Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
+        <p style="font-size:14px; font-weight:600;" class="text-light">{{ $specialization->name }}</p>
+      </center>
+  </div>
      <!--END Side Profile -->
 
     <!-- Side Time/Date -->
-    <div class="mt-2 p-2 text-light" style="height:100px;background: linear-gradient(180.37deg, rgba(66, 100, 208, 0.06) -19.51%, #4264D0 99.68%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 0px 0px 30px 30px;">
+    <div class="mt-2 p-2 text-light" style="height:100px;background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 0px 0px 30px 30px;">
     <center>
         <h6 id="currentDate"></h6>
         <h2 id="currentTime"></h2>
