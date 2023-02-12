@@ -4,13 +4,15 @@
 
 <!-- Bed Content - List of Beds -->
 <div class="container-md p-3">
-  <div class="d-flex flex-lg-row flex-column justify-content-between">
+  <div class="d-flex flex-lg-row flex-column justify-content-between p-3">
     <div class="flex-grow-1">
       <h3 class="fw-bold text-secondary f-poppins">BEDS</h3>
     </div>
-    @if (Route::has('register'))
-    <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
-    @endif
+    <div>
+      @if (Route::has('register'))
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
+      @endif
+    </div>    
   </div>
 
   @if( session('success') )
@@ -24,7 +26,7 @@
   </div>
   @endif
 
-  <div class="container my-3">
+  <div class="container-sm my-3">
     <div class="row">
       <div class="col-md-12">
         <table id="bedTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
@@ -192,9 +194,6 @@
 
     $(document).ready(function() {
       $('#bedTable').DataTable({
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
         responsive: true,
         pageLength: 10,
         lengthChange: true
