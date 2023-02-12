@@ -270,7 +270,7 @@
 
                             <div class="col-md-6">
 
-                                <!-- <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png,.webp" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ $user->imagepath }}" autocomplete="imagepath" autofocus> -->
+                                <input id="imagepath" type="file" accept=".gif,.jpg,.jpeg,.png,.webp" class="form-control @error('imagepath') is-invalid @enderror" name="imagepath" value="{{ $user->imagepath }}" autocomplete="imagepath" autofocus>
 
                                 @error('imagepath')
                                 <span class="invalid-feedback" role="alert">

@@ -115,8 +115,7 @@ class UserController extends Controller
 
     protected function updateUser(Request $request) {        
         $user = User::find($request->id);
-
-        
+        $current_image = $user->imagepath;        
         
         $user->usertype         = $request->usertype;
         $user->lastname         = $request->lastname;
@@ -147,6 +146,13 @@ class UserController extends Controller
             
         }else{
             $user->imagepath = null;
+        }
+
+        // Check if the user image exists prior to updating to new image
+        // Delete the old image
+        // dd($user->imagepath);
+        if($current_image != NULL && $user->imagepath != NULL){
+            Storage::delete('/public/images/profile/'.$current_image);
         }
 
         $user->save();

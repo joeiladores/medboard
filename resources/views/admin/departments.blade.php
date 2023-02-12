@@ -24,8 +24,8 @@
   </div>
   @endif
 
-  <div class="table-responsive my-3">
-    <table class="table table-hover" id="departmentTable">
+  <div class="my-3">
+    <table class="table table-hover responsive" id="departmentTable">
       <thead class="third-bg-color">
         <tr>
           <td>Department ID</td>
@@ -93,10 +93,14 @@
             <form method="POST" action="{{ route('department.update') }}">
               @csrf
               <div class="mb-3">
+                <label for="editdept_id" class="form-label">Department ID</label>
+                <input type="text" class="form-control bg-light" name="id" id="editdept_id" readonly>
+              </div>
+              <div class="mb-3">
                 <label for="editdept_name" class="form-label">Department Name</label>
                 <input type="text" class="form-control" name="name" id="editdept_name" required>
               </div>
-              <input type="hidden" name="id" id="editdept_id"">
+              <!-- <input type="hidden" name="id" id="editdept_id""> -->
                 <button type=" submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
@@ -105,17 +109,24 @@
     </div>
   </div>
 
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- For DataTables -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css" />
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/fc-4.2.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/fc-4.2.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
 
 
   <script>
     $(document).ready(function() {
       $('#departmentTable').DataTable({
+        "rowReorder": {
+          "selector": 'td:nth-child(2)'
+        },
+        "responsive": true,
         "pageLength": 10,
         "lengthChange": true
       });
@@ -128,7 +139,7 @@
     });
 
     function showEditDepartmentModal(department_id) {
-      fetch('{{ url(' / admin / showdepartment / ') }}/' + department_id)
+      fetch('{{ url('/admin/showdepartment/') }}/' + department_id)
         .then(response => response.json())
         .then(data => {
           document.getElementById('editdept_name').value = data.name;

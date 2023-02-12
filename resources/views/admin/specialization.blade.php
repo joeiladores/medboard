@@ -24,8 +24,8 @@
   </div>
   @endif
 
-  <div class="table-responsive my-3">
-    <table class="table table-hover" id="specializationTable">
+  <div class="my-3">
+    <table class="table table-hover responsive" id="specializationTable">
       <thead class="third-bg-color">
         <tr>
           <td>ID</td>
@@ -127,17 +127,24 @@
     </div>
   </div>
 
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- For DataTables -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css" />
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/fc-4.2.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/fc-4.2.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
 
 
   <script>
     $(document).ready(function() {
       $('#specializationTable').DataTable({
+        "rowReorder": {
+          "selector": 'td:nth-child(2)'
+        },
+        "responsive": true,
         "pageLength": 10,
         "lengthChange": true
       });
@@ -150,7 +157,7 @@
     });
 
     function showEditSpecializationModal(specialization_id) {
-      fetch('{{ url(' / admin / showspecialization / ') }}/' + specialization_id)
+      fetch('{{ url('/admin/showspecialization/') }}/' + specialization_id)
         .then(response => response.json())
         .then(data => {
           document.getElementById('editspec_usertype').value = data.usertype;

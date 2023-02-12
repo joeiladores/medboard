@@ -26,8 +26,8 @@
   </div>
   @endif
 
-  <div class="table-responsive my-3">
-    <table class="table table-hover" id="userTable">
+  <div class="my-3">
+    <table class="table table-hover responsive" id="userTable">
       <thead class="third-bg-color">
         <tr>
           <td>User ID</td>
@@ -72,15 +72,17 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- For DataTables -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.css" />
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/r-2.4.0/sc-2.0.7/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.css"/>
+ 
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/datatables.min.js"></script>
 
-
-  <script>
+ <script>
     $(document).ready(function() {
-      $('#userTable').DataTable({
-        "pageLength": 10,
-        "lengthChange": true
+      var table = $('#userTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
       });
     });
   </script>
