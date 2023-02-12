@@ -1,4 +1,5 @@
-@include('profile.partials.header', ['title' => 'MedBoard - Patients'])
+@extends('layouts.adminlayout', ['title' => 'Admin-Patient'])
+@section('content')
 
 <div class="container-fluid px-4">
     <div class="row g-3 my-2">
@@ -494,5 +495,4 @@
 
 </div>
 
-
-@include('profile.partials.footer')
+@endsection

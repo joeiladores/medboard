@@ -126,10 +126,10 @@ body {
   height: auto;
 }
 
-/* .doc-icon{
+.doc-icon{
   max-width: 8rem;
   height: auto;
-} */
+}
 
 .primary-text {
   color: var(--main-text-color);
