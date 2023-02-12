@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bed;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Bed;
+
 
 class BedController extends Controller
 {
