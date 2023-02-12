@@ -113,13 +113,21 @@ class NurseDashboardController extends Controller
         ->where('admission_news.status', 'Admitted')
         ->select(
             'patients.id as patient_id',
-            DB::raw("CONCAT(patients.firstname, ' ', patients.lastname) as patient_fullname"),
-            DB::raw("CONCAT(users.firstname, ' ', users.lastname) as primary_doctor_fullname"),
+            'patients.firstname as patient_firstname',
+            'patients.lastname as patient_lastname',
+            'users.firstname as doctor_firstname',
+            'users.lastname as doctor_lastname',
             'admission_news.created_at as admission_date',
             'beds.room as room'
         )
         ->get();
-      return view('nursePatients', ['patientAdmitted' => $patientAdmitted, 'name' => $name, 'user' => $user, 'specialization' => $specialization]);
+    
+    return view('nursePatients', [
+        'patientAdmitted' => $patientAdmitted,
+        'name' => $user->firstname . " " . $user->lastname,
+        'user' => $user,
+        'specialization' => $specialization
+    ]);
     
 }
 

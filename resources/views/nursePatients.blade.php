@@ -86,15 +86,15 @@ body {
           </tr>
         </thead>
         <tbody>
-          @foreach($patientAdmitted as $patientsAdmitted)
+          @foreach ($patientAdmitted as $patient)
             <tr>
-              <td>{{ $patientsAdmitted->patient_id }}</td>
-              <td>{{ $patientsAdmitted->patient_fullname }}</td>
-              <td>{{ $patientsAdmitted->primary_doctor_fullname }}</td>
-              <td>{{ date_format(new DateTime( $patientsAdmitted->admission_date), "F j, Y g:i A") }}</td>
-              <td>{{ $patientsAdmitted->room }}</td>
+                <td>{{ $patient->patient_id }}</td>
+                <td>{{ $patient->patient_firstname }} {{ $patient->patient_lastname }}</td>
+                <td>{{ $patient->doctor_firstname }} {{ $patient->doctor_lastname }}</td>
+                <td>{{ date_format(new DateTime( $patient->admission_date), "F j, Y g:i A") }}</td>
+                <td>{{ $patient->room }}</td>
             </tr>
-          @endforeach
+        @endforeach
         </tbody>
        </table>
       </div>
