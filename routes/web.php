@@ -30,12 +30,22 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicalHistoryController;
 
 //Admission Form
+
 use App\Http\Controllers\AdmissionAjaxController;
+use App\Http\Controllers\PatientAdmissionController;
 
 // PDF
 use Barryvdh\DomPDF\Facade\Pdf;
 
 use App\Http\Controllers\AdmissionNewController;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+ 
+
 
 
 Route::get('/', function (){
@@ -131,6 +141,8 @@ Route::controller(CalendarController::class)->group(function () {
 // Doctor's Orders View
 Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
 Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
+Route::post('/storeDoctorOrders', [DoctorOrdersController::class, 'store'])->name('storeDoctorOrders');
+Route::get('/destroyDoctorOrder/{id}', [DoctorOrdersController::class, 'destroy'])->name('destroyDoctorOrder');
 
 // For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
 
@@ -182,6 +194,8 @@ Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 's
 // *****************************************************************************
 // Nurse's Dashboard View
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
+
 Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
 
 
@@ -205,10 +219,48 @@ Route::get('/generate-pdf', function(){
 
 
 // *****************************************************************************
-// Routes for Admission
+// Routes for password resets
+Route::post('/password-reset', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
 
-// Route::resource('ajaxadmissions', AdmissionAjaxController::class);
 
-// Route::get('/admission', function () {
-//     return view('admission')->name('admissions');
-// });
+// Route::get('/forgot-password', function () {
+//     return view('auth.forgot-password');
+// })->middleware('guest')->name('password.request');  // reset password when loggin
+
+
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+ 
+//             $user->save();
+ 
+//         //     event(new PasswordReset($user));
+//         }
+    );
+ 
+
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');

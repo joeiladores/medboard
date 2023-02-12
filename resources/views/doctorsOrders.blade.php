@@ -1,39 +1,79 @@
 @extends('layouts.NurseLayout')
 
 @section('content')
+<title>Doctor's Orders</title>
 <div class="card m-3">
 <div class="row">
     <div class="col-12 p-4">
-<table class="table" id="doctorOrderTable"><button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right; background-color:rgb(66,100,208);">
+
+<button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right; background-color:rgb(66,100,208);">
 + New Order
 </button>
-    <h2>Doctor's Orders</h2>
 
-        <thead>
-            <tr>
-                <th>Admission id Test</th>
-                <th>Doctor id Test</th>
-                <th>Patient Name</th>
-                <th>Room Number</th>
-                <th>Date Ordered</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($doctor_orders as $doctor_order)
-                <tr>
-                    <td>{{ $doctor_order->admission_id }}</td>
-                    <td>{{ $doctor_order->doctor_id }}</td>
-                    <td>Sample Patient Name</td>
-                    <td>Sample Room Number</td>
-                    <td> {{ date_format(new DateTime($doctor_order->date_ordered), "F j, Y") }}</td>
-                    <td>
-                    <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
-                </td>
-                </tr>
-                @endforeach
-            </tbody>
-           </table>
+<table class="table" id="doctorOrderTable">
+  <h2>Doctor's Orders</h2>
+
+      <thead>
+          <tr>
+              <th>Admission id Test</th>
+              <th>Doctor id Test</th>
+              <th>Patient Name</th>
+              <th>Room</th>
+              <th>Date Ordered</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+      @foreach($doctor_orders as $doctor_order)
+      @foreach($room_num as $room_nums)
+      @foreach($patient_name as $patient_names)
+          @if($doctor_order->id == $room_nums->doctor_orders_id && $doctor_order->id == $patient_names->doctor_orders_id)
+              <tr>
+                  <td>{{ $doctor_order->admission_id}}</td>
+                  <td>{{ $doctor_order->doctor_id }}</td>
+                  <td>{{ ($patient_names->firstname)." ".($patient_names->lastname) }}</td> 
+                  <td>{{ $room_nums->room}}</td>
+                  <td>{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</td>
+                  <td>
+                      <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
+                      <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $doctor_order->id }}" onClick="reply_click_doctorOrder(this.id)"></button>
+                  </td>
+              </tr> <!-- To trigger the sweet alert (per ID) -->
+              <script type="text/javascript">
+               function reply_click_doctorOrder(clicked_id) {
+              Swal.fire({
+                title: 'Delete Order Record?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(66,100,208)',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = "{{ route('destroyDoctorOrder', '') }}" + "/" + clicked_id;
+                  // Redirect to the "doctorsOrders" view after the record is deleted
+                setTimeout(function() {
+                    window.location.href = "{{ route('doctorsOrders') }}";
+                }, 1000);
+                  Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Order Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                  });
+                }
+              });
+            }
+              </script>
+          @endif
+      @endforeach
+      @endforeach
+      @endforeach
+      </tbody>
+</table>
+
+
     </div>
   </div>
   </div>
@@ -55,35 +95,35 @@
  </script>
 
  
-<!-- Medication Modal-->
+<!--Modal-->
 <div class="modal fade" id="doctorOrderModal" tabindex="-1" aria-labelledby="doctorOrderModalLabel" aria-hidden="true">
   <<div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header" style="background-color:rgb(66,100,208);">
-        <h5 class="modal-title text-light" id="doctorOrderModal" >Add Order</h5>
+        <h5 class="modal-title text-light" id="doctorOrderModal" >Add new order</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <div class="card">
-      <form class="patientsList-form" method="POST" action="{{ route('doctorsOrders')}}">
-  @csrf
-  <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
-  <div class="col-12 pt-2 d-inline-block">
-    <div class="form-group p-2">
-      <label for="patientsList" class="form-label">Patient List:</label>
-      <select class="form-select" id="patientsList" name="patientsList" required>
-        <option value="">Choose...</option>
-        <option value="Gram">Gram</option>
-        <option value="Milligram">Milligram</option>
-        <option value="Microgram">Microgram</option>
-      </select>
-    </div>
-  </div>
-  <div>
-    <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validatePatientListForm()">Add</button>
-    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
-  </div>
-</form>
+        <form class="patientsList-form" method="POST" action="{{ route('storeDoctorOrders')}}">
+          @csrf
+          <div class="col-12 pt-2 d-inline-block">
+            <div class="form-group p-2">
+              <label for="patientsList" class="form-label">Admitted Patient List:</label>
+              <select class="form-select" id="patientsList" name="patientsList" required>
+                <option value="">Choose...</option>
+                @foreach($admittedPatient as $admittedPatients)
+                <option value="{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}">{{ ($admittedPatients->firstname)." ".($admittedPatients->lastname) }}.{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}</option>
+               @endforeach
+              </select>
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validatePatientListForm()">Add</button>
+            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+          </div>
+        </form>
+        
     <script>
     function validatePatientListForm() {
         var form = document.querySelector('.patientsList-form');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProgressNote;
+use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 
 class ProgressNoteController extends Controller
@@ -23,6 +25,8 @@ class ProgressNoteController extends Controller
 
 
         $progresss_notes->notes     = $request->progress_notes;
+        $progresss_notes->created_at      = Carbon::now(new DateTimeZone('Asia/Singapore'));
+        
         $progresss_notes->save();
 
         return redirect()->route('orders', ['id' => $doctor_order_id]);

@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Bed;
 use App\Models\DoctorOrder;
 use App\Models\OrderTransfusion;
 use App\Models\OrderMedication;
 use App\Models\OrderTreatment;
 use App\Models\ProgressNote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -17,9 +21,26 @@ class OrderMedicationController extends Controller
     $order_medications = OrderMedication::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $order_transfusions = OrderTransfusion::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $order_treatments = OrderTreatment::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
-    $progress_notes = ProgressNote::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
+    $progress_notes = ProgressNote::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'asc')->get();
+    
 
-    return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes'));
+    ////
+    $doctor_order = DoctorOrder::first();
+    $doctor_order = DoctorOrder::find(request()->route('id'));
+
+    $admittedPatient = DB::table('admission_news')
+        ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
+        ->where('admission_news.id', $doctor_order->admission_id)
+        ->select('admission_news.id as admission_id', 'patients.firstname', 'patients.lastname')
+        ->first();
+
+    $roomNumber = DB::table('admission_news')
+        ->join('beds', 'admission_news.patient_id', '=', 'beds.id')
+        ->where('admission_news.id', $doctor_order->admission_id)
+        ->select('admission_news.id as admission_id', 'beds.room')
+        ->first();
+
+    return view('orders', compact('doctor_order', 'order_medications','order_transfusions','order_treatments','progress_notes','doctor_order','admittedPatient','roomNumber'));
 }
 
 public function edit($id)
