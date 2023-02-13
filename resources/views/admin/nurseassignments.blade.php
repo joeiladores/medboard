@@ -223,6 +223,7 @@
                     <option value="Nurse Station 1">Nurse Station 1</option>
                     <option value="Nurse Station 2">Nurse Station 2</option>
                     <option value="Nurse Station 3">Nurse Station 3</option>
+                    <option value="Outpatient">Outpatient</option>
                   </select>
                 </div>
               </div>

@@ -150,11 +150,20 @@ class AdmissionNewController extends Controller
         // dd($admission);     
         
         
+        if(auth()->user()->usertype == 'admin') {
+            $layout = 'layouts.adminlayout';
+            $title = 'Admin-Kardex';            
+        }
+        elseif(auth()->user()->usertype == 'doctor') {
+            $layout = 'layouts.doctorLayout';
+            $title = 'Doctor-Kardex';
+        }
+        else {
+            $layout = 'layouts.NurseLayout';
+            $title = 'Nurse-Kardex';
+        }
 
-        $layout = in_array(Auth::user()->usertype, ['adminlayout', 'NurseLayout']) ? 'admin' : 'nurse';
-        return view('kardex')->with($layout);
-
-      
+        return view('kardex', compact('layout', 'title'));
         
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Calendar'])
 
 @section('content')
 
@@ -23,7 +23,7 @@
       navLinks: true,
       timeZone: 'Asia/Manila',
       locale: '',
-      initialView: 'resourceTimeGridDay',
+      initialView: 'dayGridMonth',
       eventColor: 'gray',
       resources: [{
           id: 'a',
@@ -37,7 +37,7 @@
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
-        right: 'resourceTimeGridDay,resourceTimeGridWeek,dayGridMonth'
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,list',
       },
       events: "{{ route('calendar.getevents') }}",
       dateClick: function(info) {
@@ -126,7 +126,7 @@
   });
 </script>
 
-<div id='calendar'></div>
+<div id='calendar' class="m-5"></div>
 
 
 {{--Modal Create--}}
@@ -258,5 +258,7 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection
