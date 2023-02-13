@@ -22,13 +22,13 @@ class CalendarController extends Controller
 
     public function index()
     {
-        return view('calendar');
+        return view('calendar.index');
     }
 
     public function store(StoreCalendarRequest $request)
     {
         Calendar::create($request->validated());
-        return to_route('calendar.index');
+        return to_route('calendar');
     }
 
     public function edit(Calendar $calendar)
