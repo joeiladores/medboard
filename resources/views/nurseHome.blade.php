@@ -10,9 +10,9 @@ body {
   overflow-y: hidden; */
 }
 
-#avatar{
-    width:110px;
-    height:110px;
+#avatar {
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
 
 }
@@ -32,6 +32,46 @@ body {
     width: 30%;
     height: 115%;
 }
+
+/* button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background-color: lightblue;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  } */
+
+  .btn {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 12px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .btn button {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+  }
 
 /* Responsiveness */
 @media only screen and (max-width: 1000px) {
@@ -96,7 +136,7 @@ body {
 <div class="row">
     <div class="col-lg-10">
         <div class="card shadow" id="DashboardCard">
-            <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day 
+            <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day
                 {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}<br><br>
                 <p style="font-size:15px;">Today, you are assigned to station "here"<br>
                     Have a nice day at work!</p>
@@ -106,15 +146,7 @@ body {
                 <img id="DashboardNurseImg" src="{{ asset('images/nursedashboard.png') }}" alt="Image">
             </div>
         </div>
-        <a href="{{ route('logout') }}"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-5">
-            <i class="fas fa-project-diagram fs-2 me-2"></i>
-            {{ __('Logout') }}
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
+
 
         <div class="row">
             <div class="col-lg-12">
@@ -198,13 +230,22 @@ body {
         <div
             style="padding:20%; height:530px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
             <center>
-            <img class="mb-2 " style="width: 100px; height: 100px;" id="avatar"
+                <img class="mb-2 " style="width: 100px; height: 100px;" id="avatar"
+                    src="{{ asset('images/avatars/'. Auth::user()->avatar) }}" <img class="mb-2"
+                    style="width: 100%; height: 30%;" id="DashboardNurseImg"
                     src="{{ asset('images/avatars/'. Auth::user()->avatar) }}"
-                    <img class="mb-2" style="width: 100%; height: 30%;" id="DashboardNurseImg" src="{{ asset('images/avatars/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}">
-                <p style="font-size:13px; font-weight:600;" class="text-light">  {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}</p>
-                <h6 style="font-size:13px; font-weight:600;"  class="text-light">
-                {{ strtoupper(Auth::user()->usertype) }}
+                    alt="{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}">
+                <p style="font-size:13px; font-weight:600;" class="text-light"> {{ Auth::user()->firstname}}
+                    &nbsp;{{ Auth::user()->lastname}}</p>
+                <h6 style="font-size:13px; font-weight:600;" class="text-light">
+                    {{ strtoupper(Auth::user()->usertype) }}
                 </h6>
+                <div class="btn">
+                <a  href="/dashboard/profile">
+                    <button>Go to Profile</button>
+                </a>
+                </div>
+       
             </center>
 
         </div>

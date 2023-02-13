@@ -98,86 +98,98 @@
                         {{csrf_field()}}
 
                         <div class="form-group with-floating-label">
-                        <label for="name" class="text-muted">Name:</label>
-                          <input type="text" id="name" name="name" placeholder="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name', $current_user->name)}}">
+                            <label for="name" class="text-muted">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="name"
+                                class="form-control @error('name') is-invalid @enderror"
+                                value="{{old('name', $current_user->name)}}">
 
-                          @error('name')
+                            @error('name')
                             <span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-															</span>
-                          @enderror
-                      </div>
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
                         <div class="form-group with-floating-label">
-                        <label for="firstname" class="text-muted">First name:</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="First name" class="form-control @error('firstname') is-invalid @enderror" value="{{old('firstname', $current_user->firstname)}}">
+                            <label for="firstname" class="text-muted">First name:</label>
+                            <input type="text" id="firstname" name="firstname" placeholder="First name"
+                                class="form-control @error('firstname') is-invalid @enderror"
+                                value="{{old('firstname', $current_user->firstname)}}">
                             @error('first_name')
-                              <span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-															</span>
-                            @enderror
-                        </div>
-
-												<div class="form-group with-floating-label">
-                        <label for="lastname" class="text-muted">Last name:</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Your last name" class="form-control @error('lastname') is-invalid @enderror" value="{{old('lastname', $current_user->lastname)}}">
-                            
-                            @error('last_name')
-                              <span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-															</span>
-                            @enderror
-                        </div>
-
-												<div class="form-group with-floating-label">
-                        <label for="email" class="text-muted">Email Address:</label>
-                            <input type="text" id="email" name="email" placeholder="Email address" class="form-control @error('email') is-invalid @enderror" value="{{old('email', $current_user->email)}}">
-                            @error('email')
-                              <span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-															</span>
-                            @enderror
-                        </div>
-
-												<div class="form-group with-floating-label">
-                        <label for="bio" class="text-muted">Bio:</label>  
-													<textarea name="bio" id="bio" class="form-control @error('bio') is-invalid @enderror" placeholder="Bio" cols="30" rows="6">{{old('bio', $current_user->bio)}}</textarea>
-                          @error('bio')
                             <span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-															</span>
-                          @enderror
-												</div>
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group with-floating-label">
+                            <label for="lastname" class="text-muted">Last name:</label>
+                            <input type="text" id="lastname" name="lastname" placeholder="Your last name"
+                                class="form-control @error('lastname') is-invalid @enderror"
+                                value="{{old('lastname', $current_user->lastname)}}">
+
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group with-floating-label">
+                            <label for="email" class="text-muted">Email Address:</label>
+                            <input type="text" id="email" name="email" placeholder="Email address"
+                                class="form-control @error('email') is-invalid @enderror"
+                                value="{{old('email', $current_user->email)}}">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group with-floating-label">
+                            <label for="bio" class="text-muted">Bio:</label>
+                            <textarea name="bio" id="bio" class="form-control @error('bio') is-invalid @enderror"
+                                placeholder="Bio" cols="30" rows="6">{{old('bio', $current_user->bio)}}</textarea>
+                            @error('bio')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
                         <label for="avatar" class="text-muted">Upload avatar</label>
-												<div class="form-group d-flex">
-													<div class="w-75 pr-1">
-														<input type='file' name='avatar' id="avatar" class="form-control border-0 py-0 pl-0 file-upload-btn" value="{{$current_user->avatar}}">
-														@if ($errors->has('avatar'))
-																<span class="invalid-feedback" role="alert">{{ $errors->first('avatar') }}</span>
-														@endif
-													</div>
-
-													<div class="w-25 position-relative" id="avatar-container">
-														<img class="rounded-circle img-thumbnail avatar-preview" src="{{asset('images/avatars/default.png')}}/{{$current_user->avatar}}" alt="{{$current_user->firstname}} {{$current_user->firstname}}">
-														<span class="avatar-trash">
-                              @if($current_user->avatar !== 'default.png')
-															  <a href="#" class="icon text-light" id="delete-avatar" data-uid="{{$current_user->id}}"><i class="fa fa-trash"></i></a>
-                              @endif
-                            </span>
-													</div>
-												</div>
+                        <div class="form-group d-flex">
+                            <div class="w-75 pr-1">
+                                <input type='file' name='avatar' id="avatar"
+                                    class="form-control border-0 py-0 pl-0 file-upload-btn"
+                                    value="{{$current_user->avatar}}">
+                                @if ($errors->has('avatar'))
+                                <span class="invalid-feedback" role="alert">{{ $errors->first('avatar') }}</span>
+                                @endif
+                            </div>
+                            <div class="w-25 position-relative" id="avatar-container">
+                                <img class="rounded-circle img-thumbnail avatar-preview"
+                                    style="width: 100px; height: 100px;"
+                                    src="{{ asset('images/avatars/'. $current_user->avatar) }}"
+                                    alt="{{ $current_user->firstname }} {{ $current_user->lastname }}">
+                                <span class="avatar-trash">
+                                    @if($current_user->avatar !== 'default.png')
+                                    <a href="#" class="icon text-light" id="delete-avatar"
+                                        data-uid="{{$current_user->id}}"><i class="fa fa-trash"></i></a>
+                                    @endif
+                                </span>
+                            </div>
+                        </div>
 
                         <div class="form-group d-flex mb-0">
-                          
-                            <div class="w-50 pr-1">
-															<input type="submit" name="submit" value="Save" class="btn btn-block btn-primary">
-														</div>
 
-                            		<div class="w-50 pl-1">
-															<a href="{{route('profile')}}" class="btn btn-block btn-primary">Cancel</a>
-														</div>
-												
+                            <div class="w-50 pr-1">
+                                <input type="submit" name="submit" value="Save" class="btn btn-block btn-primary">
+                            </div>
+                            <div class="w-50 pl-1">
+                                <a href="{{ route('nurseHome') }}" class="btn btn-block btn-primary">Go back</a>
+                            </div>
                         </div>
                     </form>
                 </div>
