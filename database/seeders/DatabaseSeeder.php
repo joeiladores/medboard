@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             BedSeeder::class,            
             NurseAssignmentSeeder::class,
             PatientSeeder::class,
+            AdmissionSeeder::class,
         ]);
        
     }

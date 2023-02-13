@@ -32,6 +32,8 @@ return new class extends Migration
             $table->enum('tubes', ['Foley catheter', 'Thoractic tube', 'NGT', 'CVP', 'None', 'others']);
             $table->enum('special_info', ['Weigh daily', 'BP Qshift', 'Neuro VS', 'Abdominal girth', 'others']);
             $table->enum('status', ['Admitted', 'Discharged', 'Outpatient']);
+            
+            $table->dateTime('datetime_discharged')->nullable();
 
             $table->timestamps();
         });
