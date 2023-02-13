@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Calendar'])
 
 @section('content')
 

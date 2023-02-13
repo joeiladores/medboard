@@ -62,7 +62,7 @@ class AdmissionSeeder extends Seeder
             'patient_id'            => 3,
             'admitting_doctor_id'   => 12,
             'primary_doctor_id'     => 6,
-            'type'                  => 'Inpatient',
+            'type'                  => 'Outpatient',
             'complain'              => 'Chest pain, cough, fatigue, fever',
             'impression_diagnosis'  => 'Pneumonia',
             'age'                   => 30,
@@ -72,7 +72,7 @@ class AdmissionSeeder extends Seeder
             'diet'                  => 'NPO',
             'tubes'                 => 'None',
             'special_info'          => 'BP Qshift',
-            'status'                => 'Outpatient',
+            'status'                => 'Discharged',
             'created_at'            => '2022-12-15 01:30:25',
 
             ]);
