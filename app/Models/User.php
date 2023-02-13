@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     // Nurse assigned to a nurse station
     public function nurseassignments(){
-        return $this->belongsTo(NurseAssignment::class);
+        return $this->hasMany(NurseAssignment::class);
     }
 
     public function nurseSchedule(){

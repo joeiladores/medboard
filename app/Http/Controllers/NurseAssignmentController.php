@@ -10,19 +10,11 @@ class NurseAssignmentController extends Controller
 {
     public function nurseAssignments() {
 
-        $nurseassignments = NurseAssignment::
-                    // get nurse from users table 
-                    with(User::where('users.usertype', 'nurse')->orWhere('users.usertype', 'chiefnurse')->where('users.status', 'active'))
-                    // ->where('users.usertype', 'nurse')
-                    // ->orWhere('users.usertype', 'chiefnurse')
-                    // ->where('users.status', 'active')
-                    ->get();
-
-        dd($nurseassignments);
+        $nurseassignments = NurseAssignment::with('user')->get();
 
         return view('admin/nurseassignments')
-            ->with('nurseassignments', $nurseassignments)
-            ->with('nurses', User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->get());
+        ->with('nurseassignments', $nurseassignments)
+        ->with('nurses', User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->get());
             
     }
 
@@ -42,7 +34,8 @@ class NurseAssignmentController extends Controller
     }
     
     public function showNurseAssignment($id) {
-        $nurseassignment = NurseAssignment::find($id);
+        $nurseassignment = NurseAssignment::with('user')->find($id);
+        // $nurseassignment = NurseAssignment::find($id);
         return response()->json($nurseassignment);
     }
 

@@ -36,7 +36,7 @@
           <thead class="primary-bg text-light">
             <tr>
               <td>ID</td>
-              <!-- <td>User ID</td> -->
+              <td>User ID</td>
               <td>Name</td>
               <td>Date Time Start</td>
               <td>Date Time End</td>
@@ -50,8 +50,8 @@
             @foreach($nurseassignments as $nurseassignment)
             <tr>
               <td>{{ $nurseassignment->id }}</td>
-              <!-- <td>{{ $nurseassignment->user_id }}</td> -->
-              <td>{{ $nurseassignment->lastname }}, {{ $nurseassignment->firstname }}</td>
+              <td>{{ $nurseassignment->user_id }}</td>
+              <td>{{ $nurseassignment->user->lastname }}, {{ $nurseassignment->user->firstname }}</td>
               <td>{{ $nurseassignment->datetime_start }}</td>
               <td>{{ $nurseassignment->datetime_end }}</td>
               <td>{{ $nurseassignment->shift }}</td>
@@ -173,18 +173,12 @@
             <form method="POST" action="{{ route('updatenurseassignment') }}">
               @csrf
 
-              <!-- Nurse Dropdown -->
-              <div class="row mb-3">
-                <label for="edit_nurse_id" class="col-md-4 col-form-label text-md-end">{{ ('Nurse') }}</label>
-
+              <!-- Nurse -->
+              <div class="row mb-3"">
+                <label for="edit_nurse_id" class="col-md-4 col-form-label text-md-end">Name</label>
                 <div class="col-md-6">
-                  <select id="edit_nurse_id" class="form-select" name="nurse_id" required >
-                    <option value=0 selected>Select ---</option>
-                    @foreach($nurses as $nurse)
-                      <option value={{ $nurse->id }}>{{ $nurse->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
+                  <input type="text" class="form-control bg-light" name="nurse_id" id="edit_nurse_id" required readonly>     
+                </div>                         
               </div>
 
               <!-- Date Time Start -->
@@ -257,6 +251,7 @@
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+
   <script>
     $(document).ready(function() {
       $('#nurseAssignmentTable').DataTable({
@@ -266,7 +261,7 @@
     });
   </script>
 
-<script>
+  <script>
     const editNurseAssignmentModal = new bootstrap.Modal('#editNurseAssignmentModal', {
       keyboard: false
     });
@@ -275,9 +270,10 @@
       fetch('{{ url('/admin/shownurseassignment/') }}/' + nurseassignment_id)
         .then(response => response.json())
         .then(data => {
-          document.getElementById('edit_nurse_id').value = data.nurse_id;
-          document.getElementById('edit_datetimestart').value = data.datetime_start;
-          document.getElementById('edit_datetimeend').value = data.datetime_end;
+          // document.getElementById('edit_nurse_id').value = data.user_id;
+          document.getElementById('edit_nurse_id').value = data.user.lastname + ', ' + data.user.firstname;
+          document.getElementById('edit_datetime_start').value = data.datetime_start;
+          document.getElementById('edit_datetime_end').value = data.datetime_end;
           document.getElementById('edit_shift').value = data.shift;
           document.getElementById('edit_station').value = data.station;
           document.getElementById('edit_id').value = data.id;
