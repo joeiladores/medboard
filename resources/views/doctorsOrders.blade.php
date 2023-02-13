@@ -4,12 +4,20 @@
 <title>Doctor's Orders</title>
 
 <style>
-  #tableSize{
+
+#tableSize{
   color: rgb(14, 0, 0);
   height: 560px;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+@media (max-width: 500px) {
+  #tableSize{
+  height: 1000px;
+  }
+}
+
+
 </style>
 <div class="m-3">
 <div class="row">
@@ -19,14 +27,13 @@
 <div class="card rounded shadow p-3" id="tableSize">
 <table class="table" id="doctorOrderTable">
   <div class="me-2 mb-2 mt-3">
-  <h2 style="float:left;">Doctor's Orders</h2>
-    <button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right;background-color:rgb(66,100,208); width:120px;">
+  <h3 style="float:left;color:#1353c9;">Doctor's Orders</h3>
+    <button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right;background-color:#1f66d1; width:120px;">
     + New Order
     </button>
   </div>
       <thead>
-          <tr style="background-color:rgb(66,100,208);" class="text-light">
-              {{-- <th style="display:none;">Doctor id Test</th> --}}
+          <tr style="background-color:#1353c9;" class="text-light">
               <th>Patient ID</th>
               <th>Patient Name</th>
               <th>Room</th>
@@ -40,13 +47,12 @@
       @foreach($patient_name as $patient_names)
           @if($doctor_order->id == $room_nums->doctor_orders_id && $doctor_order->id == $patient_names->doctor_orders_id)
               <tr>
-                  {{-- <td style="display:none;">{{ $doctor_order->doctor_id }}</td> --}}
                   <td>{{ $patient_names->id}}</td>
                   <td>{{ ($patient_names->firstname)." ".($patient_names->lastname) }}</td> 
                   <td>{{ $room_nums->room}}</td>
                   <td>{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</td>
                   <td>
-                      <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
+                      <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:#1f66d1; "></a>
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $doctor_order->id }}" onClick="reply_click_doctorOrder(this.id)"></button>
                   </td>
               </tr> <!-- To trigger the sweet alert (per ID) -->
@@ -57,7 +63,7 @@
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: 'rgb(66,100,208)',
+                confirmButtonColor: '#1f66d1',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Confirm'
               }).then((result) => {

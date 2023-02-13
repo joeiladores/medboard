@@ -197,8 +197,8 @@ Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::clas
 // Nurse's Dashboard View
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
 Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
-
 Route::get('/nursePatients', [NurseDashboardController::class, 'patientList'])->name('nursePatients');
+Route::post('/storeNurseProgressNote', [NurseDashboardController::class, 'storeNurseProgressNote'])->name('storeNurseProgressNote');
 
 
 // *****************************************************************************

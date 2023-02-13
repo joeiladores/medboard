@@ -9,6 +9,8 @@ use App\Models\OrderTransfusion;
 use App\Models\OrderTreatment;
 use App\Models\ProgressNote;
 use App\Models\Specialization;
+use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -128,7 +130,21 @@ class NurseDashboardController extends Controller
         'user' => $user,
         'specialization' => $specialization
     ]);
-    
 }
+
+public function storeNurseProgressNote(Request $request)
+    {
+        $progresss_notes = new ProgressNote;
+        $doctor_order_id                    = $request->input('doctor_order_id');
+        $progresss_notes->doctor_order_id   = $doctor_order_id;
+
+
+        $progresss_notes->notes     = $request->progress_notes;
+        $progresss_notes->created_at      = Carbon::now(new DateTimeZone('Asia/Singapore'));
+        
+        $progresss_notes->save();
+
+        return redirect()->route('nurseDoctorOrdersView', ['id' => $doctor_order_id]);
+    }
 
 }
