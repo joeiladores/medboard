@@ -22,7 +22,7 @@ class AdmissionNewController extends Controller
        $admissions = AdmissionNew::
 
         leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-                ->where('admission_news.status', 'Admitted')
+
 
         ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
         ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
@@ -61,51 +61,6 @@ class AdmissionNewController extends Controller
             ->with('beds', Bed::where('status', 'vacant')->get());
     
     }
-
-    // public function showAllAdmitted()
-    // {
-    //    $alladmissions = AdmissionNew::
-
-    //     leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-    //         ->where('admission_news.status', ['Admitted', 'Discharged'])
-    //     ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
-    //     ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
-    //     ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
-    
-
-    //     ->get([
-
-    //         'admission_news.id',
-    //         'admission_news.bed_id',
-    //         'admission_news.admitting_doctor_id',
-    //         'admission_news.type',
-    //         'admission_news.status',
-    //         'admission_news.created_at',
-
-    //         'patients.lastname AS p_lastname',
-    //         'patients.firstname AS p_firstname',
-    //         'patients.midname AS p_midname',
-
-    //         'beds.room',
-
-    //         'users1.lastname AS ad_lastname',
-    //         'users1.firstname AS ad_firstname',
-    //         'users1.middlename AS ad_middlename',
-
-    //         'users2.lastname AS pd_lastname',
-    //         'users2.firstname AS pd_firstname',
-    //         'users2.middlename AS pd_middlename'
-        
-    //     ]);
-
-
-    //     return redirect()->route('admittedPatient')
-    //         ->with('alladmitted', $alladmissions)
-    //         ->with('doctors', User::where('usertype', 'doctor')->where('status', ['active', 'inactive'])->get())
-    //         ->with('beds', Bed::where('status', ['vacant', 'occupied'] )->get());
-    
-    // }
-
 
     public function storeAdmit(Request $request)
     {

@@ -75,7 +75,6 @@ Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHi
 // Routes for Admission
 Route::post('/storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
-Route::get('/allAdmittedPatient', [AdmissionNewController::class, 'showAllAdmitted']);
 Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
 Route::get('/showAdmission/{id}', [AdmissionNewController::class, 'show'])->name('showAdmission');
 Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name('updateAdmission');
