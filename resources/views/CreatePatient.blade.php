@@ -1,4 +1,5 @@
-@include('profile.partials.header', ['title' => 'MedBoard - Patients'])
+@extends('layouts.adminlayout', ['title' => 'Admin-Patient'])
+@section('content')
 
 <div class="container-fluid px-4">
     <div class="row g-3 my-2">
@@ -276,7 +277,7 @@
                                                             <select id="admitting_doctor_id" name="admitting_doctor_id" class="form-select">
                                                                 <option disabled hidden selected>--- ---</option>
                                                                 @foreach ($doctors as $doctor)
-                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                                 </option>
                                                                 @endforeach
                                                             </select>
@@ -351,7 +352,7 @@
                                                             <select id="primary_doctor_id" name="primary_doctor_id" class="form-select">
                                                                 <option disabled hidden selected>--- ---</option>
                                                                 @foreach ($doctors as $doctor)
-                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                                 </option>
                                                                 @endforeach
                                                             </select>
@@ -494,5 +495,4 @@
 
 </div>
 
-
-@include('profile.partials.footer')
+@endsection

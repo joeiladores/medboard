@@ -31,7 +31,7 @@
         <div class="card card-body card-bg p-3 text-center border shadow rounded-3">
           <h3 class="fw-bold second-text">{{ $totalVacantBeds }}</h3>
           <p class="fs-5 text-primary">Beds Available</p>
-          <i class="fs-1 fa-solid fa-user-nurse primary-text pb-2"></i>
+          <i class="fs-1 fa-solid fa-bed-pulse primary-text pb-2"></i>
         </div>
       </div>
 
