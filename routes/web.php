@@ -198,10 +198,13 @@ Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::clas
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
 Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
 Route::get('/nursePatients', [NurseDashboardController::class, 'patientList'])->name('nursePatients');
+//Medication
 Route::post('/storeNurseProgressNote', [NurseDashboardController::class, 'storeNurseProgressNote'])->name('storeNurseProgressNote');
 Route::get('/editNurseMedication/{id}', [NurseDashboardController::class, 'editNurseMedication'])->name('editNurseMedication');
 Route::post('/updateNurseMedication', [NurseDashboardController::class, 'updateNurseMedication'])->name('updateNurseMedication');
-
+//Transfusion
+Route::get('/editNurseTransfusion/{id}', [NurseDashboardController::class, 'editNurseTransfusion'])->name('editNurseTransfusion');
+Route::post('/updateNurseTransfusion', [NurseDashboardController::class, 'updateNurseTransfusion'])->name('updateNurseTransfusion');
 // *****************************************************************************
 Route::get('/generate-pdf', function(){
     // get the data to display in the PDF

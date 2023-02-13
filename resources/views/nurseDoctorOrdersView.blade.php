@@ -146,7 +146,7 @@ body, html {
                     <th>Frequency</th>
                     <th>Instructions</th>
                     <th>Date Start</th>
-                    <th>Date Stop</th>
+                    <th>Date Stopped</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -215,7 +215,7 @@ body, html {
                     <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_started), "F j, Y") : '' }}</td>
                     <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                     <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;"></a>
+                     <a href="{{ route('editNurseTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;"></a>
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">

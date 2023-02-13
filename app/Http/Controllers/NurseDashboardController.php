@@ -179,4 +179,29 @@ public function storeNurseProgressNote(Request $request)
         return redirect()->route('nurseDoctorOrdersView', ['id' => $doctor_order_id]);
     }
 
+
+    //////Transfusion
+    public function editNurseTransfusion($id)
+    {
+        $orders_transfusions = OrderTransfusion::find($id);
+        $doctor_order_id = $orders_transfusions->doctor_order_id;
+    return view('editNurseTransfusion', ['id' => $doctor_order_id])->with('order_transfusion', $orders_transfusions);
+    }
+
+    public function updateNurseTransfusion(Request $request)
+    {
+        $orders_transfusion = OrderTransfusion::find($request->id);
+
+        $doctor_order_id                    = $orders_transfusion->doctor_order_id;
+        $orders_transfusion->type           = $request->type;
+        $orders_transfusion->fluid_name     = $request->fluid_name;
+        $orders_transfusion->instruction    = $request->instruction;
+
+        $orders_transfusion->date_started   =$request->date_started;
+        $orders_transfusion->date_stopped   =$request->date_stopped;
+      
+        $orders_transfusion->save();
+
+        return redirect()->route('nurseDoctorOrdersView', ['id' => $doctor_order_id]);
+    }
 }
