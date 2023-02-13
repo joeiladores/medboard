@@ -433,7 +433,7 @@ body, html {
                 @endforeach
             </tbody>
            </table>
-</div>
+        </div>
 
 <div id="Transfusion" class="tabcontent mt-4">
 <table class="table" id="transfusionTable">

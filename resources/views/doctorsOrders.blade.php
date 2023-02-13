@@ -2,20 +2,31 @@
 
 @section('content')
 <title>Doctor's Orders</title>
-<div class="card m-3">
+
+<style>
+  #tableSize{
+  color: rgb(14, 0, 0);
+  height: 560px;
+  border-radius: 50px 50px 25px 25px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+</style>
+<div class="m-3">
 <div class="row">
     <div class="col-12 p-4">
 
-<button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right; background-color:rgb(66,100,208);">
-+ New Order
-</button>
 
+<div class="card rounded shadow p-3" id="tableSize">
 <table class="table" id="doctorOrderTable">
-  <h2>Doctor's Orders</h2>
-
+  <div class="me-2 mb-2 mt-3">
+  <h2 style="float:left;">Doctor's Orders</h2>
+    <button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right;background-color:rgb(66,100,208); width:120px;">
+    + New Order
+    </button>
+  </div>
       <thead>
-          <tr>
-              <th style="display:none;">Doctor id Test</th>
+          <tr style="background-color:rgb(66,100,208);" class="text-light">
+              {{-- <th style="display:none;">Doctor id Test</th> --}}
               <th>Patient ID</th>
               <th>Patient Name</th>
               <th>Room</th>
@@ -29,7 +40,7 @@
       @foreach($patient_name as $patient_names)
           @if($doctor_order->id == $room_nums->doctor_orders_id && $doctor_order->id == $patient_names->doctor_orders_id)
               <tr>
-                  <td style="display:none;">{{ $doctor_order->doctor_id }}</td>
+                  {{-- <td style="display:none;">{{ $doctor_order->doctor_id }}</td> --}}
                   <td>{{ $patient_names->id}}</td>
                   <td>{{ ($patient_names->firstname)." ".($patient_names->lastname) }}</td> 
                   <td>{{ $room_nums->room}}</td>
@@ -73,7 +84,7 @@
       </tbody>
 </table>
 
-
+</div>
     </div>
   </div>
   </div>
@@ -88,7 +99,7 @@
  <script>
    $(document).ready( function () {
      $('#doctorOrderTable').DataTable({
-         "pageLength": 20,
+         "pageLength": 9,
          "lengthChange": false
      });
  } );  
@@ -113,7 +124,7 @@
               <select class="form-select" id="patientsList" name="patientsList" required>
                 <option value="">Choose...</option>
                 @foreach($admittedPatient as $admittedPatients)
-                <option value="{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}">{{ ($admittedPatients->firstname)." ".($admittedPatients->lastname) }}.{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}</option>
+                <option value="{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}">{{ ($admittedPatients->firstname)." ".($admittedPatients->lastname) }}</option>
                @endforeach
               </select>
             </div>

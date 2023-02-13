@@ -128,7 +128,7 @@ body {
               @if(isset($patientsInStation))
               @foreach($patientsInStation as $patientsInStations)
         <tr>
-            <td>{{ $patientsInStations->doctor_firstname . " " . $patientsInStations->doctor_lastname }}</td>
+            <td>Dr. {{ $patientsInStations->doctor_firstname . " " . $patientsInStations->doctor_lastname }}</td>
             <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
             <td>{{ $patientsInStations->room }}</td>
             <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>

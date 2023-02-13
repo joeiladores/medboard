@@ -90,7 +90,7 @@ body {
             <tr>
                 <td>{{ $patient->patient_id }}</td>
                 <td>{{ $patient->patient_firstname }} {{ $patient->patient_lastname }}</td>
-                <td>{{ $patient->doctor_firstname }} {{ $patient->doctor_lastname }}</td>
+                <td>Dr. {{ $patient->doctor_firstname }} {{ $patient->doctor_lastname }}</td>
                 <td>{{ date_format(new DateTime( $patient->admission_date), "F j, Y g:i A") }}</td>
                 <td>{{ $patient->room }}</td>
             </tr>
