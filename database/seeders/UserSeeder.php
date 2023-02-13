@@ -62,7 +62,52 @@ class UserSeeder extends Seeder
 
 
         // SEEDER FOR DOCTORS
-        for ($x = 0; $x < 10; $x++) {
+        // for ($x = 0; $x < 10; $x++) {
+        //     $gender = Arr::random(['Male', 'Female']);
+        //     if ($gender === 'Male') $firstname = fake()->firstNameMale();
+        //     else $firstname = fake()->firstNameFemale();
+        //     $lastname = fake()->lastName();
+        //     \App\Models\User::create([
+        //         'name' => $firstname . ' ' . $lastname,
+        //         'email' => fake()->freeEmail(),
+        //         'password' => Hash::make('password123'),
+        //         'usertype' => 'doctor',
+        //         'lastname' => $lastname,
+        //         'firstname' => $firstname,
+        //         'middlename' => fake()->lastName(),
+        //         'birthdate' => fake()->dateTime(),
+        //         'gender' => $gender,
+        //         'address' => fake()->address(),
+        //         'phone' => fake()->phoneNumber,
+        //         'status' => 'active',
+        //         'department_id' => Arr::random([1, 2, 3, 4, 5, 6, 7]),
+        //         'specialization_id' => Arr::random([2, 3, 4, 5, 6, 7]),
+        //     ]);
+        // }
+
+        // Doctor 1 Surgeon
+        $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 5,
+                'specialization_id' => 3,
+            ]);
+
+            // Doctor 2 Surgeon
             $gender = Arr::random(['Male', 'Female']);
             if ($gender === 'Male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
@@ -80,10 +125,187 @@ class UserSeeder extends Seeder
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
-                'department_id' => Arr::random([1, 2, 3, 4, 5, 6, 7]),
-                'specialization_id' => Arr::random([2, 3, 4, 5, 6, 7]),
+                'department_id' => 5,
+                'specialization_id' => 3,
             ]);
-        }
+
+            // Doctor 3 Cardiologist
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 6,
+                'specialization_id' => 6,
+            ]);
+
+            // Doctor 4 Cardiologitst
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 6,
+                'specialization_id' => 6,
+            ]);
+
+            // Doctor 5 Orthopedics
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 7,
+                'specialization_id' => 7,
+            ]);
+
+            // Doctor 6 Orthopedics
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 7,
+                'specialization_id' => 7,
+            ]);
+
+            // Doctor 7 urology
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 10,
+                'specialization_id' => 12,
+            ]);
+
+             // Doctor 8 Urology
+             $gender = Arr::random(['Male', 'Female']);
+             if ($gender === 'Male') $firstname = fake()->firstNameMale();
+             else $firstname = fake()->firstNameFemale();
+             $lastname = fake()->lastName();
+             \App\Models\User::create([
+                 'name' => $firstname . ' ' . $lastname,
+                 'email' => fake()->freeEmail(),
+                 'password' => Hash::make('password123'),
+                 'usertype' => 'doctor',
+                 'lastname' => $lastname,
+                 'firstname' => $firstname,
+                 'middlename' => fake()->lastName(),
+                 'birthdate' => fake()->dateTime(),
+                 'gender' => $gender,
+                 'address' => fake()->address(),
+                 'phone' => fake()->phoneNumber,
+                 'status' => 'active',
+                 'department_id' => 10,
+                 'specialization_id' => 12,
+             ]);
+
+            // Doctor 9 Internist
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 12,
+                'specialization_id' => 2,
+            ]);
+
+            // Doctor 10 Internist
+            $gender = Arr::random(['Male', 'Female']);
+            if ($gender === 'Male') $firstname = fake()->firstNameMale();
+            else $firstname = fake()->firstNameFemale();
+            $lastname = fake()->lastName();
+            \App\Models\User::create([
+                'name' => $firstname . ' ' . $lastname,
+                'email' => fake()->freeEmail(),
+                'password' => Hash::make('password123'),
+                'usertype' => 'doctor',
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'middlename' => fake()->lastName(),
+                'birthdate' => fake()->dateTime(),
+                'gender' => $gender,
+                'address' => fake()->address(),
+                'phone' => fake()->phoneNumber,
+                'status' => 'active',
+                'department_id' => 12,
+                'specialization_id' => 2,
+            ]);
+
+
 
         // SEEDERS FOR NURSES
         for ($x = 0; $x < 10; $x++) {
@@ -172,8 +394,8 @@ class UserSeeder extends Seeder
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber,
             'status' => 'active',
-            'department_id' => 5,
-            'specialization_id' => 2,
+            'department_id' => 10,
+            'specialization_id' => 12,
         ]);
     }
 }

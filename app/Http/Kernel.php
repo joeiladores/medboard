@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'isNurse' => \App\Http\Middleware\isNurse::class,
         'isChiefNurse' => \App\Http\Middleware\isChiefNurse::class,
         'isActive' => \App\Http\Middleware\isActive::class,
+        
     ];
 }

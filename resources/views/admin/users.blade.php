@@ -4,13 +4,13 @@
 
   <!-- Main Content - List of Users -->
   <div class="container p-4">
-    <div class="row py-2">
+    <div class="row pb-2">
       <div class="col">
         <h3 class="fw-bold text-secondary f-poppins">USERS</h3>
       </div>
       <div class="col d-flex flex-grow-1 justify-content-end">
         @if (Route::has('register'))
-        <span><a href="{{ route('registeruser') }}" class="btn btn-primary flex-end">+ Add New User</a></span>
+        <span><a href="{{ route('registeruser') }}" class="btn btn-primary btn-sm">+ Add New User</a></span>
         <!-- <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a><span> -->
         </span>
 
@@ -22,8 +22,10 @@
 
 
   @if( session('success') )
-  <div class="alert alert-success my-3" role="alert">
-    {{ session('success') }}
+  <div class="container px-4">
+    <div class="alert alert-success my-3" role="alert">
+      {{ session('success') }}
+    </div>
   </div>
   @endif
 
@@ -31,7 +33,7 @@
     <div class="row">
       <div class="col-md-12">
         <table id="userTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
-          <thead class="third-bg-color">
+          <thead class="primary-bg text-light">
             <tr>
               <td>User ID</td>              
               <td>Name</td>

@@ -66,7 +66,7 @@
           <span>Nurse Assignment</span>
         </a>
         <!-- route('calendar')  -->
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <a href="{{ route('calendar.index') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-calendar-days fa-icon"></i>
           <span>Calendar</span>
         </a>
@@ -123,7 +123,7 @@
                 <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="d-flex">
                     <!-- Photo -->
-                    <div class="flex-grow-1 align-self-center">
+                    <div class="flex-grow-1 align-self-center">                    
                       @if(Auth::user()->imagepath != NULL)
                       <img src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
                       @else

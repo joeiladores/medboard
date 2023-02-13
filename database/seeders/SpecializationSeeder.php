@@ -58,7 +58,11 @@ class SpecializationSeeder extends Seeder
             [
                 'usertype' => 'nurse',
                 'name' => 'Geriatic Nurse',
-            ],          
+            ],
+            [
+                'usertype' => 'nurse',
+                'name' => 'Urologist',
+            ],            
         ];
         foreach ($specialization as $spec) {
             \App\Models\Specialization::create($spec);

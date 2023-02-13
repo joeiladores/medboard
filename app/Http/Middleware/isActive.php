@@ -17,6 +17,12 @@ class isActive
      */
     public function handle(Request $request, Closure $next)
     {
+        // if ($request->user() && $request->user()->status === 'inactive') {
+        //     return redirect()->route('login')->with('error', 'Your account is inactive. Please contact your administrator');
+        // }
+    
+        // return $next($request);
+
         if (Auth::check()) {
             if (Auth::user()->status === 'active') {
                 return $next($request);
