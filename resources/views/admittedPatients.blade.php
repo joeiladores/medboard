@@ -509,7 +509,7 @@
                 document.getElementById('edit_age2').value = data.age;
                 document.getElementById('edit_weight2').value = data.weight;
                 // document.getElementById('edit_bed_id').value = data.bed_id;
-                document.getElementById('edit_type'2).value = data.type;
+                document.getElementById('edit_type2').value = data.type;
                 // document.getElementById('edit_admitting_doctor_id').value = data.admitting_doctor_id;
                 document.getElementById('edit_complain2').value = data.complain;
                 document.getElementById('edit_impression_diagnosis2').value = data.impression_diagnosis;

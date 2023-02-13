@@ -22,8 +22,6 @@ class AdmissionNewController extends Controller
        $admissions = AdmissionNew::
 
         leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-
-
         ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
         ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
         ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
