@@ -17,7 +17,7 @@ return new class extends Migration
     Schema::create('doctor_orders', function (Blueprint $table) {
         $table->id();
         $table->unsignedBigInteger('admission_id')->constrained('admission_news')->onDelete('cascade');
-        $table->unsignedBigInteger('doctor_id')->constrained('admission_news')->onDelete('cascade');
+        $table->unsignedBigInteger('doctor_id');
         $table->timestamps();
 
         $table->foreign('admission_id')->references('id')->on('admission_news');

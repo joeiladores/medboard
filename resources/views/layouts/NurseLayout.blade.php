@@ -17,8 +17,16 @@
 </head>
 
 <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.9375rem;
+  /* font-family: 'Roboto+Mono', sans-serif; */
+  font-family: 'Poppins', sans-serif;
+}
 .sidebar{
-background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
+background-image: linear-gradient(to right, #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
 box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
 border-radius: 0px 44px 32px 0px;"
 }
@@ -147,25 +155,25 @@ border-radius: 0px 44px 32px 0px;"
 <!-- Sidebar Starts -->
 <div class="sidebar" id="sidebar-wrapper">
   <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase">
-    <img class="logo-sidebar" src="{{asset('/images/medboard-logo.png')}}">
+    <img class="logo-sidebar" src="{{asset('/images/medboard-logo-final.png')}}">
     <p></p>
   </div>
 
-  <div class="list-group list-group my-3">
-    <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold  text-dark">
-      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
+  <div class="list-group my-3 ps-3">
+    <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+      <p style="color:#1353c9;"><i class=" fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
     </a>
     <a href="{{ route('nursePatients') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
     </a>
     <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
     </a>
     <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-    <p class="text-light"><i class="text-light fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
       
     </a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light mt-5">
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
       <i class="fas fa-project-diagram fs-2 me-2"></i>
       {{ __('Logout') }}
     </a>
