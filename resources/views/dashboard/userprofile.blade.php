@@ -4,7 +4,7 @@
 <style>
 .form-group {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .form-group.with-floating-label label {
@@ -88,47 +88,100 @@
     background-color: #0069d9;
 }
 </style>
+
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <div class="container text-center card p-4">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <img class="rounded-circle img-thumbnail" style="width: 150px; height: 150px;"
+                                src="{{ asset('images/avatars/'. $current_user->avatar) }}"
+                                alt="{{ $current_user->name }}">
+                            <br><br>
+                            <div class="row">
+                                <div class="col card text-muted text-left">
+                                    <p class="text-muted">Bio: {{ $current_user->bio}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col order-1">
+                        <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">User Type: {{ $current_user->usertype}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">User Name: {{ $current_user->name }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">Email: {{ $current_user->email }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">Phone: {{ $current_user->phone }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">BirthDate: {{ $current_user->birthdate}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">Address: {{ $current_user->address }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{ __('Edit your profile') }}</div>
                 <div class="card-body">
                     <form action="{{ route('profile.update') }}" enctype='multipart/form-data' method="post" novalidate>
                         {{csrf_field()}}
-
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group with-floating-label">
+                                    <label for="firstname" class="text-muted">First name:</label>
+                                    <input type="text" id="firstname" name="firstname" placeholder="First name"
+                                        class="form-control @error('firstname') is-invalid @enderror"
+                                        value="{{old('firstname', $current_user->firstname)}}">
+                                    @error('firstname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group with-floating-label">
+                                    <label for="lastname" class="text-muted">Last name:</label>
+                                    <input type="text" id="lastname" name="lastname" placeholder="Your last name"
+                                        class="form-control @error('lastname') is-invalid @enderror"
+                                        value="{{old('lastname', $current_user->lastname)}}">
+                                    @error('lastname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group with-floating-label">
                             <label for="name" class="text-muted">Name:</label>
                             <input type="text" id="name" name="name" placeholder="name"
                                 class="form-control @error('name') is-invalid @enderror"
                                 value="{{old('name', $current_user->name)}}">
-
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group with-floating-label">
-                            <label for="firstname" class="text-muted">First name:</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="First name"
-                                class="form-control @error('firstname') is-invalid @enderror"
-                                value="{{old('firstname', $current_user->firstname)}}">
-                            @error('first_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group with-floating-label">
-                            <label for="lastname" class="text-muted">Last name:</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Your last name"
-                                class="form-control @error('lastname') is-invalid @enderror"
-                                value="{{old('lastname', $current_user->lastname)}}">
-
-                            @error('last_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -147,18 +200,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group with-floating-label">
-                            <label for="bio" class="text-muted">Bio:</label>
-                            <textarea name="bio" id="bio" class="form-control @error('bio') is-invalid @enderror"
-                                placeholder="Bio" cols="30" rows="6">{{old('bio', $current_user->bio)}}</textarea>
-                            @error('bio')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <label for="avatar" class="text-muted">Upload avatar</label>
+                        <label for="avatar" class="text-muted">Change Profile Picture</label>
                         <div class="form-group d-flex">
                             <div class="w-75 pr-1">
                                 <input type='file' name='avatar' id="avatar"
@@ -168,22 +210,9 @@
                                 <span class="invalid-feedback" role="alert">{{ $errors->first('avatar') }}</span>
                                 @endif
                             </div>
-                            <div class="w-25 position-relative" id="avatar-container">
-                                <img class="rounded-circle img-thumbnail avatar-preview"
-                                    style="width: 100px; height: 100px;"
-                                    src="{{ asset('images/avatars/'. $current_user->avatar) }}"
-                                    alt="{{ $current_user->firstname }} {{ $current_user->lastname }}">
-                                <span class="avatar-trash">
-                                    @if($current_user->avatar !== 'default.png')
-                                    <a href="#" class="icon text-light" id="delete-avatar"
-                                        data-uid="{{$current_user->id}}"><i class="fa fa-trash"></i></a>
-                                    @endif
-                                </span>
-                            </div>
+
                         </div>
-
                         <div class="form-group d-flex mb-0">
-
                             <div class="w-50 pr-1">
                                 <input type="submit" name="submit" value="Save" class="btn btn-block btn-primary">
                             </div>
@@ -192,9 +221,11 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
