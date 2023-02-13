@@ -23,17 +23,17 @@
       navLinks: true,
       timeZone: 'Asia/Manila',
       locale: '',
-      initialView: 'resourceTimeGridDay',
+      initialView: 'dayGridMonth',
       eventColor: 'gray',
-      resources: [{
-          id: 'a',
-          title: 'Station 1'
-        },
-        {
-          id: 'b',
-          title: 'Station 2'
-        }
-      ],
+      // resources: [{
+      //     id: 'a',
+      //     title: 'Station 1'
+      //   },
+      //   {
+      //     id: 'b',
+      //     title: 'Station 2'
+      //   }
+      // ],
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
@@ -258,5 +258,7 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection
