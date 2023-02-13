@@ -55,11 +55,11 @@
         </a>
         <a href="{{ route('departments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-building-user fa-icon"></i>
-          Department Management
+          Department
         </a>
         <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-people-roof fa-icon"></i>
-          <span>Specialization Management</span>
+          <span>Specialization</span>
         </a>
         <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-user-nurse fa-icon"></i>

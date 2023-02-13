@@ -21,7 +21,7 @@ class SpecializationSeeder extends Seeder
             ],
             [
                 'usertype' => 'doctor',
-                'name' => 'Internal Medicine',
+                'name' => 'Internist',
             ],
             [
                 'usertype' => 'doctor',

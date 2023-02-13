@@ -173,7 +173,7 @@ class UserSeeder extends Seeder
                 'specialization_id' => 6,
             ]);
 
-            // Doctor 5 Orthopedics
+            // Doctor 5 Pulomonology
             $gender = Arr::random(['Male', 'Female']);
             if ($gender === 'Male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
@@ -195,7 +195,7 @@ class UserSeeder extends Seeder
                 'specialization_id' => 7,
             ]);
 
-            // Doctor 6 Orthopedics
+            // Doctor Pulomonology
             $gender = Arr::random(['Male', 'Female']);
             if ($gender === 'Male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
@@ -279,7 +279,7 @@ class UserSeeder extends Seeder
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
-                'department_id' => 12,
+                'department_id' => 11,
                 'specialization_id' => 2,
             ]);
 
@@ -301,7 +301,7 @@ class UserSeeder extends Seeder
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber,
                 'status' => 'active',
-                'department_id' => 12,
+                'department_id' => 11,
                 'specialization_id' => 2,
             ]);
 

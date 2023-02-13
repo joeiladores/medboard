@@ -17,6 +17,7 @@ class BedSeeder extends Seeder
      */
     public function run()
     {
+
         // SEEDER FOR BEDS
         $num = 101;
         for ($i = 1; $i <= 5; $i++) {
@@ -56,6 +57,13 @@ class BedSeeder extends Seeder
             'room' => 'Female Ward',
             'room_type' => 'Ward',
             'station' => 'Nurse Station 3',             
+        ]);
+
+        \App\Models\Bed::create([
+            'bednum' => 'Outpatient',
+            'room' => 'Outpatient',
+            'room_type' => 'Outpatient',
+            'station' => 'Outpatient',              
         ]);
     }
 }

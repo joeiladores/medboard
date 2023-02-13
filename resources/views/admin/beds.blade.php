@@ -99,6 +99,7 @@
                   <option value="Private">Private</option>
                   <option value="Semi-Private">Semi-Private</option>
                   <option value="Ward">Ward</option>
+                  <option value="Outpatient">Outpatient</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -108,6 +109,7 @@
                   <option value="Nurse Station 1">Nurse Station 1</option>
                   <option value="Nurse Station 2">Nurse Station 2</option>
                   <option value="Nurse Station 3">Nurse Station 3</option>
+                  <option value="Outpatient">Outpatient</option>
                 </select>
               </div>
               <input type="hidden" name="id" id="id"">
