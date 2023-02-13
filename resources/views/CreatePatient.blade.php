@@ -25,7 +25,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="{{ route('storePatient') }}">
+                                                <form class="add-patient" method="POST" action="{{ route('storePatient') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col-md-4">
@@ -98,7 +98,7 @@
                                                     </div>
                                                     <hr>
                                                     <div>
-                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add Patient</button>
+                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateAddPatient()">Add Patient</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -497,5 +497,24 @@
 </div>
 
 </div>
+
+<!-- For Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ <!-- Add Transfusion validation -->
+ <script>
+    function validateAddPatient() {
+        var form = document.querySelector('.add-patient');
+        
+            Swal.fire({
+            title: 'Success!',
+            text: 'New Transfusion record has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+            });
+        }
+        
+</script>
+
 
 @endsection
