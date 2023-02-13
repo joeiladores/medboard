@@ -117,22 +117,27 @@
 
         <div id="PatientList" class="tabcontent">
             <table class="table table-hover" id="patientTable">
-                <thead>
-                    <tr>
-                        <th>Patients ID#</th>
-                        <th>Patients Full Name</th>
-                        <th>Medical History</th>
-                        <th>----</th>
-                        <th>Admission</th>
-                        <th>Actions</th>
+                <thead class="primary-bg">
+                    <tr class="text-light">
+                        <th class="text-center">Patients ID#</th>
+                        <th class="text-center">Patients Full Name</th>
+                        <th class="text-center">Gender</th>
+                        <th class="text-center">Birth Date</th>
+                        <th class="text-center">Marital Status</th>
+                        <th class="text-center">Medical History</th>
+                        <th class="text-center">Admission</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($allPatients as $patient)
                     <tr>
-                        <td>{{ $patient->id }}</td>
+                        <td class="text-center">{{ $patient->id }}</td>
                         <td>{{ $patient->lastname }}, {{ $patient->firstname }} {{ $patient->midname }}</td>
-                        <td>
+                        <td class="text-center">{{ $patient->gender }}</td>
+                        <td class="text-center">{{ $patient->birth_date }}</td>
+                        <td class="text-center">{{ $patient->marital_status }}</td>
+                        <td class="text-center">
                             <!-- Modal button to show medical history -->
                             <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
 
@@ -206,8 +211,8 @@
                             </div>
 
                         </td>
-                        <td>######</td>
-                        <td>
+                        <!-- for inserting column -->
+                        <td class="text-center">
                             <button type="button" class="btn btn-sm btn-info px-3" onclick="showAdmitModal({{ $patient->id }})">
                                 Admit
                             </button>
@@ -375,7 +380,7 @@
                             </div>
                         </td>
 
-                        <td class="d-flex">
+                        <td class="d-flex text-center">
                             <!-- Edit Patient Modal Button -->
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">

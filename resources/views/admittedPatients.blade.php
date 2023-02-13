@@ -17,9 +17,9 @@
     </div>
 
     <!-- TABS -->
-    <div class="m-3">
-        <button class="tablink btn border p-3 fw-bold" onclick="openPage('AdmittedList', this, 'rgb(94, 176, 243)')" id="defaultOpen">Current Admitted</button>
-        <button class="tablink btn border p-3 fw-bold" onclick="openPage('AllAdmitted', this, 'rgb(94, 176, 243)')">All Admitted</button>
+    <div class="m-3 mb-5">
+        <button class="tablink btn border p-3 px-5 fs-5 fw-bold" onclick="openPage('AdmittedList', this, 'rgb(94, 176, 243)')" id="defaultOpen">CURRENT ADMITTED</button>
+        <button class="tablink btn border p-3 px-5 fs-5 fw-bold" onclick="openPage('AllAdmitted', this, 'rgb(94, 176, 243)')">LIST OF ALL ADMITTED</button>
     </div>
 
 
@@ -28,33 +28,33 @@
             <div class="col-md-12">
                 <div id="AdmittedList" class="tabcontent">
                     <table class="table table-hover" id="admittedTable">
-                        <thead>
-                            <tr>
-                                <th>Patients ID#</th>
-                                <th>Patients Full Name</th>
-                                <th>Admitting Doctor</th>
-                                <th>Room #</th>
-                                <th>Type of care</th>
-                                <th>Primary Doctor</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                        <thead class="primary-bg">
+                            <tr class="text-light">
+                                <th class="text-center">Patients ID#</th>
+                                <th class="text-center">Patients Full Name</th>
+                                <th class="text-center">Admitting Doctor</th>
+                                <th class="text-center">Room #</th>
+                                <th class="text-center">Type of care</th>
+                                <th class="text-center">Primary Doctor</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($admittedinfo as $admitpatient)
                             @if ($admitpatient->status == 'Admitted')
                             <tr>
-                                <td>{{ $admitpatient->id }}</td>
+                                <td class="text-center">{{ $admitpatient->id }}</td>
                                 <td>{{ $admitpatient->patient_id }} {{ $admitpatient->p_lastname }}, {{ $admitpatient->p_firstname }} {{ $admitpatient->p_midname }}</td>
 
-                                <td>Dr. {{ $admitpatient->ad_lastname }}, {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}</td>
-                                <td> {{ $admitpatient->bed_id }} - {{ $admitpatient->room }} {{ $admitpatient->room_type }}</td>
-                                <td>{{ $admitpatient->type }}</td>
+                                <td >Dr. {{ $admitpatient->ad_lastname }}, {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}</td>
+                                <td class="text-center"> {{ $admitpatient->bed_id }} - {{ $admitpatient->room }} {{ $admitpatient->room_type }}</td>
+                                <td class="text-center">{{ $admitpatient->type }}</td>
                                 <td>Dr. {{ $admitpatient->pd_lastname }}, {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</td>
 
-                                <td>Admitted</td>
+                                <td class="text-center">Admitted</td>
 
-                                <td>
+                                <td class="text-center">
 
                                     <!-- Edit Admission Button -->
                                     <button type="button" class="btn btn-sm btn-primary" onclick="showEditAdmitModal({{ $admitpatient->id }})">
@@ -247,31 +247,31 @@
 
                 </div>
 
-                <div id="AllAdmitted" class="tabcontent mt-4">
+                <div id="AllAdmitted" class="tabcontent">
                     <table class="table table-hover" id="alladmittedTable">
-                        <thead>
-                            <tr>
-                                <th>Patients ID#</th>
-                                <th>Patients Full Name</th>
-                                <th>Admitting Doctor</th>
-                                <th>Room #</th>
-                                <th>Type of care</th>
-                                <th>Primary Doctor</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                        <thead class="primary-bg">
+                            <tr class="text-light">
+                                <th class="text-center">Patients ID#</th>
+                                <th class="text-center">Patients Full Name</th>
+                                <th class="text-center">Admitting Doctor</th>
+                                <th class="text-center">Room #</th>
+                                <th class="text-center">Type of care</th>
+                                <th class="text-center">Primary Doctor</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($admittedinfo as $admitpatient)
                             <tr>
-                                <td>{{ $admitpatient->id }}</td>
+                                <td class="text-center">{{ $admitpatient->id }}</td>
                                 <td>{{ $admitpatient->patient_id }} {{ $admitpatient->p_lastname }}, {{ $admitpatient->p_firstname }} {{ $admitpatient->p_midname }}</td>
                                 <td>Dr. {{ $admitpatient->ad_lastname }}, {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}</td>
-                                <td> {{ $admitpatient->bed_id }} - {{ $admitpatient->room }}</td>
-                                <td>{{ $admitpatient->type }}</td>
+                                <td class="text-center"> {{ $admitpatient->bed_id }} - {{ $admitpatient->room }}</td>
+                                <td class="text-center">{{ $admitpatient->type }}</td>
                                 <td>Dr. {{ $admitpatient->pd_lastname }}, {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</td>
-                                <td>{{ $admitpatient->status }}</td>
-                                <td>
+                                <td class="text-center">{{ $admitpatient->status }}</td>
+                                <td class="text-center">
                                     <!-- Edit All Admitted Button -->
                                     <button type="button" class="btn btn-sm btn-primary" onclick="showEditAdmitAllModal({{ $admitpatient->id }})">
                                         <i class="fa-sharp fa-solid fa-pen-to-square"></i>
