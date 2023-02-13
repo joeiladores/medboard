@@ -74,9 +74,11 @@ Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHi
 
 // *****************************************************************************
 // Routes for Admission
-Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
+Route::post('/storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
 Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
+Route::get('/showAdmission/{id}', [AdmissionNewController::class, 'show'])->name('showAdmission');
+Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name('updateAdmission');
 
 
 
@@ -206,10 +208,14 @@ Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::clas
 // Nurse's Dashboard View
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
 Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
-
-Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
-
-
+Route::get('/nursePatients', [NurseDashboardController::class, 'patientList'])->name('nursePatients');
+//Medication
+Route::post('/storeNurseProgressNote', [NurseDashboardController::class, 'storeNurseProgressNote'])->name('storeNurseProgressNote');
+Route::get('/editNurseMedication/{id}', [NurseDashboardController::class, 'editNurseMedication'])->name('editNurseMedication');
+Route::post('/updateNurseMedication', [NurseDashboardController::class, 'updateNurseMedication'])->name('updateNurseMedication');
+//Transfusion
+Route::get('/editNurseTransfusion/{id}', [NurseDashboardController::class, 'editNurseTransfusion'])->name('editNurseTransfusion');
+Route::post('/updateNurseTransfusion', [NurseDashboardController::class, 'updateNurseTransfusion'])->name('updateNurseTransfusion');
 // *****************************************************************************
 Route::get('/generate-pdf', function(){
     // get the data to display in the PDF
