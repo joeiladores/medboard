@@ -10,6 +10,13 @@ body {
   overflow-y: hidden; */
 }
 
+#avatar{
+    width:110px;
+    height:110px;
+    border-radius: 50%;
+
+}
+
 /* Defaults */
 #DashboardCard {
     height: 35%;
@@ -191,8 +198,9 @@ body {
         <div
             style="padding:20%; height:530px; background: linear-gradient(180deg, #4264D0 0%, rgba(66, 100, 208, 0.84532) 18.86%, rgba(66, 100, 208, 0.32) 100%);box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);border-radius: 30px 30px 0px 0px;">
             <center>
-                <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image"
-                    style="width: 100%; height: 30%;">
+            <img class="mb-2 " style="width: 100px; height: 100px;" id="avatar"
+                    src="{{ asset('images/avatars/'. Auth::user()->avatar) }}"
+                    <img class="mb-2" style="width: 100%; height: 30%;" id="DashboardNurseImg" src="{{ asset('images/avatars/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}">
                 <p style="font-size:13px; font-weight:600;" class="text-light">  {{ Auth::user()->firstname}} &nbsp;{{ Auth::user()->lastname}}</p>
                 <h6 style="font-size:13px; font-weight:600;"  class="text-light">
                 {{ strtoupper(Auth::user()->usertype) }}
