@@ -6,7 +6,10 @@ use App\Models\AdmissionNew;
 use App\Models\Patient;
 use App\Models\User;
 use App\Models\Bed;
+use App\Models\DoctorOrder;
+use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdmissionNewController extends Controller
 {
@@ -96,5 +99,40 @@ class AdmissionNewController extends Controller
         $admissionNew->delete();
 
         return redirect()->route('admittedPatient')->with('success', 'Patient deleted successfully!');
+    }
+
+    public function kardex() {
+
+        $admission = DB::table('doctor_orders')
+
+                        ->get();
+        
+        
+
+
+                        
+
+
+                        // admission info + patient info
+                        // leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
+                        // ->where('admission_news.status', 'admitted')
+                        
+                        // + doctors info (from users);
+                        // ->leftJoin('users', 'users.id', '=', 'admission_news.primary_doctor_id')
+
+                        // + beds info
+                        // ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
+                        
+                        // ->find(1);
+        
+        // dd($admission);     
+        
+        
+
+        $layout = in_array(Auth::user()->usertype, ['adminlayout', 'NurseLayout']) ? 'admin' : 'nurse';
+        return view('kardex')->with($layout);
+
+      
+        
     }
 }

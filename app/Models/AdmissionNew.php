@@ -48,5 +48,10 @@ class AdmissionNew extends Model
         return $this->hasMany(User::class);
     }
 
+    public function doctororders() {
+        return $this->hasMany(DoctorOrder::class);
+    }
+    
+
 
 }

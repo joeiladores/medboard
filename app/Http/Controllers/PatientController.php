@@ -18,7 +18,7 @@ class PatientController extends Controller
         $totalNurses    = User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->count();
         $totalVacantBeds = Bed::where('status', 'vacant')->count();
 
-        return view('HomeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
+        return view('homeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
 
         // from login direct to admin dashboard
     }

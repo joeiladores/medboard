@@ -4,34 +4,36 @@
 
   <!-- Specialization Content - List of Specialization -->
   <div class="container p-4">
-    <div class="row py-2">
+    <div class="row pb-2">
       <div class="col">
         <h3 class="fw-bold text-secondary f-poppins">SPECIALIZATION</h3>
       </div>
       <div class="col d-flex flex-grow-1 justify-content-end">
         @if (Route::has('register'))
-        <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createSpecializationModal">+ New Specialization</button>
+        <button type="button" class="btn btn-primary btn-sm flex-end" data-bs-toggle="modal" data-bs-target="#createSpecializationModal">+ New Specialization</button>
         @endif
       </div>    
     </div>
   </div>
 
-  @if( session('success') )
-  <div class="alert alert-success my-3" role="alert">
-    {{ session('success') }}
+  <div class="container px-4">
+    @if( session('success') )
+    <div class="alert alert-success my-3" role="alert">
+      {{ session('success') }}
+    </div>
+    @endif
+    @if( session('error') )
+    <div class="alert alert-danger my-3" role="alert">
+      {{ session('error') }}
+    </div>
+    @endif
   </div>
-  @endif
-  @if( session('error') )
-  <div class="alert alert-danger my-3" role="alert">
-    {{ session('error') }}
-  </div>
-  @endif
 
   <div class="container px-4">
     <div class="row">
       <div class="col-md-12">
         <table id="specializationTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
-          <thead class="third-bg-color">
+          <thead class="primary-bg text-light">
             <tr>
               <td>ID</td>
               <td>User Type</td>

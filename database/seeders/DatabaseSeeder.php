@@ -17,20 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-                
+               
         $this->call([
             DepartmentSeeder::class,
             SpecializationSeeder::class,
             UserSeeder::class,
             BedSeeder::class,            
-            // NurseAssignmentSeeder::class,
+            NurseAssignmentSeeder::class,
             PatientSeeder::class,
         ]);
        

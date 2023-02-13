@@ -4,35 +4,37 @@
 
   <!-- Department Content - List of Departments -->
   <div class="container p-4">
-    <div class="row py-2">
+    <div class="row pb-2">
       <div class="col">
         <h3 class="fw-bold text-secondary f-poppins">DEPARTMENTS</h3>
       </div>
       <div class="col d-flex flex-grow-1 justify-content-end">
         @if (Route::has('register'))
-        <button type="button" class="btn btn-primary flex-end" data-bs-toggle="modal" data-bs-target="#createDepartmentModal">+ New Department</button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createDepartmentModal">+ New Department</button>
         @endif
       </div>    
     </div>
   </div>
 
-  @if( session('success') )
-  <div class="alert alert-success my-3" role="alert">
-    {{ session('success') }}
+  <div class="container px-4">
+    @if( session('success') )
+    <div class="alert alert-success my-3" role="alert">
+      {{ session('success') }}
+    </div>
+    @endif
+    @if( session('error') )
+    <div class="alert alert-danger my-3" role="alert">
+      {{ session('error') }}
+    </div>
+    @endif
   </div>
-  @endif
-  @if( session('error') )
-  <div class="alert alert-danger my-3" role="alert">
-    {{ session('error') }}
-  </div>
-  @endif
 
 
   <div class="container px-4">
     <div class="row">
       <div class="col-md-12">
         <table id="departmentTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
-          <thead class="third-bg-color">
+          <thead class="primary-bg text-light">
             <tr>
               <td>Department ID</td>
               <td>Department Name</td>
@@ -67,7 +69,7 @@
   <div class="modal fade" id="createDepartmentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header third-bg-color">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Department</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
