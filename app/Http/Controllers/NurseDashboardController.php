@@ -132,6 +132,15 @@ class NurseDashboardController extends Controller
     ]);
 }
 
+
+public function editNurseMedication($id)
+{
+    $orders_medications = OrderMedication::findOrFail($id);
+    $doctor_order_id = $orders_medications->doctor_order_id;
+
+    return view('editNurseMedication', ['id' => $doctor_order_id])->with('order_medication', $orders_medications);
+}
+
 public function storeNurseProgressNote(Request $request)
     {
         $progresss_notes = new ProgressNote;
@@ -143,6 +152,29 @@ public function storeNurseProgressNote(Request $request)
         $progresss_notes->created_at      = Carbon::now(new DateTimeZone('Asia/Singapore'));
         
         $progresss_notes->save();
+
+        return redirect()->route('nurseDoctorOrdersView', ['id' => $doctor_order_id]);
+    }
+
+    public function updateNurseMedication(Request $request)
+    {
+        $orders_medication = OrderMedication::find($request->id);
+
+        $doctor_order_id = $orders_medication->doctor_order_id;
+
+        $orders_medication->medication       = $request->medication;
+        $orders_medication->dose             = $request->dose;
+        $orders_medication->quantity         = $request->quantity;
+        $orders_medication->unit             = $request->unit;
+        $orders_medication->frequency        = $request->frequency;
+        $orders_medication->instructions     = $request->instructions;
+
+        $orders_medication->date_started     = $request->date_started;
+        $orders_medication->date_stopped     = $request->date_stopped;
+
+
+
+        $orders_medication->save();
 
         return redirect()->route('nurseDoctorOrdersView', ['id' => $doctor_order_id]);
     }
