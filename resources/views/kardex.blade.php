@@ -1,6 +1,3 @@
-
-
-
 @extends($layout, ['title' => $title])
 @section('content')
 
@@ -9,6 +6,10 @@
       Kardex
     </h5>
   </div>
+
+
+
+  
 
 @endsection
 
