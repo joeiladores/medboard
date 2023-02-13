@@ -120,7 +120,7 @@
                 <thead>
                     <tr>
                         <th>Patients ID#</th>
-                        <th>Full Name</th>
+                        <th>Patients Full Name</th>
                         <th>Medical History</th>
                         <th>----</th>
                         <th>Admission</th>

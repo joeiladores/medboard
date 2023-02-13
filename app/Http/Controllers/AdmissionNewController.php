@@ -56,7 +56,7 @@ class AdmissionNewController extends Controller
         return view('admittedPatients')
             ->with('admittedinfo', $admissions)
             ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
-            ->with('beds', Bed::where('status', 'vacant')->get());
+            ->with('beds', Bed::all());
     
     }
 
