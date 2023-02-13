@@ -36,6 +36,10 @@
                     <i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>
                     Patients
                 </a>
+                <a href="{{ route('doctorsOrders') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
+                    <i class="fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>
+                    Orders
+                </a>
                 <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center">
                     <i class="fa-solid fa-calendar-days fs-2 me-2"></i>
                     Calendar

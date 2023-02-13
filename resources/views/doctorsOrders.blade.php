@@ -1,4 +1,4 @@
-@extends('layouts.NurseLayout')
+@extends('layouts.DoctorLayout')
 
 @section('content')
 <title>Doctor's Orders</title>
@@ -7,7 +7,7 @@
 
 #tableSize{
   color: rgb(14, 0, 0);
-  height: 560px;
+  height: 530px;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -19,11 +19,9 @@
 
 
 </style>
-<div class="m-3">
+<div>
 <div class="row">
-    <div class="col-12 p-4">
-
-
+    <div class="col-12 ps-4 pe-4">
 <div class="card rounded shadow p-3" id="tableSize">
 <table class="table" id="doctorOrderTable">
   <div class="me-2 mb-2 mt-3">
@@ -105,7 +103,7 @@
  <script>
    $(document).ready( function () {
      $('#doctorOrderTable').DataTable({
-         "pageLength": 9,
+         "pageLength": 8,
          "lengthChange": false
      });
  } );  
