@@ -199,7 +199,8 @@ Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurs
 Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
 Route::get('/nursePatients', [NurseDashboardController::class, 'patientList'])->name('nursePatients');
 Route::post('/storeNurseProgressNote', [NurseDashboardController::class, 'storeNurseProgressNote'])->name('storeNurseProgressNote');
-
+Route::get('/editNurseMedication/{id}', [NurseDashboardController::class, 'editNurseMedication'])->name('editNurseMedication');
+Route::post('/updateNurseMedication', [NurseDashboardController::class, 'updateNurseMedication'])->name('updateNurseMedication');
 
 // *****************************************************************************
 Route::get('/generate-pdf', function(){

@@ -39,7 +39,7 @@ body, html {
   padding: 50px 20px;
   padding-top:70px;
   margin: 14px;
-  height: 420px;
+  height: 390px;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -162,7 +162,7 @@ body, html {
                     <td>{{ $order_medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
                     <td>{{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
-                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;"></a>
+                      <a href="{{ route('editNurseMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;"></a>
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
