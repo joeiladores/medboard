@@ -81,7 +81,12 @@ class AdmissionNewController extends Controller
         $admissionNew->special_info         =   $request->special_info;
         $admissionNew->status               =   $request->status;
 
+
+        $bed  =  Bed::find($admissionNew->bed_id);
+        $bed->status = 'occupied';
+
         $admissionNew->save();
+        $bed->save();
         return redirect()->route('admittedPatient')->with('success', 'New admitted patient added!');
     }
     

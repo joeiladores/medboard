@@ -308,9 +308,7 @@
                                                                 <option value="Ambulant">Ambulant</option>
                                                                 <option value="Dangle & sit up">Dangle & sit up</option>
                                                                 <option value="Bedrest w/ BRP">Bedrest w/ BRP</option>
-                                                                <option value="CBR w/o BRP">CBR w/o BRP</option>
-                                                                <option value="Comatose">Comatose</option>
-                                                                <option value="Others">Others</option>
+                                                                <option value="CBR w/o BRP">CBR w/o BRP</option> 
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -322,7 +320,7 @@
                                                                 <option value="Soft">Soft</option>
                                                                 <option value="Clear liquids">Clear liquids</option>
                                                                 <option value="Gen. liquids">Gen. liquids</option>
-                                                                <option value="Others">Others</option>
+                                                            
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -333,7 +331,7 @@
                                                                 <option value="Thoractic tube">Thoractic tube</option>
                                                                 <option value="NGT">NGT</option>
                                                                 <option value="CVP">CVP</option>
-                                                                <option value="Others">Others</option>
+                                                            
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -344,7 +342,7 @@
                                                                 <option value="BP Qshift">BP Qshift</option>
                                                                 <option value="Neuro VS">Neuro VS</option>
                                                                 <option value="Abdominal girth">Abdominal girth</option>
-                                                                <option value="Others">Others</option>
+                                                               
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">

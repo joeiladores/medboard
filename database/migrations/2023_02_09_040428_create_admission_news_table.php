@@ -27,10 +27,10 @@ return new class extends Migration
             $table->integer('age');
             $table->float('weight');
             $table->enum('mental_status', ['Conscious','Drowsy','Stupor','Unconscious','Comatose']);
-            $table->enum('activities', ['Ambulant', 'Dangle & sit up', 'Bedrest w/ BRP', 'CBR w/o BRP', 'others']);
-            $table->enum('diet', ['NPO','DAT','Soft','Clear liquids','Gen. liquids', 'others']);
-            $table->enum('tubes', ['Foley catheter', 'Thoractic tube', 'NGT', 'CVP', 'others']);
-            $table->enum('special_info', ['Weigh daily', 'BP Qshift', 'Neuro VS', 'Abdominal girth', 'others']);
+            $table->enum('activities', ['Ambulant', 'Dangle & sit up', 'Bedrest w/ BRP', 'CBR w/o BRP']);
+            $table->enum('diet', ['NPO','DAT','Soft','Clear liquids','Gen. liquids']);
+            $table->enum('tubes', ['Foley catheter', 'Thoractic tube', 'NGT', 'CVP']);
+            $table->enum('special_info', ['Weigh daily', 'BP Qshift', 'Neuro VS', 'Abdominal girth']);
             $table->enum('status', ['Admitted', 'Discharged']);
 
             $table->timestamps();

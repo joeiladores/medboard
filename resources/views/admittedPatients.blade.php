@@ -44,7 +44,7 @@
                     <td>{{ $admitpatient->patient_id }} {{ $admitpatient->p_lastname }}, {{ $admitpatient->p_firstname }} {{ $admitpatient->p_midname }}</td>
 
                     <td>Dr. {{ $admitpatient->ad_lastname }}, {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}</td>
-                    <td>{{ $admitpatient->room }}</td>
+                    <td> {{ $admitpatient->bed_id }} - {{ $admitpatient->room }} {{ $admitpatient->room_type }}</td>
                     <td>{{ $admitpatient->type }}</td>
                     <td>Dr. {{ $admitpatient->pd_lastname }}, {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</td>
 
@@ -105,9 +105,9 @@
                                                     <div class="col-md-3">
                                                         <label for="edit_bed_id" class="form-label">Available Rooms</label>
                                                         <select id="edit_bed_id" name="bed_id" class="form-select" required>
-                                                            <option selected value="{{ $admitpatient->room }}">{{ $admitpatient->room }}</option>
+                                                            <option selected value="{{ $admitpatient->bed_id }}">{{ $admitpatient->bed_id }} - {{ $admitpatient->room }} {{ $admitpatient->room_type }} </option>
                                                             @foreach($beds as $bed)
-                                                            <option value="{{ $bed->id }}">{{ ($bed->room).'   '.($bed->room_type) }}
+                                                            <option value="{{ $bed->id }}">{{ ($bed->id).'   '.  ($bed->room).' '.($bed->room_type) }}
                                                             </option>
                                                             @endforeach
                                                         </select>
@@ -123,12 +123,14 @@
                                                     <div class="col-md-6">
                                                         <label for="edit_admitting_doctor_id" class="form-label">Admitting Doctor :</label>
                                                         <select id="edit_admitting_doctor_id" name="admitting_doctor_id" class="form-select">
-                                                            <option selected value="{{ $admitpatient->ad_lastname }} {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}">Dr. {{ $admitpatient->ad_lastname }} {{ $admitpatient->ad_firstname }}
+                                                            <option selected value="{{ $admitpatient->admitting_doctor_id }}">Dr. {{ $admitpatient->ad_lastname }} {{ $admitpatient->ad_firstname }}
                                                                 {{ $admitpatient->ad_middlename }}
                                                             </option>
                                                             @foreach ($doctors as $doctor)
+                                                            @if($doctor->id != $admitpatient->admitting_doctor_id )
                                                             <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
                                                             </option>
+                                                            @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -200,10 +202,12 @@
                                                     <div class="col-md-6">
                                                         <label for="edit_primary_doctor_id" class="form-label">Primary Doctor :</label>
                                                         <select id="edit_primary_doctor_id" name="primary_doctor_id" class="form-select">
-                                                            <option selected value="{{ $admitpatient->pd_lastname }} {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}">Dr. {{ $admitpatient->pd_lastname }} {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</option>
+                                                            <option selected value="{{ $admitpatient->primary_doctor_id }}">Dr. {{ $admitpatient->pd_lastname }} {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</option>
                                                             @foreach ($doctors as $doctor)
+                                                            @if($doctor->id != $admitpatient->primary_doctor_id )
                                                             <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                             </option>
+                                                            @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -259,7 +263,7 @@
                     <td>{{ $admitpatient->id }}</td>
                     <td>{{ $admitpatient->patient_id }} {{ $admitpatient->p_lastname }}, {{ $admitpatient->p_firstname }} {{ $admitpatient->p_midname }}</td>
                     <td>Dr. {{ $admitpatient->ad_lastname }}, {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}</td>
-                    <td>{{ $admitpatient->room }}</td>
+                    <td> {{ $admitpatient->bed_id }} - {{ $admitpatient->room }}</td>
                     <td>{{ $admitpatient->type }}</td>
                     <td>Dr. {{ $admitpatient->pd_lastname }}, {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</td>
                     <td>{{ $admitpatient->status }}</td>
@@ -317,9 +321,9 @@
                                                     <div class="col-md-3">
                                                         <label for="edit_bed_id2" class="form-label">Available Rooms</label>
                                                         <select id="edit_bed_id2" name="bed_id" class="form-select" required>
-                                                            <option selected value="{{ $admitpatient->room }}">{{ $admitpatient->room }}</option>
+                                                            <option selected selected value="{{ $admitpatient->bed_id }}">{{ $admitpatient->bed_id }} - {{ $admitpatient->room }} {{ $admitpatient->room_type }} </option>
                                                             @foreach($beds as $bed)
-                                                            <option value="{{ $bed->id }}">{{ ($bed->room).'   '.($bed->room_type) }}
+                                                            <option value="{{ $bed->id }}">{{ ($bed->id).'   '.($bed->room).'   '.($bed->room_type) }}
                                                             </option>
                                                             @endforeach
                                                         </select>
@@ -335,12 +339,14 @@
                                                     <div class="col-md-6">
                                                         <label for="edit_admitting_doctor_id2" class="form-label">Admitting Doctor :</label>
                                                         <select id="edit_admitting_doctor_id2" name="admitting_doctor_id" class="form-select">
-                                                            <option selected value="{{ $admitpatient->ad_lastname }} {{ $admitpatient->ad_firstname }} {{ $admitpatient->ad_middlename }}">Dr. {{ $admitpatient->ad_lastname }} {{ $admitpatient->ad_firstname }}
+                                                            <option selected value="{{ $admitpatient->admitting_doctor_id }}">Dr. {{ $admitpatient->ad_lastname }} {{ $admitpatient->ad_firstname }}
                                                                 {{ $admitpatient->ad_middlename }}
                                                             </option>
                                                             @foreach ($doctors as $doctor)
+                                                             @if($doctor->id != $admitpatient->admitting_doctor_id )
                                                             <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
                                                             </option>
+                                                             @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -371,8 +377,7 @@
                                                             <option value="Dangle & sit up">Dangle & sit up</option>
                                                             <option value="Bedrest w/ BRP">Bedrest w/ BRP</option>
                                                             <option value="CBR w/o BRP">CBR w/o BRP</option>
-                                                            <option value="Comatose">Comatose</option>
-                                                            <option value="Others">Others</option>
+                                                         
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
@@ -384,7 +389,7 @@
                                                             <option value="Soft">Soft</option>
                                                             <option value="Clear liquids">Clear liquids</option>
                                                             <option value="Gen. liquids">Gen. liquids</option>
-                                                            <option value="Others">Others</option>
+                                                          
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
@@ -395,7 +400,7 @@
                                                             <option value="Thoractic tube">Thoractic tube</option>
                                                             <option value="NGT">NGT</option>
                                                             <option value="CVP">CVP</option>
-                                                            <option value="Others">Others</option>
+                                                         
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
@@ -406,16 +411,18 @@
                                                             <option value="BP Qshift">BP Qshift</option>
                                                             <option value="Neuro VS">Neuro VS</option>
                                                             <option value="Abdominal girth">Abdominal girth</option>
-                                                            <option value="Others">Others</option>
+                                                          
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="edit_primary_doctor_id2" class="form-label">Primary Doctor :</label>
                                                         <select id="edit_primary_doctor_id2" name="primary_doctor_id" class="form-select">
-                                                            <option selected value="{{ $admitpatient->pd_lastname }} {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}">Dr. {{ $admitpatient->pd_lastname }} {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</option>
+                                                            <option selected value="{{ $admitpatient->primary_doctor_id }}">Dr. {{ $admitpatient->pd_lastname }} {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</option>
                                                             @foreach ($doctors as $doctor)
+                                                            @if($doctor->id != $admitpatient->primary_doctor_id )
                                                             <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                             </option>
+                                                            @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -478,9 +485,9 @@
                 document.getElementById('edit_patient').value = data.patient_id;
                 document.getElementById('edit_age').value = data.age;
                 document.getElementById('edit_weight').value = data.weight;
-                // document.getElementById('edit_bed_id').value = data.bed_id;
+                document.getElementById('edit_bed_id').value = data.bed_id;
                 document.getElementById('edit_type').value = data.type;
-                // document.getElementById('edit_admitting_doctor_id').value = data.admitting_doctor_id;
+                document.getElementById('edit_admitting_doctor_id').value = data.admitting_doctor_id;
                 document.getElementById('edit_complain').value = data.complain;
                 document.getElementById('edit_impression_diagnosis').value = data.impression_diagnosis;
                 document.getElementById('edit_mental_status').value = data.mental_status;
@@ -488,7 +495,7 @@
                 document.getElementById('edit_diet').value = data.diet;
                 document.getElementById('edit_tubes').value = data.tubes;
                 document.getElementById('edit_special_info').value = data.special_info;
-                // document.getElementById('edit_primary_doctor_id').value = data.primary_doctor_id;
+                document.getElementById('edit_primary_doctor_id').value = data.primary_doctor_id;
                 document.getElementById('edit_status').value = data.status;
                 document.getElementById('edit_admitpatient_id').value = data.id;
 
@@ -508,9 +515,9 @@
                 document.getElementById('edit_patient2').value = data.patient_id;
                 document.getElementById('edit_age2').value = data.age;
                 document.getElementById('edit_weight2').value = data.weight;
-                // document.getElementById('edit_bed_id').value = data.bed_id;
+                document.getElementById('edit_bed_id2').value = data.bed_id;
                 document.getElementById('edit_type2').value = data.type;
-                // document.getElementById('edit_admitting_doctor_id').value = data.admitting_doctor_id;
+                document.getElementById('edit_admitting_doctor_id2').value = data.admitting_doctor_id;
                 document.getElementById('edit_complain2').value = data.complain;
                 document.getElementById('edit_impression_diagnosis2').value = data.impression_diagnosis;
                 document.getElementById('edit_mental_status2').value = data.mental_status;
@@ -518,7 +525,7 @@
                 document.getElementById('edit_diet2').value = data.diet;
                 document.getElementById('edit_tubes2').value = data.tubes;
                 document.getElementById('edit_special_info2').value = data.special_info;
-                // document.getElementById('edit_primary_doctor_id').value = data.primary_doctor_id;
+                document.getElementById('edit_primary_doctor_id2').value = data.primary_doctor_id;
                 document.getElementById('edit_status2').value = data.status;
                 document.getElementById('edit_admitpatient_id2').value = data.id;
 
