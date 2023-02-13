@@ -25,19 +25,19 @@
       locale: '',
       initialView: 'dayGridMonth',
       eventColor: 'gray',
-      // resources: [{
-      //     id: 'a',
-      //     title: 'Station 1'
-      //   },
-      //   {
-      //     id: 'b',
-      //     title: 'Station 2'
-      //   }
-      // ],
+      resources: [{
+          id: 'a',
+          title: 'Station 1'
+        },
+        {
+          id: 'b',
+          title: 'Station 2'
+        }
+      ],
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
-        right: 'resourceTimeGridDay,resourceTimeGridWeek,dayGridMonth'
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,list',
       },
       events: "{{ route('calendar.getevents') }}",
       dateClick: function(info) {
@@ -126,7 +126,7 @@
   });
 </script>
 
-<div id='calendar'></div>
+<div id='calendar' class="m-5"></div>
 
 
 {{--Modal Create--}}
