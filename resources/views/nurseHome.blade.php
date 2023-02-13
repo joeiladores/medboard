@@ -2,11 +2,13 @@
 
 @section('content')
 <style>
-body {
-  height: 100%;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-size: 0.9375rem;
-  font-family: 'Roboto+Mono', sans-serif;
+  /* font-family: 'Roboto+Mono', sans-serif; */
+  font-family: 'Poppins', sans-serif;
 }
 /* Defaults */
 #DashboardCard{

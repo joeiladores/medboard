@@ -17,6 +17,14 @@
 </head>
 
 <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.9375rem;
+  /* font-family: 'Roboto+Mono', sans-serif; */
+  font-family: 'Poppins', sans-serif;
+}
 .sidebar{
 background-image: linear-gradient(to right, #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
 box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);

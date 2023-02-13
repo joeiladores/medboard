@@ -2,13 +2,7 @@
 
 @section('content')
 <style>
-body {
-  height: 100%;
-  margin: 0;
-  /* font-family: Arial; */
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
-}
+
 /* Defaults */
 #DashboardCard{
     height:35%;
@@ -58,7 +52,10 @@ body {
 }
   #DashboardSide {
     display: none;
-  }
+}
+#tableSize{
+  height: 900px;
+}
 
 }
 
