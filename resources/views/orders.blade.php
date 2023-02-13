@@ -1,4 +1,4 @@
-@extends('layouts.NurseLayout')
+@extends('layouts.DoctorLayout')
 
 @section('content')
 <title>Doctor's Orders</title>
@@ -43,9 +43,15 @@ body, html {
   padding: 50px 20px;
   padding-top:70px;
   margin: 14px;
-  height: 370px;
+  height: 275px;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 500px) {
+  .tabcontent {
+  height: 360px;
+}
 }
 #Medication {background-color: white;}
 #Transfusion {background-color: white;}
@@ -55,7 +61,7 @@ body, html {
 
 </style>
 
-<a href="{{ route('doctorsOrders') }}" style="background-color:#1f66d1;" class="btn btn-light btn-sm text-light p-2">← Go back</a>
+<a href="{{ route('doctorsOrders') }}" style="background-color:#1f66d1;" class="btn btn-light btn-sm text-light ms-3 p-1">← Go back</a>
   <div class="card rounded shadow m-3" style="background-color:#d4ebf8;">
   <div class="card-body m-2">
   <div class="d-flex justify-content-between">
@@ -605,28 +611,28 @@ body, html {
   
   $(document).ready( function () {
      $('#medicationTable').DataTable({
-         "pageLength": 4,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#transfusionTable').DataTable({
-         "pageLength": 4,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#treatmentTable').DataTable({
-         "pageLength": 4,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#progressNotesTable').DataTable({
-         "pageLength": 4,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
