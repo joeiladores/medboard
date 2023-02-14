@@ -62,7 +62,6 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
-Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
 
 // *****************************************************************************
 // Patient Routes
@@ -132,6 +131,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
     Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
 
+
+    // *****************************************************************************
+    // All Chief Nurse Routes List
+    Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
+    Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
+    Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
+    Route::post('/admin/updatenurseassignment', [NurseAssignmentController::class, 'updateNurseAssignment'])->name('updatenurseassignment');
+    Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::class, 'deleteNurseAssignment'])->name('deletenurseassignment');
+
     // PDF Route
     Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
@@ -159,16 +167,12 @@ Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('o
 Route::post('/storeDoctorOrders', [DoctorOrdersController::class, 'store'])->name('storeDoctorOrders');
 Route::get('/destroyDoctorOrder/{id}', [DoctorOrdersController::class, 'destroy'])->name('destroyDoctorOrder');
 
-// For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
-
-
 // *****************************************************************************
 // Routes for Medication
 Route::post('/storeMedication', [OrderMedicationController::class, 'store'])->name('storeMedication');
 Route::get('/editMedication/{id}', [OrderMedicationController::class, 'edit'])->name('editMedication');
 Route::post('/updateMedication', [OrderMedicationController::class, 'update'])->name('updateMedication');
 Route::get('/destroyMedication/{id}', [OrderMedicationController::class, 'destroy'])->name('destroyMedication');
-
 
 // *****************************************************************************
 // Routes for Transfusion
@@ -193,19 +197,6 @@ Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->n
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
 
 
-
-// *****************************************************************************
-// All Nurse Routes List
-
-
-// *****************************************************************************
-// All Chief Nurse Routes List
-
-Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
-Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
-Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
-Route::post('/admin/updatenurseassignment', [NurseAssignmentController::class, 'updateNurseAssignment'])->name('updatenurseassignment');
-Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::class, 'deleteNurseAssignment'])->name('deletenurseassignment');
 
 
 
