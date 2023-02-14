@@ -11,10 +11,10 @@ class DoctorDashboardController extends Controller
     public function index(){
 
         // $totalPatients      = Patient::count();
-        $totalPrimary       = AdmissionNew::whereHas('primary_doctor_id')->count();
-        $totalAdmitting     = AdmissionNew::where('admitting_doctor_id')->count();
+        // $totalPrimary       = AdmissionNew::where('primary_doctor_id')->count();
+        // $totalAdmitting     = AdmissionNew::where('admitting_doctor_id')->count();
 
-        return view('doctorHome', compact('totalPrimary', 'totalAdmitting'));
+        return view('doctorHome');
     }
 }
 

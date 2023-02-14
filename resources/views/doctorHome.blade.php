@@ -18,20 +18,20 @@
         </div>
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-6 mt-2">
+                <div class="col-md-6 mb-2">
                     <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                        <h3 class="fs-3 fw-bold second-text">{{ $totalAdmitting }}</h3>
+                        <h3 class="fs-3 fw-bold second-text"></h3>
                         <p class="text-primary">Your Total Admit Patient</p>
 
                         <i class="fa-solid fa-clipboard-list fs-3 primary-text"></i>
                     </div>
                 </div>
 
-                <div class="col-md-6 mt-2">
+                <div class="col-md-6">
                     <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                        <h3 class="fs-3 fw-bold second-text">{{ $totalPrimary }}</h3>
+                        <h3 class="fs-3 fw-bold second-text"></h3>
                         <p class="text-primary">Your Total Primary Patient</p>
 
                         <i class="fa-solid fa-hospital-user fs-3 primary-text"></i>
@@ -64,10 +64,12 @@
 </div>
 
 <div class="container-fluid px-4">
-    <div class="row g-3 my-2">
-
+    <div class="row">
         <div class="col-md-6">
-            <canvas id="patientChart"></canvas>
+            <div class="table table-hover">
+                
+
+            </div>
         </div>
     </div>
 </div>
