@@ -20,7 +20,7 @@
     <div class="fw-bold fs-3 mt-3">PATIENT</div>
     <div class="row bg-light p-3 rounded-2 shadow">
       <div class="col-md">
-        <div>NAME: {{ dd($kardexinfo->patients) }} </div>
+        <div>NAME: </div>
         <div>AGE: </div>
         <div>GENDER: </div>
         <div>ADDRESS: </div>
