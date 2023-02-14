@@ -549,7 +549,7 @@
 
     function reply_click_deletePatient(clicked_id) {
         Swal.fire({
-            title: 'Delete Progress Note Record?',
+            title: 'Delete Patient Record?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
@@ -561,7 +561,7 @@
                 window.location.href = "{{ route('destroyPatient', $patient->id) }}" + "/" + clicked_id;
                 Swal.fire({
                     title: 'Deleted!',
-                    text: 'Progress Note Record has been deleted.',
+                    text: 'Patient Record has been deleted.',
                     icon: 'success',
                     showConfirmButton: false
                 });

@@ -62,7 +62,7 @@
                                     </button>
 
                                     <!-- Delete Admission -->
-                                    <a href="{{ route('destroyAdmitted', $admitpatient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="{{ route('destroyAdmitted', $admitpatient->id) }}" class="btn btn-sm btn-danger text-light me-1" onClick="reply_click_deleteAdmission(this.id)" ><i class="fa-solid fa-trash-can"></i></a>
 
                                     <!-- Edit Admission Modal-->
                                     <div class="modal fade" id="editAdmissionModal" tabindex="-1" aria-labelledby="editAdmissionLabel" aria-hidden="true">
@@ -278,7 +278,7 @@
                                     </button>
 
                                     <!-- Delete specific row -->
-                                    <a href="{{ route('destroyAdmitted', $admitpatient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="{{ route('destroyAdmitted', $admitpatient->id) }}" class="btn btn-sm btn-danger text-light me-1" onClick="reply_click_deleteAllAdmit(this.id)" ><i class="fa-solid fa-trash-can"></i></a>
 
                                     <!-- Edit All Admitted Modal-->
                                     <div class="modal fade" id="editAdmissionAllModal" tabindex="-1" aria-labelledby="editAdmissionAllLabel" aria-hidden="true">
@@ -600,9 +600,51 @@
         });
     }
 
+    function reply_click_deleteAdmission(clicked_id) {
+        Swal.fire({
+            title: 'Delete Admission Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(66,100,208)',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('destroyAdmitted', $admitpatient->id) }}" + "/" + clicked_id;
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Admission Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+
+    function reply_click_deleteAllAdmit(clicked_id) {
+        Swal.fire({
+            title: 'Delete Admission Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(66,100,208)',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('destroyAdmitted', $admitpatient->id) }}" + "/" + clicked_id;
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Admission Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+
 </script>
-
-
 
 
 @endsection
