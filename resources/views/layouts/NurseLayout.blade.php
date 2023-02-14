@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medboard</title>
+  <title>{{ $title }}</title>
 
    <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
@@ -163,21 +163,22 @@ border-radius: 0px 44px 32px 0px;"
     <p></p>
   </div>
 
-  <div class="list-group my-3 ps-3">
+  <div class="list-group my-3 ps-3 mt-5">
     <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-      <p style="color:#1353c9;"><i class=" fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
+      <p style="color:#1353c9;"><i class=" fa-sharp fa-solid fa-house-chimney fa-2xl me-2"></i>Home</p>
     </a>
     <a href="{{ route('nursePatients') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-bed-pulse fa-2xl me-2"></i>Patients</p>
     </a>
-    <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
+    {{-- <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
       <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
-    </a>
-    <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
+    </a> --}}
+    <a href="{{ route('kardex') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
+      <p style="color:#1353c9;"><i class="fa-solid fa-address-book fa-2xl me-2"></i>Kardex</p>
+      
       
     </a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9; padding-top:60%;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
       <i class="fas fa-project-diagram fs-2 me-2"></i>
       {{ __('Logout') }}
     </a>
@@ -202,9 +203,6 @@ border-radius: 0px 44px 32px 0px;"
       <div class="ms-2 mt-0 pt-0">
         @yield('content')
       </div>
-      
-
-
 
    <!-- Navbar Toggler -->
  <script>
