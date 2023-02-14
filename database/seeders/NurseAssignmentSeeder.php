@@ -74,5 +74,25 @@ class NurseAssignmentSeeder extends Seeder
                 'station' => 'Nurse Station 2',             
             ]);
         }
+
+        for($i = 23; $i <= 23; $i++) {
+            \App\Models\NurseAssignment::create([
+                'user_id' => $i,
+                'datetime_start' => '2023-02-15 07:00:00',
+                'datetime_end' => '2023-02-15 15:00:00',
+                'shift' => 'AM Shift',
+                'station' => 'Nurse Station 1',             
+            ]);
+        }
+
+        for($i = 24; $i <= 24; $i++) {
+            \App\Models\NurseAssignment::create([
+                'user_id' => $i,
+                'datetime_start' => '2023-02-15 15:00:00',
+                'datetime_end' => '2023-02-15 23:00:00',
+                'shift' => 'PM Shift',
+                'station' => 'Nurse Station 1',             
+            ]);
+        }
     }
 }

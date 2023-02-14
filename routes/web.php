@@ -54,7 +54,12 @@ Route::get('/', function (){
     return redirect()->route('login');
 });
 
+Route::get('/welcome', function (){
+    return view ('Welcome');
+});
+
 Auth::routes();
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
@@ -95,7 +100,7 @@ Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name
 // *****************************************************************************
 // All Admin Routes List
 
-Route::get('/kardex', [AdmissionNewController::class, 'kardex'])->name('kardex');
+Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 

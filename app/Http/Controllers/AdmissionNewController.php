@@ -28,8 +28,7 @@ class AdmissionNewController extends Controller
         leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
         ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
         ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
-        ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
-    
+        ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')  
 
         ->get([
 
@@ -124,32 +123,58 @@ class AdmissionNewController extends Controller
         return redirect()->route('admittedPatient')->with('success', 'Patient deleted successfully!');
     }
 
-    public function kardex() {
-
-        $admission = DB::table('doctor_orders')
-
-                        ->get();
+    // Will receive admission id/Patient id
+    public function kardex($id) {
         
+        // $patient = Patient::where('id', 1)->first();
+        // $admissions = $patient->admission;
+            // ->with('beds');
+
+        // $kardexinfo = AdmissionNew::find(1)->with('patients');
+
+        $kardexinfo = AdmissionNew::
+
+        leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
+        ->where('admission_news.id', '=', $id)
+        ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
+        ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
+        ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
         
 
+        ->get([
 
-                        
+            'admission_news.id',
+            'admission_news.bed_id',
+            'admission_news.admitting_doctor_id',
+            'admission_news.type',
+            'admission_news.status',
+            'admission_news.created_at',
+            'admission_news.*',
 
+            'patients.lastname AS p_lastname',
+            'patients.firstname AS p_firstname',
+            'patients.midname AS p_midname',
+            'patients.*',
 
-                        // admission info + patient info
-                        // leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-                        // ->where('admission_news.status', 'admitted')
-                        
-                        // + doctors info (from users);
-                        // ->leftJoin('users', 'users.id', '=', 'admission_news.primary_doctor_id')
+            // 'beds.room',
+            'beds.*',
 
-                        // + beds info
-                        // ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
-                        
-                        // ->find(1);
+            'users1.lastname AS ad_lastname',
+            'users1.firstname AS ad_firstname',
+            'users1.middlename AS ad_middlename',
+
+            'users2.lastname AS pd_lastname',
+            'users2.firstname AS pd_firstname',
+            'users2.middlename AS pd_middlename'
         
-        // dd($admission);     
+        ]);
         
+        // return response()->json($kardexinfo);
+        
+        // dd($kardexinfo->admission_id);  
+                
+        // dd($admissions);             
+        // dd($patient->admissions);
         
         if(auth()->user()->usertype == 'admin') {
             $layout = 'layouts.adminlayout';
@@ -164,7 +189,8 @@ class AdmissionNewController extends Controller
             $title = 'Nurse-Kardex';
         }
 
-        return view('kardex', compact('layout', 'title'));
+        return view('kardex', compact('layout', 'title'))
+        ->with('kardexinfo', $kardexinfo);
         
     }
 }
