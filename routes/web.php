@@ -98,7 +98,7 @@ Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name
 // *****************************************************************************
 // All Admin Routes List
 
-Route::get('/kardex', [AdmissionNewController::class, 'kardex'])->name('kardex');
+Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 

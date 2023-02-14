@@ -122,7 +122,8 @@ class AdmissionNewController extends Controller
         return redirect()->route('admittedPatient')->with('success', 'Patient deleted successfully!');
     }
 
-    public function kardex() {
+    // Will receive admission id/Patient id
+    public function kardex($id) {
         
         // $patient = Patient::where('id', 1)->first();
         // $admissions = $patient->admission;
@@ -133,7 +134,7 @@ class AdmissionNewController extends Controller
         $kardexinfo = AdmissionNew::
 
         leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-        ->where('admission_news.id', '=', 1)
+        ->where('admission_news.id', '=', $id)
         ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
         ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
         ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
