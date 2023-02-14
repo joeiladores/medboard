@@ -35,7 +35,8 @@
         <table id="userTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
           <thead class="primary-bg text-light">
             <tr>
-              <td>User ID</td>              
+              <td>ID</td>
+              <td></td>              
               <td>Name</td>
               <td>User Type</td>
               <td>Department</td>
@@ -51,6 +52,13 @@
             @foreach($users as $user)
             <tr>
               <td>{{ $user->id }}</td>
+              
+              <td>@if($user->imagepath != NULL)
+              <img src="{{ Storage::url('public/images/profile/'.$user->imagepath) }}" class="img-fluid rounded-1" style="width: 30px; height: 20px; object-fit:cover;">
+              @else
+              <i class="fas fa-user fs-6"></i>
+              @endif</td>
+
               <td>{{ $user->name }}</td>
               <td>{{ $user->usertype }}</td>              
               <td>{{ $user->department->name }}</td>
@@ -61,7 +69,7 @@
                 <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
                 <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
               </td>  
-              <td>{{ $user->status }}</td>            
+              <td>{{ $user->status }}</td>                          
             </tr>
             @endforeach
             @else
