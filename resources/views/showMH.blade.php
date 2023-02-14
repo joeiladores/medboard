@@ -3,7 +3,7 @@
 
 <div class="container-fluid px-4">
 
-    <a href="{{ route('patientView') }}" class="btn btn-md btn-primary mb-3">⇦ Go back</a>
+    <a href="{{ route('patientView') }}" class="btn btn-md btn-primary px-4 fw-bold mb-3 mt-5">⇦ Go back</a>
     <h2 class="second-text text-center">Medical History</h2>
 
     <div class="row g-3 my-2 d-flex justify-content-center mb-3">

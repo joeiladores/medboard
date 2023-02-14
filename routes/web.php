@@ -16,7 +16,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
-use App\Http\Controllers\DoctorDashboard;
+use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
@@ -32,8 +32,9 @@ use App\Http\Controllers\MedicalHistoryController;
 
 //Admission Form
 
-use App\Http\Controllers\AdmissionAjaxController;
-use App\Http\Controllers\PatientAdmissionController;
+use App\Http\Controllers\Frontend\HomepageController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\UserProfileController;
 
 // PDF
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -279,3 +280,13 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+
+Auth::routes();
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::match(['get', 'post'],'/dashboard/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/dashboard/profile/deleteavatar/{id}/{fileName}', [UserProfileController::class, 'deleteavatar'])->name('profile.deleteavatar');
+});
