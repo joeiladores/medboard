@@ -26,6 +26,11 @@ class AdminController extends Controller
             $totalNurses    = User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->count();
             $totalVacantBeds = Bed::where('status', 'vacant')->count();
 
+            // $getData = MODEL::select('name')->withCount('results as results')->get();
+            // $total = $getData->mapWithKeys(function ($item, $key){
+            //     return [$item->name => $item->results];
+            // });
+
             return view('homeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds', 'totalSample'));
         } else {
             throw new UnauthorizedHttpException('Inactive');

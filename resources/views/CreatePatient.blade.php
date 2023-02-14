@@ -156,7 +156,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="{{ route('storeMedHistory') }}">
+                                                <form class="add-medhistory" method="POST" action="{{ route('storeMedHistory') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col-md-8">
@@ -202,7 +202,7 @@
 
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add to patient</button>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateAddMedHistory()">Add to patient</button>
                                                         </div>
                                                 </form>
                                             </div>
@@ -227,7 +227,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="{{ route('storeAdmit') }}">
+                                                <form class="add-admission" method="POST" action="{{ route('storeAdmit') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col">
@@ -313,7 +313,7 @@
                                                                 <option value="Ambulant">Ambulant</option>
                                                                 <option value="Dangle & sit up">Dangle & sit up</option>
                                                                 <option value="Bedrest w/ BRP">Bedrest w/ BRP</option>
-                                                                <option value="CBR w/o BRP">CBR w/o BRP</option> 
+                                                                <option value="CBR w/o BRP">CBR w/o BRP</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -325,7 +325,7 @@
                                                                 <option value="Soft">Soft</option>
                                                                 <option value="Clear liquids">Clear liquids</option>
                                                                 <option value="Gen. liquids">Gen. liquids</option>
-                                                            
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -336,7 +336,7 @@
                                                                 <option value="Thoractic tube">Thoractic tube</option>
                                                                 <option value="NGT">NGT</option>
                                                                 <option value="CVP">CVP</option>
-                                                            
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -347,7 +347,7 @@
                                                                 <option value="BP Qshift">BP Qshift</option>
                                                                 <option value="Neuro VS">Neuro VS</option>
                                                                 <option value="Abdominal girth">Abdominal girth</option>
-                                                               
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -370,7 +370,7 @@
                                                         </div>
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary" style="background-color:rgb(66,100,208);float:right">Admit patient</button>
+                                                            <button type="submit" class="btn btn-primary" style="background-color:rgb(66,100,208);float:right" onclick="validateAddAdmission()">Admit patient</button>
                                                         </div>
                                                 </form>
                                             </div>
@@ -397,7 +397,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="card">
-                                                    <form method="POST" action="{{ route('updatePatient') }}">
+                                                    <form class="edit-patient" method="POST" action="{{ route('updatePatient') }}">
                                                         @csrf
                                                         <div class="row g-3 p-3">
                                                             <div class="col-md-4">
@@ -471,7 +471,7 @@
                                                         </div>
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Update</button>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateEditPatient()">Update</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -480,7 +480,7 @@
                                 </div>
                             </div>
                             <!-- Delete Patient -->
-                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1" onClick="reply_click_deletePatient(this.id)"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -501,19 +501,76 @@
 <!-- For Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
- <!-- Add Transfusion validation -->
- <script>
+<!-- Add Transfusion validation -->
+<script>
     function validateAddPatient() {
         var form = document.querySelector('.add-patient');
-        
-            Swal.fire({
+
+        Swal.fire({
             title: 'Success!',
-            text: 'New Transfusion record has been added!',
+            text: 'New Patient has been added!',
             icon: 'success',
             showConfirmButton: true,
-            });
-        }
-        
+        });
+    }
+
+    function validateAddMedHistory() {
+        var form = document.querySelector('.add-medhistory');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Patients Medical History has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateAddAdmission() {
+        var form = document.querySelector('.add-admission');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Admit Patient has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateEditPatient() {
+        var form = document.querySelector('.edit-patient');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'Patient has been updated!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function reply_click_deletePatient(clicked_id) {
+        Swal.fire({
+            title: 'Delete Progress Note Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(66,100,208)',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('destroyPatient', $patient->id) }}" + "/" + clicked_id;
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Progress Note Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+
+
+    edit - patient
 </script>
 
 

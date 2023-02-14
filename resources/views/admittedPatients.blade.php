@@ -74,7 +74,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="card">
-                                                        <form method="POST" action="{{ route('updateAdmission') }}">
+                                                        <form class="edit-admission" method="POST" action="{{ route('updateAdmission') }}">
                                                             @csrf
                                                             <div class="row g-3 p-3">
                                                                 <div class="col">
@@ -226,7 +226,7 @@
                                                                 <input type="hidden" name="id" id="edit_admitpatient_id">
                                                                 <hr>
                                                                 <div>
-                                                                    <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Update</button>
+                                                                    <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateEditAdmission()">Update</button>
                                                                 </div>
                                                         </form>
                                                     </div>
@@ -290,7 +290,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="card">
-                                                        <form method="POST" action="{{ route('updateAdmission') }}">
+                                                        <form class="edit-alladmit" method="POST" action="{{ route('updateAdmission') }}">
                                                             @csrf
                                                             <div class="row g-3 p-3">
                                                                 <div class="col">
@@ -441,7 +441,7 @@
                                                                 <input type="hidden" name="id" id="edit_admitpatient_id2">
                                                                 <hr>
                                                                 <div>
-                                                                    <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Update</button>
+                                                                    <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateEditAllAdmit()" >Update</button>
                                                                 </div>
                                                         </form>
                                                     </div>
@@ -576,6 +576,33 @@
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 </script>
+
+<script>
+    function validateEditAdmission() {
+        var form = document.querySelector('.edit-admission');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'Patient admission has been updated!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateEditAllAdmit() {
+        var form = document.querySelector('.edit-alladmit');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'Patient admission has been updated!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+</script>
+
+
 
 
 @endsection
