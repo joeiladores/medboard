@@ -1,4 +1,4 @@
-@extends('errors::minimalinactive')
+@extends('errors::displayerrorinactive')
 
 @section('title', __('Inactive'))
 @section('code', 'Inactive')
