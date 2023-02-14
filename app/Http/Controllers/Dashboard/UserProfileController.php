@@ -23,29 +23,28 @@ class UserProfileController extends Controller
             return redirect()->route('profile');
         }
 
-        $current_user = Auth::user();
+        $current_user = auth()->user();
 
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:users,name,' . $current_user->id],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:100', 'unique:users,email,' . $current_user->id],
-            'avatar' => ['sometimes', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
+            'imagepath' => ['sometimes', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
             'bio' => ['sometimes', 'string', 'max:255'],
         ]);
-
+        
         $current_user->name = $request->get('name');
         $current_user->firstname = $request->get('firstname');
         $current_user->lastname = $request->get('lastname');
         $current_user->email = $request->get('email');
-        $current_user->bio = $request->get('bio');
-
+        $current_user->stickyNote = $request->get('stickyNote');
 
         // Upload avatar
-        if ($request->hasFile('avatar')) {
-            $imageName = md5(time()) . $current_user->id . '.' . $request->avatar->extension();
-            $request->avatar->move(public_path('images/avatars'), $imageName);
-            $current_user->avatar = $imageName;
+        if ($request->hasFile('imagepath')) {
+            $imageName = md5(time()) . $current_user->id . '.' . $request->imagepath->extension();
+            $request->imagepath->move(public_path('images/avatars'), $imageName);
+            $current_user->imagepath = $imageName;
         }
         
         
@@ -66,17 +65,17 @@ class UserProfileController extends Controller
         File::delete(public_path('images/avatars/' . $fileName));
     }
 
-    if (!$current_user->avatar || $current_user->avatar == "default.png") {
+    if (!$current_user->imagepath || $current_user->imagepath == "default.png") {
         // Do not delete default avatar
-        return redirect('dashboard/profile')->with('success', 'Avatar deleted successfully');
+        return redirect('dashboard/profile')->with('success', 'Image deleted successfully');
     } else {
-        // Set user avatar to default if no new avatar is uploaded
-        if (!$request->hasFile('avatar')) {
-            $current_user->avatar = "avatar";
+        // Set user imagepath to default if no new avatar is uploaded
+        if (!$request->hasFile('imagepath')) {
+            $current_user->imagepath = "imagepath";
             $current_user->save();
         }
 
-        return redirect('dashboard/profile')->with('success', 'Avatar deleted successfully');
+        return redirect('dashboard/profile')->with('success', 'Image deleted successfully');
     }
 }
 

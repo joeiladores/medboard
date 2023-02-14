@@ -25,7 +25,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
         'usertype',
         'lastname',
         'firstname',
@@ -38,8 +37,7 @@ class User extends Authenticatable
         'specialization_id',
         'imagepath',
         'status',
-        'bio',
-        'avatar'
+        'stickyNote',
     ];
 
     /**

@@ -113,12 +113,13 @@
                     <div class="col">
                         <div>
                             <img class="rounded-circle img-thumbnail" style="width: 150px; height: 150px;"
-                                src="{{ asset('images/avatars/'. $current_user->avatar) }}"
+                            
+                                src="{{ asset('images/avatars/'. $current_user->imagepath) }}"
                                 alt="{{ $current_user->name }}">
                             <br><br>
                             <div class="row">
                                 <div class="col card text-muted text-left">
-                                    <p class="text-muted">Bio: {{ $current_user->bio }}</p>
+                                    <p class="text-muted">Sticky Note: {{ $current_user->stickyNote }}</p>
                                 </div>
                             </div>
                         </div>
@@ -245,24 +246,24 @@
                             </div>
                         </div>
                         <div class=" with-floating-label">
-                            <label for="bio" class="text-muted">Edit Bio:</label>
-                            <input type="longtext" id="bio" name="bio" placeholder="bio"
-                                class="form-control @error('bio') is-invalid @enderror"
-                                value="{{ old('bio', $current_user->bio) }}">
-                            @error('bio')
+                            <label for="stickyNote" class="text-muted">Edit sticky Note:</label>
+                            <input type="longtext" id="stickyNote" name="stickyNote" placeholder="stickyNote"
+                                class="form-control @error('stickyNote') is-invalid @enderror"
+                                value="{{ old('stickyNote', $current_user->stickyNote) }}">
+                            @error('stickyNote')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <label for="avatar" class="text-muted">Change Profile Picture</label>
+                        <label for="imagepath" class="text-muted">Change Profile Picture</label>
                         <div class="form-group d-flex">
                             <div class="w-75 pr-1">
-                                <input type='file' name='avatar' id="avatar"
+                                <input type='file' name='imagepath' id="imagepath"
                                     class="form-control border-0 py-0 pl-0 file-upload-btn"
-                                    value="{{$current_user->avatar}}">
-                                @if ($errors->has('avatar'))
-                                <span class="invalid-feedback" role="alert">{{ $errors->first('avatar') }}</span>
+                                    value="{{$current_user->imagepath}}">
+                                @if ($errors->has('imagepath'))
+                                <span class="invalid-feedback" role="alert">{{ $errors->first('imagepath') }}</span>
                                 @endif
                             </div>
                         </div>
