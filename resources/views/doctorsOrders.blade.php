@@ -1,7 +1,6 @@
-@extends('layouts.DoctorLayout')
+@extends('layouts.doctorLayout', ['title' => 'Doctor Orders'])
 
 @section('content')
-<title>Doctor's Orders</title>
 
 <style>
 
