@@ -178,7 +178,13 @@ border-radius: 0px 44px 32px 0px;"
       
       
     </a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9; padding-top:60%;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
+
+    <a class="list-group-item  bg-transparent second-text fw-bold " href="{{ route('profile') }}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+      <i class="fa-solid fa-gear fs-2 me-2"></i>
+      {{ __('Account settings') }}
+    </a>
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
+
       <i class="fas fa-project-diagram fs-2 me-2"></i>
       {{ __('Logout') }}
     </a>
