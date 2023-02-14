@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout', ['title' => 'Admin-Admissions'])
+@extends($layout, ['title' => $title])
 @section('content')
 
 <div class="row mx-3">

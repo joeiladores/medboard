@@ -22,6 +22,20 @@ class AdmissionNewController extends Controller
 
     public function showAdmitted()
     {
+        if(auth()->user()->usertype == 'admin') {
+            $layout = 'layouts.adminlayout';
+            $title = 'Admin-Patient';            
+        }
+        elseif(auth()->user()->usertype == 'doctor') {
+            $layout = 'layouts.doctorLayout';
+            $title = 'Doctor-Patient';
+        }
+        else {
+            $layout = 'layouts.NurseLayout';
+            $title = 'Nurse-Patient';
+        }
+
+
        $admissions = AdmissionNew::
 
         leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
@@ -56,7 +70,7 @@ class AdmissionNewController extends Controller
         ]);
 
 
-        return view('admittedPatients')
+        return view('admittedPatients', compact('layout', 'title'))
             ->with('admittedinfo', $admissions)
             ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
             ->with('beds', Bed::all());

@@ -44,7 +44,7 @@
           <i class="fa-sharp fa-solid fa-bed-pulse fa-icon fs-3"></i>
           <span class="fs-5 ms-2">Patients</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+        <a href="{{ route('admittedPatient') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
           <i class="fa-solid fa-calendar-days fa-icon fs-3"></i>
           <span class="fs-5 ms-2">Admitted</span>
         </a>

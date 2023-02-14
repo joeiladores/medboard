@@ -22,39 +22,39 @@
             <div class="col-md-3 mt-2">
                 <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                    <h3 class="fs-3 fw-bold second-text">0008</h3>
-                    <p class="text-primary">Total</p>
+                    <h3 class="fs-3 fw-bold second-text">{{ $totalPatients }}</h3>
+                    <p class="text-primary fs-4">Total Current Patients</p>
 
-                    <i class="fa-solid fa-clipboard-list fs-3 primary-text"></i>
+                    <i class="fa-solid fa-clipboard-list fs-1 primary-text"></i>
                 </div>
             </div>
 
             <div class="col-md-3  mt-2">
                 <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                    <h3 class="fs-3 fw-bold second-text">0008</h3>
-                    <p class="text-primary">Total</p>
+                    <h3 class="fs-3 fw-bold second-text">{{ $totalDoctors }}</h3>
+                    <p class="text-primary fs-4">Total Doctors Active</p>
 
-                    <i class="fa-solid fa-hospital-user fs-3 primary-text"></i>
+                    <i class="fa-solid fa-user-doctor fs-1 primary-text"></i>
                 </div>
             </div>
             <div class="col-md-3  mt-2">
                 <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                    <h3 class="fs-3 fw-bold second-text">0008</h3>
-                    <p class="text-primary">Total</p>
+                    <h3 class="fs-3 fw-bold second-text">---</h3>
+                    <p class="text-primary fs-4">Total Orders</p>
 
-                    <i class="fa-solid fa-clipboard-list fs-3 primary-text"></i>
+                    <i class="fa-solid fa-clipboard-list fs-1 primary-text"></i>
                 </div>
             </div>
 
             <div class="col-md-3  mt-2">
                 <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                    <h3 class="fs-3 fw-bold second-text">0008</h3>
-                    <p class="text-primary">Total</p>
+                    <h3 class="fs-3 fw-bold second-text">{{ $totalNurses }}</h3>
+                    <p class="text-primary fs-4">Total Current Nurses</p>
 
-                    <i class="fa-solid fa-hospital-user fs-3 primary-text"></i>
+                    <i class="fa-solid fa-user-nurse fs-1 primary-text"></i>
                 </div>
             </div>
 
