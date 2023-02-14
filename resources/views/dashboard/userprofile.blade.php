@@ -5,6 +5,7 @@
 .form-group {
     position: relative;
     margin-bottom: 1rem;
+    border:solid 1px linen;
 }
 
 .form-group.with-floating-label label {

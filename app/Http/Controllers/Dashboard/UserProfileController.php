@@ -31,6 +31,7 @@ class UserProfileController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:100', 'unique:users,email,' . $current_user->id],
             'avatar' => ['sometimes', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
+            'bio' => ['nullable', 'string', 'max:255'],
         ]);
 
         $current_user->name = $request->get('name');
@@ -38,7 +39,7 @@ class UserProfileController extends Controller
         $current_user->lastname = $request->get('lastname');
         $current_user->email = $request->get('email');
         $current_user->bio = $request->get('bio');
-		$current_user->avatar = $request->get('avatar');
+
 
         // Upload avatar
         if ($request->hasFile('avatar')) {
@@ -55,17 +56,26 @@ class UserProfileController extends Controller
     }
 
     public function deleteavatar(Request $request)
-    {
-        $current_user = Auth::user();
-        $current_user->avatar = "default.png";
-        $current_user->save();
+{
+    $current_user = Auth::user();
 
-        $fileName = $request->get('fileName');
-        if (File::exists(public_path('images/avatars/' . $fileName))) {
-            File::delete(public_path('images/avatars/' . $fileName));
+    $fileName = $request->get('fileName');
+    if (File::exists(public_path('images/avatars/' . $fileName))) {
+        File::delete(public_path('images/avatars/' . $fileName));
+    }
+
+    if (!$current_user->avatar || $current_user->avatar == "default.png") {
+        // Do not delete default avatar
+        return redirect('dashboard/profile')->with('success', 'Avatar deleted successfully');
+    } else {
+        // Set user avatar to default if no new avatar is uploaded
+        if (!$request->hasFile('avatar')) {
+            $current_user->avatar = "avatar";
+            $current_user->save();
         }
 
-        return redirect('dashboard/profile')
-            ->with('success', 'Avatar deleted successfully');
+        return redirect('dashboard/profile')->with('success', 'Avatar deleted successfully');
     }
+}
+
 }
