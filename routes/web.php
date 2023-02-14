@@ -47,15 +47,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
  
 
-
-
 Route::get('/', function (){
     return redirect()->route('login');
 });
 
 Route::get('/welcome', function (){
-    return view ('Welcome');
+    return view('welcome');
 });
+
+// Route::get('/', function (){
+//     return view('welcome');
+// });
 
 Auth::routes();
 
