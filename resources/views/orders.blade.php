@@ -395,7 +395,7 @@ body, html {
                     <th>Frequency</th>
                     <th>Instructions</th>
                     <th>Date Start</th>
-                    <th>Date Stop</th>
+                    <th>Date Stopped</th>
                     <th>Actions</th>
                 </tr>
             </thead>

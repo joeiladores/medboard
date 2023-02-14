@@ -165,16 +165,16 @@ border-radius: 0px 44px 32px 0px;"
 
   <div class="list-group my-3 ps-3 mt-5">
     <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-      <p style="color:#1353c9;"><i class=" fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
+      <p style="color:#1353c9;"><i class=" fa-sharp fa-solid fa-house-chimney fa-2xl me-2"></i>Home</p>
     </a>
     <a href="{{ route('nursePatients') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-bed-pulse fa-2xl me-2"></i>Patients</p>
     </a>
     {{-- <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
       <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
     </a> --}}
     <a href="{{ route('kardex') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p style="color:#1353c9;"><i class="fa-solid fa-address-book fs-2 me-2"></i>Kardex</p>
+      <p style="color:#1353c9;"><i class="fa-solid fa-address-book fa-2xl me-2"></i>Kardex</p>
       
       
     </a>
@@ -203,9 +203,6 @@ border-radius: 0px 44px 32px 0px;"
       <div class="ms-2 mt-0 pt-0">
         @yield('content')
       </div>
-      
-
-
 
    <!-- Navbar Toggler -->
  <script>
