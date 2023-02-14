@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout', ['title' => 'Admin-Patient'])
+@extends($layout, ['title' => $title])
 @section('content')
 
 <div class="container-fluid px-4">
