@@ -16,6 +16,7 @@ class AdmissionNew extends Model
         'bed_id',
         'patient_id',
         'admitting_doctor_id',
+        'primary_doctor_id',
         'type',
         'complain',
         'impression_diagnosis',
@@ -46,6 +47,11 @@ class AdmissionNew extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function doctororders() {
+        return $this->hasMany(DoctorOrder::class);
+    }
+    
 
 
 }

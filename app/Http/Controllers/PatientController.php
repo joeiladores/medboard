@@ -14,24 +14,32 @@ class PatientController extends Controller
     {
         // TODO: TO CHANGE THIS LATER TO GET PATIENTS FROM ADMISSION TABLE WHERE STUATUS IS ADMITTED        
         $totalPatients  = Patient::count();
-        $totalDoctors   = User::where('usertype', 'Doctor')->count();
-        $totalNurses    = User::where('usertype', 'Nurse')->count();
-        $totalBeds      = Bed::where('status', 'Empty')->count();
-        // TODO: TO ADD IN THE QUERY THE DOCTORS AND NURSES WITH STATUS = ACTIVE
-        $totalDoctors   = User::where('usertype', 'Doctor')->where('status', 'active')->count();
-        $totalNurses    = User::where('usertype', 'Nurse')->where('status', 'active')->count();
-
-
+        $totalDoctors   = User::where('usertype', 'doctor')->where('status', 'active')->count();
+        $totalNurses    = User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->count();
         $totalVacantBeds = Bed::where('status', 'vacant')->count();
 
-        return view('HomeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
+        return view('homeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
 
         // from login direct to admin dashboard
     }
 
     public function patient()
     {
-        return view('CreatePatient')->with('allPatients', Patient::orderByDesc('created_at')->get())
+
+        if(auth()->user()->usertype == 'admin') {
+            $layout = 'layouts.adminlayout';
+            $title = 'Admin-Patient';            
+        }
+        elseif(auth()->user()->usertype == 'doctor') {
+            $layout = 'layouts.doctorLayout';
+            $title = 'Doctor-Patient';
+        }
+        else {
+            $layout = 'layouts.NurseLayout';
+            $title = 'Nurse-Patient';
+        }
+
+        return view('CreatePatient', compact('layout', 'title'))->with('allPatients', Patient::orderByDesc('created_at')->get())
             ->with('medhistory', MedicalHistory::get())
             ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
             ->with('beds', Bed::where('status', 'vacant')->get());

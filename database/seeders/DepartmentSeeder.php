@@ -46,7 +46,16 @@ class DepartmentSeeder extends Seeder
             ],
             [
                 'name' => 'IT Department',
-            ],            
+            ],
+            [
+                'name' => 'Urology',
+            ],   
+            [
+                'name' => 'Internal Medicine',
+            ],       
+            [
+                'name' => 'Neurology',
+            ],     
         ];
         foreach ($department as $dept) {
             \App\Models\Department::create($dept);

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Bed;
+
 
 class BedController extends Controller
 {
@@ -15,10 +17,13 @@ class BedController extends Controller
     {
         $bed = new Bed;
 
-        $bedexist = Bed::where('bednum', $request->bednum)->first();
-        if($bedexist != NULL) {
+        $validator = Validator::make($request->all(), [
+            'bednum' => ['required', 'string', 'unique:beds'],
+        ]);
+
+        if ($validator->fails()) {
             return redirect()->route('beds')
-            ->with('error', 'Bed number already exists!');
+                ->with('error', 'Bed number already exists!');
         }
 
         $bed->bednum = $request->bednum;
@@ -72,9 +77,5 @@ class BedController extends Controller
         $bed = Bed::find($id);
         return response()->json($bed);
     }
-
-    // public function countVacant() {
-    //     return Bed::all()->count();
-    // }
 
 }

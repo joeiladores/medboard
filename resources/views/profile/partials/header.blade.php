@@ -8,7 +8,7 @@
   <title>{{$title}}</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/images/medboard-logo-final.png">
+  <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
 
   <!--Bootstrap CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -43,7 +43,7 @@
           <i class="fa-sharp fa-solid fa-bed-pulse fa-icon"></i>
           <span>Patients</span>          
         </a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <a href="{{ route('admittedPatient') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-hospital fa-icon"></i>
           <span>Admission</span>          
         </a>
@@ -57,11 +57,11 @@
         </a>
         <a href="{{ route('departments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
         <i class="fa-solid fa-building-user fa-icon"></i>
-          Department Management
+          Department
         </a>
         <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-people-roof fa-icon"></i>
-          <span>Specialization Management</span>          
+          <span>Specialization</span>          
         </a>
         <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-user-nurse fa-icon"></i>
@@ -89,20 +89,20 @@
 
     <!-- Navbar Starts -->
     <div id="page-content-wrapper">
-      <div class="container sticky" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2)">
+      <div class="container-fluid" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2)">
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-3">
 
           <!-- Header -->
-          <div class="d-flex">
-            <!-- Sidebar Toggler -->
+          <div class="d-flex">            
             <div class="row">
+              <!-- Sidebar Toggler -->
               <div class="col-md-3 col-2 align-self-center">
                 <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
               </div>
               <div class="col align-self-center">
                 <!-- Welcome User -->
                 <div class="fs-6 fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }}</div>
-                <div>{{ \Carbon\Carbon::now()->format('F j, Y') }}</div>
+                <div>{{ \Carbon\Carbon::now(new DateTimeZone('Asia/Singapore'))->format('D, F j, Y') }}</div>
               </div>              
             </div>            
           
@@ -113,7 +113,7 @@
             @endif
           </div>
 
-          <!-- Toggler Button -->
+          <!-- Profile Toggler Button -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

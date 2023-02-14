@@ -13,10 +13,11 @@ class DoctorOrder extends Model
 
     protected $fillable = [
         'admission_id',
-        'doctor_order_id',
-        'date_ordered'
+        'doctor_order_id'
     ];
-
+    public function admission() {
+        return $this->belongsTo(Admission::class);
+      }
     public function orderMedication() {
         return $this->hasMany(OrderMedication::class);
     }
@@ -29,9 +30,7 @@ class DoctorOrder extends Model
     public function progressNote() {
         return $this->hasMany(ProgressNote::class);
     }
-    public function admission() {
-        return $this->belongsTo(Admission::class);
-      }
+
 
     
 }

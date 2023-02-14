@@ -1,4 +1,5 @@
-@include('profile.partials.header', ['title' => 'MedBoard - Patients'])
+@extends($layout, ['title' => $title])
+@section('content')
 
 <div class="container-fluid px-4">
     <div class="row g-3 my-2">
@@ -276,7 +277,7 @@
                                                             <select id="admitting_doctor_id" name="admitting_doctor_id" class="form-select">
                                                                 <option disabled hidden selected>--- ---</option>
                                                                 @foreach ($doctors as $doctor)
-                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->midname }}
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
                                                                 </option>
                                                                 @endforeach
                                                             </select>
@@ -336,7 +337,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label for="special_info" class="form-label"></label>
+                                                            <label for="special_info" class="form-label">Special Info</label>
                                                             <select id="special_info" name="special_info" class="form-select" required>
                                                                 <option disabled hidden selected>--- ---</option>
                                                                 <option value="Weigh daily">Weigh daily</option>
@@ -344,6 +345,16 @@
                                                                 <option value="Neuro VS">Neuro VS</option>
                                                                 <option value="Abdominal girth">Abdominal girth</option>
                                                                 <option value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="primary_doctor_id" class="form-label">Primary Doctor :</label>
+                                                            <select id="primary_doctor_id" name="primary_doctor_id" class="form-select">
+                                                                <option disabled hidden selected>--- ---</option>
+                                                                @foreach ($doctors as $doctor)
+                                                                <option value="{{ $doctor->id }}">Dr. {{ $doctor->lastname }} {{ $doctor->firstname }} {{ $doctor->middlename }}
+                                                                </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -363,15 +374,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
                         </td>
 
                         <td class="d-flex">
-                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
                             <!-- Edit Patient Modal Button -->
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
-                                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                                    <i class="fa-sharp fa-solid fa-pen-to-square"></i>
                                 </button>
 
                                 <!-- Edit Patient Modal-->
@@ -466,6 +476,8 @@
                                         </div>
                                 </div>
                             </div>
+                            <!-- Delete Patient -->
+                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -483,5 +495,4 @@
 
 </div>
 
-
-@include('profile.partials.footer')
+@endsection

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 // Admin Controllers
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\DepartmentController;
@@ -75,8 +76,13 @@ Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHi
 
 // *****************************************************************************
 // Routes for Admission
-Route::post('storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
+Route::post('/storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
 Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
+Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
+Route::get('/showAdmission/{id}', [AdmissionNewController::class, 'show'])->name('showAdmission');
+Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name('updateAdmission');
+
+
 
 
 // Route::middleware(['auth', 'user-access:doctor'])->group(function () {
@@ -88,10 +94,13 @@ Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])-
 
 // *****************************************************************************
 // All Admin Routes List
+
+Route::get('/kardex', [AdmissionNewController::class, 'kardex'])->name('kardex');
+
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
      // User Routes 
-    Route::get('/home', [PatientController::class, 'index'])->name('adminHome');
+    Route::get('/home', [AdminController::class, 'index'])->name('adminHome');
     Route::get('/admin/users', [UserController::class, 'users'])->name('users');
     Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
     Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');
@@ -125,6 +134,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 });
 
+
 // *****************************************************************************
 // Calendar Routes
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
@@ -143,6 +153,8 @@ Route::controller(CalendarController::class)->group(function () {
 // Doctor's Orders View
 Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
 Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('orders');
+Route::post('/storeDoctorOrders', [DoctorOrdersController::class, 'store'])->name('storeDoctorOrders');
+Route::get('/destroyDoctorOrder/{id}', [DoctorOrdersController::class, 'destroy'])->name('destroyDoctorOrder');
 
 // For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
 
@@ -188,15 +200,24 @@ Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy
 
 Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
 Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
+Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
+Route::post('/admin/updatenurseassignment', [NurseAssignmentController::class, 'updateNurseAssignment'])->name('updatenurseassignment');
+Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::class, 'deleteNurseAssignment'])->name('deletenurseassignment');
 
 
 
 // *****************************************************************************
 // Nurse's Dashboard View
 Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
-Route::get('/nursePatients', [NurseDashboardController::class, 'patients'])->name('nursePatients');
-
-
+Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
+Route::get('/nursePatients', [NurseDashboardController::class, 'patientList'])->name('nursePatients');
+//Medication
+Route::post('/storeNurseProgressNote', [NurseDashboardController::class, 'storeNurseProgressNote'])->name('storeNurseProgressNote');
+Route::get('/editNurseMedication/{id}', [NurseDashboardController::class, 'editNurseMedication'])->name('editNurseMedication');
+Route::post('/updateNurseMedication', [NurseDashboardController::class, 'updateNurseMedication'])->name('updateNurseMedication');
+//Transfusion
+Route::get('/editNurseTransfusion/{id}', [NurseDashboardController::class, 'editNurseTransfusion'])->name('editNurseTransfusion');
+Route::post('/updateNurseTransfusion', [NurseDashboardController::class, 'updateNurseTransfusion'])->name('updateNurseTransfusion');
 // *****************************************************************************
 Route::get('/generate-pdf', function(){
     // get the data to display in the PDF
@@ -216,3 +237,49 @@ Route::get('/generate-pdf', function(){
 
 
 
+// *****************************************************************************
+// Routes for password resets
+Route::post('/password-reset', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+
+// Route::get('/forgot-password', function () {
+//     return view('auth.forgot-password');
+// })->middleware('guest')->name('password.request');  // reset password when loggin
+
+
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+ 
+//             $user->save();
+ 
+//         //     event(new PasswordReset($user));
+//         }
+    );
+ 
+
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');

@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Medboard</title>
+
+   <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
+
   <!--Bootstrap CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -17,8 +21,16 @@
 </head>
 
 <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.9375rem;
+  /* font-family: 'Roboto+Mono', sans-serif; */
+  font-family: 'Poppins', sans-serif;
+}
 .sidebar{
-background: linear-gradient(180deg, rgba(66, 100, 208, 0.26) 1.56%, #4264D0 36.46%);
+background-image: linear-gradient(to right, #5eb0f3, #8ec8ff, #b4dbff, #d4ebf8, #ddecfa);
 box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
 border-radius: 0px 44px 32px 0px;"
 }
@@ -151,21 +163,21 @@ border-radius: 0px 44px 32px 0px;"
     <p></p>
   </div>
 
-  <div class="list-group list-group my-3">
-    <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold  text-dark">
-      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
+  <div class="list-group my-3 ps-3">
+    <a href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+      <p style="color:#1353c9;"><i class=" fa-sharp fa-solid fa-house-chimney fs-2 me-2"></i>Home</p>
     </a>
     <a href="{{ route('nursePatients') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-bed-pulse fs-2 me-2"></i>Patients</p>
     </a>
     <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-      <p class="text-light"><i class="text-light fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
     </a>
     <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
-    <p class="text-light"><i class="text-light fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
       
     </a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light mt-5">
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
       <i class="fas fa-project-diagram fs-2 me-2"></i>
       {{ __('Logout') }}
     </a>

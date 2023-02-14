@@ -113,25 +113,38 @@ class UserController extends Controller
         ->with('specializations', Specialization::all());
     }
 
-    protected function updateUser(Request $request) {        
-        $user = User::find($request->id);
-
+    protected function updateUser(Request $request) {   
         
+        $validator = Validator::make($request->all(), 
+        [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('edituser')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Update user is not successfull!');;
+        }
+
+        $user = User::find($request->id);
+        $current_image = $user->imagepath;        
         
         $user->usertype         = $request->usertype;
         $user->lastname         = $request->lastname;
         $user->firstname        = $request->firstname;
         $user->middlename       = $request->middlename;
         $user->birthdate        = $request->birthdate;
+        $user->password         = Hash::make($request->password);
         $user->gender           = $request->gender;
         $user->address          = $request->address;
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
         $user->status           = $request->status; 
-        $user->imagepath        = $request->imagepath;
         $user->name             = $request->firstname . ' ' . $request->lastname;
 
+        
         if($request->hasFile('imagepath')){
             $request->validate([
                 'imagepath' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
@@ -143,11 +156,23 @@ class UserController extends Controller
             // Save image in storage
             Storage::putFileAs('public/images/profile/', $imagepath, $filename);
 
-            $user->imagepath = $filename;
+            // Check if the user image exists prior to updating to new image
+            // Delete the old image
+            // dd($user->imagepath);
+            if($current_image != null){
+                Storage::delete('/public/images/profile/'.$current_image);
+            }
+
+            $user->imagepath = $filename;           
             
         }else{
-            $user->imagepath = null;
-        }
+            if($current_image == null){
+                $user->imagepath = null;
+            }
+            else {
+                $user->imagepath = $current_image;
+            }
+        }        
 
         $user->save();
         return redirect()->route('users')->with('success', 'User is successfully updated!');

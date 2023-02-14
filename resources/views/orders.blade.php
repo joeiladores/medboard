@@ -1,6 +1,7 @@
-@extends('layouts.NurseLayout')
+@extends('layouts.DoctorLayout')
 
 @section('content')
+<title>Doctor's Orders</title>
 <style>
     /* Set height of body and the document to 100% to enable "full page tabs" */
 body, html {
@@ -9,6 +10,10 @@ body, html {
   /* font-family: Arial; */
   /* overflow-x:hidden;
   overflow-y:hidden; */
+}
+
+#closeBtn{
+  background-color: rgba(111, 113, 114, 0.836);
 }
 
 /* Style tab links */
@@ -33,13 +38,20 @@ body, html {
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
-  color: white;
+  color: rgb(14, 0, 0);
   display: none;
   padding: 50px 20px;
+  padding-top:70px;
   margin: 14px;
-  height: 63%;
+  height: 275px;
   border-radius: 50px 50px 25px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 500px) {
+  .tabcontent {
+  height: 360px;
+}
 }
 #Medication {background-color: white;}
 #Transfusion {background-color: white;}
@@ -48,24 +60,27 @@ body, html {
 
 
 </style>
-<a href="{{ route('doctorsOrders') }}" style="background-color:rgb(66,100,208);" class="btn btn-light btn-sm text-light p-2">← Go back</a>
-  <div class="card rounded shadow m-3">
+
+<a href="{{ route('doctorsOrders') }}" style="background-color:#1f66d1;" class="btn btn-light btn-sm text-light ms-3 p-1">← Go back</a>
+  <div class="card rounded shadow m-3" style="background-color:#d4ebf8;">
   <div class="card-body m-2">
   <div class="d-flex justify-content-between">
-  <h6>Patient ID: 1</h6>
+  <h6 style="color:#1353c9;">Patient ID: {{ $doctor_order->admission_id }}</h6>
   <div>
-        <h6 class="mr-5 pr-5">Date: Jan 26,2023</h6>
+        <h6 style="color:#1353c9;" class="mr-5 pr-5">{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</h6>
   </div>
   </div>
-  <h6>Patient Name: Juan Luna</h6>
-   <h6> Room ID: A01 </h6>
+  <h6 style="color:#1353c9;">Patient Name: {{ $admittedPatient->firstname . " " . $admittedPatient->lastname }}</h6>
+  <h6 style="color:#1353c9;"> Room: {{ $roomNumber->room }} </h6>
   <div class="d-flex justify-content-between">
-  <h6 class="mr-2">Assigned Nurse: Cruz</h6>
+  <h6 class="mr-2"></h6>
   <div>
+
+
  
 <!-- Medication Modal Button -->
 <br>
-<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#medicationModal" style="background-color:#1f66d1;">
 + Medication
 </button>
 
@@ -73,7 +88,7 @@ body, html {
 <div class="modal fade" id="medicationModal" tabindex="-1" aria-labelledby="medicationModalLabel" aria-hidden="true">
   <<div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:rgb(66,100,208);">
+      <div class="modal-header" style="background-color:#1353c9;">
         <h5 class="modal-title text-light" id="medicationModal" >Add Medication</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -115,8 +130,8 @@ body, html {
                 </div>
                 <div>
                 <!-- Add Medication trigger button -->
-                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateMedicationForm()">Add</button>
-                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                <button type="submit" class="btn btn-primary m-2" style="background-color:#1353c9;float:right" onclick="validateMedicationForm()">Add</button>
+                <button id="closeBtn" type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right;">Close</button>
                 </div>
                 <!-- Add Medication Button -->
                 <script>
@@ -153,7 +168,7 @@ body, html {
 </div>
 
 <!-- Transfusion Modal Button -->
-<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#transfusionModal" style="background-color:#1f66d1;">
 + Transfusion
 </button>
 
@@ -161,7 +176,7 @@ body, html {
 <div class="modal fade" id="transfusionModal" tabindex="-1" aria-labelledby="transfusionLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:rgb(66,100,208);">
+      <div class="modal-header" style="background-color:#1353c9;float:right">
         <h5 class="modal-title text-light" id="transfusionModal">Add Transfusion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -195,8 +210,8 @@ body, html {
                 </div>
                 <div>
                   <!-- Add Transfusion Button -->
-                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateTransfusionForm()">Add</button>
-                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:#1353c9;float:right" onclick="validateTransfusionForm()">Add</button>
+                  <button id="closeBtn" type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
                 <!-- Add Transfusion validation -->
                 <script>
@@ -232,7 +247,7 @@ body, html {
 <!-- END Transfusion Modal-->
 
 <!-- Treatment Modal Button -->
-<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#treatmentModal" style="background-color:#1f66d1;">
 + Treatment
 </button>
 
@@ -240,7 +255,7 @@ body, html {
 <div class="modal fade" id="treatmentModal" tabindex="-1" aria-labelledby="treatmentLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:rgb(66,100,208);">
+      <div class="modal-header" style="background-color:#1353c9;">
         <h5 class="modal-title text-light" id="treatmentModal">Add Laboratory Treatment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -268,8 +283,8 @@ body, html {
                 </div>
                 <div>
                   <!-- Add Treatment Button -->
-                  <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateTreatmentForm()">Add</button>
-                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                  <button type="submit" class="btn btn-primary m-2" style="background-color:#1353c9;float:right" onclick="validateTreatmentForm()">Add</button>
+                  <button id="closeBtn" type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
                 <!-- Add Treatment validation -->
                 <script>
@@ -304,7 +319,7 @@ body, html {
 </div>
 
 <!-- Progress Notes Modal Button -->
-<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:rgb(66,100,208);">
+<button id="addbtn" type="button" class="btn btn-primary d-inline-block" data-bs-toggle="modal" data-bs-target="#progressNotesModal" style="background-color:#1f66d1;">
 + Progress Notes
 </button>
 
@@ -312,7 +327,7 @@ body, html {
 <div class="modal fade" id="progressNotesModal" tabindex="-1" aria-labelledby="progressNotesLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:rgb(66,100,208);">
+      <div class="modal-header" style="background-color:#1353c9;">
         <h5 class="modal-title text-light" id="progressNotesModal">Add Progress Note</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -321,12 +336,12 @@ body, html {
       @csrf
       <input type="hidden" name="doctor_order_id" value="{{ $doctor_order->id }}">
       <div class="mb-3">
-      <textarea class="form-control" id="progress_notes" name="progress_notes" rows="3" required></textarea>
+      <textarea class="form-control col-9" id="progress_notes" name="progress_notes" rows="10" required></textarea>
     </div>
     <div>
                 <!-- Add Progress Note trigger button -->
-                <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateProgressNoteForm()">Add</button>
-                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
+                <button type="submit" class="btn btn-primary m-2" style="background-color:#1353c9;float:right" onclick="validateProgressNoteForm()">Add</button>
+                <button id="closeBtn" type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal" style="float:right">Close</button>
                 </div>
                 <!-- Add Progress Note Validation -->
                 <script>
@@ -363,10 +378,10 @@ body, html {
 
 <!-- TABS -->
 <div class="m-3">
-  <button class="tablink" onclick="openPage('Medication', this, 'rgb(66,100,208)')" id="defaultOpen">Medication</button>
-  <button class="tablink" onclick="openPage('Transfusion', this, 'rgb(66,100,208)')">Transfusion</button>
-  <button class="tablink" onclick="openPage('Treatment', this, 'rgb(66,100,208)')">Treatment</button>
-  <button class="tablink" onclick="openPage('ProgressNotes', this, 'rgb(66,100,208)')">Progress&nbsp;Notes</button>
+  <button class="tablink" onclick="openPage('Medication', this, '#1353c9')" id="defaultOpen">Medication</button>
+  <button class="tablink" onclick="openPage('Transfusion', this, '#1353c9')">Transfusion</button>
+  <button class="tablink" onclick="openPage('Treatment', this, '#1353c9')">Treatment</button>
+  <button class="tablink" onclick="openPage('ProgressNotes', this, '#1353c9')">Progress&nbsp;Notes</button>
 </div>
 
 
@@ -398,7 +413,7 @@ body, html {
                     <td>{{ $order_medication->date_stopped ? date_format(new DateTime($order_medication->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_medication->id }}" onClick="reply_click_medication(this.id)"></button>
-                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                      <a href="{{ route('editMedication', $order_medication->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;;"></a>
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
@@ -423,13 +438,12 @@ body, html {
                         }
                       });
                     }
-
                       </script>
                 </tr>
                 @endforeach
             </tbody>
            </table>
-</div>
+        </div>
 
 <div id="Transfusion" class="tabcontent mt-4">
 <table class="table" id="transfusionTable">
@@ -453,7 +467,7 @@ body, html {
                     <td> {{ $order_transfusion->date_stopped ? date_format(new DateTime($order_transfusion->date_stopped), "F j, Y") : '' }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_transfusion->id }}" onClick="reply_click_transfusion(this.id)"></button>
-                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                      <a href="{{ route('editTransfusion', $order_transfusion->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;;"></a>
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
@@ -507,7 +521,7 @@ body, html {
                     <td> {{ $order_treatment->date_done ? date_format(new DateTime($order_treatment->date_done), "F j, Y") : '' }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $order_treatment->id }}" onClick="reply_click_treatment(this.id)"></button>
-                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                      <a href="{{ route('editTreatment', $order_treatment->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;;"></a>
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
@@ -551,11 +565,11 @@ body, html {
             <tbody>
             @foreach($progress_notes  as $progress_note)
                 <tr>
-                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y") }}</td>
+                <td>{{ date_format(new DateTime($progress_note->created_at), "F j, Y g:i A") }}</td>
                     <td>{{ $progress_note->notes }}</td>
                     <td class="d-flex">
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $progress_note->id }}" onClick="reply_click_progressNotes(this.id)"></button>
-                      <a href="{{ route('editProgressNote', $progress_note->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:rgb(66,100,208);"></a>
+                      <a href="{{ route('editProgressNote', $progress_note->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-pen-to-square" style="background-color:#1f66d1;;"></a>
                    </td>
                    <!-- To trigger the sweet alert (per ID) -->
                       <script type="text/javascript">
@@ -597,28 +611,28 @@ body, html {
   
   $(document).ready( function () {
      $('#medicationTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#transfusionTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#treatmentTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
 
  $(document).ready( function () {
      $('#progressNotesTable').DataTable({
-         "pageLength": 3,
+         "pageLength": 2,
          "lengthChange": false
      });
  } ); 
