@@ -2,10 +2,25 @@
 
 @section('content')
 <style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #d4ebf9;
+}
+
 .form-group {
     position: relative;
     margin-bottom: 1rem;
-    border:solid 1px linen;
+    border: solid 1px linen;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
 }
 
 .form-group.with-floating-label label {
@@ -103,7 +118,7 @@
                             <br><br>
                             <div class="row">
                                 <div class="col card text-muted text-left">
-                                    <p class="text-muted">Bio: {{ $current_user->bio}}</p>
+                                    <p class="text-muted">Bio: {{ $current_user->bio }}</p>
                                 </div>
                             </div>
                         </div>
@@ -201,6 +216,45 @@
                             @enderror
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group with-floating-label">
+                                    <label for="address" class="text-muted">Address:</label>
+                                    <input type="text" id="address" name="address" placeholder="address"
+                                        class="form-control @error('address') is-invalid @enderror"
+                                        value="{{old('address', $current_user->address)}}">
+                                    @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group with-floating-label">
+                                    <label for="phone" class="text-muted">Phone Num:</label>
+                                    <input type="text" id="phone" name="phone" placeholder="phone"
+                                        class="form-control @error('phone') is-invalid @enderror"
+                                        value="{{old('phone', $current_user->phone)}}">
+                                    @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" with-floating-label">
+                            <label for="bio" class="text-muted">Edit Bio:</label>
+                            <input type="longtext" id="bio" name="bio" placeholder="bio"
+                                class="form-control @error('bio') is-invalid @enderror"
+                                value="{{ old('bio', $current_user->bio) }}">
+                            @error('bio')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                         <label for="avatar" class="text-muted">Change Profile Picture</label>
                         <div class="form-group d-flex">
                             <div class="w-75 pr-1">
@@ -211,18 +265,27 @@
                                 <span class="invalid-feedback" role="alert">{{ $errors->first('avatar') }}</span>
                                 @endif
                             </div>
-
                         </div>
-                        <div class="form-group d-flex mb-0">
+                        <div class="d-flex mb-0">
                             <div class="w-50 pr-1">
-                                <input type="submit" name="submit" value="Save" class="btn btn-block btn-primary">
+                                <input type="submit" name="submit" value="Save"
+                                    class="btn btn-block btn-outline-primary">
                             </div>
-                            <div class="w-50 pl-1">
-                                <a href="{{ route('nurseHome') }}" class="btn btn-block btn-primary">Go back</a>
-                            </div>
+                            @if($current_user->usertype === 'doctor')
+                            <li class="nav-item btn btn-block btn-outline-primary">
+                                <a class=" nav-link" href="{{ route('doctorHome') }}">Doctor Home</a>
+                            </li>
+                            @elseif($current_user->usertype === 'nurse')
+                            <li class="nav-item btn btn-block btn-outline-primary">
+                                <a class="nav-link" href="{{ route('nurseHome') }}">Nurse Home</a>
+                            </li>
+                            @elseif($current_user->usertype === 'admin')
+                            <li class="nav-item btn btn-block btn-outline-primary">
+                                <a class="nav-link" href="{{ route('home') }}">Admin Home</a>
+                            </li>
+                            @endif
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

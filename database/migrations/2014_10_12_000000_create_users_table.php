@@ -29,8 +29,8 @@ return new class extends Migration
             $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
             $table->string('imagepath')->nullable()->default(null);
             $table->enum('status', ['active', 'inactive'])->default('active');  
-            
-            $table->longText('bio')->nullable();
+            $table->longText('bio')->default('This is my bio');
+
             $table->string('avatar')->default('default.png');
 
             $table->string('name');
@@ -39,6 +39,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+
+
+   
             
         });
     }

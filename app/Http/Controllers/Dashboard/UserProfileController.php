@@ -31,7 +31,7 @@ class UserProfileController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:100', 'unique:users,email,' . $current_user->id],
             'avatar' => ['sometimes', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
-            'bio' => ['nullable', 'string', 'max:255'],
+            'bio' => ['sometimes', 'string', 'max:255'],
         ]);
 
         $current_user->name = $request->get('name');
@@ -47,6 +47,8 @@ class UserProfileController extends Controller
             $request->avatar->move(public_path('images/avatars'), $imageName);
             $current_user->avatar = $imageName;
         }
+        
+        
 
         // Update user
         $current_user->update();
