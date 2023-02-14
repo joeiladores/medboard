@@ -173,11 +173,9 @@ border-radius: 0px 44px 32px 0px;"
     {{-- <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
       <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-calendar-day fs-2 me-2"></i>Calendar</p>
     </a> --}}
-    <a href="{{ route('kardex') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
+    {{-- <a href="{{ route('kardex', [1]) }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
       <p style="color:#1353c9;"><i class="fa-solid fa-address-book fa-2xl me-2"></i>Kardex</p>
-      
-      
-    </a>
+    </a> --}}
 
     <a class="list-group-item  bg-transparent second-text fw-bold " href="{{ route('profile') }}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
       <i class="fa-solid fa-gear fs-2 me-2"></i>
