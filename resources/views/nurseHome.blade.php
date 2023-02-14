@@ -1,4 +1,5 @@
-@extends('layouts.NurseLayout')
+@extends('layouts.NurseLayout', ['title' => 'Nurse Dashboard'])
+
 
 @section('content')
 <style>
