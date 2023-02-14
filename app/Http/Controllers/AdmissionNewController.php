@@ -124,31 +124,43 @@ class AdmissionNewController extends Controller
     }
 
     public function kardex() {
-
-        $admission = DB::table('doctor_orders')
-
-                        ->get();
-        
         
 
+        $kardexinfo = AdmissionNew::
 
-                        
+        leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
+        ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
+        ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
+        ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
+        ->where('admission_news.id', '=', 1)
 
+        ->get([
 
-                        // admission info + patient info
-                        // leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-                        // ->where('admission_news.status', 'admitted')
-                        
-                        // + doctors info (from users);
-                        // ->leftJoin('users', 'users.id', '=', 'admission_news.primary_doctor_id')
+            'admission_news.id',
+            'admission_news.bed_id',
+            'admission_news.admitting_doctor_id',
+            'admission_news.type',
+            'admission_news.status',
+            'admission_news.created_at',
 
-                        // + beds info
-                        // ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
-                        
-                        // ->find(1);
+            'patients.lastname AS p_lastname',
+            'patients.firstname AS p_firstname',
+            'patients.midname AS p_midname',
+
+            'beds.room',
+
+            'users1.lastname AS ad_lastname',
+            'users1.firstname AS ad_firstname',
+            'users1.middlename AS ad_middlename',
+
+            'users2.lastname AS pd_lastname',
+            'users2.firstname AS pd_firstname',
+            'users2.middlename AS pd_middlename'
         
-        // dd($admission);     
+        ]);
         
+        
+        dd($kardexinfo->admission_news);             
         
         if(auth()->user()->usertype == 'admin') {
             $layout = 'layouts.adminlayout';
@@ -163,7 +175,8 @@ class AdmissionNewController extends Controller
             $title = 'Nurse-Kardex';
         }
 
-        return view('kardex', compact('layout', 'title'));
+        return view('kardex', compact('layout', 'title'))
+        ->with('kardexinfo', $kardexinfo);
         
     }
 }

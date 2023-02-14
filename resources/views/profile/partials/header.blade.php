@@ -68,7 +68,7 @@
           <span>Nurse Assignment</span>          
         </a>
         <!-- route('calendar')  -->
-        <a href="{{ route('calendar') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <a href="{{ route('calendar.index') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-calendar-days fa-icon"></i>
           <span>Calendar</span>          
         </a>
