@@ -64,7 +64,8 @@ Auth::routes();
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
+Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
+
 
 // *****************************************************************************
 // Patient Routes
