@@ -7,6 +7,8 @@
     max-width: 1100px;
     margin: 40px auto;
   }
+
+
 </style>
 
 <script>
@@ -172,7 +174,7 @@
                         <select class="form-select" aria-label="Default select example" id="create_resource"
                                 name="resourceId" required>
                             <option value="a">Nurse Station 1</option>
-                            <option value="b">Nurse Station 1</option>
+                            <option value="b">Nurse Station 2</option>
                         </select>
                     </div>
                     <div class="mb-3">
