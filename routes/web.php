@@ -16,7 +16,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
-use App\Http\Controllers\DoctorDashboard;
+use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
@@ -62,7 +62,7 @@ Auth::routes();
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
+Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
 Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
 Route::get('/doctorHome', [HomeController::class, 'doctorHome'])->name('doctorHome');
 

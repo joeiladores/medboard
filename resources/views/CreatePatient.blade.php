@@ -25,7 +25,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="{{ route('storePatient') }}">
+                                                <form class="add-patient" method="POST" action="{{ route('storePatient') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col-md-4">
@@ -98,7 +98,7 @@
                                                     </div>
                                                     <hr>
                                                     <div>
-                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add Patient</button>
+                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateAddPatient()">Add Patient</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -117,21 +117,26 @@
 
         <div id="PatientList" class="tabcontent">
             <table class="table table-hover" id="patientTable">
-                <thead>
-                    <tr>
-                        <th>Patients ID#</th>
-                        <th>Full Name</th>
-                        <th>Medical History</th>
-                        <th>----</th>
-                        <th>Admission</th>
-                        <th>Actions</th>
+                <thead class="primary-bg">
+                    <tr class="text-light">
+                        <th class="text-center">Patients ID#</th>
+                        <th class="text-center">Patients Full Name</th>
+                        <th class="text-center">Gender</th>
+                        <th class="text-center">Birth Date</th>
+                        <th class="text-center">Marital Status</th>
+                        <th class="text-center">Medical History</th>
+                        <th class="text-center">Admission</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($allPatients as $patient)
                     <tr>
-                        <td>{{ $patient->id }}</td>
+                        <td class="text-center">{{ $patient->id }}</td>
                         <td>{{ $patient->lastname }}, {{ $patient->firstname }} {{ $patient->midname }}</td>
+                        <td class="text-center">{{ $patient->gender }}</td>
+                        <td class="text-center">{{ $patient->birth_date }}</td>
+                        <td class="text-center">{{ $patient->marital_status }}</td>
                         <td>
                             <!-- Modal button to show medical history -->
                             <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
@@ -151,7 +156,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="{{ route('storeMedHistory') }}">
+                                                <form class="add-medhistory" method="POST" action="{{ route('storeMedHistory') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col-md-8">
@@ -197,7 +202,7 @@
 
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add to patient</button>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateAddMedHistory()">Add to patient</button>
                                                         </div>
                                                 </form>
                                             </div>
@@ -206,7 +211,7 @@
                             </div>
 
                         </td>
-                        <td>######</td>
+                        <!-- for inserting column -->
                         <td>
                             <button type="button" class="btn btn-sm btn-info px-3" onclick="showAdmitModal({{ $patient->id }})">
                                 Admit
@@ -222,7 +227,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="card">
-                                                <form method="POST" action="{{ route('storeAdmit') }}">
+                                                <form class="add-admission" method="POST" action="{{ route('storeAdmit') }}">
                                                     @csrf
                                                     <div class="row g-3 p-3">
                                                         <div class="col">
@@ -237,7 +242,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-11">
+                                                                <div class="col-md-12">
                                                                     <span class="fs-4">Patient Name : </span>
                                                                     <span class="fs-4" id="admit_patient_lastname"></span>
                                                                     <span class="fs-4" id="admit_patient_firstname"></span>
@@ -309,8 +314,6 @@
                                                                 <option value="Dangle & sit up">Dangle & sit up</option>
                                                                 <option value="Bedrest w/ BRP">Bedrest w/ BRP</option>
                                                                 <option value="CBR w/o BRP">CBR w/o BRP</option>
-                                                                <option value="Comatose">Comatose</option>
-                                                                <option value="Others">Others</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -322,7 +325,7 @@
                                                                 <option value="Soft">Soft</option>
                                                                 <option value="Clear liquids">Clear liquids</option>
                                                                 <option value="Gen. liquids">Gen. liquids</option>
-                                                                <option value="Others">Others</option>
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -333,7 +336,7 @@
                                                                 <option value="Thoractic tube">Thoractic tube</option>
                                                                 <option value="NGT">NGT</option>
                                                                 <option value="CVP">CVP</option>
-                                                                <option value="Others">Others</option>
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -344,7 +347,7 @@
                                                                 <option value="BP Qshift">BP Qshift</option>
                                                                 <option value="Neuro VS">Neuro VS</option>
                                                                 <option value="Abdominal girth">Abdominal girth</option>
-                                                                <option value="Others">Others</option>
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -367,7 +370,7 @@
                                                         </div>
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary" style="background-color:rgb(66,100,208);float:right">Admit patient</button>
+                                                            <button type="submit" class="btn btn-primary" style="background-color:rgb(66,100,208);float:right" onclick="validateAddAdmission()">Admit patient</button>
                                                         </div>
                                                 </form>
                                             </div>
@@ -377,7 +380,7 @@
                             </div>
                         </td>
 
-                        <td class="d-flex">
+                        <td class="d-flex text-center">
                             <!-- Edit Patient Modal Button -->
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
@@ -394,7 +397,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="card">
-                                                    <form method="POST" action="{{ route('updatePatient') }}">
+                                                    <form class="edit-patient" method="POST" action="{{ route('updatePatient') }}">
                                                         @csrf
                                                         <div class="row g-3 p-3">
                                                             <div class="col-md-4">
@@ -468,7 +471,7 @@
                                                         </div>
                                                         <hr>
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Update</button>
+                                                            <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateEditPatient()">Update</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -477,7 +480,7 @@
                                 </div>
                             </div>
                             <!-- Delete Patient -->
-                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="{{ route('destroyPatient', $patient->id) }}" class="btn btn-sm btn-danger text-light me-1" onClick="reply_click_deletePatient(this.id)"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -494,5 +497,81 @@
 </div>
 
 </div>
+
+<!-- For Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Add Transfusion validation -->
+<script>
+    function validateAddPatient() {
+        var form = document.querySelector('.add-patient');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Patient has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateAddMedHistory() {
+        var form = document.querySelector('.add-medhistory');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Patients Medical History has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateAddAdmission() {
+        var form = document.querySelector('.add-admission');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Admit Patient has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateEditPatient() {
+        var form = document.querySelector('.edit-patient');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'Patient has been updated!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function reply_click_deletePatient(clicked_id) {
+        Swal.fire({
+            title: 'Delete Patient Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(66,100,208)',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('destroyPatient', $patient->id) }}" + "/" + clicked_id;
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Patient Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+
+
+    edit - patient
+</script>
+
 
 @endsection
