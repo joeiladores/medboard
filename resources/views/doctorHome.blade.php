@@ -4,7 +4,7 @@
 <div class="container-fluid px-4 mt-3">
     <div class="row gy-3 gx-5">
         <div class="col-md-6">
-            <div class="row card-bg p-4 border shadow rounded-5 second-text">
+            <div class="row card-bg p-4 border shadow rounded-5 second-text pb-5 mt-3">
                 <div class="col-6 col-lg-4 col-sm-12">
                     <h3>Welcome Dr. {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</h3>
                     <p>Have a nice day!</p>
@@ -17,11 +17,11 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-md-6 mb-2">
                     <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                        <h3 class="fs-3 fw-bold second-text"></h3>
+                        <h3 class="fs-3 fw-bold second-text">0008</h3>
                         <p class="text-primary">Your Total Admit Patient</p>
 
                         <i class="fa-solid fa-clipboard-list fs-3 primary-text"></i>
@@ -31,7 +31,7 @@
                 <div class="col-md-6">
                     <div class="card card-body card-bg text-center border shadow rounded-5">
 
-                        <h3 class="fs-3 fw-bold second-text"></h3>
+                        <h3 class="fs-3 fw-bold second-text">0008</h3>
                         <p class="text-primary">Your Total Primary Patient</p>
 
                         <i class="fa-solid fa-hospital-user fs-3 primary-text"></i>
@@ -67,7 +67,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="table table-hover">
-                
+
 
             </div>
         </div>

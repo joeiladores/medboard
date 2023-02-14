@@ -32,27 +32,26 @@
         <p class="fw-bold fs-4">MedBoard</p>
       </div>
 
-      <div class="list-group list-group-flush my-3">
-        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-          <i class="fa-sharp fa-solid fa-house-chimney fa-icon"></i>
-          <span>Home</span>
+      <div class="list-group list-group-flush my-3 ps-4">
+        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+          <i class="fa-sharp fa-solid fa-house-chimney fa-icon fs-3"></i>
+          <span class="fs-5 ms-2">Home</span>
         </a>
-        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-          <i class="fa-sharp fa-solid fa-bed-pulse fa-icon"></i>
-          <span>Patients</span>
+        <a href="{{ route('doctorsOrders') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+                    <i class="fa-sharp fa-solid fa-clipboard fa-icon fs-3"></i>
+                    <span class="fs-5 ms-2">Orders</span> 
+                </a>
+        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+          <i class="fa-sharp fa-solid fa-bed-pulse fa-icon fs-3"></i>
+          <span class="fs-5 ms-2">Patients</span>
         </a>
-        <!-- route('calendar')  -->
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-          <i class="fa-solid fa-calendar-days fa-icon"></i>
-          <span>Calendar</span>
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+          <i class="fa-solid fa-calendar-days fa-icon fs-3"></i>
+          <span class="fs-5 ms-2">Admitted</span>
         </a>
-        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-          <i class="fa-sharp fa-solid fa-gear fa-icon"></i>
-          Settings
-        </a>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
-          <i class="fas fa-project-diagram fa-icon"></i>
-          <span>{{ __('Logout') }}</span>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5 pt-5">
+          <i class="fas fa-project-diagram fa-icon fs-3"></i>
+          <span class="fs-5 ms-2">{{ __('Logout') }}</span>
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
