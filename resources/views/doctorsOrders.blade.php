@@ -1,22 +1,38 @@
-@extends('layouts.NurseLayout')
+@extends('layouts.DoctorLayout')
 
 @section('content')
 <title>Doctor's Orders</title>
-<div class="card m-3">
+
+<style>
+
+#tableSize{
+  color: rgb(14, 0, 0);
+  height: 530px;
+  border-radius: 50px 50px 25px 25px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 500px) {
+  #tableSize{
+  height: 1000px;
+  }
+}
+
+
+</style>
+<div>
 <div class="row">
-    <div class="col-12 p-4">
-
-<button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right; background-color:rgb(66,100,208);">
-+ New Order
-</button>
-
+    <div class="col-12 ps-4 pe-4">
+<div class="card rounded shadow p-3" id="tableSize">
 <table class="table" id="doctorOrderTable">
-  <h2>Doctor's Orders</h2>
-
+  <div class="me-2 mb-2 mt-3">
+  <h3 style="float:left;color:#1353c9;">Doctor's Orders</h3>
+    <button id="addbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorOrderModal" style="float:right;background-color:#1f66d1; width:120px;">
+    + New Order
+    </button>
+  </div>
       <thead>
-          <tr>
-              <th>Admission id Test</th>
-              <th>Doctor id Test</th>
+          <tr style="background-color:#1353c9;" class="text-light">
+              <th>Patient ID</th>
               <th>Patient Name</th>
               <th>Room</th>
               <th>Date Ordered</th>
@@ -29,13 +45,12 @@
       @foreach($patient_name as $patient_names)
           @if($doctor_order->id == $room_nums->doctor_orders_id && $doctor_order->id == $patient_names->doctor_orders_id)
               <tr>
-                  <td>{{ $doctor_order->admission_id}}</td>
-                  <td>{{ $doctor_order->doctor_id }}</td>
+                  <td>{{ $patient_names->id}}</td>
                   <td>{{ ($patient_names->firstname)." ".($patient_names->lastname) }}</td> 
                   <td>{{ $room_nums->room}}</td>
                   <td>{{ date_format(new DateTime($doctor_order->created_at), "F j, Y g:i A") }}</td>
                   <td>
-                      <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
+                      <a href="{{ route('orders', $doctor_order->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:#1f66d1; "></a>
                       <button class="btn btn-sm btn-danger text-light me-1 fa-sharp fa-solid fa-trash" id="{{ $doctor_order->id }}" onClick="reply_click_doctorOrder(this.id)"></button>
                   </td>
               </tr> <!-- To trigger the sweet alert (per ID) -->
@@ -46,7 +61,7 @@
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: 'rgb(66,100,208)',
+                confirmButtonColor: '#1f66d1',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Confirm'
               }).then((result) => {
@@ -73,7 +88,7 @@
       </tbody>
 </table>
 
-
+</div>
     </div>
   </div>
   </div>
@@ -88,7 +103,7 @@
  <script>
    $(document).ready( function () {
      $('#doctorOrderTable').DataTable({
-         "pageLength": 20,
+         "pageLength": 8,
          "lengthChange": false
      });
  } );  
@@ -113,7 +128,7 @@
               <select class="form-select" id="patientsList" name="patientsList" required>
                 <option value="">Choose...</option>
                 @foreach($admittedPatient as $admittedPatients)
-                <option value="{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}">{{ ($admittedPatients->firstname)." ".($admittedPatients->lastname) }}.{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}</option>
+                <option value="{{ $admittedPatients->admission_id.','.$admittedPatients->primary_doctor_id }}">{{ ($admittedPatients->firstname)." ".($admittedPatients->lastname) }}</option>
                @endforeach
               </select>
             </div>

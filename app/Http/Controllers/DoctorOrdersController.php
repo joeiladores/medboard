@@ -16,6 +16,7 @@ class DoctorOrdersController extends Controller
     {
 
         $user_id = Auth::id();
+        //Get and Display Patient name inside the dropdown where all of the assigned patients to logged doctor from admission_news
         $admittedPatient = DB::table('admission_news')
         ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
         ->where([
@@ -26,7 +27,7 @@ class DoctorOrdersController extends Controller
         ->get();
 
 
-        //Get and Display Patient name inside table
+        //Get and Display Patient name & id inside table from doctor_orders
         $patient_name = DB::table('doctor_orders')
         ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
         ->join('patients', 'admission_news.patient_id', '=', 'patients.id')
@@ -34,10 +35,10 @@ class DoctorOrdersController extends Controller
             ['status', 'Admitted'],
             ['primary_doctor_id', $user_id]
         ])
-        ->select('doctor_orders.id as doctor_orders_id', 'patients.firstname' ,'patients.lastname')
+        ->select('doctor_orders.id as doctor_orders_id', 'patients.firstname' ,'patients.lastname','patients.id')
         ->get();
        
-        //Get and Display room type inside table
+        //Get and Display room type inside the table
         $room_num = DB::table('doctor_orders')
         ->join('admission_news', 'doctor_orders.admission_id', '=', 'admission_news.id')
         ->join('beds', 'admission_news.bed_id', '=', 'beds.id')
@@ -46,13 +47,10 @@ class DoctorOrdersController extends Controller
         ->get();
 
         //Get and Display All of the Admitted Patient List
-        //Eloquent ver - suggested
         $doctor_orders = DoctorOrder::orderBy('created_at', 'desc')
         ->get();
 
-        
         return view('doctorsOrders', ['admittedPatient'=>$admittedPatient ,'patient_name' => $patient_name,'room_num'=>$room_num, 'doctor_orders' => $doctor_orders]);
-
     }
 
     public function store(Request $request)

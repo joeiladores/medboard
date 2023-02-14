@@ -4,13 +4,13 @@
 
   <!-- Main Content - List of Users -->
   <div class="container p-4">
-    <div class="row py-2">
+    <div class="row pb-2">
       <div class="col">
         <h3 class="fw-bold text-secondary f-poppins">USERS</h3>
       </div>
       <div class="col d-flex flex-grow-1 justify-content-end">
         @if (Route::has('register'))
-        <span><a href="{{ route('registeruser') }}" class="btn btn-primary flex-end">+ Add New User</a></span>
+        <span><a href="{{ route('registeruser') }}" class="btn btn-primary btn-sm">+ Add New User</a></span>
         <!-- <a href="{{ route('generate-userlistpdf') }}" target="_blank" class="btn btn-warning">⬇ Download PDF</a><span> -->
         </span>
 
@@ -22,8 +22,10 @@
 
 
   @if( session('success') )
-  <div class="alert alert-success my-3" role="alert">
-    {{ session('success') }}
+  <div class="container px-4">
+    <div class="alert alert-success my-3" role="alert">
+      {{ session('success') }}
+    </div>
   </div>
   @endif
 
@@ -31,9 +33,10 @@
     <div class="row">
       <div class="col-md-12">
         <table id="userTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
-          <thead class="third-bg-color">
+          <thead class="primary-bg text-light">
             <tr>
-              <td>User ID</td>              
+              <td>ID</td>
+              <td></td>              
               <td>Name</td>
               <td>User Type</td>
               <td>Department</td>
@@ -49,6 +52,13 @@
             @foreach($users as $user)
             <tr>
               <td>{{ $user->id }}</td>
+              
+              <td>@if($user->imagepath != NULL)
+              <img src="{{ Storage::url('public/images/profile/'.$user->imagepath) }}" class="img-fluid rounded-1" style="width: 30px; height: 20px; object-fit:cover;">
+              @else
+              <i class="fas fa-user fs-6"></i>
+              @endif</td>
+
               <td>{{ $user->name }}</td>
               <td>{{ $user->usertype }}</td>              
               <td>{{ $user->department->name }}</td>
@@ -59,7 +69,7 @@
                 <a class="btn btn-sm" href="{{ route('edituser', $user->id) }}">🖊️</a>
                 <a class="btn btn-sm" href="{{ route('deleteuser', $user->id) }}">❌</a>
               </td>  
-              <td>{{ $user->status }}</td>            
+              <td>{{ $user->status }}</td>                          
             </tr>
             @endforeach
             @else

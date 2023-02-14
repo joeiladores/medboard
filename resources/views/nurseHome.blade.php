@@ -2,18 +2,20 @@
 
 @section('content')
 <style>
-body {
-  height: 100%;
+* {
   margin: 0;
-  /* font-family: Arial; */
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.9375rem;
+  /* font-family: 'Roboto+Mono', sans-serif; */
+  font-family: 'Poppins', sans-serif;
 }
 /* Defaults */
 #DashboardCard{
     height:35%;
-    background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);
+    background-color:#d4ebf8;
     border-radius:30px;
+    border: 1px solid #00020518;"
 }
 #DashboardText{
     padding:4%;
@@ -21,6 +23,14 @@ body {
 #DashboardNurseImg{
     width: 30%;
     height: 115%;
+}
+
+#tableSize{
+  color: rgb(14, 0, 0);
+  padding: 50px;
+  height: 410px;
+  border-radius: 50px 50px 25px 25px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* Responsiveness */
@@ -70,7 +80,12 @@ body {
     width: 40%;
     height: 90%;
   }
+  #tableSize{
+  height: 530px;
 }
+}
+
+
 
 
 
@@ -79,9 +94,14 @@ body {
 <div class="row">
   <div class="col-lg-10">
     <div class="card shadow" id="DashboardCard">
-        <h4 id="DashboardText" class="text-light" style="position: absolute;">Good Day, Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}<br><br>
-        <p style="font-size:15px;">Today, you are assigned to <b>{{ $assigned_station->station }}</b><br>
-        Have a nice day at work!</p>
+        <h4 id="DashboardText" style="position: absolute; color:#1353c9;">Good Day, Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}<br><br>
+        <p style="font-size:15px; color:#1353c9;">
+          @if(isset($assigned_station) && $assigned_station->station)
+          Today, you are assigned to <b>{{ $assigned_station->station }}</b><br> 
+          Have a nice day at work!</p>
+        @else
+          No assigned station
+        @endif
         </h4>
     <!-- Nurse Dashboard img -->
     <div style="text-align:right;">
@@ -89,31 +109,35 @@ body {
     </div>
 </div>
 
+
     <div class="row">
     <div class="col-lg-12">
-      <div class="card rounded shadow mt-2 p-4">
-      <table class="table p-4" id="nursesDashboardTable">
+      <div class="card rounded shadow mt-2 p-2" id="tableSize">
+      <table class="table" id="nursesDashboardTable">
+      <h5 class="pt-3 ms-2" style="color:#1353c9;">Patients under your station with Doctor's orders</h5>
             <thead>
-                <tr>
-                  <th>Doctor id Test</th>
-                  <th>Patient Name</th>
-                  <th>Room</th>
-                  <th>Date Ordered</th>
-                  <th>Actions</th>
+                <tr style="background:#1353c9;">
+                  <th class="text-light">Assigned Doctor</th>
+                  <th class="text-light">Patient Name</th>
+                  <th class="text-light">Room</th>
+                  <th class="text-light">Date Ordered</th>
+                  <th class="text-light">Action</th>
                 </tr>
             </thead>
             <tbody>
+              @if(isset($patientsInStation))
               @foreach($patientsInStation as $patientsInStations)
         <tr>
-            <td>{{ $patientsInStations->doctor_id }}</td>
+            <td>Dr. {{ $patientsInStations->doctor_firstname . " " . $patientsInStations->doctor_lastname }}</td>
             <td>{{ $patientsInStations->firstname }} {{ $patientsInStations->lastname }}</td>
             <td>{{ $patientsInStations->room }}</td>
             <td>{{ date_format(new DateTime( $patientsInStations->created_at), "F j, Y g:i A") }}</td>
             <td>
-              <a href="{{ route('nurseDoctorOrdersView', $patientsInStations->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:rgb(66,100,208);"></a>
+              <a href="{{ route('nurseDoctorOrdersView', $patientsInStations->id) }}" class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard" style="background-color:#1f66d1;"></a>
             </td>
         </tr>
         @endforeach
+        @endif
             </tbody>
            </table>
       </div>
@@ -122,20 +146,20 @@ body {
   </div>
   <div class="col-lg-2" id="DashboardSide">
     <!-- Side Profile -->
-    <div style="padding:15%; height:530px; background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 30px 30px 0px 0px;">
+    <div style="padding:15%; height:530px; background-color: #d4ebf8;border-radius: 30px 30px 0px 0px;border: 1px solid #00020518;">
         <center>
           <img class="mb-2" src="{{ asset('images/nurseprofile.png') }}" alt="Image" style="width: 100%; height: 30%;">
-          <p style="font-size:17px; font-weight:600;" class="text-light">Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
-          <p style="font-size:14px; font-weight:600;" class="text-light">{{ $specialization->name }}</p>
+          <p style="font-size:17px; font-weight:600;color:#1353c9;">Nurse {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
+          <p style="font-size:14px; font-weight:600;color:#1353c9;">{{ $specialization->name }}</p>
         </center>
     </div>
      <!--END Side Profile -->
 
     <!-- Side Time/Date -->
-    <div class="mt-2 p-2 text-light" style="height:100px;background: linear-gradient(180deg, rgba(66, 100, 208, 0.7) 0%, #4264D0 100%);border-radius: 0px 0px 30px 30px;">
+    <div class="mt-2 p-2 text-light" style="height:100px;background-color: #d4ebf8;border-radius: 0px 0px 30px 30px; border: 1px solid #00020518;">
     <center>
-        <h6 id="currentDate"></h6>
-        <h2 id="currentTime"></h2>
+        <h6 style="color:#1353c9;" id="currentDate"></h6>
+        <h2 style="color:#1353c9;" id="currentTime"></h2>
     </center>
     <script>
         const currentDate = new Date();

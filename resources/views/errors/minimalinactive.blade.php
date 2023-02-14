@@ -22,19 +22,6 @@
 </head>
 
 <body class="bg-light">
-    <!-- <main class="main-content">
-        <div class="wrapper">
-            <div class="container-md m-5 p-5 justify-content-center">
-                <h1>@yield('code')</h1>
-                <h2 class="mb-0 mt-4">
-                    Oops! This Page is @yield('message').</h2>
-                {{-- <p class="mt-2 text-white">The requested page does not exist.</p> --}}
-
-
-            </div>
-
-        </div>
-    </main> -->
     <div class="container mt-5 p-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -46,7 +33,7 @@
                     <div class="card-body">
 
                         <div class="px-5 my-5">
-                            <h5>Oops! This Page is @yield('message').</h5>
+                            <h5>@yield('message').</h5>
                         </div>
                         <div class="px-5 mb-5">
                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-secondary" role="button">                                

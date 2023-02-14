@@ -8,13 +8,16 @@
   <title>{{$title}}</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/images/medboard-logo-final.png">
+  <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
 
   <!--Bootstrap CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
   <!--Fontawesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- FullCalendar -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.4/index.global.min.js"></script>
 
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
@@ -55,18 +58,18 @@
         </a>
         <a href="{{ route('departments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-building-user fa-icon"></i>
-          Department Management
+          Department
         </a>
         <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-people-roof fa-icon"></i>
-          <span>Specialization Management</span>
+          <span>Specialization</span>
         </a>
         <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-user-nurse fa-icon"></i>
           <span>Nurse Assignment</span>
         </a>
         <!-- route('calendar')  -->
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <a href="{{ route('calendar.index') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
           <i class="fa-solid fa-calendar-days fa-icon"></i>
           <span>Calendar</span>
         </a>
@@ -123,7 +126,7 @@
                 <a href="#" class="nav-link second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="d-flex">
                     <!-- Photo -->
-                    <div class="flex-grow-1 align-self-center">
+                    <div class="flex-grow-1 align-self-center">                    
                       @if(Auth::user()->imagepath != NULL)
                       <img src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
                       @else

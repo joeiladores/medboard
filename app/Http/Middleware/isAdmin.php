@@ -22,14 +22,9 @@ class isAdmin
 
             if (Auth::user()->usertype === 'admin') {
                 return $next($request);
-            } elseif (Auth::user()->usertype === 'doctor') {
-                return redirect()->route('admin')->with('error', 'you are not admin');
-            } elseif (Auth::user()->usertype === 'nurse') {
-                return redirect()->route('admin')->with('error', 'you are not admin');
-            } elseif (Auth::user()->usertype === 'chiefnurse') {
-                return redirect()->route('admin')->with('error', 'you are not admin');
             } else {
-                return redirect()->route('home')->with('error', 'forbidden');
+                // return redirect()->route('home')->with('error', 'forbidden');
+                return response()->view('errors.401', [], 401);
             }
         }
     }

@@ -3,35 +3,37 @@
 @section('content')
 
   <!-- Bed Content - List of Beds -->
-  <div class="container p-3">
-    <div class="row py-3">
+  <div class="container p-4">
+    <div class="row pb-2">
       <div class="col">
         <h3 class="fw-bold text-secondary f-poppins">BEDS</h3>
       </div>
       <div class="col d-flex flex-grow-1 justify-content-end">
         @if (Route::has('register'))
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createBedModal">+ New Bed</button>
         @endif
       </div>    
     </div>
   </div>
 
-  @if( session('success') )
-  <div class="alert alert-success my-3" role="alert">
-    {{ session('success') }}
-  </div>
-  @endif
-  @if( session('error') )
-  <div class="alert alert-danger my-3" role="alert">
-    {{ session('error') }}
-  </div>
-  @endif
-
   <div class="container px-3">
+    @if( session('success') )
+    <div class="alert alert-success my-3" role="alert">
+      {{ session('success') }}
+    </div>
+    @endif
+    @if( session('error') )
+    <div class="alert alert-danger my-3" role="alert">
+      {{ session('error') }}
+    </div>
+    @endif
+  </div>
+
+  <div class="container px-4">
     <div class="row">
       <div class="col-md-12">
         <table id="bedTable" class="table table-hover display nowrap" cellspacing="0" width="100%">
-          <thead class="third-bg-color">
+          <thead class="primary-bg text-light">
             <tr>
               <td>Bed ID</td>
               <td>Bed Number</td>
@@ -74,7 +76,7 @@
   <div class="modal fade" id="createBedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header primary-bg text-light">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Bed</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -97,6 +99,7 @@
                   <option value="Private">Private</option>
                   <option value="Semi-Private">Semi-Private</option>
                   <option value="Ward">Ward</option>
+                  <option value="Outpatient">Outpatient</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -106,6 +109,7 @@
                   <option value="Nurse Station 1">Nurse Station 1</option>
                   <option value="Nurse Station 2">Nurse Station 2</option>
                   <option value="Nurse Station 3">Nurse Station 3</option>
+                  <option value="Outpatient">Outpatient</option>
                 </select>
               </div>
               <input type="hidden" name="id" id="id"">
@@ -121,7 +125,7 @@
   <div class="modal fade " id="editBedModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header primary-bg text-light">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Bed Information</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -149,7 +153,7 @@
               <div class="mb-3">
                 <label for="editbed_station" class="form-label">Station</label>
                 <select class="form-select" aria-label="Select station" name="station" id="editbed_station" required>
-                  <option selected class="text-center"> --- Select ---</option>
+                  <option selected class="text-center">Select ---</option>
                   <option value="Nurse Station 1">Nurse Station 1</option>
                   <option value="Nurse Station 2">Nurse Station 2</option>
                   <option value="Nurse Station 3">Nurse Station 3</option>
@@ -160,12 +164,12 @@
               <div class="mb-3">
                 <label for="editbed_status" class="form-label">Status</label>
                 <select class="form-select" aria-label="Select status" name="status" id="editbed_status" required>
-                  <option selected class="text-center"> --- Select ---</option>
+                  <option selected class="text-center">Select ---</option>
                   <option value="vacant">Vacant</option>
                   <option value="occupied">Occupied</option>
                 </select>
               </div>
-              <input type="hidden" name="id" id="editbed_id"">
+              <input type="hidden" name="id" id="editbed_id">
                 <button type=" submit" class="btn btn-primary">Submit</button>
             </form>
           </div>

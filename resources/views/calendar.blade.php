@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout')
+@extends('layouts.adminlayout', ['title' => 'Calendar'])
 
 @section('content')
 
@@ -7,6 +7,8 @@
     max-width: 1100px;
     margin: 40px auto;
   }
+
+
 </style>
 
 <script>
@@ -23,7 +25,7 @@
       navLinks: true,
       timeZone: 'Asia/Manila',
       locale: '',
-      initialView: 'resourceTimeGridDay',
+      initialView: 'dayGridMonth',
       eventColor: 'gray',
       resources: [{
           id: 'a',
@@ -37,7 +39,7 @@
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
-        right: 'resourceTimeGridDay,resourceTimeGridWeek,dayGridMonth'
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,list',
       },
       events: "{{ route('calendar.getevents') }}",
       dateClick: function(info) {
@@ -126,7 +128,7 @@
   });
 </script>
 
-<div id='calendar'></div>
+<div id='calendar' class="m-5"></div>
 
 
 {{--Modal Create--}}
@@ -172,7 +174,7 @@
                         <select class="form-select" aria-label="Default select example" id="create_resource"
                                 name="resourceId" required>
                             <option value="a">Nurse Station 1</option>
-                            <option value="b">Nurse Station 1</option>
+                            <option value="b">Nurse Station 2</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -258,5 +260,7 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection
