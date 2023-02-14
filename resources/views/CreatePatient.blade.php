@@ -383,9 +383,11 @@
                         <td class="d-flex text-center">
                             <!-- Edit Patient Modal Button -->
                             <div>
+                                @if(Auth::user() != 'Admin')
                                 <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
                                     <i class="fa-sharp fa-solid fa-pen-to-square"></i>
                                 </button>
+                                @endif
 
                                 <!-- Edit Patient Modal-->
                                 <div class="modal fade" id="editPatientModal" tabindex="-1" aria-labelledby="editPatientLabel" aria-hidden="true">

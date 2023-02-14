@@ -271,7 +271,7 @@
                                 <td class="text-center">{{ $admitpatient->type }}</td>
                                 <td>Dr. {{ $admitpatient->pd_lastname }}, {{ $admitpatient->pd_firstname }} {{ $admitpatient->pd_middlename }}</td>
                                 <td class="text-center">{{ $admitpatient->status }}</td>
-                                <td class="text-center">
+                                <td>
                                     <!-- Edit All Admitted Button -->
                                     <button type="button" class="btn btn-sm btn-primary" onclick="showEditAdmitAllModal({{ $admitpatient->id }})">
                                         <i class="fa-sharp fa-solid fa-pen-to-square"></i>

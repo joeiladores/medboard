@@ -1,4 +1,4 @@
-@extends('layouts.doctorLayout', ['title' => 'Doctor-Dashboard'])
+@extends('layouts.doctorLayout', ['title' => 'Admin-Admissions'])
 @section('content')
 <!-- Doctor Dashboard -->
 <div class="container-fluid px-4 mt-3">
