@@ -54,7 +54,7 @@
 
                                 <td class="text-center">Admitted</td>
 
-                                <td class="text-center">
+                                <td>
 
                                     <!-- Edit Admission Button -->
                                     <button type="button" class="btn btn-sm btn-primary" onclick="showEditAdmitModal({{ $admitpatient->id }})">

@@ -33,7 +33,7 @@
       </div>
 
       <div class="list-group list-group-flush my-3 ps-4">
-        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+        <a href="{{ route('doctorHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
           <i class="fa-sharp fa-solid fa-house-chimney fa-icon fs-3"></i>
           <span class="fs-5 ms-2">Home</span>
         </a>
@@ -41,7 +41,7 @@
                     <i class="fa-sharp fa-solid fa-clipboard fa-icon fs-3"></i>
                     <span class="fs-5 ms-2">Orders</span> 
                 </a>
-        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+        <a href="{{ route('patientView') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
           <i class="fa-sharp fa-solid fa-bed-pulse fa-icon fs-3"></i>
           <span class="fs-5 ms-2">Patients</span>
         </a>

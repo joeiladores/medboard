@@ -1,4 +1,4 @@
-@extends($layout, ['title' => $title])
+@extends('layouts.adminlayout', ['title' => 'Admin-Patient'])
 @section('content')
 
 <div class="container-fluid px-4">
@@ -137,7 +137,7 @@
                         <td class="text-center">{{ $patient->gender }}</td>
                         <td class="text-center">{{ $patient->birth_date }}</td>
                         <td class="text-center">{{ $patient->marital_status }}</td>
-                        <td class="text-center">
+                        <td>
                             <!-- Modal button to show medical history -->
                             <a href="/showmedhistory/{{ $patient->id }}" class="btn btn-sm btn-warning" role="button">View Medical History</a>
 
@@ -212,7 +212,7 @@
 
                         </td>
                         <!-- for inserting column -->
-                        <td class="text-center">
+                        <td>
                             <button type="button" class="btn btn-sm btn-info px-3" onclick="showAdmitModal({{ $patient->id }})">
                                 Admit
                             </button>
@@ -242,7 +242,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-11">
+                                                                <div class="col-md-12">
                                                                     <span class="fs-4">Patient Name : </span>
                                                                     <span class="fs-4" id="admit_patient_lastname"></span>
                                                                     <span class="fs-4" id="admit_patient_firstname"></span>
