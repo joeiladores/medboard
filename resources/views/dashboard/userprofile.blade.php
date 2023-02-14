@@ -127,7 +127,7 @@
                     <div class="col order-1">
                         <div class="row">
                             <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">User Type: {{ $current_user->usertype}}</p>
+                                <p class="text-muted">User Type: {{ ucfirst( $current_user->usertype)}}</p>
                             </div>
                         </div>
                         <div class="row">
