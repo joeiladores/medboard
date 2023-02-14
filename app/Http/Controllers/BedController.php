@@ -78,4 +78,9 @@ class BedController extends Controller
         return response()->json($bed);
     }
 
+    public function setBedStatus($id){
+        $bed = Bed::find($id);
+        $bed->status = 'occupied';
+    }
+
 }
