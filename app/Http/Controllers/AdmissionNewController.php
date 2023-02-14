@@ -128,42 +128,48 @@ class AdmissionNewController extends Controller
         // $admissions = $patient->admission;
             // ->with('beds');
 
-        $kardexinfo = AdmissionNew::find(1)->with('patients');
+        // $kardexinfo = AdmissionNew::find(1)->with('patients');
 
-        // leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
-        // ->where('admission_news.id', '=', 1)
-        // ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
-        // ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
-        // ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
+        $kardexinfo = AdmissionNew::
+
+        leftJoin('patients', 'patients.id', '=', 'admission_news.patient_id')
+        ->where('admission_news.id', '=', 1)
+        ->leftJoin('users as users1', 'users1.id', '=', 'admission_news.admitting_doctor_id')
+        ->leftJoin('users as users2', 'users2.id', '=', 'admission_news.primary_doctor_id')
+        ->leftJoin('beds', 'beds.id', '=', 'admission_news.bed_id')
         
 
-        // ->get([
+        ->get([
 
-        //     'admission_news.id',
-        //     'admission_news.bed_id',
-        //     'admission_news.admitting_doctor_id',
-        //     'admission_news.type',
-        //     'admission_news.status',
-        //     'admission_news.created_at',
+            'admission_news.id',
+            'admission_news.bed_id',
+            'admission_news.admitting_doctor_id',
+            'admission_news.type',
+            'admission_news.status',
+            'admission_news.created_at',
+            'admission_news.*',
 
-        //     'patients.lastname AS p_lastname',
-        //     'patients.firstname AS p_firstname',
-        //     'patients.midname AS p_midname',
+            'patients.lastname AS p_lastname',
+            'patients.firstname AS p_firstname',
+            'patients.midname AS p_midname',
+            'patients.*',
 
-        //     'beds.room',
+            // 'beds.room',
+            'beds.*',
 
-        //     'users1.lastname AS ad_lastname',
-        //     'users1.firstname AS ad_firstname',
-        //     'users1.middlename AS ad_middlename',
+            'users1.lastname AS ad_lastname',
+            'users1.firstname AS ad_firstname',
+            'users1.middlename AS ad_middlename',
 
-        //     'users2.lastname AS pd_lastname',
-        //     'users2.firstname AS pd_firstname',
-        //     'users2.middlename AS pd_middlename'
+            'users2.lastname AS pd_lastname',
+            'users2.firstname AS pd_firstname',
+            'users2.middlename AS pd_middlename'
         
-        // ]);
+        ]);
         
+        // return response()->json($kardexinfo);
         
-        // dd($kardexinfo);  
+        // dd($kardexinfo->admission_id);  
                 
         // dd($admissions);             
         // dd($patient->admissions);
