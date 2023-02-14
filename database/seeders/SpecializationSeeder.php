@@ -41,7 +41,7 @@ class SpecializationSeeder extends Seeder
             ],
             [
                 'usertype' => 'doctor',
-                'name' => 'Orthopedic',
+                'name' => 'Pulmonologist',
             ],
             [
                 'usertype' => 'nurse',

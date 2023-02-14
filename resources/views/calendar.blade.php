@@ -7,9 +7,13 @@
     max-width: 1100px;
     margin: 40px auto;
   }
+
+  body {
+    background-color: #F3F3F9;
+  }
 </style>
 
-<div id='calendar' class="m-5"></div>
+<div id='calendar' class="m-4 p-4 bg-white rounded-3"></div>
 
 {{--Modal Create--}}
 <div class="modal fade" id="modal-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -149,6 +153,8 @@
       timeZone: 'Asia/Manila',
       locale: '',
       initialView: 'dayGridMonth',
+      height: 650,
+
       eventColor: 'gray',
       resources: [{
           id: 'a',
