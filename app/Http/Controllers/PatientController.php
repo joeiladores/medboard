@@ -25,7 +25,21 @@ class PatientController extends Controller
 
     public function patient()
     {
-        return view('CreatePatient')->with('allPatients', Patient::orderByDesc('created_at')->get())
+
+        if(auth()->user()->usertype == 'admin') {
+            $layout = 'layouts.adminlayout';
+            $title = 'Admin-Patient';            
+        }
+        elseif(auth()->user()->usertype == 'doctor') {
+            $layout = 'layouts.doctorLayout';
+            $title = 'Doctor-Patient';
+        }
+        else {
+            $layout = 'layouts.NurseLayout';
+            $title = 'Nurse-Patient';
+        }
+
+        return view('CreatePatient', compact('layout', 'title'))->with('allPatients', Patient::orderByDesc('created_at')->get())
             ->with('medhistory', MedicalHistory::get())
             ->with('doctors', User::where('usertype', 'doctor')->where('status', 'active')->get())
             ->with('beds', Bed::where('status', 'vacant')->get());
