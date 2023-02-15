@@ -40,7 +40,7 @@ a{
     color: var(--dark-color);
 }
 .bg-blue{
-    background-color: var(--fros-blue-color);
+    background-color: var(--dark-color);
 }
 .bg-white{
     background-color: var(--light-color);
@@ -70,14 +70,14 @@ a{
     transition: var(--transition);
 }
 .btn-white{
-    color: var(--fros-blue-color);
+    color: var(--dark-color);
 }
 .btn-light-blue{
-    background-color: var(--light-blue-color);
+    background-color: var(--dark-gray);
     color: var(--light-color);
 }
 .btn-blue{
-    background-color: var(--fros-blue-color);
+    background-color: var(--dark-color);
     color: var(--light-color);
 }
 .btn-group{
@@ -163,6 +163,7 @@ h1, h2, h3{
     width: 100%;
     padding: 3.2rem 0;
     z-index: 999;
+    background-color: #fff;
 }
 .navbar .container{
     -webkit-box-pack: justify;
@@ -347,7 +348,7 @@ button[class ^= navbar]:hover{
 }
 .about-right .img{
     width: 100%;
-    background-color: #3983fe;
+    background-color: var(--light-gray);
     max-width: 537px;
     position: relative;
 }
@@ -366,21 +367,21 @@ button[class ^= navbar]:hover{
 .about-right .img::after{
     top: -56px;
     left: 0;
-    background-color: #0060ff;
+    background-color: var(--dark-gray);
     z-index: -1;
 }
 .about-right .img::before{
     top: -112px;
     left: 0;
-    background-color: var(--fros-blue-color);
+    background-color: var(--dark-color);
     z-index: -2;
 }
 
 /* banner one section */
 .banner-one{
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 80, 213, 0.9)), to(rgba(0, 90, 213, 0.85))), url('../images/banner-1-img.png') top/cover no-repeat;
-    background: -o-linear-gradient(rgba(0, 80, 213, 0.9), rgba(0, 90, 213, 0.85)), url('../images/banner-1-img.png') top/cover no-repeat;
-    background: linear-gradient(rgba(0, 80, 213, 0.9), rgba(0, 90, 213, 0.85)), url('../images/banner-1-img.png') top/cover no-repeat;
+    background: -o-linear-gradient(rgba(58, 62, 68, 0.9), rgba(62, 64, 68, 0.85)), url('../images/banner-1-img.png') top/cover no-repeat;
+    background: linear-gradient(rgba(15, 15, 15, 0.9), rgba(9, 10, 10, 0.85)), url('../images/banner-1-img.png') top/cover no-repeat;
     height: 480px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -443,7 +444,7 @@ button[class ^= navbar]:hover{
 /* banner two section */
 .banner-two{
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 80, 213, 0.9)), to(rgba(0, 90, 213, 0.85))), url('../images/banner-two-bg.png') top/cover no-repeat;
-    background: -o-linear-gradient(rgba(0, 80, 213, 0.9), rgba(0, 90, 213, 0.85)), url('../images/banner-two-bg.png') top/cover no-repeat;
+    background: -o-linear-gradient(rgba(9, 10, 213, 0.9), rgba(0, 90, 213, 0.85)), url('../images/banner-two-bg.png') top/cover no-repeat;
     background: linear-gradient(rgba(0, 80, 213, 0.9), rgba(0, 90, 213, 0.85)), url('../images/banner-two-bg.png') top/cover no-repeat;
     padding: 13.6rem 0;
 }
@@ -474,7 +475,7 @@ button[class ^= navbar]:hover{
 }
 .doc-panel-item .img{
     position: relative;
-    height: 440px;
+    height: 357px;
     background-color: var(--light-gray);
     overflow: hidden;
     -webkit-box-align: end;
@@ -916,7 +917,7 @@ button[class ^= navbar]:hover{
         margin-left: 3.5rem;
     }
     .nav-link{
-        color: var(--light-color);
+        color: var(--dark-color);
         opacity: 1;
         font-weight: 500;
         position: relative;
@@ -938,7 +939,7 @@ button[class ^= navbar]:hover{
         -webkit-transform: none;
             -ms-transform: none;
                 transform: none;
-        color: var(--light-color);
+        color: var(--fros-blue-color);
     }
     .nav-link:hover::after{
         opacity: 1;
