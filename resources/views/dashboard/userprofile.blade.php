@@ -12,12 +12,15 @@
 }
 
 .card-header {
-    background-color: #d4ebf9;
+    background-color: #0050d5;
+}
+.form-control{
+    height:10%;
 }
 
 .form-group {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     border: solid 1px linen;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -27,16 +30,16 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 0 1rem;
+    padding: 0 0.2rem;
     transition: all 0.3s ease-out;
     pointer-events: none;
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: #999;
 }
 
 .form-group.with-floating-label input[type="text"],
 .form-group.with-floating-label textarea {
-    padding: 1.5rem 1rem 0.5rem;
+    padding: 1.3rem 2rem 0.3rem;
     border-width: 0 0 2px 0;
     border-color: transparent;
     background-color: transparent;
@@ -52,21 +55,21 @@
 .form-group.with-floating-label input[type="text"]:not(:focus)+label,
 .form-group.with-floating-label textarea:not(:focus)+label {
     transform: translateY(-3rem);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: #999;
 }
 
 .form-group.with-floating-label input[type="text"]:focus+label,
 .form-group.with-floating-label textarea:focus+label {
     transform: translateY(-3rem) scale(0.8);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: #007bff;
 }
 
 .form-group.with-floating-label input[type="text"]:valid+label,
 .form-group.with-floating-label textarea:valid+label {
     transform: translateY(-3rem) scale(0.8);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: #007bff;
 }
 
@@ -113,15 +116,19 @@
                     <div class="col">
                         <div>
                             <img class="rounded-circle img-thumbnail" style="width: 150px; height: 150px;"
-                            
                                 src="{{ asset('images/avatars/'. $current_user->imagepath) }}"
                                 alt="{{ $current_user->name }}">
                             <br><br>
                             <div class="row">
                                 <div class="col card text-muted text-left">
-                                    <p class="text-muted">Sticky Note: {{ $current_user->stickyNote }}</p>
+                                    <p class="text-muted"> {{ $current_user->stickyNote }}</p>
                                 </div>
                             </div>
+                            <div class="row">
+                            <div class="col card m-1 text-muted text-left">
+                                <p class="text-muted">ID: {{ $current_user->department_id }}</p>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div class="col order-1">
@@ -161,7 +168,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">{{ __('Edit your profile') }}</div>
+                <div style="color:#fff;" class="card-header">{{ __('Edit your profile') }}</div>
                 <div class="card-body">
                     <form action="{{ route('profile.update') }}" enctype='multipart/form-data' method="post" novalidate>
                         {{csrf_field()}}
@@ -193,28 +200,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group with-floating-label">
-                            <label for="name" class="text-muted">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="name"
-                                class="form-control @error('name') is-invalid @enderror"
-                                value="{{old('name', $current_user->name)}}">
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group with-floating-label">
-                            <label for="email" class="text-muted">Email Address:</label>
-                            <input type="text" id="email" name="email" placeholder="Email address"
-                                class="form-control @error('email') is-invalid @enderror"
-                                value="{{old('email', $current_user->email)}}">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group with-floating-label">
+                                    <label for="name" class="text-muted">Name:</label>
+                                    <input type="text" id="name" name="name" placeholder="name"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{old('name', $current_user->name)}}">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group with-floating-label">
+                                    <label for="email" class="text-muted">Email Address:</label>
+                                    <input type="text" id="email" name="email" placeholder="Email address"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        value="{{old('email', $current_user->email)}}">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -258,9 +270,9 @@
                         </div>
                         <label for="imagepath" class="text-muted">Change Profile Picture</label>
                         <div class="form-group d-flex">
-                            <div class="w-75 pr-1">
-                                <input type='file' name='imagepath' id="imagepath"
-                                    class="form-control border-0 py-0 pl-0 file-upload-btn"
+                            <div  class="w-75 pr-1">
+                                <input style="width:50%;"   type='file' name='imagepath' id="imagepath"
+                                    class=" border-0 py-0 pl-0 file-upload-btn"
                                     value="{{$current_user->imagepath}}">
                                 @if ($errors->has('imagepath'))
                                 <span class="invalid-feedback" role="alert">{{ $errors->first('imagepath') }}</span>
@@ -282,7 +294,7 @@
                             </li>
                             @elseif($current_user->usertype === 'admin')
                             <li class="nav-item btn btn-block btn-outline-primary">
-                                <a class="nav-link" href="{{ route('home') }}">Admin Home</a>
+                                <a class="nav-link" href="{{ route('adminHome') }}">Admin Home</a>
                             </li>
                             @endif
                         </div>
@@ -292,5 +304,4 @@
         </div>
     </div>
 </div>
-
 @endsection

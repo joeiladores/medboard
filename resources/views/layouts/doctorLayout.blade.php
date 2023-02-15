@@ -104,7 +104,7 @@
                     <!-- Photo -->
                     <div class="flex-grow-1 align-self-center">
                       @if(Auth::user()->imagepath != NULL)
-                      <img src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
+                      <img src="{{ asset('images/avatars/'. Auth::user()->imagepath) }}" class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
                       @else
                       <i class="fas fa-user fs-2 me-1"></i>
                       @endif
