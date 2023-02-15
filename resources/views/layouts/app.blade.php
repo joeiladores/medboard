@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -41,7 +38,6 @@
         </nav>
 
         <main class="py-4">
-        @include('partials/flash-messages')
             @yield('content')
         </main>
 

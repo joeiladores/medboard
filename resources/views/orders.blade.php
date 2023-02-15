@@ -1,6 +1,7 @@
-@extends('layouts.doctorLayout', ['title' => 'Doctor Orders'])
+@extends('layouts.DoctorLayout')
 
 @section('content')
+<title>Doctor's Orders</title>
 <style>
     /* Set height of body and the document to 100% to enable "full page tabs" */
 body, html {
@@ -395,7 +396,7 @@ body, html {
                     <th>Frequency</th>
                     <th>Instructions</th>
                     <th>Date Start</th>
-                    <th>Date Stopped</th>
+                    <th>Date Stop</th>
                     <th>Actions</th>
                 </tr>
             </thead>

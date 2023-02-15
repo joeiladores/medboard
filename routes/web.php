@@ -16,7 +16,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
-use App\Http\Controllers\DoctorDashboardController;
+use App\Http\Controllers\DoctorDashboard;
 use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
@@ -32,9 +32,8 @@ use App\Http\Controllers\MedicalHistoryController;
 
 //Admission Form
 
-use App\Http\Controllers\Frontend\HomepageController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\UserProfileController;
+use App\Http\Controllers\AdmissionAjaxController;
+use App\Http\Controllers\PatientAdmissionController;
 
 // PDF
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -48,24 +47,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
  
 
+
+
 Route::get('/', function (){
     return redirect()->route('login');
 });
 
-Route::get('/welcome', function (){
-    return view('welcome');
-});
-
-// Route::get('/', function (){
-//     return view('welcome');
-// });
-
 Auth::routes();
 
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
-
+Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
+Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
 
 // *****************************************************************************
 // Patient Routes
@@ -101,7 +93,7 @@ Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name
 // *****************************************************************************
 // All Admin Routes List
 
-Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
+Route::get('/kardex', [AdmissionNewController::class, 'kardex'])->name('kardex');
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
@@ -135,15 +127,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
     Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
 
-
-    // *****************************************************************************
-    // All Chief Nurse Routes List
-    Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
-    Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
-    Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
-    Route::post('/admin/updatenurseassignment', [NurseAssignmentController::class, 'updateNurseAssignment'])->name('updatenurseassignment');
-    Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::class, 'deleteNurseAssignment'])->name('deletenurseassignment');
-
     // PDF Route
     Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
@@ -171,12 +154,16 @@ Route::get('/orders/{id}', [OrderMedicationController::class, 'index'])->name('o
 Route::post('/storeDoctorOrders', [DoctorOrdersController::class, 'store'])->name('storeDoctorOrders');
 Route::get('/destroyDoctorOrder/{id}', [DoctorOrdersController::class, 'destroy'])->name('destroyDoctorOrder');
 
+// For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
+
+
 // *****************************************************************************
 // Routes for Medication
 Route::post('/storeMedication', [OrderMedicationController::class, 'store'])->name('storeMedication');
 Route::get('/editMedication/{id}', [OrderMedicationController::class, 'edit'])->name('editMedication');
 Route::post('/updateMedication', [OrderMedicationController::class, 'update'])->name('updateMedication');
 Route::get('/destroyMedication/{id}', [OrderMedicationController::class, 'destroy'])->name('destroyMedication');
+
 
 // *****************************************************************************
 // Routes for Transfusion
@@ -201,6 +188,19 @@ Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->n
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
 
 
+
+// *****************************************************************************
+// All Nurse Routes List
+
+
+// *****************************************************************************
+// All Chief Nurse Routes List
+
+Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
+Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
+Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
+Route::post('/admin/updatenurseassignment', [NurseAssignmentController::class, 'updateNurseAssignment'])->name('updatenurseassignment');
+Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::class, 'deleteNurseAssignment'])->name('deletenurseassignment');
 
 
 
@@ -281,13 +281,3 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
-
-
-Auth::routes();
-
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
-    Route::match(['get', 'post'],'/dashboard/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
-    Route::post('/dashboard/profile/deleteavatar/{id}/{fileName}', [UserProfileController::class, 'deleteavatar'])->name('profile.deleteavatar');
-});

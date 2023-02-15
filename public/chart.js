@@ -1,46 +1,41 @@
+const patientChart = document.getElementById('patientChart');
+const patientBar = document.getElementById('patientBar');
 
-var sampleChartClass;
-(function ($) {
-  $(document).ready(function () {
+new Chart(patientChart, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'August'],
+    datasets: [{
+      label: 'Graph of patient per month',
+      data: [12, 19, 3, 5, 2, 3],
+      borderWidth: 1
+    }]
+  },
+  options: {
 
-    // for test purpose
-
-    // console.log(totalSample);
-    var labels = Object.keys(totalSample)
-    // console.log(labels);
-    var data = Object.values(totalSample)
-    // console.log(data);
-
-    var ctx = document.getElementById('myChart');
-    sampleChartClass.ChartData(ctx, 'bar', labels, data)
-
-    // var abc = document.getElementById('myPieChart');
-    // sampleChartClass.ChartData(abc, 'pie')
-
-  });
-  sampleChartClass = {
-    ChartData: function (ctx, type, labels, data) {
-
-      new Chart(ctx, {
-        type: type,
-        data: {
-          labels: labels,
-          datasets: [{
-            label: '# of Votes',
-            data: data,
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    }
-
+    responsive: true
   }
-})(jQuery);
+});
+
+
+
+new Chart(patientBar, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', ' Apr', 'May'],
+    datasets: [{
+      label: 'Total of patient per month',
+      data: [19, 12, 6, 8,15],
+      backgroundColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(0, 209, 115,1)',
+      ]
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+
 

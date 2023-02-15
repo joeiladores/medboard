@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\DB;
 class OrderMedicationController extends Controller
 {
     public function index($id){
-        
     $doctor_order = DoctorOrder::findOrFail ($id);
     $order_medications = OrderMedication::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();
     $order_transfusions = OrderTransfusion::where('doctor_order_id', $doctor_order->id)->orderBy('created_at', 'desc')->get();

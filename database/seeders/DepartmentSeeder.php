@@ -39,7 +39,7 @@ class DepartmentSeeder extends Seeder
                 'name' => 'Cardiology',
             ],
             [
-                'name' => 'Pulmonology',
+                'name' => 'Orthopedics',
             ],
             [
                 'name' => 'Nursing Department',

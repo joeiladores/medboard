@@ -41,20 +41,6 @@
   </div>
 
   <!-- Charts Starts-->
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <canvas id="myChart"></canvas>
-      </div>
-      <div class="col-md-6">
-        <canvas id="myPieChart"></canvas>
-      </div>
-    </div>
-  </div>
-
-  
-
   <div class="graphBox">    
 
     <div class="box border shadow">
@@ -68,19 +54,6 @@
   </div>
   <!-- Charts Ends -->
 
-
-
-  <!-- JQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- ChartJs -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
-
-  <script src="{{asset('/chart.js')}}"></script>
-<!-- fot test purpose -->
-  <script>
-    var totalSample = @json($totalSample);
-  </script>
 
 
 @include('profile.partials.footer')

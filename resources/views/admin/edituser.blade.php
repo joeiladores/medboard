@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header primary-bg text-light">{{ __('Edit User') }}</div>
+                <div class="card-header third-bg-color">{{ __('Edit User') }}</div>
 
                 <div class="card-body">
                     <div class="row">
