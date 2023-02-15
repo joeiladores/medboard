@@ -10,11 +10,12 @@
                     <div class="d-flex justify-content-between">
                         <h3 class="mr-2 second-text">PATIENTS</h3>
                         <div>
+                            @if(Auth::user()->usertype != 'Admin')
                             <!-- Add Patient Modal Button -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPatientModal">
                                 + Add Patient
                             </button>
-
+                            @endif
                             <!-- Add Patient Modal-->
                             <div class="modal fade" id="addPatientModal" tabindex="-1" aria-labelledby="addPatientModalLabel" aria-hidden="true">
                                 <<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -38,7 +39,7 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label for="midname" class="form-label">Middle Name</label>
-                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="optional">
+                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="Middle Name" required>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label for="marital_status" class="form-label">Marital Status</label>
@@ -81,7 +82,7 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label for="health_insurance" class="form-label">Health Insurance</label>
-                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="optional">
+                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="Health Insurance" required>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <label for="relative_fullname" class="form-label">Relative Full Name</label>
@@ -98,7 +99,9 @@
                                                     </div>
                                                     <hr>
                                                     <div>
+                                                        
                                                         <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateAddPatient()">Add Patient</button>
+                                                       
                                                     </div>
                                                 </form>
                                             </div>
@@ -502,6 +505,26 @@
 
 <!-- For Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.css"/> 
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#patientTable').DataTable({
+        responsive: true,
+        fixedHeader: true
+      });
+    });
+  </script>
+
 
 <!-- Add Transfusion validation -->
 <script>

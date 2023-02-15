@@ -42,18 +42,6 @@
 
   <!-- Charts Starts-->
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <canvas id="myChart"></canvas>
-      </div>
-      <div class="col-md-6">
-        <canvas id="myPieChart"></canvas>
-      </div>
-    </div>
-  </div>
-
-  
 
   <div class="graphBox">    
 

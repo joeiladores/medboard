@@ -181,7 +181,7 @@
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.js"></script>
 
   <script>
-    var dataTable = new DataTable("#patientTable");
+
 
     //  Edit Modal Patient
     const editPatientModal = new bootstrap.Modal('#editPatientModal', {
