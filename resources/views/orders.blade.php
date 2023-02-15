@@ -61,7 +61,7 @@ body, html {
 
 </style>
 
-<a href="{{ route('doctorsOrders') }}" style="background-color:#1f66d1;" class="btn btn-light btn-sm text-light ms-3 p-1">← Go back</a>
+<a href="{{ route('doctorsOrders') }}" style="background-color:#1f66d1;" class="btn btn-light btn-sm text-light ms-3 p-2 mt-3">← Go back</a>
   <div class="card rounded shadow m-3" style="background-color:#d4ebf8;">
   <div class="card-body m-2">
   <div class="d-flex justify-content-between">

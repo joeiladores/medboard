@@ -4,7 +4,7 @@ const patientBar = document.getElementById('patientBar');
 new Chart(patientChart, {
   type: 'line',
   data: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'August'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
     datasets: [{
       label: 'Graph of patient per month',
       data: [12, 19, 3, 5, 2, 3],
@@ -22,10 +22,10 @@ new Chart(patientChart, {
 new Chart(patientBar, {
   type: 'bar',
   data: {
-    labels: ['Jan', 'Feb', 'Mar', ' Apr', 'May'],
+    labels: ['Jan', 'Feb', 'Mar', ' Apr', 'May', 'June'],
     datasets: [{
       label: 'Total of patient per month',
-      data: [19, 12, 6, 8,15],
+      data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(255, 206, 86, 1)',
@@ -37,5 +37,4 @@ new Chart(patientBar, {
     responsive: true
   }
 });
-
 

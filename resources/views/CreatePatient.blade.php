@@ -10,11 +10,12 @@
                     <div class="d-flex justify-content-between">
                         <h3 class="mr-2 second-text">PATIENTS</h3>
                         <div>
+                            @if(Auth::user()->usertype != 'Admin')
                             <!-- Add Patient Modal Button -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPatientModal">
                                 + Add Patient
                             </button>
-
+                            @endif
                             <!-- Add Patient Modal-->
                             <div class="modal fade" id="addPatientModal" tabindex="-1" aria-labelledby="addPatientModalLabel" aria-hidden="true">
                                 <<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -38,7 +39,7 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label for="midname" class="form-label">Middle Name</label>
-                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="optional">
+                                                            <input type="text" class="form-control" id="midname" name="midname" placeholder="Middle Name" required>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label for="marital_status" class="form-label">Marital Status</label>
@@ -81,7 +82,7 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label for="health_insurance" class="form-label">Health Insurance</label>
-                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="optional">
+                                                            <input type="text" class="form-control" id="health_insurance" name="health_insurance" placeholder="Health Insurance" required>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <label for="relative_fullname" class="form-label">Relative Full Name</label>
@@ -98,7 +99,9 @@
                                                     </div>
                                                     <hr>
                                                     <div>
-                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right">Add Patient</button>
+                                                        
+                                                        <button type="submit" class="btn btn-primary m-2" style="background-color:rgb(66,100,208);float:right" onclick="validateAddPatient()">Add Patient</button>
+                                                       
                                                     </div>
                                                 </form>
                                             </div>
@@ -117,14 +120,17 @@
 
         <div id="PatientList" class="tabcontent">
             <table class="table table-hover" id="patientTable">
-                <thead>
-                    <tr>
-                        <th>Patients ID#</th>
-                        <th>Full Name</th>
-                        <th>Medical History</th>
-                        <th>----</th>
-                        <th>Admission</th>
-                        <th>Actions</th>
+                <thead class="primary-bg">
+                    <tr class="text-light">
+                        <th class="text-center">Patients ID#</th>
+                        <th class="text-center">Patients Full Name</th>
+                        <th class="text-center">Gender</th>
+                        <th class="text-center">Birth Date</th>
+                        <th class="text-center">Marital Status</th>
+                        <th class="text-center">Medical History</th>
+                        <th class="text-center">Admission</th>
+                        <th class="text-center">Kardex</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -377,7 +383,13 @@
                             </div>
                         </td>
 
-                        <td class="d-flex">
+                        <td>
+                            <a href="{{ route('kardex',  $patient->id) }}"
+                              class="p-2 btn btn-sm text-light fa-sharp fa-solid fa-clipboard"
+                              style="background-color:#1f66d1;"></a>
+                          </td>
+
+                        <td class="d-flex text-center">
                             <!-- Edit Patient Modal Button -->
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" onclick="showEditPatientModal({{ $patient->id }})">
@@ -494,5 +506,101 @@
 </div>
 
 </div>
+
+<!-- For Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.css"/> 
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#patientTable').DataTable({
+        responsive: true,
+        fixedHeader: true
+      });
+    });
+  </script>
+
+
+<!-- Add Transfusion validation -->
+<script>
+    function validateAddPatient() {
+        var form = document.querySelector('.add-patient');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Patient has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateAddMedHistory() {
+        var form = document.querySelector('.add-medhistory');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Patients Medical History has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateAddAdmission() {
+        var form = document.querySelector('.add-admission');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'New Admit Patient has been added!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function validateEditPatient() {
+        var form = document.querySelector('.edit-patient');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'Patient has been updated!',
+            icon: 'success',
+            showConfirmButton: true,
+        });
+    }
+
+    function reply_click_deletePatient(clicked_id) {
+        Swal.fire({
+            title: 'Delete Patient Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(66,100,208)',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('destroyPatient', $patient->id) }}" + "/" + clicked_id;
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Patient Record has been deleted.',
+                    icon: 'success',
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+
+
+    edit - patient
+</script>
+
 
 @endsection
