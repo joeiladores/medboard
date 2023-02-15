@@ -19,7 +19,7 @@ class PatientSeeder extends Seeder
     public function run()
     {
         // SEEDER FOR THE PATIENT
-        for($i = 1; $i <= 10; $i++) {
+        for($i = 1; $i <= 5; $i++) {
             $gender = Arr::random(['male', 'female']);
             if ($gender === 'male') $firstname = fake()->firstNameMale();
             else $firstname = fake()->firstNameFemale();
