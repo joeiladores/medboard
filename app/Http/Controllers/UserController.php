@@ -30,6 +30,8 @@ class UserController extends Controller
         ->with('specializations', Specialization::all());
     }
 
+   
+
     protected function storeUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -67,7 +69,13 @@ class UserController extends Controller
         $user->phone            = $request->phone;
         $user->department_id    = $request->department_id;
         $user->specialization_id   = $request->specialization_id;
-        $user->name             = $request->firstname . ' ' . $request->lastname;        
+        $user->name             = $request->firstname . ' ' . $request->lastname;  
+        
+        
+        $current_user = new User;
+
+        $current_user->imagepath            = $request->imagepath;
+
 
 
         // dd($request->hasFile('imagepath'));
@@ -96,6 +104,7 @@ class UserController extends Controller
 
         return redirect()->route('users')->with('success', 'New user added successfully!');
     }
+    
 
     public function editUser($id) {
         $user = User::find($id);

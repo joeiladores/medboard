@@ -167,42 +167,73 @@
         <div
             style="padding:15%; height:530px; background-color: #d4ebf8;border-radius: 30px 30px 0px 0px;border: 1px solid #00020518;">
             <center>
-                <img src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}"
-                    class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
+                <img style="width: 100px; height: 100px;" class="rounded-circle img-thumbnail mb-2 img-fluid"
+                    src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" alt="Image">
+                <p style="font-size:17px; font-weight:600;color:#1353c9;">Nurse
+                    {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
+                <p style="font-size:14px; font-weight:600;color:#1353c9;">{{ $specialization->name }}</p>
+            </center>
+            <div style="background-image: linear-gradient(to bottom,#4597e4, #4597e4);
+            border: 1px solid #4597e4; 
+            border-radius: 10px; 
+            padding: 20px; 
+            position: relative; 
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); 
+            background-size: 20px; 
+            background-color: #fff; 
+            font-size: 30px; 
+            line-height: 1.5; 
+            color: #ffffff; 
+            letter-spacing: 1px;">
+                <div style="position: absolute; 
+            top: -10px; 
+            left: 20px; 
+            width: 20px; 
+            height: 10px; 
+            background-color: #fff; 
+            transform: rotate(-4deg);">
+                </div>
+                <div style="position: absolute; 
+            top: 2px; 
+            left: 18px; 
+            width: 20px; 
+            height: 3px; 
+            background-color: #4597e4;">
+                </div>
+                <div style="word-wrap: break-word;
+            text-shadow:#4597e4, 3px 3px #4597e4;">
+                    {{ Auth::user()->stickyNote }}
+                </div>
+            </div>
         </div>
-        <p style="font-size:17px; font-weight:600;color:#1353c9;">Nurse
-            {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
-        <p style="font-size:14px; font-weight:600;color:#1353c9;">{{ $specialization->name }}</p>
-        </center>
-    </div>
-    <!--END Side Profile -->
+        <!--END Side Profile -->
 
-    <!-- Side Time/Date -->
-    <div class="mt-2 p-2 text-light"
-        style="height:100px;background-color: #d4ebf8;border-radius: 0px 0px 30px 30px; border: 1px solid #00020518;">
-        <center>
-            <h6 style="color:#1353c9;" id="currentDate"></h6>
-            <h2 style="color:#1353c9;" id="currentTime"></h2>
-        </center>
-        <script>
-        const currentDate = new Date();
-        const dateOptions = {
-            weekday: 'short',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        };
-        const timeOptions = {
-            hour: '2-digit',
-            minute: '2-digit'
-        };
+        <!-- Side Time/Date -->
+        <div class="mt-2 p-2 text-light"
+            style="height:100px;background-color: #d4ebf8;border-radius: 0px 0px 30px 30px; border: 1px solid #00020518;">
+            <center>
+                <h6 style="color:#1353c9;" id="currentDate"></h6>
+                <h2 style="color:#1353c9;" id="currentTime"></h2>
+            </center>
+            <script>
+            const currentDate = new Date();
+            const dateOptions = {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            };
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit'
+            };
 
-        document.getElementById("currentDate").innerHTML = currentDate.toLocaleDateString('en-US', dateOptions);
-        document.getElementById("currentTime").innerHTML = currentDate.toLocaleTimeString('en-US', timeOptions);
-        </script>
+            document.getElementById("currentDate").innerHTML = currentDate.toLocaleDateString('en-US', dateOptions);
+            document.getElementById("currentTime").innerHTML = currentDate.toLocaleTimeString('en-US', timeOptions);
+            </script>
+        </div>
+        <!--END Side Time/Date -->
     </div>
-    <!--END Side Time/Date -->
-</div>
 </div>
 </div>
 
