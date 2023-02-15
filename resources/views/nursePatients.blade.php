@@ -81,6 +81,7 @@
             <th>Primary Doctor Name</th>
             <th>Admission Date</th>
             <th>Room</th>
+            <th>Kardex</th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +92,11 @@
                 <td>Dr. {{ $patient->doctor_firstname }} {{ $patient->doctor_lastname }}</td>
                 <td>{{ date_format(new DateTime( $patient->admission_date), "F j, Y g:i A") }}</td>
                 <td>{{ $patient->room }}</td>
+                <td>
+                  <a href="{{ route('kardex',  $patient->patient_id) }}"
+                    class="btn btn-sm text-light fa-sharp fa-solid fa-clipboard"
+                    style="background-color:#1f66d1;"></a>
+                </td>
             </tr>
         @endforeach
         </tbody>
