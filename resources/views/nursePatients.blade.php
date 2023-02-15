@@ -104,7 +104,7 @@
     style="padding:15%; height:530px; background-color: #d4ebf8;border-radius: 30px 30px 0px 0px;border: 1px solid #00020518;">
     <center>
         <img style="width: 100px; height: 100px;" class="rounded-circle img-thumbnail mb-2 img-fluid"
-        src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" alt="Image">
+            src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" alt="Image">
         <p style="font-size:17px; font-weight:600;color:#1353c9;">Nurse
             {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
         <p style="font-size:14px; font-weight:600;color:#1353c9;">{{ $specialization->name }}</p>

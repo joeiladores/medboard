@@ -71,7 +71,7 @@
           <i class="fa-solid fa-calendar-days fa-icon"></i>
           <span>Calendar</span>
         </a>
-        <a href="{{ route('profile') }} class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+        <a href="{{ route('profile') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
           <i class="fa-sharp fa-solid fa-gear fa-icon"></i>
           Settings
         </a>

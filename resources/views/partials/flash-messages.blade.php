@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!-- Add SweetAlert2 CDN to your HTML file -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

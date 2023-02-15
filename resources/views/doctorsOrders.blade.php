@@ -1,4 +1,4 @@
-@extends('layouts.DoctorLayout')
+@extends('layouts.doctorLayout')
 
 @section('content')
 <title>Doctor's Orders</title>

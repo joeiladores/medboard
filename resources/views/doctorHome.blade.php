@@ -3,7 +3,6 @@
 <!-- Doctor Dashboard -->
 <div class="container-fluid px-4">
     <div class="row g-3 my-2">
-
         <div class="col-md-8">
             <div class="row card-bg p-4 border shadow rounded-5 second-text d-flex justify-content-center">
                 <div class="col-6">
@@ -17,10 +16,8 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 <div class="container-fluid px-4">
     <div class="row g-3 my-2">
 
@@ -47,9 +44,6 @@
                 <i class="fa-solid fa-hospital-user fs-3 primary-text"></i>
             </div>
         </div>
-
-
-
     </div>
 </div>
 

@@ -177,6 +177,10 @@ border-radius: 0px 44px 32px 0px;"
       <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-clipboard fs-2 me-2"></i>Forms</p>
       
     </a>
+
+    <a href="dashboard/profile" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-dark">
+      <p style="color:#1353c9;"><i class="fa-sharp fa-solid fa-gear fs-2 me-2"></i>Account settings</p>
+    </a>
     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="color:#1353c9;" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
       <i class="fas fa-project-diagram fs-2 me-2"></i>
       {{ __('Logout') }}

@@ -14,13 +14,16 @@
     <link rel="icon" type="image/x-icon" href="/images/medboard-logo-final.png">
 
     <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!--CSS-->
     <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+@section('flash-messages')
     <div id="app">
         <nav class="navbar nav-login navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
@@ -38,6 +41,7 @@
         </nav>
 
         <main class="py-4">
+           
             @yield('content')
         </main>
         <div>
@@ -46,7 +50,50 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    @section('flash-messages')
+        @if ($message = Session::get('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '{{ $message }}',
+                })
+            </script>
+        @endif
+    
+        @if ($message = Session::get('error'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: '{{ $message }}',
+                })
+            </script>
+        @endif
+    
+        @if ($message = Session::get('warning'))
+            <script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning!',
+                    text: '{{ $message }}',
+                })
+            </script>
+        @endif
+    
+        @if ($message = Session::get('info'))
+            <script>
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Info',
+                    text: '{{ $message }}',
+                })
+            </script>
+        @endif
+    @show
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

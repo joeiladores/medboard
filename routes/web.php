@@ -173,7 +173,7 @@ Route::controller(CalendarController::class)->group(function () {
 // All Doctor Routes List
 Route::middleware(['auth', 'user-access:doctor'])->group(function () {
 
-    Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
+    Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
 
 });
 

@@ -17,15 +17,9 @@
     </div>
 
     <!-- TABS -->
-<<<<<<< HEAD
-    <div class="m-3">
-        <button class="tablink btn border p-3 fw-bold" onclick="openPage('AdmittedList', this, 'rgb(94, 176, 243)')" id="defaultOpen">Current Admitted</button>
-        <button class="tablink btn border p-3 fw-bold" onclick="openPage('AllAdmitted', this, 'rgb(94, 176, 243)')">All Admitted</button>
-=======
     <div class="m-3 mb-5">
         <button class="tablink btn border p-3 px-5 fs-5 ms-2 fw-bold" onclick="openPage('AdmittedList', this, 'rgb(94, 176, 243)')" id="defaultOpen">CURRENT ADMITTED </button>
         <button class="tablink btn border p-3 px-5 fs-5 fw-bold" onclick="openPage('AllAdmitted', this, 'rgb(94, 176, 243)')">LIST OF ALL ADMITTED</button>
->>>>>>> a1bb4042d6f3bdcf29098f6eda88e048157f2ded
     </div>
 
     <div id="AdmittedList" class="tabcontent">
