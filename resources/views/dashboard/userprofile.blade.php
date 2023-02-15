@@ -14,82 +14,46 @@
 .card-header {
     background-color: #0050d5;
 }
-.form-control{
-    height:10%;
+
+.form-control {
+height: 40px;
+font-size: 16px;
+border-radius: 4px;
+border: 1px solid #E5E7EB;
+padding: 10px;
 }
 
 .form-group {
-    position: relative;
-    margin-bottom: 0.5rem;
-    border: solid 1px linen;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
+margin-bottom: 10px;
 }
 
-.form-group.with-floating-label label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0 0.2rem;
-    transition: all 0.3s ease-out;
-    pointer-events: none;
-    font-size: 0.7rem;
-    color: #999;
+.form-group label {
+display: block;
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 5px;
 }
 
-.form-group.with-floating-label input[type="text"],
-.form-group.with-floating-label textarea {
-    padding: 1.3rem 2rem 0.3rem;
-    border-width: 0 0 2px 0;
-    border-color: transparent;
-    background-color: transparent;
-    transition: all 0.3s ease-out;
+.form-group input[type="text"],
+.form-group textarea {
+width: 100%;
+height: 40px;
+font-size: 16px;
+border-radius: 4px;
+border: 1px solid #E5E7EB;
+padding: 10px;
+transition: border-color 0.2s ease-in-out;
 }
 
-.form-group.with-floating-label input[type="text"]:focus,
-.form-group.with-floating-label textarea:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-.form-group.with-floating-label input[type="text"]:not(:focus)+label,
-.form-group.with-floating-label textarea:not(:focus)+label {
-    transform: translateY(-3rem);
-    font-size: 0.6rem;
-    color: #999;
-}
-
-.form-group.with-floating-label input[type="text"]:focus+label,
-.form-group.with-floating-label textarea:focus+label {
-    transform: translateY(-3rem) scale(0.8);
-    font-size: 0.6rem;
-    color: #007bff;
-}
-
-.form-group.with-floating-label input[type="text"]:valid+label,
-.form-group.with-floating-label textarea:valid+label {
-    transform: translateY(-3rem) scale(0.8);
-    font-size: 0.6rem;
-    color: #007bff;
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+border-color: #60A5FA;
 }
 
 .form-group .invalid-feedback {
-    position: absolute;
-    bottom: -2rem;
-    left: 0;
-    font-size: 0.8rem;
-    color: #dc3545;
-    animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+color: #EF4444;
+margin-top: 4px;
+font-size: 14px;
 }
 
 .form-group button {
@@ -110,62 +74,51 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 text-center">
-            <div class="container text-center card p-4">
-                <div class="row">
-                    <div class="col">
-                        <div>
-                            <img class="rounded-circle img-thumbnail" style="width: 150px; height: 150px;"
-                                src="{{ asset('images/avatars/'. $current_user->imagepath) }}"
-                                alt="{{ $current_user->name }}">
-                            <br><br>
-                            <div class="row">
-                                <div class="col card text-muted text-left">
-                                    <p class="text-muted"> {{ $current_user->stickyNote }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">ID: {{ $current_user->department_id }}</p>
-                            </div>
-                        </div>
-                        </div>
+
+        <div class="col-md-8 col-lg-6">
+            <div class="card mb-3">
+                <div class="card-header text-center">
+                    <img class="rounded-circle img-thumbnail" style="width: 150px; height: 150px;"
+                        src="{{ asset('images/avatars/'. $current_user->imagepath) }}" alt="{{ $current_user->name }}">
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">ID:</div>
+                        <div class="col-8 col-md-9">{{ $current_user->department_id }}</div>
                     </div>
-                    <div class="col order-1">
-                        <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">User Type: {{ ucfirst( $current_user->usertype)}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">User Name: {{ $current_user->name }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">Email: {{ $current_user->email }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">Phone: {{ $current_user->phone }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">BirthDate: {{ $current_user->birthdate}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col card m-1 text-muted text-left">
-                                <p class="text-muted">Address: {{ $current_user->address }}</p>
-                            </div>
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">User Type:</div>
+                        <div class="col-8 col-md-9">{{ ucfirst($current_user->usertype) }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">User Name:</div>
+                        <div class="col-8 col-md-9">{{ $current_user->name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">Email:</div>
+                        <div class="col-8 col-md-9">{{ $current_user->email }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">Phone:</div>
+                        <div class="col-8 col-md-9">{{ $current_user->phone }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">Birth Date:</div>
+                        <div class="col-8 col-md-9">{{ $current_user->birthdate }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-md-3 text-muted">Address:</div>
+                        <div class="col-8 col-md-9">{{ $current_user->address }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-muted mt-3">
+                            {{ $current_user->stickyNote }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-md-6">
             <div class="card">
                 <div style="color:#fff;" class="card-header">{{ __('Edit your profile') }}</div>
@@ -270,10 +223,9 @@
                         </div>
                         <label for="imagepath" class="text-muted">Change Profile Picture</label>
                         <div class="form-group d-flex">
-                            <div  class="w-75 pr-1">
-                                <input style="width:50%;"   type='file' name='imagepath' id="imagepath"
-                                    class=" border-0 py-0 pl-0 file-upload-btn"
-                                    value="{{$current_user->imagepath}}">
+                            <div class="w-75 pr-1">
+                                <input style="width:50%;" type='file' name='imagepath' id="imagepath"
+                                    class=" border-0 py-0 pl-0 file-upload-btn" value="{{$current_user->imagepath}}">
                                 @if ($errors->has('imagepath'))
                                 <span class="invalid-feedback" role="alert">{{ $errors->first('imagepath') }}</span>
                                 @endif
