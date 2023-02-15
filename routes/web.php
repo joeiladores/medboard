@@ -64,39 +64,10 @@ Auth::routes();
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
+// Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
+// Route::get('/doctorHome', [HomeController::class, 'doctorHome'])->name('doctorHome');
 
 
-// *****************************************************************************
-// Patient Routes
-
-Route::get('/patient', [PatientController::class, 'patient'])->name('patientView');
-Route::post('/storePatient', [PatientController::class, 'store'])->name('storePatient');
-Route::get('/destroyPatient/{id}', [PatientController::class, 'destroy'])->name('destroyPatient');
-Route::post('/updatePatient', [PatientController::class, 'update'])->name('updatePatient');
-Route::get('/editPatient/{id}', [PatientController::class, 'edit'])->name('editPatient');
-Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('patients');
-Route::get('/showpatient/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
-Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
-Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
-
-// *****************************************************************************
-// Routes for Admission
-Route::post('/storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
-Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
-Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
-Route::get('/showAdmission/{id}', [AdmissionNewController::class, 'show'])->name('showAdmission');
-Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name('updateAdmission');
-
-
-
-
-// Route::middleware(['auth', 'user-access:doctor'])->group(function () {
-// });
-// Route::middleware(['auth', 'user-access:nurse'])->group(function () {   
-// });
-// Route::middleware(['auth', 'user-access:chiefnurse'])->group(function () {
-// });
 
 // *****************************************************************************
 // All Admin Routes List
@@ -135,9 +106,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
     Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
 
+ 
 
-    // *****************************************************************************
-    // All Chief Nurse Routes List
     Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
     Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
     Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
@@ -148,6 +118,28 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
 });
+
+
+// *****************************************************************************
+// Patient Routes
+
+Route::get('/patient', [PatientController::class, 'patient'])->name('patientView');
+Route::post('/storePatient', [PatientController::class, 'store'])->name('storePatient');
+Route::get('/destroyPatient/{id}', [PatientController::class, 'destroy'])->name('destroyPatient');
+Route::post('/updatePatient', [PatientController::class, 'update'])->name('updatePatient');
+Route::get('/editPatient/{id}', [PatientController::class, 'edit'])->name('editPatient');
+Route::get('/patients/{id}', [PatientController::class, 'showPatient'])->name('patients');
+Route::get('/showpatient/{id}', [PatientController::class, 'showPatient'])->name('patientMedHistory');
+Route::post('/storeMedHistory', [MedicalHistoryController::class, 'storeMedHistory'])->name('storeMedHistory');
+Route::get('/showmedhistory/{id}', [MedicalHistoryController:: class, 'showMedHistory'])->name('showmedhistory');
+
+// *****************************************************************************
+// Routes for Admission
+Route::post('/storeAdmit', [AdmissionNewController::class, 'storeAdmit'])->name('storeAdmit');
+Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])->name('admittedPatient');
+Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
+Route::get('/showAdmission/{id}', [AdmissionNewController::class, 'show'])->name('showAdmission');
+Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name('updateAdmission');
 
 
 // *****************************************************************************
@@ -164,6 +156,11 @@ Route::controller(CalendarController::class)->group(function () {
 
 // *****************************************************************************
 // All Doctor Routes List
+Route::middleware(['auth', 'user-access:doctor'])->group(function () {
+
+    Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
+
+});
 
 // Doctor's Orders View
 Route::get('/doctorsOrders', [DoctorOrdersController::class, 'index'])->name('doctorsOrders');
@@ -201,12 +198,12 @@ Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->n
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
 
 
-
-
-
 // *****************************************************************************
 // Nurse's Dashboard View
-Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+Route::middleware(['auth', 'user-access:nurse'])->group(function () {   
+    Route::get('/nurseHome', [NurseDashboardController::class, 'index'])->name('nurseHome');
+});
+
 Route::get('/nurseDoctorOrdersView/{id}', [NurseDashboardController::class, 'nurseOrderView'])->name('nurseDoctorOrdersView');
 Route::get('/nursePatients', [NurseDashboardController::class, 'patientList'])->name('nursePatients');
 //Medication

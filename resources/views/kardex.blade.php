@@ -84,7 +84,7 @@
     @endforeach
 
     <!-- Tab Pill -->
-    <div class="container pt-3">
+    <!-- <div class="container pt-3">
       <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-1 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
         <li class="nav-item" role="presentation">
           <button class="nav-link active rounded-1" id="tab1_medication" data-bs-toggle="tab" data-bs-target="#tab1-medication" type="button" role="tab" aria-selected="true">Medication</button>
@@ -99,7 +99,7 @@
           <button class="nav-link rounded-1" id="tab4_progressnotes" data-bs-toggle="tab" data-bs-target="#tab4-progressnotes" type="button" role="tab" aria-selected="false">Doctor's Progress Notes</button>
         </li>
       </ul>
-    </div>
+    </div> -->
 
     <div class="tab-content" id="myTabContent">
       <!-- Tab1 - Medication -->
@@ -127,7 +127,7 @@
               <td>{{ $medication->unit }}</td>
               <td>{{ $medication->frequency }}</td>
               <td>{{ $medication->instructions }}</td>
-              <td>{{ $medication->date_started ? date_format(new DateTime($order_medication->date_started), "F j, Y") : '' }}</td>
+              <td>{{ $medication->date_started ? date_format(new DateTime($medication->date_started), "F j, Y") : '' }}</td>
               <td>{{ $medication->date_stopped ? date_format(new DateTime($medication->date_stopped), "F j, Y") : '' }}</td>
             </tr>
             @endforeach
