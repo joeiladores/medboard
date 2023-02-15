@@ -172,8 +172,8 @@
                     {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
                 <p style="font-size:14px; font-weight:600;color:#1353c9;">{{ $specialization->name }}</p>
             </center>
-            <div style="background-image: linear-gradient(to bottom, #fde8e1, #f9d3c9);
-                    border: 1px solid #f9d3c9; 
+            <div style="background-image: linear-gradient(to bottom,#4597e4, #4597e4);
+                    border: 1px solid #4597e4; 
                     border-radius: 10px; 
                     padding: 20px; 
                     position: relative; 
@@ -182,7 +182,7 @@
                     background-color: #fff; 
                     font-size: 30px; 
                     line-height: 1.5; 
-                    color: #f37c7c; 
+                    color: #ffffff; 
                     letter-spacing: 1px;">
                 <div style="position: absolute; 
                     top: -10px; 
@@ -197,10 +197,10 @@
                     left: 18px; 
                     width: 20px; 
                     height: 3px; 
-                    background-color: #f9d3c9;">
+                    background-color: #4597e4;">
                 </div>
                 <div style="word-wrap: break-word;
-                    text-shadow:#f37c7c, 3px 3px #f37c7c;">
+                    text-shadow:#4597e4, 3px 3px #4597e4;">
                     {{ Auth::user()->stickyNote }}
                 </div>
             </div>
