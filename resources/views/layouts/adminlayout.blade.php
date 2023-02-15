@@ -125,7 +125,8 @@
                   <div class="d-flex">
                     <!-- Photo -->
                     <div class="flex-grow-1 align-self-center">                    
-                      <img src="{{ asset('images/avatars/'. $current_user->imagepath) }}" alt="{{ $current_user->name }}" class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
+                    <img src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}"
+                        class="img-fluid rounded-pill" style="width: 50px; height: 50px; object-fit:cover;">
                     </div>
                     <!-- My Profile -->
                     <div class="ms-2 align-self-center">

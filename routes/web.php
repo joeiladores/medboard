@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\NurseAssignmentController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\Dashboard\UserProfileController;
 
 // Doctor Order Controllers
 use App\Http\Controllers\DoctorDashboard;
@@ -312,3 +313,15 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+
+
+
+Auth::routes();
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::match(['get', 'post'],'/dashboard/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/dashboard/profile/deleteavatar/{id}/{fileName}', [UserProfileController::class, 'deleteavatar'])->name('profile.deleteavatar');
+});

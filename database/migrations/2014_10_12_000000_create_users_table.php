@@ -28,7 +28,8 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
             $table->string('imagepath')->nullable()->default(null);
-            $table->enum('status', ['active', 'inactive'])->default('active');           
+            $table->enum('status', ['active', 'inactive'])->default('active');  
+            $table->longText('stickyNote')->default('Sticky Note');         
 
             $table->string('name');
             $table->string('email')->unique();
