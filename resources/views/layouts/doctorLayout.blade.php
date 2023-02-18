@@ -57,12 +57,12 @@
                     <i class="fa-solid fa-calendar-days fa-icon fs-3"></i>
                     <span class="fs-5 ms-2">Admitted</span>
                 </a>
-                <a class="list-group-item  bg-transparent second-text fw-bold " href="{{ route('profile') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-gear fs-2 me-2"></i>
+                <a href="{{ route('profile') }}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-3">
+                    <i class="fa-solid fa-gear fa-icon fs-3"></i>
                     <span class="fs-5 ms-2">{{ __('Settings') }}</span>
-                    
                 </a>
+            
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     style="color:#1353c9;"
