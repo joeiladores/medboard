@@ -151,7 +151,7 @@
                         <th class="text-center">Marital Status</th>
                         <th class="text-center">Medical History</th>
                         <th class="text-center">Admission</th>
-                        <th class="text-center">Kardex</th>
+                        <td class="text-center">Kardex</td>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -470,8 +470,8 @@
 
                         <td>
                             <a href="{{ route('kardex',  $patient->id) }}"
-                                class="p-2 btn btn-sm text-light fa-sharp fa-solid fa-clipboard"
-                                style="background-color:#1f66d1;"></a>
+                              class="p-2 btn btn-sm text-light fa-sharp fa-solid fa-clipboard"
+                              style="background-color:#1f66d1;"></a>
                         </td>
 
                         <td class="d-flex text-center">
