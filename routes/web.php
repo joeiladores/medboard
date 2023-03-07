@@ -106,15 +106,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/showspecialization/{id}', [SpecializationController::class, 'show'])->name('specialization.show');
     Route::get('/admin/deletespecialization/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
 
- 
-
+    // Nurse Assignments Routes
     Route::get('/admin/nurseassignments', [NurseAssignmentController::class, 'nurseAssignments'])->name('nurseassignments');
     Route::post('/admin/storenurseassignment', [NurseAssignmentController::class, 'storeNurseAssignment'])->name('storenurseassignment');
     Route::get('/admin/shownurseassignment/{id}', [NurseAssignmentController::class, 'showNurseAssignment'])->name('shownurseassignment');
     Route::post('/admin/updatenurseassignment', [NurseAssignmentController::class, 'updateNurseAssignment'])->name('updatenurseassignment');
     Route::get('/admin/deletenurseassignment/{id}', [NurseAssignmentController::class, 'deleteNurseAssignment'])->name('deletenurseassignment');
 
-    // PDF Route
+    // Admin PDF Route
     Route::get('/admin/generate-userlistpdf', [UserController::class, 'generatePDF'])->name('generate-userlistpdf');
 
 });
@@ -145,13 +144,14 @@ Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name
 // *****************************************************************************
 // Calendar Routes
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
-Route::resource('calendar', CalendarController::class)->only(['index', 'edit', 'store']);
-Route::controller(CalendarController::class)->group(function () {
-    Route::get('getevents', 'getEvents')->name('calendar.getevents');
-    Route::put('update/events', 'updateEvents')->name('calendar.updateevents');
-    Route::post('resize/events', 'resizeEvents')->name('calendar.resizeevents');
-    Route::post('drop/events', 'dropEvents')->name('calendar.dropevents');
-});
+Route::post('/storecalendar', [CalendarController::class, 'store'])->name('storecalendar');
+// Route::resource('calendar', CalendarController::class)->only(['index', 'edit', 'store']);
+// Route::controller(CalendarController::class)->group(function () {
+//     Route::get('getevents', 'getEvents')->name('calendar.getevents');
+//     Route::put('update/events', 'updateEvents')->name('calendar.updateevents');
+//     Route::post('resize/events', 'resizeEvents')->name('calendar.resizeevents');
+//     Route::post('drop/events', 'dropEvents')->name('calendar.dropevents');
+// });
 
 
 // *****************************************************************************

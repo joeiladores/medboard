@@ -29,7 +29,7 @@ return new class extends Migration
             $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
             $table->string('imagepath')->nullable()->default('default.png');
             $table->enum('status', ['active', 'inactive'])->default('active');  
-            $table->longText('stickyNote')->default('Sticky Note');
+            $table->longText('stickyNote')->nullable()->default(null);
 
             $table->string('name');
             $table->string('email')->unique();

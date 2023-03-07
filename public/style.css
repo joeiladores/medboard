@@ -190,6 +190,15 @@ body {
 } */
 
 
+#calendar {
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.bg-calendar {
+  background-color: #F3F3F9;
+}
+
 
 /* Chart */
 .graphBox {
