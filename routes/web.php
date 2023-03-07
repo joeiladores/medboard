@@ -268,47 +268,32 @@ Route::get('/generate-pdf', function(){
 
 
 // *****************************************************************************
+
+
 // Routes for password resets
-Route::post('/password-reset', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
- 
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
- 
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
 
-
-// Route::get('/forgot-password', function () {
-//     return view('auth.forgot-password');
-// })->middleware('guest')->name('password.request');  // reset password when loggin
-
-
+use App\Models\User;
 
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
+        'password' => 'required|confirmed',
     ]);
  
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $password) {
+        function (User $user, string $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
             ])->setRememberToken(Str::random(60));
  
-//             $user->save();
+            $user->save();
  
-//         //     event(new PasswordReset($user));
-         }
+            event(new PasswordReset($user));
+        }
     );
  
-
     return $status === Password::PASSWORD_RESET
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
@@ -316,12 +301,3 @@ Route::post('/reset-password', function (Request $request) {
 
 
 
-
-Auth::routes();
-
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
-    Route::match(['get', 'post'],'/dashboard/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
-    Route::post('/dashboard/profile/deleteavatar/{id}/{fileName}', [UserProfileController::class, 'deleteavatar'])->name('profile.deleteavatar');
-});
