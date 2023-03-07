@@ -10,18 +10,18 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
 
-  <!--Bootstrap CSS-->
+  <!--Bootstrap v5 CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
   <!--Fontawesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Calendar -->
  
   <!--CSS-->
   <link rel="stylesheet" href="/style.css">
 
 </head>
-
 <body>
 
   <div class="d-flex" id="wrapper">
@@ -157,15 +157,6 @@
     </div>
   </div>
 
-  <script>
-    var el = document.getElementById("wrapper")
-    var toggleButton = document.getElementById("menu-toggle")
-
-    toggleButton.onclick = function() {
-      el.classList.toggle("toggled")
-    }
-  </script>
-
   <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
@@ -183,6 +174,15 @@
   <!-- For DataTables -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.css" />
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.js"></script>
+
+  <script>
+    var el = document.getElementById("wrapper")
+    var toggleButton = document.getElementById("menu-toggle")
+
+    toggleButton.onclick = function() {
+      el.classList.toggle("toggled")
+    }
+  </script>
 
   <script>
     var dataTable = new DataTable("#patientTable");
