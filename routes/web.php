@@ -270,8 +270,7 @@ Route::get('/generate-pdf', function(){
 // *****************************************************************************
 
 
-// Routes for password resets
-
+// Routes for password reset
 use App\Models\User;
 
 Route::post('/reset-password', function (Request $request) {
@@ -299,5 +298,11 @@ Route::post('/reset-password', function (Request $request) {
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
-
+// Routes for user profile
+Route::group(['middleware' => ['auth']], function() {
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::match(['get', 'post'],'/dashboard/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/dashboard/profile/deleteavatar/{id}/{fileName}', [UserProfileController::class, 'deleteavatar'])->name('profile.deleteavatar');
+});
 
