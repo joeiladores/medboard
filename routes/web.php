@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 
 // Admin Controllers
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\DepartmentController;
@@ -78,6 +79,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
      // User Routes 
     Route::get('/home', [AdminController::class, 'index'])->name('adminHome');
+
     Route::get('/admin/users', [UserController::class, 'users'])->name('users');
     Route::get('/admin/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
     Route::post('/admin/storeuser', [UserController::class, 'storeUser'])->name('storeuser');

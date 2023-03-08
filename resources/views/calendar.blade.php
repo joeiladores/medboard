@@ -42,7 +42,7 @@
   </div>
 
 </div>
-<!-- End of Calendar Display -->
+
 
 <!-- Add Schedule Modal -->
 {{-- add modal --}}
@@ -51,13 +51,13 @@
     <div class="modal-content">
       <div class="modal-header primary-bg text-white">
         <h5 class="modal-title">Add Schedule</h5>
-        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form id="add-form" action="{{ route('storecalendar') }}" method="POST">
         @csrf
         <div class="modal-body">
           <div class="d-flex flex-column align-items-start">
-            <div class=" w-100" id="v-pills-tabContent">
+            <div class=" w-100"">
               <div class="fade active show" id="-3">
 
                 <div class="row g-3 align-items-center form-group">

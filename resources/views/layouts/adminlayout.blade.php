@@ -102,7 +102,7 @@
               <div class="col align-self-center">
                 <!-- Welcome User -->
                 <div class="fs-6 fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }}</div>
-                <div>{{ \Carbon\Carbon::now(new DateTimeZone('Asia/Singapore'))->format('D, F j, Y') }}</div>
+                <div>{{ \Carbon\Carbon::now(new DateTimeZone('Asia/Manila'))->format('D, F j, Y') }}</div>
               </div>
             </div>
 
