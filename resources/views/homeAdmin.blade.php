@@ -15,8 +15,8 @@
 
     <div class="col-md-3">
       <div class="card card-body card-bg p-3 text-center border shadow rounded-3">
-        <h3 class="fw-bold second-text">{{ $totalPatients }}</h3>
-        <p class="fs-5 text-primary">Total Current Patients</p>
+        <h3 class="fw-bold second-text">{{ $totalCurrentAdmitted }}</h3>
+        <p class="fs-5 text-primary">Total Current Admission</p>
         <i class="fs-1 fa-solid fa-hospital-user primary-text pb-2"></i>
       </div>
     </div>
@@ -81,15 +81,30 @@
         label: 'Admissions',
         data: chartData.count,
         backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(0, 209, 115,1)',
+          'rgba(255, 99, 132, 0.8)',
+          'rgba(255, 159, 64, 0.8)',
+          'rgba(255, 205, 86, 0.8)',
+          'rgba(75, 192, 192, 0.8)',
+          'rgba(54, 162, 235, 0.8)',
+          'rgba(153, 102, 255, 0.8)',
+          'rgba(201, 203, 207, 0.8)'
         ],
         borderWidth: 1
       }]
     },
     options: {
       responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Patients Admission Chart within the 12 month period'
+        }
+      }
     }
   });
 </script>

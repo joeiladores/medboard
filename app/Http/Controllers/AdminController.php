@@ -21,11 +21,12 @@ class AdminController extends Controller
     {
         if (Auth::user()->status == 'active') {
 
-            $totalPatients  = Patient::count();
+            $totalCurrentAdmitted  = AdmissionNew::where('status', 'Admitted')->count();
             $totalDoctors   = User::where('usertype', 'doctor')->where('status', 'active')->count();
             $totalNurses    = User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->count();
             $totalVacantBeds = Bed::where('status', 'vacant')->count();
 
+            // Get admissions per month for the last 12 month period
             $admissions = AdmissionNew::select(DB::raw('COUNT(*) as count'), DB::raw("DATE_FORMAT(created_at, '%b%Y') as month_name"))
                 ->whereBetween('created_at', [Carbon::now()->subMonth(12), Carbon::now()])
                 ->groupBy('month_name')
@@ -37,20 +38,24 @@ class AdminController extends Controller
                 'months' => $admissions->pluck('month_name'),
                 'count' => $admissions->pluck('count')
             ];
-
             // dd($chartData);
 
-            return view('homeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds', 'chartData'));
+            //TODO: query for pie chart data - admission bu age
+            // $patientages = AdmissioNew
+
+           
+            return view('homeAdmin', compact('totalCurrentAdmitted', 'totalDoctors', 'totalNurses', 'totalVacantBeds', 'chartData'));
+
         } else {
             throw new UnauthorizedHttpException('Inactive');
 
             try {
-                $totalPatients  = Patient::count();
+                $totalCurrentAdmitted  = AdmissionNew::where('status', 'Admitted')->count();
                 $totalDoctors   = User::where('usertype', 'doctor')->where('status', 'active')->count();
                 $totalNurses    = User::where('usertype', 'nurse')->orWhere('usertype', 'chiefnurse')->where('status', 'active')->count();
                 $totalVacantBeds = Bed::where('status', 'vacant')->count();
 
-                return view('homeAdmin', compact('totalPatients', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
+                return view('homeAdmin', compact('totalCurrentAdmitted', 'totalDoctors', 'totalNurses', 'totalVacantBeds'));
             } catch (UnauthorizedHttpException $e) {
                 return response()->view('errors.inactive', [], 'inactive');
             }

@@ -20,7 +20,16 @@ class BedSeeder extends Seeder
 
         // SEEDER FOR BEDS
         $num = 101;
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
+            \App\Models\Bed::create([
+                'bednum' => $i,
+                'room' => $num++,
+                'room_type' => 'Private',
+                'station' => 'Nurse Station 1',              
+                'status' => 'occupied',
+            ]);
+        }
+        for ($i = 4; $i <= 5; $i++) {
             \App\Models\Bed::create([
                 'bednum' => $i,
                 'room' => $num++,
@@ -37,7 +46,8 @@ class BedSeeder extends Seeder
                     'bednum' => $bed + $i,
                     'room' => $room,
                     'room_type' => 'Semi-Private',
-                    'station' => 'Nurse Station 1',              
+                    'station' => 'Nurse Station 1',
+                    'status' => 'occupied',              
                 ]);
             }
             $bed += 2;
