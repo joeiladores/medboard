@@ -36,7 +36,7 @@
           <thead class="primary-bg text-light">
             <tr>
               <td>ID</td>
-              <td></td>              
+              <td>&nbsp;&nbsp;&nbsp;</td>              
               <td>Name</td>
               <td>User Type</td>
               <td>Department</td>
@@ -53,11 +53,15 @@
             <tr>
               <td>{{ $user->id }}</td>
               
-              <td>@if($user->imagepath != NULL)
-              <img src="{{ Storage::url('public/images/profile/'.$user->imagepath) }}" class="img-fluid rounded-1" style="width: 30px; height: 20px; object-fit:cover;">
-              @else
-              <i class="fas fa-user fs-6"></i>
-              @endif</td>
+              <td>
+                @if($user->imagepath != NULL)
+                <img src="{{ Storage::url('public/images/profile/'.$user->imagepath) }}" class="img-fluid rounded-pill" style="width: 30px; height: 30px; object-fit:cover; ">
+                @else
+                <span class="d-flex justify-content-center align-item-center">
+                  <i class="fas fa-user fs-4"></i>
+                </span>
+                @endif
+              </td>
 
               <td>{{ $user->name }}</td>
               <td>{{ $user->usertype }}</td>              
