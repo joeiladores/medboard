@@ -34,17 +34,17 @@ class AdminController extends Controller
                 ->orderBy(DB::raw("MONTH(created_at)"))
                 ->get();
 
-            $chartData = [
+            $chartAdmissionData = [
                 'months' => $admissions->pluck('month_name'),
                 'count' => $admissions->pluck('count')
             ];
-            // dd($chartData);
+            // dd($chartAdmissionData);
 
             //TODO: query for pie chart data - admission bu age
-            // $patientages = AdmissioNew
+            // $patientages = 
 
            
-            return view('homeAdmin', compact('totalCurrentAdmitted', 'totalDoctors', 'totalNurses', 'totalVacantBeds', 'chartData'));
+            return view('homeAdmin', compact('totalCurrentAdmitted', 'totalDoctors', 'totalNurses', 'totalVacantBeds', 'chartAdmissionData'));
 
         } else {
             throw new UnauthorizedHttpException('Inactive');

@@ -65,34 +65,7 @@
                     <label for="name" class="col-form-label">Name</label>
                   </div>
                   <div class="col-10">
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Event Title">
-                  </div>
-                </div>
-
-                <div class="row g-3 align-items-center form-group">
-                  <div class="col-2">
-                    <label for="date_start" class="col-form-label text-center">
-                      <i class="fs-3 bi bi-calendar-event"></i>
-                    </label>
-                  </div>
-                  <div class="col-5">
-                    <input type="text" name="date_start" id="date_start" class="form-control date_flatpicker" placeholder="Select Start Date ">
-                  </div>
-                  <div class="col-5">
-                    <input type="text" name="end_date" id="date_end" class="form-control date_flatpicker" placeholder="Select End Date ">
-                  </div>
-                </div>
-
-                <div class="row g-3 align-items-center form-group">
-                  <div class="col-2">
-                    <label class="col-form-label">
-                      <i class="fs-3 bi bi-clock"></i>
-                    </label>
-                  </div>
-                  <div class="col-10 d-flex align-items-center justify-content-center">
-                    <input type="text" name="time_start" class="form-control time_flatpicker" placeholder="Time Start ">
-                    <span class="mx-2">To</span>
-                    <input type="text" name="time_end" class="form-control time_flatpicker" placeholder="Time End">
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Event Name">
                   </div>
                 </div>
 
@@ -109,6 +82,33 @@
                       <option value="{{ $user->id}}">{{ $user->lastname }}, {{ $user->firstname }} [{{ $user->usertype }}]</option>
                       @endforeach
                     </select>
+                  </div>
+                </div>
+
+                <div class="row g-3 align-items-center form-group">
+                  <div class="col-2">
+                    <label for="date_start" class="col-form-label text-center">
+                      <i class="fs-3 bi bi-calendar-event"></i>
+                    </label>
+                  </div>
+                  <div class="col-5">
+                    <input type="text" name="date_start" id="date_start" class="form-control datepicker" placeholder="Select Start Date ">
+                  </div>
+                  <div class="col-5">
+                    <input type="text" name="end_date" id="date_end" class="form-control datepicker" placeholder="Select End Date ">
+                  </div>
+                </div>
+
+                <div class="row g-3 align-items-center form-group">
+                  <div class="col-2">
+                    <label class="col-form-label">
+                      <i class="fs-3 bi bi-clock"></i>
+                    </label>
+                  </div>
+                  <div class="col-10 d-flex align-items-center justify-content-center">
+                    <input type="text" name="time_start" class="form-control timepicker" placeholder="Time Start ">
+                    <span class="mx-2">To</span>
+                    <input type="text" name="time_end" class="form-control timepicker" placeholder="Time End">
                   </div>
                 </div>
 
@@ -148,9 +148,13 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
 
 <!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
+
+  // *****
+  // Calendar
+  // *
   let schedules = @json($schedules);
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -172,7 +176,26 @@
 
     calendar.render();
   });
+
+
+  // *****
+  // Flatpickr
+  // *
+  flatpickr('.datepicker', {
+    dateFormat: 'Y-m-d',
+  });
+
+  flatpickr('.timepicker', {
+    enableTime: true,
+    time_24hour: true,
+    altInput: true,
+    altFormat: 'H:i',
+    dateFormat: 'H:i',
+    noCalendar: true,
+  });
+
 </script>
+
 
 
 @endsection
