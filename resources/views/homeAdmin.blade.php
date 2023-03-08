@@ -5,6 +5,7 @@
 <!-- ChartJs -->
 <script src=" https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js "></script>
 
+
 @endsection
 
 
@@ -69,17 +70,19 @@
 
 @section('script')
 
+
+
 <script>
   let ctx = document.getElementById('patientAdmissionBar').getContext('2d');
-  let chartData = @json($chartData);
+  let chartAdmissionData = @json($chartAdmissionData);
 
   let chart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: chartData.months,
+      labels: chartAdmissionData.months,
       datasets: [{
-        label: 'Admissions',
-        data: chartData.count,
+        label: 'Admissions Data',
+        data: chartAdmissionData.count,
         backgroundColor: [
           'rgba(255, 99, 132, 0.8)',
           'rgba(255, 159, 64, 0.8)',
@@ -93,16 +96,21 @@
       }]
     },
     options: {
-      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true
+        },
+        x: {
+          grid: {
+            display: false
+          }
         }
       },
       plugins: {
         title: {
           display: true,
-          text: 'Patients Admission Chart within the 12 month period'
+          text: 'Patients Admission Chart (Admission data within the last 12 months)'
         }
       }
     }
