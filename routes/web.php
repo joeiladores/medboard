@@ -5,7 +5,6 @@ use App\Http\Controllers\HomeController;
 
 // Admin Controllers
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\DepartmentController;
@@ -14,7 +13,6 @@ use App\Http\Controllers\Auth\RegisterController;
 
 use App\Http\Controllers\NurseAssignmentController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\FullCalendarController;
 
 // Doctor Order Controllers
 use App\Http\Controllers\DoctorDashboardController;
