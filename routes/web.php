@@ -66,12 +66,8 @@ Auth::routes();
 // Route::get('/nurseHome', [HomeController::class, 'nurseHome'])->name('nurseHome');
 // Route::get('/doctorHome', [HomeController::class, 'doctorHome'])->name('doctorHome');
 
-
-
 // *****************************************************************************
 // All Admin Routes List
-
-Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
@@ -118,6 +114,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 });
 
+Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
+
 
 // *****************************************************************************
 // Patient Routes
@@ -145,13 +143,7 @@ Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name
 // Calendar Routes
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 Route::post('/storecalendar', [CalendarController::class, 'store'])->name('storecalendar');
-// Route::resource('calendar', CalendarController::class)->only(['index', 'edit', 'store']);
-// Route::controller(CalendarController::class)->group(function () {
-//     Route::get('getevents', 'getEvents')->name('calendar.getevents');
-//     Route::put('update/events', 'updateEvents')->name('calendar.updateevents');
-//     Route::post('resize/events', 'resizeEvents')->name('calendar.resizeevents');
-//     Route::post('drop/events', 'dropEvents')->name('calendar.dropevents');
-// });
+
 
 
 // *****************************************************************************
@@ -234,54 +226,32 @@ Route::get('/generate-pdf', function(){
 
 // *****************************************************************************
 // Routes for password resets
-Route::post('/password-reset', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
- 
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
- 
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
-
-
-// Route::get('/forgot-password', function () {
-//     return view('auth.forgot-password');
-// })->middleware('guest')->name('password.request');  // reset password when loggin
-
-
-
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
+        'password' => 'required|confirmed',
     ]);
  
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $password) {
+        function (User $user, string $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
             ])->setRememberToken(Str::random(60));
  
-//             $user->save();
+            $user->save();
  
-//         //     event(new PasswordReset($user));
-         }
+            event(new PasswordReset($user));
+        }
     );
  
-
     return $status === Password::PASSWORD_RESET
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
-
-Auth::routes();
-
+// Routes for user profile
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
