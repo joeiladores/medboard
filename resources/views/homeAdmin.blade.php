@@ -65,18 +65,19 @@
 
 </div> -->
 
-<div class="d-flex m-4">
-  <div class="col-md-6">
-    <div class="shadow border rounded-3 p-2 me-2">
-      <canvas id="patientAdmissionBar"></canvas>
+
+  <div class="row m-3">
+    <div class="col-md-6">
+      <div class="shadow border rounded-3 p-2">
+        <canvas id="patientAdmissionBar" height="250px"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="shadow border rounded-3 p-2">
+        <canvas id="patientAgePie" height="250px"></canvas>
+      </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="shadow border rounded-3 p-2 ms-2">
-      <canvas id="patientAgePie"></canvas>
-    </div>
-  </div>
-</div>
 
 
 <!-- Charts Ends -->
@@ -126,7 +127,7 @@
       plugins: {
         title: {
           display: true,
-          text: 'Patients Admission (within the last 12 months)'
+          text: 'Patients Admission Chart'
         },
         legend: {
           display: false
