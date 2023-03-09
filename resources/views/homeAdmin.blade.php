@@ -53,17 +53,32 @@
 
 
 <!-- Charts Starts-->
-<div class="graphBox">
+<!-- <div class="graphBox">
 
   <div class="box border shadow">
-    <canvas id="patientAdmissionBar"></canvas>
+    <canvas id="patientAdmissionBar1"></canvas>
   </div>
 
   <div class="box border shadow">
-    <canvas id="patientChart"></canvas>
+    <canvas id="patientAgePie"></canvas>
   </div>
 
+</div> -->
+
+<div class="d-flex m-4">
+  <div class="col-md-6">
+    <div class="shadow border rounded-3 p-2 me-2">
+      <canvas id="patientAdmissionBar"></canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="shadow border rounded-3 p-2 ms-2">
+      <canvas id="patientAgePie"></canvas>
+    </div>
+  </div>
 </div>
+
+
 <!-- Charts Ends -->
 @endsection
 
@@ -96,10 +111,11 @@
       }]
     },
     options: {
+      responsive: true,
       maintainAspectRatio: false,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
         },
         x: {
           grid: {
@@ -110,7 +126,10 @@
       plugins: {
         title: {
           display: true,
-          text: 'Patients Admission Chart (Admission data within the last 12 months)'
+          text: 'Patients Admission (within the last 12 months)'
+        },
+        legend: {
+          display: false
         }
       }
     }
