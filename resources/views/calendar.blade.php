@@ -132,7 +132,7 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
     <div>
       <input type="hidden" name="author_id" id="author_id" value={{Auth::user()->id}}>
     </div>
