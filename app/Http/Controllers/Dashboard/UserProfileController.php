@@ -43,7 +43,7 @@ class UserProfileController extends Controller
         // Upload avatar
         if ($request->hasFile('imagepath')) {
             $imageName = md5(time()) . $current_user->id . '.' . $request->imagepath->extension();
-            $request->imagepath->move(public_path('images/avatars'), $imageName);
+            $request->imagepath->storeAs('public/images/profile', $imageName);
             $current_user->imagepath = $imageName;
         }
         
@@ -61,8 +61,8 @@ class UserProfileController extends Controller
     $current_user = Auth::user();
 
     $fileName = $request->get('fileName');
-    if (File::exists(public_path('images/avatars/' . $fileName))) {
-        File::delete(public_path('images/avatars/' . $fileName));
+    if (Storage::exists('public/images/profile/' . $fileName)) {
+        Storage::delete('public/images/profile/' . $fileName);
     }
 
     if (!$current_user->imagepath || $current_user->imagepath == "default.png") {

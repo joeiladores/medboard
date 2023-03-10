@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout', ['title' => 'Admin-Beds'])
+@extends('layouts.adminlayout', ['title' => 'Admin Dashboard'])
 
 @section('head')
 

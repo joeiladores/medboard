@@ -69,7 +69,7 @@ class AdmissionSeeder extends Seeder
             'mental_status'         => 'Conscious',
             'activities'            => 'Ambulant',
             'diet'                  => 'NPO',
-            'tubes'                 => 'NGT',
+            'tubes'                 => 'None',
             'special_info'          => 'BP Qshift',
             'status'                => 'Discharged',
             'created_at'            => '2023-01-26 01:30:25',
