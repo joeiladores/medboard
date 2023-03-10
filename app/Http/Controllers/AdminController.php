@@ -43,6 +43,8 @@ class AdminController extends Controller
             //TODO: query for pie chart data - admission bu age
             // $patientages = 
 
+            
+
            
             return view('homeAdmin', compact('totalCurrentAdmitted', 'totalDoctors', 'totalNurses', 'totalVacantBeds', 'chartAdmissionData'));
 
