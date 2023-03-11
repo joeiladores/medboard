@@ -1,6 +1,7 @@
-@extends('layouts.doctorLayout', ['title' => 'Doctor Orders'])
+@extends('layouts.doctorLayout')
 
 @section('content')
+<title>Doctor's Orders</title>
 
 <style>
 
@@ -19,7 +20,7 @@
 
 </style>
 <div>
-<div class="row mt-4">
+<div class="row">
     <div class="col-12 ps-4 pe-4">
 <div class="card rounded shadow p-3" id="tableSize">
 <table class="table" id="doctorOrderTable">

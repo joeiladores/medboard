@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
         'usertype',
         'lastname',
         'firstname',
@@ -37,7 +38,6 @@ class User extends Authenticatable
         'specialization_id',
         'imagepath',
         'status',
-        'stickyNote',
     ];
 
     /**
@@ -104,12 +104,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(AdmissionNew::class);
     }
-
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
 
 }
