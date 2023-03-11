@@ -144,7 +144,7 @@ Route::post('/storecalendar', [CalendarController::class, 'store'])->name('store
 // All Doctor Routes List
 Route::middleware(['auth', 'user-access:doctor'])->group(function () {
 
-    Route::get('/doctorHome', [DoctorDashboard::class, 'index'])->name('doctorHome');
+    Route::get('/doctorHome', [DoctorDashboardController::class, 'index'])->name('doctorHome');
 
 });
 
