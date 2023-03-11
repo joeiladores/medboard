@@ -18,7 +18,9 @@
                             @if($user->imagepath != NULL)
                             <img src="{{ Storage::url('public/images/profile/'.$user->imagepath) }}" class="img-fluid rounded-3" style="width: 200px; height: 200px; object-fit:cover;">
                             @else
-                            <i class="fas fa-user fs-2 me-1" style="width: 200px; height: 200px; object-fit:cover;"></i>
+                            <span class="d-flex justify-content-center" style="width: 200px; height: 200px;">
+                                <i class="fas fa-user fa-6x align-self-center"></i>
+                            </span>
                             @endif
                         </div>
                         <div class="col-md">

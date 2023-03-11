@@ -10,21 +10,19 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/images/medboard-logo.png">
 
-    <!--Bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <!--Bootstrap5 CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!--Fontawesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!--Fontawesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!--CSS-->
+  <link rel="stylesheet" href="/style.css">
 
-    <!--CSS-->
-    <link rel="stylesheet" href="/style.css">
+  @yield('head')
 
 </head>
-
 <body>
 
     <div class="d-flex" id="wrapper">
@@ -36,112 +34,77 @@
                 <p class="fw-bold fs-4">MedBoard</p>
             </div>
 
-            <div class="list-group list-group-flush my-3">
-            @php
-            $user = Auth::user();
-            @endphp
-
-
-            @if($user->usertype === 'doctor')
-
-                    <a  href="{{ route('doctorHome') }} "class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fa-sharp fa-solid fa-house-chimney fa-icon"></i>
-                    <span>Home</span>
-                    </a>
-
-                @elseif($user->usertype === 'nurse')
-                    <a  href="{{ route('nurseHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fa-sharp fa-solid fa-house-chimney fa-icon"></i>
-                    <span>Home</span>
-                    </a>
-                @elseif($user->usertype === 'admin')
-                    <a  href="{{ route('adminHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fa-sharp fa-solid fa-house-chimney fa-icon"></i>
-                    <span>Home</span>
-                    </a>
-                @endif
-                <a href="{{ route('patientView') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-sharp fa-solid fa-bed-pulse fa-icon"></i>
-                    <span>Patients</span>
-                </a>
-                <a href="{{ route('admittedPatient') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-hospital fa-icon"></i>
-                    <span>Admission</span>
-                </a>
-
-                @if($user->usertype != 'doctor')
-                <a href="{{ route('users') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-user fa-icon"></i>
-                    <span>User Management</span>
-                </a>
-                <a href="{{ route('beds') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-bed fa-icon"></i>
-                    <span>Bed Management</span>
-                </a>
-                <a href="{{ route('departments') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-building-user fa-icon"></i>
-                    Department
-                </a>
-                <a href="{{ route('specialization') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-people-roof fa-icon"></i>
-                    <span>Specialization</span>
-                </a>
-                @endif
-
-                <a href="{{ route('nurseassignments') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-user-nurse fa-icon"></i>
-                    <span>Nurse Assignment</span>
-                </a>
-                <!-- route('calendar')  -->
-                <a href="{{ route('calendar.index') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
-                    <i class="fa-solid fa-calendar-days fa-icon"></i>
-                    <span>Calendar</span>
-                </a>
-                <a href="{{ route('profile') }}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fa-sharp fa-solid fa-gear fa-icon"></i>
-                    Settings
-                </a>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
-                    <i class="fas fa-project-diagram fa-icon"></i>
-                    <span>{{ __('Logout') }}</span>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
-        </div>
-        <!-- Sidebar Ends -->
+      <div class="list-group list-group-flush my-3">
+        <a href="{{ route('adminHome') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+          <i class="fa-sharp fa-solid fa-house-chimney fa-icon"></i>
+          <span>Home</span>
+        </a>
+        <a href="{{ route('patientView') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-sharp fa-solid fa-bed-pulse fa-icon"></i>
+          <span>Patients</span>
+        </a>
+        <a href="{{ route('admittedPatient') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-hospital fa-icon"></i>
+          <span>Admission</span>
+        </a>
+        <a href="{{ route('users') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-user fa-icon"></i>
+          <span>User Management</span>
+        </a>
+        <a href="{{ route('beds') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-bed fa-icon"></i>
+          <span>Bed Management</span>
+        </a>
+        <a href="{{ route('departments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-building-user fa-icon"></i>
+          Department
+        </a>
+        <a href="{{ route('specialization') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-people-roof fa-icon"></i>
+          <span>Specialization</span>
+        </a>
+        <a href="{{ route('nurseassignments') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-user-nurse fa-icon"></i>
+          <span>Nurse Assignment</span>
+        </a>
+        <!-- route('calendar')  -->
+        <a href="{{ route('calendar') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-solid fa-calendar-days fa-icon"></i>
+          <span>Calendar</span>
+        </a>
+        <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold ">
+          <i class="fa-sharp fa-solid fa-gear fa-icon"></i>
+          Settings
+        </a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bg-transparent second-text fw-bold mt-5">
+          <i class="fas fa-project-diagram fa-icon"></i>
+          <span>{{ __('Logout') }}</span>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+        </form>
+      </div>
+    </div>
+    <!-- Sidebar Ends -->
 
         <!-- Navbar Starts -->
         <div id="page-content-wrapper">
             <div class="container-fluid" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2)">
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-3 sticky-top">
 
-                    <!-- Header -->
-                    <div class="d-flex">
-                        <!-- Sidebar Toggler -->
-                        <div class="row">
-                            <div class="col-md-3 col-2 align-self-center">
-                                <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
-                            </div>
-                            <div class="col align-self-center">
-                                <!-- Welcome User -->
-                                <div class="fs-6 fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }}</div>
-                                <div>{{ \Carbon\Carbon::now(new DateTimeZone('Asia/Singapore'))->format('D, F j, Y') }}
-                                </div>
-                            </div>
-                        </div>
+          <!-- Header -->
+          <div class="d-flex">
+            <!-- Sidebar Toggler -->
+            <div class="row">
+              <div class="col-md-3 col-2 align-self-center">
+                <i class="fas fa-align-left primary-text fs-2 me-3" id="menu-toggle"></i>
+              </div>
+              <div class="col align-self-center">
+                <!-- Welcome User -->
+                <div class="fs-6 fw-bold">{{ __('Hi,') }} {{ Auth::user()->name }}</div>
+                <div>{{ \Carbon\Carbon::now(new DateTimeZone('Asia/Manila'))->format('D, F j, Y') }}</div>
+              </div>
+            </div>
 
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -193,35 +156,37 @@
 
 
 
-        </div>
     </div>
+  </div>
 
-    <script>
+  <!--Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/fc-4.2.1/fh-3.3.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sl-1.6.0/datatables.min.js"></script>
+
+    <!-- ChartJS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  @yield('script')
+
+
+  <script>
     var el = document.getElementById("wrapper")
     var toggleButton = document.getElementById("menu-toggle")
 
     toggleButton.onclick = function() {
-        el.classList.toggle("toggled")
+      el.classList.toggle("toggled")
     }
-    </script>
-
-    <!--Bootstrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous">
-    </script>
-
-    <!-- ChartJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
-    <script src="/chart.js"></script>
-
-    <!-- For DataTables -->
-    <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet"
-        type="text/css">
-    <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
-    </script>
+  </script>
 
     <script>
     var dataTable = new DataTable("#patientTable");

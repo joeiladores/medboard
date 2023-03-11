@@ -1,254 +1,232 @@
 @extends('layouts.adminlayout', ['title' => 'Calendar'])
 
+@section('head')
+
+<!-- Flatpickr CSS -->
+<link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+<!-- SweetAlert CSS -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+@endsection
+
+
 @section('content')
 
-<style>
-  #calendar {
-    max-width: 1100px;
-    margin: 40px auto;
-  }
-</style>
+<div class="container-fluid bg-calendar m-0 p-3">
 
-<div id='calendar' class="m-5"></div>
-
-{{--Modal Create--}}
-<div class="modal fade" id="modal-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Create Event</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- Calendar Title and Buttons -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card border-0">
+        <div class="card-body d-flex align-items-center flex-wrap">
+          <div class="card-title mb-0 flex-fill">
+            <h3 class="fw-bold text-secondary f-poppins">CALENDAR</h3>
+          </div>
+          @if (Auth::user()->usertype === 'admin')
+          <div class="mt-2 mt-sm-0 me-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addScheduleModal">
+              + Add Schedule
+            </button>
+          </div>
+          @endif
+          <div class="mt-2 mt-sm-0">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+              + Add Event
+            </button>
+          </div>
+        </div>
       </div>
-      <form method="post" action="{{route('calendar.store')}}">
-        @csrf
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="create-title" name="title" aria-describedby="emailHelp" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="create-description" name="description" aria-describedby="emailHelp" required>
-          </div>
-          <div class="mb-3">
-            <label for="exampleColorInput" class="form-label">Color picker</label>
-            <input type="color" name="color" class="form-control form-control-color" id="create-color" value="#563d7c" title="Choose your color" required>
-          </div>
-          <div class="mb-3">
-            <label for="exampleColorInput" class="form-label">Status</label>
-            <select class="form-select" aria-label="Default select example" id="create_status" name="status" required>
-              <option value="1">Pending</option>
-              <option value="2">Confirmed</option>
-              <option value="3">Canceled</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="exampleColorInput" class="form-label">Resource</label>
-            <select class="form-select" aria-label="Default select example" id="create_resource" name="resourceId" required>
-              <option value="a">Nurse Station 1</option>
-              <option value="b">Nurse Station 2</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="datetime-local">Start</label>
-            <input type="datetime-local" class="form-control" id="create-start" name="start" required>
-          </div>
-          <div class="mb-3">
-            <label for="datetime-local">End</label>
-            <input type="datetime-local" class="form-control" id="create-end" name="end" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-      </form>
     </div>
   </div>
-</div>
 
-{{--Modal Update--}}
-<div class="modal fade" id="modal-update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Update Event</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- Display Calendar -->
+  <div class="container my-3 p-0">
+    <div class="card border-0">
+      <div class="card-body">
+        <div class="my-sm-0" id="calendar"></div>
       </div>
-      <form method="POST" action="{{route('calendar.updateevents')}}">
-        @method('PUT')
-        @csrf
-        <input type="hidden" id="id" name="id" value="">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="update-title" name="title" aria-describedby="emailHelp" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="update-description" name="description" aria-describedby="emailHelp" required>
-          </div>
-          <div class="mb-3">
-            <label for="exampleColorInput" class="form-label">Color picker</label>
-            <input type="color" name="color" class="form-control form-control-color" id="update-color" title="Choose your color" required>
-          </div>
-          <div class="mb-3">
-            <label for="exampleColorInput" class="form-label">Status</label>
-            <select class="form-select" aria-label="Default select example" id="update-status" name="status" required>
-              <option value="1">Pending</option>
-              <option value="2">Confirmed</option>
-              <option value="3">Canceled</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="exampleColorInput" class="form-label">Resource</label>
-            <select class="form-select" aria-label="Default select example" id="update-resource" name="resourceId" required>
-              <option value="a">Nurse Station 1</option>
-              <option value="b">Nurse Station 2</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="datetime-local">Start</label>
-            <input type="datetime-local" class="form-control" id="update-start" name="start" required>
-          </div>
-          <div class="mb-3">
-            <label for="datetime-local">End</label>
-            <input type="datetime-local" class="form-control" id="update-end" name="end" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-      </form>
     </div>
   </div>
+
 </div>
 
-<!-- Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
- <!-- FullCalendar -->
- <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.4/index.global.min.js"></script>
+<!-- Add Schedule Modal -->
+<div class="modal fade" id="addScheduleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header primary-bg text-white">
+        <h5 class="modal-title">Add Schedule</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('storecalendar') }}" method="POST">
+        @csrf
+        <div class="modal-body">
+          <div class="d-flex flex-column align-items-start">
+            <div class=" w-100"">
+              <div class=" fade active show" id="-3">
 
+              <div class="row g-3 align-items-center form-group">
+                <div class="col-2">
+                  <label for="name" class="col-form-label">Name</label>
+                </div>
+                <div class="col-10">
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Event Name">
+                </div>
+              </div>
+
+              <div class="row g-3 align-items-center form-group">
+                <div class="col-2">
+                  <label class="col-form-label">
+                    <i class="fs-3 bi bi-person"></i>
+                  </label>
+                </div>
+                <div class="col-10">
+                  <select name="user_id" class="form-select choices-multiple-remove-button">
+                    <option value="null">Select User</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id}}">{{ $user->lastname }}, {{ $user->firstname }} [{{ $user->usertype }}]</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+
+              <div class="row g-3 align-items-center form-group">
+                <div class="col-2">
+                  <label for="date_start" class="col-form-label text-center">
+                    <i class="fs-3 bi bi-calendar-event"></i>
+                  </label>
+                </div>
+                <div class="col-5">
+                  <input type="text" name="date_start" id="date_start" class="form-control datepicker" placeholder="Select Start Date ">
+                </div>
+                <div class="col-5">
+                  <input type="text" name="date_end" id="date_end" class="form-control datepicker" placeholder="Select End Date ">
+                </div>
+              </div>
+
+              <div class="row g-3 align-items-center form-group">
+                <div class="col-2">
+                  <label for="time_start" class="col-form-label">
+                    <i class="fs-3 bi bi-clock"></i>
+                  </label>
+                </div>
+                <div class="col-10 d-flex align-items-center justify-content-center">
+                  <input type="text" name="time_start" id="time_start" class="form-control timepicker" placeholder="Time Start ">
+                  <span class="mx-2">To</span>
+                  <input type="text" name="time_end" id="time_end" class="form-control timepicker" placeholder="Time End">
+                </div>
+              </div>
+
+              <div class="row g-3 align-items-center form-group">
+                <div class="col-2">
+                  <label for="place" class="col-form-label">
+                    <i class="fs-3 bi bi-house-door"></i>
+                  </label>
+                </div>
+                <div class="col-10">
+                  <input type="text" name="place" id="place" class="form-control" placeholder="Place">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div>
+      <input type="hidden" name="author_id" id="author_id" value={{Auth::user()->id}}>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="save">Save</button>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+
+@endsection
+
+
+@section('script')
+
+<!-- FullCalendar  -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 <script>
-  var SITEURL = "{{ url('/') }}";
-
+  // *****
+  // Calendar JS
+  // *
   document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+    let calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-      nowIndicator: true,
-      editable: true,
-      selectable: true,
-      navLinks: true,
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+      themeSystem: 'bootstrap5',
       timeZone: 'Asia/Manila',
-      locale: '',
-      initialView: 'dayGridMonth',
-      eventColor: 'gray',
-      resources: [{
-          id: 'a',
-          title: 'Station 1'
-        },
-        {
-          id: 'b',
-          title: 'Station 2'
-        }
-      ],
       headerToolbar: {
-        left: 'prev,next',
+        left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,list',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      events: "{{ route('calendar.getevents') }}",
-      dateClick: function(info) {
-        var start = moment(info.dateStr).format('YYYY-MM-DD\THH:mm');
-        var end = moment(info.dateStr).add(30, 'minutes').format('YYYY-MM-DD\THH:mm');
-
-        document.getElementById('create-start').value = start;
-        document.getElementById('create-end').value = end;
-
-        var myModal = new bootstrap.Modal(document.getElementById('modal-create'))
-        myModal.show()
-      },
-      eventClick: function(info) {
-        let id_event = info.event._def['publicId'];
-        let _token = document.getElementsByName("_token")[0].value;
-        document.getElementById('id').value = id_event;
-
-        $.ajax({
-          method: "get",
-          url: SITEURL + '/calendar/' + id_event + '/edit',
-          data: {
-            _token: _token
-          },
-          success: function(response) {
-            document.getElementById('update-title').value = response.data.title;
-            document.getElementById('update-description').value = response.data.description;
-            document.getElementById('update-start').value = response.data.start;
-            document.getElementById('update-end').value = response.data.end;
-            document.getElementById('update-color').value = response.data.color;
-            document.getElementById('update-resource').value = response.data.resourceId;
-            document.getElementById('update-status').value = response.data.status;
-
-            var myModal = new bootstrap.Modal(document.getElementById('modal-update'))
-            myModal.show()
-          }
-        });
-      },
-      eventDrop: function(info) {
-        if (!confirm("You requested the change: " + info.event.title +
-            "\nThe event will be changed to the date: " + moment(info.event.startStr).format(
-              'DD-MM-YYYY HH:mm:ss'))) {
-          info.revert();
-        } else {
-          console.log(info)
-          let id_event = info.event._def['publicId'];
-          let _token = document.getElementsByName("_token")[0].value;
-          let start = moment(info.event.startStr).format('YYYY-MM-DD\THH:mm');
-          let end = moment(info.event.endStr).format('YYYY-MM-DD\THH:mm');
-          let resource = info.event._def.resourceIds[0];
-          $.ajax({
-            url: "{{route('calendar.dropevents')}}",
-            method: "post",
-            data: {
-              id: id_event,
-              resourceId: resource,
-              start: start,
-              end: end,
-              _token: _token
-            },
-            success: function(result) {
-              alert('Success');
-            }
-          });
-        }
-      },
-      eventResize: function(info) {
-        let id_event = info.event._def['publicId'];
-        let _token = document.getElementsByName("_token")[0].value;
-        let end = moment(info.event.endStr).format('YYYY-MM-DD\THH:mm');
-
-        $.ajax({
-          url: "{{route('calendar.resizeevents')}}",
-          method: "post",
-          data: {
-            id: id_event,
-            end: end,
-            _token: _token
-          },
-          success: function(result) {
-            alert("Update successfull");
-          }
-        });
-      },
+      dayMaxEvents: true, // allow "more" link when too many events
+      selectable: true,
+      events: @json($schedules)
     });
+
     calendar.render();
+  });
+
+
+  // *****
+  // Flatpickr JS
+  // *
+  flatpickr('.datepicker', {
+    dateFormat: 'Y-m-d',
+  });
+
+  flatpickr('.timepicker', {
+    enableTime: true,
+    time_24hour: true,
+    altInput: true,
+    altFormat: 'H:i',
+    dateFormat: 'H:i',
+    noCalendar: true,
   });
 </script>
 
+<!-- Sweet Alert JS -->
+@if(session('success'))
+<script>
+  Swal.fire({
+    title: 'Success!',
+    text: '{{ session('success') }}',
+    icon: 'success',
+    confirmButtonColor: 'rgb(66,100,208)',
+    confirmButtonText: 'OK'
+  });
+</script>
+@endif
+
+@if(session('error'))
+<script>
+  Swal.fire({
+    title: 'Error!',
+    text: '{{ session('error') }}',
+    icon: 'error',
+    confirmButtonColor: 'rgb(66,100,208)',
+    confirmButtonText: 'OK'
+  });
+</script>
+@endif
+
+
+
 @endsection
+

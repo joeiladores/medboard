@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             
             $table->string('usertype');
-            // Users: 1=>admin, 2=>doctor, 3=>nurse, 4=>chiefnurse
+            // Users: admin, doctor, nurse, chiefnurse
             $table->string('lastname');
             $table->string('firstname');
             $table->string('middlename');
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
             $table->string('imagepath')->nullable()->default(null);
             $table->enum('status', ['active', 'inactive'])->default('active');  
-            $table->longText('stickyNote')->nullable()->default(null);        
+            $table->longText('stickyNote')->nullable()->default(null);
 
             $table->string('name');
             $table->string('email')->unique();

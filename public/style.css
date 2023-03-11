@@ -190,6 +190,15 @@ body {
 } */
 
 
+#calendar {
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.bg-calendar {
+  background-color: #F3F3F9;
+}
+
 
 /* Chart */
 .graphBox {
@@ -198,8 +207,9 @@ body {
   padding: 1.2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-  min-height: 200px;
+  gap: 1rem;
+  min-height: 300px;
+  
 }
 
 .graphBox .box {
@@ -207,9 +217,8 @@ body {
   background: #fff;
   padding: 1rem;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 5px;
 }
-
 
 /* Media Query */
 /* @media screen and (max-width: 576px) {
@@ -242,12 +251,12 @@ body {
   }
 }
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   .graphBox {
     grid-template-columns: 1fr;
     height: auto;
   }
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .side-image {

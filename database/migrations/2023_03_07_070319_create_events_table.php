@@ -13,20 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('calendars', function (Blueprint $table) {
-            $table->id();
+        Schema::create('events', function (Blueprint $table) {
+            $table->id();            
 
+            $table->foreignId('author_id')->constrained('users')->onDelete('cascade')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('title')->nullable();
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
-            $table->string('description')->nullable();
-            $table->string('status')->nullable();
-            $table->string('color')->nullable();
-            $table->string('resourceId')->nullable();
+            $table->string('name');
+            $table->date('date_start');
+            $table->date('date_end');
+            $table->time('time_start');
+            $table->time('time_end');
+            $table->string('place');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendars');
+        Schema::dropIfExists('events');
     }
 };
