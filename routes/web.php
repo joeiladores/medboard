@@ -15,7 +15,7 @@ use App\Http\Controllers\NurseAssignmentController;
 use App\Http\Controllers\CalendarController;
 
 // Doctor Order Controllers
-use App\Http\Controllers\DoctorDashboardController;
+use App\Http\Controllers\DoctorDashboard;
 use App\Http\Controllers\DoctorOrdersController;
 use App\Http\Controllers\OrderMedicationController;
 use App\Http\Controllers\OrderTransfusionController;
@@ -44,6 +44,8 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
  
+
+
 
 Route::get('/', function (){
     return redirect()->route('login');
@@ -106,8 +108,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 });
 
-Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
-
 
 // *****************************************************************************
 // Patient Routes
@@ -128,6 +128,10 @@ Route::get('/admittedPatient', [AdmissionNewController::class, 'showAdmitted'])-
 Route::get('/destroyAdmitted/{id}', [AdmissionNewController::class, 'destroy'])->name('destroyAdmitted');
 Route::get('/showAdmission/{id}', [AdmissionNewController::class, 'show'])->name('showAdmission');
 Route::post('/updateAdmission', [AdmissionNewController::class, 'update'])->name('updateAdmission');
+
+// *****************************************************************************
+// Routes for Kardex Patient Admission Information
+Route::get('/kardex/{id}', [AdmissionNewController::class, 'kardex'])->name('kardex');
 
 // *****************************************************************************
 // Calendar Routes
@@ -151,12 +155,14 @@ Route::post('/storeDoctorOrders', [DoctorOrdersController::class, 'store'])->nam
 Route::get('/destroyDoctorOrder/{id}', [DoctorOrdersController::class, 'destroy'])->name('destroyDoctorOrder');
 
 // For Doctor's Order Display(Medication, Transfusion, Treatment & Progress Notes) View
+
 // *****************************************************************************
 // Routes for Medication
 Route::post('/storeMedication', [OrderMedicationController::class, 'store'])->name('storeMedication');
 Route::get('/editMedication/{id}', [OrderMedicationController::class, 'edit'])->name('editMedication');
 Route::post('/updateMedication', [OrderMedicationController::class, 'update'])->name('updateMedication');
 Route::get('/destroyMedication/{id}', [OrderMedicationController::class, 'destroy'])->name('destroyMedication');
+
 
 // *****************************************************************************
 // Routes for Transfusion
@@ -179,7 +185,6 @@ Route::post('/storeProgressNote', [ProgressNoteController::class, 'store'])->nam
 Route::get('/editProgressNote/{id}', [ProgressNoteController::class, 'edit'])->name('editProgressNote');
 Route::post('/updateProgressNote', [ProgressNoteController::class, 'update'])->name('updateProgressNote');
 Route::get('/destroyProgressNote/{id}', [ProgressNoteController::class, 'destroy'])->name('destroyProgressNote');
-
 
 
 // *****************************************************************************

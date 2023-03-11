@@ -1,5 +1,4 @@
-@extends('layouts.NurseLayout', ['title' => 'Nurse Dashboard'])
-
+@extends('layouts.NurseLayout')
 
 @section('content')
 <style>
@@ -121,6 +120,8 @@
                 <img id="DashboardNurseImg" src="{{ asset('images/nursedashboard.png') }}" alt="Image">
             </div>
         </div>
+
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="card rounded shadow mt-2 p-2" id="tableSize">
@@ -167,40 +168,40 @@
             style="padding:15%; height:530px; background-color: #d4ebf8;border-radius: 30px 30px 0px 0px;border: 1px solid #00020518;">
             <center>
                 <img style="width: 100px; height: 100px;" class="rounded-circle img-thumbnail mb-2 img-fluid"
-                    src="{{ asset('images/avatars/'. Auth::user()->imagepath) }}" alt="Image">
+                    src="{{ Storage::url('public/images/profile/'.Auth::user()->imagepath) }}" alt="Image">
                 <p style="font-size:17px; font-weight:600;color:#1353c9;">Nurse
                     {{ Auth::user()->firstname . " " . Auth::user()->lastname }}</p>
                 <p style="font-size:14px; font-weight:600;color:#1353c9;">{{ $specialization->name }}</p>
             </center>
-            <div style="background-image: linear-gradient(to bottom, #fde8e1, #f9d3c9);
-                    border: 1px solid #f9d3c9; 
-                    border-radius: 10px; 
-                    padding: 20px; 
-                    position: relative; 
-                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); 
-                    background-size: 20px; 
-                    background-color: #fff; 
-                    font-size: 30px; 
-                    line-height: 1.5; 
-                    color: #f37c7c; 
-                    letter-spacing: 1px;">
+            <div style="background-image: linear-gradient(to bottom,#4597e4, #4597e4);
+            border: 1px solid #4597e4; 
+            border-radius: 10px; 
+            padding: 20px; 
+            position: relative; 
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); 
+            background-size: 20px; 
+            background-color: #fff; 
+            font-size: 30px; 
+            line-height: 1.5; 
+            color: #ffffff; 
+            letter-spacing: 1px;">
                 <div style="position: absolute; 
-                    top: -10px; 
-                    left: 20px; 
-                    width: 20px; 
-                    height: 10px; 
-                    background-color: #fff; 
-                    transform: rotate(-4deg);">
+            top: -10px; 
+            left: 20px; 
+            width: 20px; 
+            height: 10px; 
+            background-color: #fff; 
+            transform: rotate(-4deg);">
                 </div>
                 <div style="position: absolute; 
-                    top: 2px; 
-                    left: 18px; 
-                    width: 20px; 
-                    height: 3px; 
-                    background-color: #f9d3c9;">
+            top: 2px; 
+            left: 18px; 
+            width: 20px; 
+            height: 3px; 
+            background-color: #4597e4;">
                 </div>
                 <div style="word-wrap: break-word;
-                    text-shadow:#f37c7c, 3px 3px #f37c7c;">
+            text-shadow:#4597e4, 3px 3px #4597e4;">
                     {{ Auth::user()->stickyNote }}
                 </div>
             </div>

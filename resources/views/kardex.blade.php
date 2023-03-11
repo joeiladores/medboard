@@ -1,18 +1,16 @@
 @extends($layout, ['title' => $title])
 @section('content')
 
-<style>
-  body {
-    background-color: #F3F3F9;
-  }
-</style>
 
-
-<div class="container p-3">
-  <div class="d-flex primary-bg rounded-3 p-2 justify-content-center">
-    <h5 class="f-roboto fw-bold text-light my-auto">KARDEX</h5>
+  <div class="container p-5 m-5">
+    <div>
+      <h3>KARDEX</h3>
+    </div>
+    
   </div>
 
+<<<<<<< HEAD
+=======
   <div class="container">
     @foreach($kardexinfo as $kardex)
     <!-- Personal Information -->
@@ -252,6 +250,10 @@
         });
       });
     </script>
+>>>>>>> a1bb4042d6f3bdcf29098f6eda88e048157f2ded
 
 
-    @endsection
+  
+
+@endsection
+
